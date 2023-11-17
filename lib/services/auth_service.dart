@@ -14,9 +14,8 @@ import '/utils/api/api_instances.dart';
 
 class AuthService extends DeviceInfoService{
 
-  final supabase = Supabase.instance.client;
-
-  final GoogleSignIn googleSignIn = GoogleSignIn(
+  final _supabase = Supabase.instance.client;
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
     clientId: Config.androidClientId,
     serverClientId: Config.serverClientID,
   );
@@ -43,7 +42,7 @@ class AuthService extends DeviceInfoService{
 
     try {
      
-      final googleUser = await googleSignIn.signIn();
+      final googleUser = await _googleSignIn.signIn();
       final googleAuth = await googleUser!.authentication;
       final accessToken = googleAuth.accessToken;
       final idToken = googleAuth.idToken;
@@ -55,7 +54,7 @@ class AuthService extends DeviceInfoService{
         throw 'No ID Token found.';
       }
       
-      final supabaseLoginResp = await supabase.auth.signInWithIdToken(
+      final supabaseLoginResp = await _supabase.auth.signInWithIdToken(
         provider: Provider.google,
         idToken: idToken,
         accessToken: accessToken,
@@ -90,11 +89,11 @@ class AuthService extends DeviceInfoService{
   Future<ResponseModel> logout() async {
     try {
       await Future.delayed(const Duration(milliseconds: 300));
-      final isLoggedinWihtGoogle = await googleSignIn.isSignedIn();
+      final isLoggedinWihtGoogle = await _googleSignIn.isSignedIn();
       if(isLoggedinWihtGoogle){
-        await googleSignIn.signOut();
+        await _googleSignIn.signOut();
       }
-      await supabase.auth.signOut();
+      await _supabase.auth.signOut();
       
       return ResponseModel(
         success: true,

@@ -19,7 +19,16 @@ final routes =  [
     path: LoginScreen.routeName,
     name: LoginScreen.routeName,
     builder: (context, state) => const LoginScreen(),
+    routes: [
+      GoRoute(
+        path: RegisterScreen.routeName,
+        name: RegisterScreen.routeName,
+        builder: (context, state) => const RegisterScreen(),
+      ),
+    ]
   ),
+
+  
 
   GoRoute(
     path: 

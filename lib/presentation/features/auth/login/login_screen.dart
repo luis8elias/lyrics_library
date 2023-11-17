@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '/presentation/features/auth/login/widgets/login_divider.dart';
-import '/presentation/features/auth/login/widgets/start_button.dart';
 import '/presentation/features/auth/shared/widgets/password_input.dart';
 import '/app/providers/providers.dart';
 import '/presentation/features/auth/login/providers/providers.dart';
@@ -10,7 +8,11 @@ import '/presentation/widgets/providers.dart';
 import '/presentation/widgets/widgets.dart';
 import '/config/config.dart';
 import '/utils/utils.dart';
+
 import 'widgets/login_google_button.dart';
+import 'widgets/register_link.dart';
+import 'widgets/start_button.dart';
+import 'widgets/login_divider.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
@@ -123,7 +125,7 @@ class _LoginScreenUI extends ConsumerWidget {
                 const SizedBox(
                   height: Sizes.kPadding,
                 ),
-                // const RegisterLink()
+                const RegisterLink()
               ],
             ),
           ),

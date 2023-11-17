@@ -159,6 +159,26 @@ class Lang {
       args: [],
     );
   }
+
+  /// `You do not have an account?`
+  String get loginScreen_registerLinkText {
+    return Intl.message(
+      'You do not have an account?',
+      name: 'loginScreen_registerLinkText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Register`
+  String get loginScreen_registerLink {
+    return Intl.message(
+      ' Register',
+      name: 'loginScreen_registerLink',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

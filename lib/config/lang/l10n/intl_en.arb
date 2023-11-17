@@ -24,5 +24,8 @@
     "loginScreen_passwordInput" : "Password",
     "loginScreen_buttonText" : "Login",
     "loginScreen_alternativesDivider" : "Or",
-    "loginScreen_signInWithGoogleButton": "Login with Google"
+    "loginScreen_signInWithGoogleButton": "Login with Google",
+    "loginScreen_registerLinkText": "You do not have an account?",
+    "loginScreen_registerLink" : " Register"
+
 }

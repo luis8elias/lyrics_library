@@ -23,5 +23,7 @@
     "loginScreen_passwordInput" : "Contraseña",
     "loginScreen_buttonText" : "Iniciar sesión",
     "loginScreen_alternativesDivider" : "Ó",
-    "loginScreen_signInWithGoogleButton": "Inicia sesión con Google"
+    "loginScreen_signInWithGoogleButton": "Inicia sesión con Google",
+    "loginScreen_registerLinkText": "¿No tines una cuenta?",
+    "loginScreen_registerLink" : " Regístrate"
 }

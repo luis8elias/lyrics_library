@@ -32,6 +32,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginScreen_emailInput": MessageLookupByLibrary.simpleMessage("Email"),
         "loginScreen_passwordInput":
             MessageLookupByLibrary.simpleMessage("Password"),
+        "loginScreen_registerLink":
+            MessageLookupByLibrary.simpleMessage(" Register"),
+        "loginScreen_registerLinkText":
+            MessageLookupByLibrary.simpleMessage("You do not have an account?"),
         "loginScreen_signInWithGoogleButton":
             MessageLookupByLibrary.simpleMessage("Login with Google"),
         "loginScreen_welcome": MessageLookupByLibrary.simpleMessage(
