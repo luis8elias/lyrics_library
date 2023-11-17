@@ -1,0 +1,115 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '/utils/utils.dart';
+
+
+final darkTheme = ThemeData(
+    useMaterial3: true,
+    brightness: Brightness.dark,
+    appBarTheme: AppBarTheme(
+      surfaceTintColor: Colors.transparent,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      titleTextStyle: TextStyle(
+        color: _darkColorScheme.onSurface,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+      ),
+      systemOverlayStyle: const SystemUiOverlayStyle(
+        statusBarBrightness: Brightness.light,
+        statusBarColor: Colors.transparent,
+      )
+    ),
+    textTheme: GoogleFonts.openSansTextTheme(
+      TextTheme(
+        titleMedium: TextStyle(
+          fontSize: 24,
+          color: _darkColorScheme.onBackground
+        ),
+        titleSmall: TextStyle(
+          fontSize: 18,
+          color: _darkColorScheme.onBackground,
+          fontWeight: FontWeight.bold
+        ),
+        bodyMedium: TextStyle(
+          color: _darkColorScheme.onSecondary,
+          fontSize: 17
+        ),
+        bodySmall:TextStyle(
+          color: _darkColorScheme.onSecondary,
+          fontSize: 8
+        ) 
+        // bodySmall: TextStyle(color: _darkColorScheme.onBackground),
+        // bodyLarge: TextStyle(color: _darkColorScheme.onBackground),
+        // bodyMedium: TextStyle(
+        //   color: _darkColorScheme.onBackground),
+        // displayLarge: TextStyle(color: _darkColorScheme.onBackground),
+        // displayMedium: TextStyle(color: _darkColorScheme.onBackground),
+        // displaySmall: TextStyle(
+        //   color: _darkColorScheme.onSurface,
+        //   fontSize: 24,
+        //   fontWeight: FontWeight.w700,
+        // ),
+        // labelLarge: TextStyle(color: _darkColorScheme.onBackground),
+        // labelMedium: TextStyle(color: _darkColorScheme.onBackground),
+        // labelSmall: TextStyle(color: _darkColorScheme.onBackground),
+        // titleSmall: TextStyle(color: _darkColorScheme.onBackground),
+        // titleLarge: TextStyle(
+        //   color: _darkColorScheme.onSurface,
+        //   fontSize: 18,
+        // ),
+        // titleMedium: TextStyle(
+        //   fontSize: 18,
+        //   color: _darkColorScheme.onSurface,
+        //   fontWeight: FontWeight.bold,
+        // ),
+      )
+    ),
+    primaryColor: _darkColorScheme.primary,
+    hintColor: _darkColorScheme.onBackground,
+    scaffoldBackgroundColor: _darkColorScheme.background,
+    dividerColor: _darkColorScheme.onBackground,
+    colorScheme: _darkColorScheme,
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      //fillColor: DarkTheme.surface1Color,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(Sizes.kBorderRadius),
+        borderSide: BorderSide(color: _darkColorScheme.outline),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(Sizes.kBorderRadius),
+        borderSide:  BorderSide(color: _darkColorScheme.primary),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(Sizes.kBorderRadius),
+        borderSide:  BorderSide(color: _darkColorScheme.error),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(Sizes.kBorderRadius),
+        borderSide:  BorderSide(color: _darkColorScheme.error),
+      ),
+    ),
+  );
+
+ final _darkColorScheme = ColorScheme(
+  brightness: Brightness.dark,
+  primary: const Color(0xFFA2F263),
+  primaryContainer: const Color(0xFFA2F263).withOpacity(0.15),
+  onPrimary: const Color(0xff1e2528),
+  secondary: const Color(0xFF636366),
+  onSecondary: const Color(0xFFEBEBF5).withOpacity(0.60),
+  tertiary: const Color(0xFFFF9500),
+  error: const Color(0xFFFF453A),
+  onError: const Color(0xFFFFFFFF),
+  outline: const Color(0xFF8B9198),
+  background: const Color(0xff1e2528),
+  onBackground: const Color(0xFFFFFFFF),
+  surface: const Color(0xff1e2528),
+  onSurface: const Color(0xFFF9F9F9),
+  surfaceVariant: const Color(0xFF1D2427),
+  onSurfaceVariant: const Color(0xFFC1C7CE),
+  inverseSurface: const Color(0xFFE2E2E5),
+);

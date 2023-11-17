@@ -1,0 +1,28 @@
+{
+    "@@locale": "en",
+
+    "@_VALIDATOR": {},
+    "validator_email" : "Wrong email",
+    "validator_required" : "This field is required",
+    "validator_confirmPasswordLength" : "Password must be at least {length} characters",
+    "validator_confirmPassword" : "Passwords do not match",
+    "@validator_confirmPasswordLength": {
+        "placeholders": {
+          "length": {
+            "type": "int"
+          }
+        }
+    },
+    
+
+    "@_LOADING_SCREEN": {},
+    "loadingScreen_loading" : "Loading...",
+    
+    "@_LOGIN_SCREEN": {},
+    "loginScreen_welcome" : "Welcome! Glad to see you again!",
+    "loginScreen_emailInput" : "Email",
+    "loginScreen_passwordInput" : "Password",
+    "loginScreen_buttonText" : "Login",
+    "loginScreen_alternativesDivider" : "Or",
+    "loginScreen_signInWithGoogleButton": "Login with Google"
+}

@@ -1,0 +1,27 @@
+{
+    "@@locale": "es",
+
+    "@_VALIDATOR": {},
+    "validator_email" : "Correo incorrecto",
+    "validator_required" : "Este campo es obligatorio",
+    "validator_confirmPasswordLength" : "La contraseña debe ser como mínimo de {length} caracteres",
+    "validator_confirmPassword" : "Las contraseñas no coinciden",
+    "@validator_confirmPasswordLength": {
+        "placeholders": {
+          "length": {
+            "type": "int"
+          }
+        }
+    },
+
+    "@_LOADING_SCREEN": {},
+    "loadingScreen_loading" : "Cargando...",
+        
+    "@_LOGIN_SCREEN": {},
+    "loginScreen_welcome" : "¡Bienvenido! ¡Me alegra verte de nuevo!",
+    "loginScreen_emailInput" : "Correo electrónico",
+    "loginScreen_passwordInput" : "Contraseña",
+    "loginScreen_buttonText" : "Iniciar sesión",
+    "loginScreen_alternativesDivider" : "Ó",
+    "loginScreen_signInWithGoogleButton": "Inicia sesión con Google"
+}
