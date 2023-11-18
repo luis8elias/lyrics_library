@@ -63,7 +63,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                 child: ListTile(
                   title: Text(
                     item,
-                    style: theme.textTheme.titleSmall,
+                    style: theme.textTheme.displaySmall,
                   ),
                   subtitle: Container(
                     margin: const EdgeInsets.only(top: 5),

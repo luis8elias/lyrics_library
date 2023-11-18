@@ -14,8 +14,12 @@
         }
     },
 
+
+
     "@_LOADING_SCREEN": {},
     "loadingScreen_loading" : "Cargando...",
+
+
         
     "@_LOGIN_SCREEN": {},
     "loginScreen_welcome" : "¡Bienvenido! ¡Me alegra verte de nuevo!",
@@ -28,11 +32,17 @@
     "loginScreen_registerLink" : " Regístrate",
     "loginScreen_forgotYourPasswordLink" : "¿Olvidaste tu contraseña?",
 
+
+
     "@_REGISTER_SCREEN": {},
     "registerScreen_registerButton" : "Regístrarse",
     "registerScreen_title" : "¡Hola! Regístrese para comenzar",
     "registerScreen_nameInput" : "Nombre(s)",
     "registerScreen_emailInput" : "orreo electrónico",
     "registerScreen_passwordInput" : "Contraseña",
-    "registerScreen_confrimPasswordInput" : "Confirmar contraseña"
+    "registerScreen_confrimPasswordInput" : "Confirmar contraseña",
+
+
+    "@_GENRES_LIST_SCREEN": {},
+    "genresListScreen_title" : "Géneros"
 }

@@ -1,8 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lyrics_library/presentation/widgets/custom_bottom_nav_bar.dart';
-import 'package:lyrics_library/utils/constants/sizes.dart';
+import 'package:lyrics_library/utils/extensions/string_extensions.dart';
+
+import '/presentation/features/genres/list/providers/providers.dart';
+import '/presentation/widgets/providers.dart';
+import '/config/lang/generated/l10n.dart';
+import '/presentation/widgets/custom_bottom_nav_bar.dart';
+import '/utils/constants/sizes.dart';
 
 class GenresListScreen extends ConsumerWidget {
   const GenresListScreen({super.key});
@@ -13,27 +18,29 @@ class GenresListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final theme = Theme.of(context);
+    final lang = Lang.of(context);
     final GlobalKey<ScaffoldState> key = GlobalKey();
+    final prov = ref.read(genresListProvider);
    
     return  Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
-        leading: Padding(
-          padding: const EdgeInsets.only(
-            left: Sizes.kPadding
-          ),
-          child: IconButton(
-            onPressed: (){},
-            icon: Icon(
-              CupertinoIcons.ellipsis_circle,
-              color: theme.colorScheme.primary,
-            ),
+        centerTitle: true,
+        title: Text(
+          lang.genresListScreen_title,
+          style: theme.textTheme.titleSmall,
+        ),
+        leading: IconButton(
+          onPressed: (){},
+          icon: Icon(
+            CupertinoIcons.ellipsis_circle,
+            color: theme.colorScheme.primary,
           ),
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(
-              right: Sizes.kPadding
+              right: Sizes.kPadding/2
             ),
             child: InkWell(
               borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius),
@@ -52,20 +59,45 @@ class GenresListScreen extends ConsumerWidget {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
       body: CustomBottomNavBar(
         selectedIndex: 2,
         scaffoldKey: key,
-        body: const Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: Sizes.kPadding
-            ),
-            child: Text('genres')
-          ),
-        ),
+        body: FetchProviderBuilder(
+          provider: genresListProvider,
+          builder: (genres){
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: Sizes.kPadding/2,
+                ),
+                Expanded(
+                  child: RefreshIndicator(
+                    onRefresh: () => Future.sync(
+                      () => prov.refreshGenres(),
+                    ),
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) => const Divider(
+                        thickness: 0.09,
+                      ),
+                      itemCount: genres!.length,
+                      itemBuilder: (context, index) => ListTile(
+                        title: Text(
+                          genres[index].name.capitalize(),
+                          style: theme.textTheme.displaySmall,
+                        ),
+                      ),
+                    ),
+                  )
+                )
+                
+              ],
+            );
+          },
+        )
       )
     );
   }

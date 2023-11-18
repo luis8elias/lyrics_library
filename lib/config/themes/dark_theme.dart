@@ -33,6 +33,11 @@ final darkTheme = ThemeData(
           color: _darkColorScheme.onBackground,
           fontWeight: FontWeight.bold
         ),
+        displaySmall: TextStyle(
+          fontSize: 16,
+          color: _darkColorScheme.onBackground,
+          fontWeight: FontWeight.normal
+        ),
         bodyMedium: TextStyle(
           color: _darkColorScheme.onSecondary,
           fontSize: 17

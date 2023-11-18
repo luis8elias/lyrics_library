@@ -13,11 +13,15 @@
           }
         }
     },
-    
+
+
 
     "@_LOADING_SCREEN": {},
     "loadingScreen_loading" : "Loading...",
     
+
+
+
     "@_LOGIN_SCREEN": {},
     "loginScreen_welcome" : "Welcome! glad to see you again!",
     "loginScreen_emailInput" : "Email",
@@ -29,12 +33,19 @@
     "loginScreen_registerLink" : " Register",
     "loginScreen_forgotYourPasswordLink" : "Forgot your password?",
 
+
+
     "@_REGISTER_SCREEN": {},
     "registerScreen_registerButton" : "Register",
     "registerScreen_title" : "Hello! Register to get started",
     "registerScreen_nameInput" : "Name",
     "registerScreen_emailInput" : "Email",
     "registerScreen_passwordInput" : "Password",
-    "registerScreen_confrimPasswordInput" : "Confirm password"
+    "registerScreen_confrimPasswordInput" : "Confirm password",
+
+
+
+    "@_GENRES_LIST_SCREEN": {},
+    "genresListScreen_title" : "Genres"
 
 }

@@ -249,6 +249,16 @@ class Lang {
       args: [],
     );
   }
+
+  /// `Genres`
+  String get genresListScreen_title {
+    return Intl.message(
+      'Genres',
+      name: 'genresListScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

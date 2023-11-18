@@ -7,7 +7,7 @@ class SongsService{
   SongsService({required SongsApiSource apiSource})
   :_apiSource = apiSource;
 
-   Future<ResponseModel<List<String>?>> fetchSongs({
+  Future<ResponseModel<List<String>?>> fetchSongs({
     required int page,
   }) async {
     return _apiSource.fetchSongs(
