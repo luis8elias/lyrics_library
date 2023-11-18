@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,6 +25,7 @@ class GenresListScreen extends ConsumerWidget {
     final lang = Lang.of(context);
     final GlobalKey<ScaffoldState> key = GlobalKey();
     final prov = ref.read(genresListProvider);
+    final bottomPadding = Platform.isIOS ? 50.0 : 70.0;
    
     return  Scaffold(
       appBar: AppBar(
@@ -69,6 +72,7 @@ class GenresListScreen extends ConsumerWidget {
         scaffoldKey: key,
         body: FetchProviderBuilder(
           provider: genresListProvider,
+          loaderWidget: const LoadingScreen(),
           builder: (genres){
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,10 +90,15 @@ class GenresListScreen extends ConsumerWidget {
                         thickness: 0.09,
                       ),
                       itemCount: genres!.length,
-                      itemBuilder: (context, index) => ListTile(
-                        title: Text(
-                          genres[index].name.capitalize(),
-                          style: theme.textTheme.displaySmall,
+                      itemBuilder: (context, index) => Padding(
+                        padding: EdgeInsets.only(
+                          bottom: (index+1) == genres.length ? bottomPadding : 0
+                        ),
+                        child: ListTile(
+                          title: Text(
+                            genres[index].name.capitalize(),
+                            style: theme.textTheme.displaySmall,
+                          ),
                         ),
                       ),
                     ),
