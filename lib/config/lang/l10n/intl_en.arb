@@ -19,7 +19,7 @@
     "loadingScreen_loading" : "Loading...",
     
     "@_LOGIN_SCREEN": {},
-    "loginScreen_welcome" : "Welcome! Glad to see you again!",
+    "loginScreen_welcome" : "Welcome! glad to see you again!",
     "loginScreen_emailInput" : "Email",
     "loginScreen_passwordInput" : "Password",
     "loginScreen_buttonText" : "Login",

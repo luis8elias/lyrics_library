@@ -100,10 +100,10 @@ class Lang {
     );
   }
 
-  /// `Welcome! Glad to see you again!`
+  /// `Welcome! glad to see you again!`
   String get loginScreen_welcome {
     return Intl.message(
-      'Welcome! Glad to see you again!',
+      'Welcome! glad to see you again!',
       name: 'loginScreen_welcome',
       desc: '',
       args: [],
