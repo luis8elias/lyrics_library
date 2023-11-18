@@ -18,8 +18,6 @@ class GenresTable{
     List<Map> maps = await db.query(
       GenresTable.name,
       columns: [GenresTable.columnId],
-      where: '${GenresTable.columnId} = ?',
-      whereArgs: ['1234']
     );
     if(maps.isEmpty ){
       await db.insert(GenresTable.name, {
