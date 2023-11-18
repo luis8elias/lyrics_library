@@ -46,6 +46,13 @@
 
 
     "@_GENRES_LIST_SCREEN": {},
-    "genresListScreen_title" : "Genres"
+    "genresListScreen_title" : "Genres",
+
+
+
+    "@_GENRES_CREATE_SCREEN": {},
+    "genresCreateScreen_title" : "Create genre",
+    "genresCreateScreen_nameInput" : "Name",
+    "genresCreateScreen_createButtonText" : "Create"
 
 }

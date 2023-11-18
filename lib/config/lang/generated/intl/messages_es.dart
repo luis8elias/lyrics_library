@@ -25,6 +25,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "genresCreateScreen_createButtonText":
+            MessageLookupByLibrary.simpleMessage("Crear"),
+        "genresCreateScreen_nameInput":
+            MessageLookupByLibrary.simpleMessage("Nombre"),
+        "genresCreateScreen_title":
+            MessageLookupByLibrary.simpleMessage("Crear género"),
         "genresListScreen_title":
             MessageLookupByLibrary.simpleMessage("Géneros"),
         "loadingScreen_loading":

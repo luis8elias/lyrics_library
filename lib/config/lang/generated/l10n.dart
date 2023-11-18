@@ -259,6 +259,36 @@ class Lang {
       args: [],
     );
   }
+
+  /// `Create genre`
+  String get genresCreateScreen_title {
+    return Intl.message(
+      'Create genre',
+      name: 'genresCreateScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get genresCreateScreen_nameInput {
+    return Intl.message(
+      'Name',
+      name: 'genresCreateScreen_nameInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get genresCreateScreen_createButtonText {
+    return Intl.message(
+      'Create',
+      name: 'genresCreateScreen_createButtonText',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

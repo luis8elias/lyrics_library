@@ -1,3 +1,6 @@
+import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/presentation/features/genres/create/models/create_genre_model.dart';
+
 import '/utils/db/sqlite.dart';
 import '/utils/logger/logger_helper.dart';
 import '/data/data_sources/interfaces/genres_data_source_inteface.dart';
@@ -16,7 +19,6 @@ class GenresLocalSource extends GenresDataSource{
       await Future.delayed(const Duration(milliseconds: 500));
       return ResponseModel(
         success: true,
-        message: 'Exito',
         model: GenreModel.fromMapList(genresMapList)
       );
 
@@ -31,6 +33,49 @@ class GenresLocalSource extends GenresDataSource{
       );
 
     }
+  }
+
+  @override
+  Future<ResponseModel<String?>> createGenre({
+    required CreateGenreModel createGenreModel
+  }) async{
+
+    try {
+      
+      final result = await SQLite.instance.insert(
+        GenresTable.name, {
+          'id': Guid.newGuid.toString(),
+          'name': createGenreModel.name,
+          'ownerId': Guid.newGuid.toString()
+        }
+      );
+
+    if(result == 0){
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al crear el género'
+      );
+    }
+    await Future.delayed(const Duration(milliseconds: 500));
+    
+    return ResponseModel(
+      success: true, 
+      message: 'Género creado',
+      model: 'Género creado'
+    );
+
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en GenresLocalSource método [createGenre]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al crear el género'
+      );
+
+    }
+    
   }
 
 }

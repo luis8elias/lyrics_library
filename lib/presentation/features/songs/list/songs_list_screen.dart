@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -31,6 +33,8 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
     final GlobalKey<ScaffoldState> key = GlobalKey();
     final theme = Theme.of(context);
     final prov = ref.read(songsListProvider);
+    final bottomPadding = Platform.isIOS ? 50.0 : 70.0;
+    final progressIndicatorPadding = Platform.isIOS ? Sizes.kBottomNavHeight : Sizes.kBottomNavHeight + 30;
 
     return  Scaffold(
       body: CustomBottomNavBar(
@@ -50,7 +54,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
               newPageProgressIndicatorBuilder: (context) => Padding(
                 padding:  EdgeInsets.only(
                   top: 20,
-                  bottom: Sizes.kBottomNavHeight + 30
+                  bottom: progressIndicatorPadding
                 ),
                 child: const LoadingWidget(),
               ),
@@ -58,7 +62,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                 return Padding(
                 padding: EdgeInsets.only(
                   //Comparar con totalSongs
-                  bottom: (index+1) == 55 ? 70 : 0.0
+                  bottom: (index+1) == 55 ? bottomPadding : 0.0
                 ),
                 child: ListTile(
                   title: Text(

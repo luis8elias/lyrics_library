@@ -18,12 +18,21 @@ class RegisterScreen extends ConsumerWidget{
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     final sessionProv = ref.read(sessionProvider);
+    final theme = Theme.of(context);
+    final lang = Lang.of(context);
+
     return Scaffold(
       appBar: AppBar(
         leading: const Padding(
           padding: EdgeInsets.all(8.0),
           child: BackButtonWidget()
+        ),
+        centerTitle: true,
+        title: Text(
+          lang.registerScreen_title,
+          style: theme.textTheme.titleSmall,
         ),
       ),
       body: SendProviderListener(
@@ -46,7 +55,6 @@ class _RegisterScreenUI extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final prov = ref.watch(registerProvider);
-    final theme = Theme.of(context);
     final lang = Lang.of(context);
 
     return SafeArea(
@@ -60,13 +68,6 @@ class _RegisterScreenUI extends ConsumerWidget {
           ),
           child: Column(
             children: [
-              const SizedBox(
-                height: Sizes.kPadding,
-              ),
-              Text(
-                lang.registerScreen_title,
-                style: theme.textTheme.titleMedium,
-              ),
               const SizedBox(
                 height: Sizes.kPadding * 2,
               ),
@@ -110,7 +111,7 @@ class _RegisterScreenUI extends ConsumerWidget {
                 )),
               ),
               const SizedBox(
-                height: Sizes.kPadding * 2,
+                height: Sizes.kPadding * 3,
               ),
               const RegisterButton()
             ],

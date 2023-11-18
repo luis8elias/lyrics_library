@@ -1,6 +1,6 @@
 class ResponseModel<T> {
 
-  ResponseModel({required this.success, this.message, this.model});
+  ResponseModel({required this.success, this.message = '', this.model});
 
   factory ResponseModel.fromMap(Map<String, dynamic> json) => ResponseModel(
     success: json['Success'] as bool,
