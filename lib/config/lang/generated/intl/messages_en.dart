@@ -30,6 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Or"),
         "loginScreen_buttonText": MessageLookupByLibrary.simpleMessage("Login"),
         "loginScreen_emailInput": MessageLookupByLibrary.simpleMessage("Email"),
+        "loginScreen_forgotYourPasswordLink":
+            MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "loginScreen_passwordInput":
             MessageLookupByLibrary.simpleMessage("Password"),
         "loginScreen_registerLink":

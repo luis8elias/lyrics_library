@@ -26,6 +26,7 @@
     "loginScreen_signInWithGoogleButton": "Inicia sesión con Google",
     "loginScreen_registerLinkText": "¿No tines una cuenta?",
     "loginScreen_registerLink" : " Regístrate",
+    "loginScreen_forgotYourPasswordLink" : "¿Olvidaste tu contraseña?",
 
     "@_REGISTER_SCREEN": {},
     "registerScreen_registerButton" : "Regístrarse",

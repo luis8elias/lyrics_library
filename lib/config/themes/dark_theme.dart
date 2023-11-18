@@ -101,7 +101,7 @@ final darkTheme = ThemeData(
   onPrimary: const Color(0xff1e2528),
   secondary: const Color(0xFF636366),
   onSecondary: const Color(0xFFEBEBF5).withOpacity(0.60),
-  tertiary: const Color(0xFFFF9500),
+  tertiary: const Color(0xFFff8862),
   error: const Color(0xFFFF453A),
   onError: const Color(0xFFFFFFFF),
   outline: const Color(0xFF8B9198),

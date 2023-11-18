@@ -180,6 +180,16 @@ class Lang {
     );
   }
 
+  /// `Forgot your password?`
+  String get loginScreen_forgotYourPasswordLink {
+    return Intl.message(
+      'Forgot your password?',
+      name: 'loginScreen_forgotYourPasswordLink',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Register`
   String get registerScreen_registerButton {
     return Intl.message(

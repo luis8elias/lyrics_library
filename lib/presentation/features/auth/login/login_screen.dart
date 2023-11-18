@@ -8,11 +8,7 @@ import '/presentation/widgets/providers.dart';
 import '/presentation/widgets/widgets.dart';
 import '/config/config.dart';
 import '/utils/utils.dart';
-
-import 'widgets/login_google_button.dart';
-import 'widgets/register_link.dart';
-import 'widgets/start_button.dart';
-import 'widgets/login_divider.dart';
+import 'widgets/widgets.dart';
 
 class LoginScreen extends ConsumerWidget {
   const LoginScreen({super.key});
@@ -109,9 +105,9 @@ class _LoginScreenUI extends ConsumerWidget {
                 const SizedBox(
                   height: Sizes.kPadding,
                 ),
-                // const ForgotYourPassword(),
+                const ForgotPasswordLink(),
                 const SizedBox(
-                  height: Sizes.kPadding * 2,
+                  height: Sizes.kPadding,
                 ),
                 const StartButton(),
                 const SizedBox(
