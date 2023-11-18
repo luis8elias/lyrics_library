@@ -44,7 +44,16 @@ class RegisterModel extends FormModel<RegisterModel> {
   @override
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'firstName': name,
+      'name': name,
+      'email': email,
+      'password': password
+    };
+  }
+
+  
+  Map<String, dynamic> toMapToApi() {
+    return <String, dynamic>{
+      'displayName': name,
       'email': email,
       'password': password
     };

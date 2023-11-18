@@ -1,7 +1,6 @@
 export '/utils/snackbar/snackbar_helper.dart';
 export '/utils/api/api_helper.dart';
 export '/utils/api/api_instances.dart';
-export '/utils/constants/urls.dart';
 export '/utils/validator/validator.dart';
 export 'logger/logger_helper.dart';
 export '/utils/services/services_register.dart';

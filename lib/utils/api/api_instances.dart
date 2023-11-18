@@ -3,13 +3,14 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:injector/injector.dart';
 
+import '/config/config.dart';
 import '/services/session_service.dart';
 import '/utils/utils.dart';
 
 final api = addInterceptorsWithotToken(
   Dio(
     BaseOptions(
-      baseUrl: Urls.apiUrl,
+      baseUrl: Config.apiUrl!,
       validateStatus: (status) {
         return status! < 500;
       },
@@ -21,7 +22,7 @@ final api = addInterceptorsWithotToken(
 final apiLogged = addInterceptors(
   Dio(
     BaseOptions(
-      baseUrl: Urls.apiUrl,
+      baseUrl: Config.apiUrl!,
       validateStatus: (status) {
         return status! < 500;
       },

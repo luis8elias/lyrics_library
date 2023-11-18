@@ -21,6 +21,7 @@ class Config{
   static final serverClientID = dotenv.env['SERVER_CLIENT_ID'];
   static final androidClientId = dotenv.env['ANDROID_CLIENT_ID'];
   static final iosClientId = dotenv.env['IOS_CLIENT_IOS'];
+  static final apiUrl = dotenv.env['API_URL'];
   static const preferredOrientations = [
     DeviceOrientation.portraitUp, 
     DeviceOrientation.portraitDown,

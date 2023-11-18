@@ -25,7 +25,7 @@ class LoginGoogleProvider extends SendProvider<dynamic>{
     }
     message = loginResp.message!;
     model = loginResp.model!;
-    await _sessionService.saveAuthModel(authModel: loginResp.model!.authModel);
+    await _sessionService.saveAuthModel(authModel: loginResp.model!);
     await _sessionService.setFirstTime();
     return applyStatus(SendStatus.success);
   }

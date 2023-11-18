@@ -37,4 +37,10 @@ final routes =  [
     builder: (context, state) => const SongsListScreen(),
   ),
 
+  GoRoute(
+    path: GenresListScreen.routeName,
+    name: GenresListScreen.routeName,
+    builder: (context, state) => const GenresListScreen(),
+  ),
+
 ];

@@ -50,7 +50,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
               newPageProgressIndicatorBuilder: (context) => Padding(
                 padding:  EdgeInsets.only(
                   top: 20,
-                  bottom: Sizes.kBottomNavHeight
+                  bottom: Sizes.kBottomNavHeight + 30
                 ),
                 child: const LoadingWidget(),
               ),
@@ -58,7 +58,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                 return Padding(
                 padding: EdgeInsets.only(
                   //Comparar con totalSongs
-                  bottom: (index+1) == 55 ? 50 : 0.0
+                  bottom: (index+1) == 55 ? 70 : 0.0
                 ),
                 child: ListTile(
                   title: Text(

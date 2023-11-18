@@ -53,9 +53,9 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       BottomNavigationBarItem(
         icon: CupertinoIcons.list_bullet,
         onPressed: (context) => {
-          //GoRouter.of(context).goNamed(
-          //  GenresListScreen.routeName
-          //)
+          GoRouter.of(context).goNamed(
+           GenresListScreen.routeName
+          )
         },
         label: 'Genres'
       ),

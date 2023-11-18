@@ -9,12 +9,12 @@ class AuthModel{
   final String refreshToken;
   
   factory AuthModel.fromMap(Map<String, dynamic> json) => AuthModel(
-    token: json["token"],
-    refreshToken: json["refresh_token"],
+    token: json["accessToken"],
+    refreshToken: json["refreshToken"],
   );
 
   Map<String, dynamic> toMap() => {
-    "token": token,
-    "refresh_token": refreshToken,
+    "accessToken": token,
+    "refreshToken": refreshToken,
   };
 }
