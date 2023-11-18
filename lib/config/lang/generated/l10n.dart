@@ -179,6 +179,66 @@ class Lang {
       args: [],
     );
   }
+
+  /// `Register`
+  String get registerScreen_registerButton {
+    return Intl.message(
+      'Register',
+      name: 'registerScreen_registerButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello! Register to get started`
+  String get registerScreen_title {
+    return Intl.message(
+      'Hello! Register to get started',
+      name: 'registerScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get registerScreen_nameInput {
+    return Intl.message(
+      'Name',
+      name: 'registerScreen_nameInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get registerScreen_emailInput {
+    return Intl.message(
+      'Email',
+      name: 'registerScreen_emailInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get registerScreen_passwordInput {
+    return Intl.message(
+      'Password',
+      name: 'registerScreen_passwordInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password`
+  String get registerScreen_confrimPasswordInput {
+    return Intl.message(
+      'Confirm password',
+      name: 'registerScreen_confrimPasswordInput',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

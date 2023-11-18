@@ -25,5 +25,13 @@
     "loginScreen_alternativesDivider" : "Ó",
     "loginScreen_signInWithGoogleButton": "Inicia sesión con Google",
     "loginScreen_registerLinkText": "¿No tines una cuenta?",
-    "loginScreen_registerLink" : " Regístrate"
+    "loginScreen_registerLink" : " Regístrate",
+
+    "@_REGISTER_SCREEN": {},
+    "registerScreen_registerButton" : "Regístrarse",
+    "registerScreen_title" : "¡Hola! Regístrese para comenzar",
+    "registerScreen_nameInput" : "Nombre(s)",
+    "registerScreen_emailInput" : "orreo electrónico",
+    "registerScreen_passwordInput" : "Contraseña",
+    "registerScreen_confrimPasswordInput" : "Confirmar contraseña"
 }

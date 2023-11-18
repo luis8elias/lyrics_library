@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:lyrics_library/presentation/features/auth/register/models/register_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '/config/config.dart';
@@ -111,5 +112,39 @@ class AuthService extends DeviceInfoService{
     }
     
   }
+
+  Future<ResponseModel<AuthModel?>> register({
+    required RegisterModel registerModel
+  }) async {
+    await Future.delayed(const Duration(seconds: 2));
+    return ResponseModel(
+      success: false,
+      message: 'Ocurrió un problema al registrar'
+    );
+  }
+  //   try {
+  //     await Future.delayed(const Duration(milliseconds: 300));
+  //     final isLoggedinWihtGoogle = await _googleSignIn.isSignedIn();
+  //     if(isLoggedinWihtGoogle){
+  //       await _googleSignIn.signOut();
+  //     }
+  //     await _supabase.auth.signOut();
+      
+  //     return ResponseModel(
+  //       success: true,
+  //       message: 'Cerrar sesión exitoso'
+  //     );
+  //   } catch (e) {
+
+  //     Log.y('🤡 ${e.toString()}');
+  //     Log.y('😭 Error en AuthService método [logout]');
+
+  //     return ResponseModel(
+  //       success: false,
+  //       message: 'Ocurrió un probelma al cerrar sesión'
+  //     );
+  //   }
+    
+  // }
 
 }

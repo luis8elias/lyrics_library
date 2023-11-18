@@ -40,6 +40,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Login with Google"),
         "loginScreen_welcome": MessageLookupByLibrary.simpleMessage(
             "Welcome! Glad to see you again!"),
+        "registerScreen_confrimPasswordInput":
+            MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "registerScreen_emailInput":
+            MessageLookupByLibrary.simpleMessage("Email"),
+        "registerScreen_nameInput":
+            MessageLookupByLibrary.simpleMessage("Name"),
+        "registerScreen_passwordInput":
+            MessageLookupByLibrary.simpleMessage("Password"),
+        "registerScreen_registerButton":
+            MessageLookupByLibrary.simpleMessage("Register"),
+        "registerScreen_title": MessageLookupByLibrary.simpleMessage(
+            "Hello! Register to get started"),
         "validator_confirmPassword":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
         "validator_confirmPasswordLength": m0,

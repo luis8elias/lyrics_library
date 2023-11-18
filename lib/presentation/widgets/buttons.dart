@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '/presentation/presentation.dart';
 import '/utils/utils.dart';
@@ -123,6 +125,33 @@ class BasicOutlinedIconButton extends StatelessWidget {
           ],
         )
       )
+    );
+  }
+}
+
+
+class BackButtonWidget extends StatelessWidget {
+  const BackButtonWidget({
+    super.key,
+    this.onPressed
+  });
+
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+    
+    return InkWell(
+      borderRadius: BorderRadius.circular(Sizes.kBorderRadius),
+      onTap: onPressed ?? () => GoRouter.of(context).pop(),
+      child: Center(
+        child: Icon(
+          CupertinoIcons.back,
+          color: theme.colorScheme.primary,
+        )
+      ),
     );
   }
 }

@@ -26,6 +26,14 @@
     "loginScreen_alternativesDivider" : "Or",
     "loginScreen_signInWithGoogleButton": "Login with Google",
     "loginScreen_registerLinkText": "You do not have an account?",
-    "loginScreen_registerLink" : " Register"
+    "loginScreen_registerLink" : " Register",
+
+    "@_REGISTER_SCREEN": {},
+    "registerScreen_registerButton" : "Register",
+    "registerScreen_title" : "Hello! Register to get started",
+    "registerScreen_nameInput" : "Name",
+    "registerScreen_emailInput" : "Email",
+    "registerScreen_passwordInput" : "Password",
+    "registerScreen_confrimPasswordInput" : "Confirm password"
 
 }
