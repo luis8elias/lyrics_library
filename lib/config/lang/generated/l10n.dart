@@ -90,6 +90,46 @@ class Lang {
     );
   }
 
+  /// `Edit`
+  String get actions_edit {
+    return Intl.message(
+      'Edit',
+      name: 'actions_edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get actions_delete {
+    return Intl.message(
+      'Delete',
+      name: 'actions_delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get actions_ok {
+    return Intl.message(
+      'Ok',
+      name: 'actions_ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get actions_cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'actions_cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Loading...`
   String get loadingScreen_loading {
     return Intl.message(
@@ -287,6 +327,46 @@ class Lang {
       name: 'genresCreateScreen_createButtonText',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Delete genre?`
+  String get genresDelete_title {
+    return Intl.message(
+      'Delete genre?',
+      name: 'genresDelete_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete genres?`
+  String get genresDelete_titlePlural {
+    return Intl.message(
+      'Delete genres?',
+      name: 'genresDelete_titlePlural',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete genre`
+  String get genresDelete_deleteButton {
+    return Intl.message(
+      'Delete genre',
+      name: 'genresDelete_deleteButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete {genresCount} genres`
+  String genresDelete_deleteButtonPlural(int genresCount) {
+    return Intl.message(
+      'Delete $genresCount genres',
+      name: 'genresDelete_deleteButtonPlural',
+      desc: '',
+      args: [genresCount],
     );
   }
 }

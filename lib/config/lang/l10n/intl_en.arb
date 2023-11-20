@@ -15,6 +15,14 @@
     },
 
 
+    
+    "@_ACTIONS": {},
+    "actions_edit" : "Edit",
+    "actions_delete" : "Delete",
+    "actions_ok" : "Ok",
+    "actions_cancel" : "Cancel",
+
+
 
     "@_LOADING_SCREEN": {},
     "loadingScreen_loading" : "Loading...",
@@ -53,6 +61,21 @@
     "@_GENRES_CREATE_SCREEN": {},
     "genresCreateScreen_title" : "Create genre",
     "genresCreateScreen_nameInput" : "Name",
-    "genresCreateScreen_createButtonText" : "Create"
+    "genresCreateScreen_createButtonText" : "Create",
+
+
+
+    "@_GENRES_DELETE": {},
+    "genresDelete_title" : "Delete genre?",
+    "genresDelete_titlePlural" : "Delete genres?",
+    "genresDelete_deleteButton" : "Delete genre",
+    "genresDelete_deleteButtonPlural" : "Delete {genresCount} genres",
+    "@genresDelete_deleteButtonPlural": {
+      "placeholders": {
+        "genresCount": {
+          "type": "int"
+        }
+      }
+    }
 
 }

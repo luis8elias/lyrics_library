@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lyrics_library/presentation/widgets/buttons.dart';
-import 'package:lyrics_library/presentation/widgets/providers.dart';
-import 'package:lyrics_library/utils/snackbar/snackbar_helper.dart';
 
+import '/config/lang/generated/l10n.dart';
+import '/presentation/widgets/buttons.dart';
+import '/presentation/widgets/providers.dart';
+import '/utils/snackbar/snackbar_helper.dart';
 import '/presentation/features/genres/delete/providers/providers.dart';
 import '/presentation/features/genres/list/providers/providers.dart';
 import '/utils/constants/sizes.dart';
@@ -19,7 +20,7 @@ class DeleteGenreButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final theme = Theme.of(context);
+    final lang = Lang.of(context);
 
     return  SendProviderListener(
       provider: deleteGenreProvider,
@@ -33,24 +34,21 @@ class DeleteGenreButton extends ConsumerWidget {
         loaderWidget: BasicTextButton(
           onPressed: null,
           buildChild: (loadingChild) => loadingChild,
-          text:'Eliminar'
+          text: lang.actions_delete
         ),
         child: TextButton(
-          style: TextButton.styleFrom(
-            foregroundColor: theme.colorScheme.error
-          ),
           onPressed: onPressed != null 
           ? (){
             onPressed!();
             showModalBottomSheet(
               enableDrag: false,
               context: context, 
-              builder: (context) => const GenresOptionsBottomSheet()
+              builder: (context) => const DeleteGenresBottomSheet()
             );
           }
           : null,
-          child: const Text(
-            'Eliminar',
+          child: Text(
+            lang.actions_delete,
           )
         ),
       ),
@@ -59,8 +57,8 @@ class DeleteGenreButton extends ConsumerWidget {
 }
 
 
-class GenresOptionsBottomSheet extends ConsumerWidget {
-  const GenresOptionsBottomSheet({
+class DeleteGenresBottomSheet extends ConsumerWidget {
+  const DeleteGenresBottomSheet({
     super.key,
   });
 
@@ -71,6 +69,7 @@ class GenresOptionsBottomSheet extends ConsumerWidget {
     final theme = Theme.of(context);
     final prov = ref.read(genresListProvider);
     final deleteGenresProv = ref.read(deleteGenreProvider);
+    final lang = Lang.of(context);
 
     return Container(
       color: Colors.transparent,
@@ -95,8 +94,8 @@ class GenresOptionsBottomSheet extends ConsumerWidget {
                 ),
                 child: Text(
                   prov.selectedGenres.length == 1 
-                  ? '¿Eliminar género?'
-                  : '¿Eliminar géneros?',
+                  ? lang.genresDelete_title
+                  : lang.genresDelete_titlePlural,
                   textAlign: TextAlign.center,
                   style: theme.textTheme.displaySmall!.copyWith(
                     fontWeight: FontWeight.bold,
@@ -133,13 +132,13 @@ class GenresOptionsBottomSheet extends ConsumerWidget {
                   ),
                   title: prov.selectedGenres.length == 1 
                   ? Text(
-                  'Eliminar género',
+                    lang.genresDelete_deleteButton,
                     style: theme.textTheme.bodyMedium!.copyWith(
                       color: theme.colorScheme.error,
                     ),
                   )
                   : Text(
-                    'Eliminar ${prov.selectedGenres.length} géneros',
+                    lang.genresDelete_deleteButtonPlural(prov.selectedGenres.length),
                     style: theme.textTheme.bodyMedium!.copyWith(
                       color: theme.colorScheme.error,
                     ),
@@ -177,7 +176,7 @@ class GenresOptionsBottomSheet extends ConsumerWidget {
                     color: theme.colorScheme.onBackground,
                   ),
                   title: Text(
-                    'Cancelar',
+                    lang.actions_cancel,
                     style: theme.textTheme.bodyMedium!.copyWith(
                       color: theme.colorScheme.onBackground
                     ),

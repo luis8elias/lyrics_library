@@ -16,6 +16,14 @@
 
 
 
+    "@_ACTIONS": {},
+    "actions_edit" : "Editar",
+    "actions_delete" : "Eliminar",
+    "actions_ok" : "Ok",
+    "actions_cancel" : "Cancelar",
+
+
+
     "@_LOADING_SCREEN": {},
     "loadingScreen_loading" : "Cargando...",
 
@@ -50,5 +58,19 @@
     "@_GENRES_CREATE_SCREEN": {},
     "genresCreateScreen_title" : "Crear género",
     "genresCreateScreen_nameInput" : "Nombre",
-    "genresCreateScreen_createButtonText" : "Crear"
+    "genresCreateScreen_createButtonText" : "Crear",
+
+
+    "@_GENRES_DELETE": {},
+    "genresDelete_title" : "¿Eliminar género?",
+    "genresDelete_titlePlural" : "¿Eliminar géneros?",
+    "genresDelete_deleteButton" : "Eliminar género",
+    "genresDelete_deleteButtonPlural" : "Eliminar {genresCount} géneros",
+    "@genresDelete_deleteButtonPlural": {
+      "placeholders": {
+        "genresCount": {
+          "type": "int"
+        }
+      }
+    }
 }

@@ -20,16 +20,29 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(length) => "Password must be at least ${length} characters";
+  static String m0(genresCount) => "Delete ${genresCount} genres";
+
+  static String m1(length) => "Password must be at least ${length} characters";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "actions_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "actions_delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "actions_edit": MessageLookupByLibrary.simpleMessage("Edit"),
+        "actions_ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "genresCreateScreen_createButtonText":
             MessageLookupByLibrary.simpleMessage("Create"),
         "genresCreateScreen_nameInput":
             MessageLookupByLibrary.simpleMessage("Name"),
         "genresCreateScreen_title":
             MessageLookupByLibrary.simpleMessage("Create genre"),
+        "genresDelete_deleteButton":
+            MessageLookupByLibrary.simpleMessage("Delete genre"),
+        "genresDelete_deleteButtonPlural": m0,
+        "genresDelete_title":
+            MessageLookupByLibrary.simpleMessage("Delete genre?"),
+        "genresDelete_titlePlural":
+            MessageLookupByLibrary.simpleMessage("Delete genres?"),
         "genresListScreen_title":
             MessageLookupByLibrary.simpleMessage("Genres"),
         "loadingScreen_loading":
@@ -64,7 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hello! Register to get started"),
         "validator_confirmPassword":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
-        "validator_confirmPasswordLength": m0,
+        "validator_confirmPasswordLength": m1,
         "validator_email": MessageLookupByLibrary.simpleMessage("Wrong email"),
         "validator_required":
             MessageLookupByLibrary.simpleMessage("This field is required")

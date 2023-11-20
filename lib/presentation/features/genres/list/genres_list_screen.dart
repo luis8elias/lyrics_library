@@ -67,7 +67,7 @@ class GenresListScreen extends ConsumerWidget {
             width: 50,
             child: TextButton(
               onPressed: () => prov.openCloseSelectGenre(), 
-              child: const Text('OK')
+              child: Text(lang.actions_ok)
             ),
           )
           : SizedBox(
@@ -88,9 +88,15 @@ class GenresListScreen extends ConsumerWidget {
           child:  Padding(
             padding: const EdgeInsets.symmetric(horizontal: Sizes.kPadding),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                TextButton(
+                  onPressed: reactiveProv.isOneGenreSelected 
+                  ? (){}
+                  : null, 
+                  child: Text(lang.actions_edit)
+                ),
                 DeleteGenreButton(
                   onPressed: reactiveProv.selectedGenres.isNotEmpty
                   ? (){}

@@ -15,6 +15,8 @@ class GenresListProvider extends FetchProvider<List<GenreModel>?>{
 
   final List<Guid> selectedGenres = [];
 
+  bool get isOneGenreSelected => selectedGenres.length == 1;
+
 
 
   @override

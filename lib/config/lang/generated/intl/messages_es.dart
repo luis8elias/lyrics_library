@@ -20,17 +20,30 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'es';
 
-  static String m0(length) =>
+  static String m0(genresCount) => "Eliminar ${genresCount} géneros";
+
+  static String m1(length) =>
       "La contraseña debe ser como mínimo de ${length} caracteres";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "actions_cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "actions_delete": MessageLookupByLibrary.simpleMessage("Eliminar"),
+        "actions_edit": MessageLookupByLibrary.simpleMessage("Editar"),
+        "actions_ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "genresCreateScreen_createButtonText":
             MessageLookupByLibrary.simpleMessage("Crear"),
         "genresCreateScreen_nameInput":
             MessageLookupByLibrary.simpleMessage("Nombre"),
         "genresCreateScreen_title":
             MessageLookupByLibrary.simpleMessage("Crear género"),
+        "genresDelete_deleteButton":
+            MessageLookupByLibrary.simpleMessage("Eliminar género"),
+        "genresDelete_deleteButtonPlural": m0,
+        "genresDelete_title":
+            MessageLookupByLibrary.simpleMessage("¿Eliminar género?"),
+        "genresDelete_titlePlural":
+            MessageLookupByLibrary.simpleMessage("¿Eliminar géneros?"),
         "genresListScreen_title":
             MessageLookupByLibrary.simpleMessage("Géneros"),
         "loadingScreen_loading":
@@ -67,7 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "¡Hola! Regístrese para comenzar"),
         "validator_confirmPassword": MessageLookupByLibrary.simpleMessage(
             "Las contraseñas no coinciden"),
-        "validator_confirmPasswordLength": m0,
+        "validator_confirmPasswordLength": m1,
         "validator_email":
             MessageLookupByLibrary.simpleMessage("Correo incorrecto"),
         "validator_required":
