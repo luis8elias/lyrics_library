@@ -36,18 +36,20 @@ class GenresLocalSource extends GenresDataSource{
   }
 
   @override
-  Future<ResponseModel<String?>> createGenre({
+  Future<ResponseModel<GenreModel?>> createGenre({
     required CreateGenreModel createGenreModel
   }) async{
 
     try {
+
+      final genre = GenreModel(
+        id: Guid.newGuid,
+        name: createGenreModel.name!, 
+        ownerId: Guid.newGuid
+      );
       
       final result = await SQLite.instance.insert(
-        GenresTable.name, {
-          'id': Guid.newGuid.toString(),
-          'name': createGenreModel.name,
-          'ownerId': Guid.newGuid.toString()
-        }
+        GenresTable.name, genre.toMap()
       );
 
     if(result == 0){
@@ -61,7 +63,7 @@ class GenresLocalSource extends GenresDataSource{
     return ResponseModel(
       success: true, 
       message: 'Género creado',
-      model: 'Género creado'
+      model: genre
     );
 
     } catch (e) {

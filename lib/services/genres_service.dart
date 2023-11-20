@@ -15,7 +15,7 @@ class GenresService {
     return _localSource.fetchGenres();
   }
 
-  Future<ResponseModel<String?>> createGenre({
+  Future<ResponseModel<GenreModel?>> createGenre({
     required CreateGenreModel createGenreModel
   }) async {
     return _localSource.createGenre(createGenreModel: createGenreModel);

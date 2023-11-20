@@ -1,10 +1,12 @@
+import 'package:lyrics_library/presentation/features/genres/shared/models/genre_model.dart';
+
 import '/presentation/features/genres/create/models/create_genre_model.dart';
 import '/presentation/providers/providers.dart';
 
 import '/services/genres_service.dart';
 
 
-class CreateGenreProvider extends SendProvider<String?> with FormProvider<CreateGenreModel>{
+class CreateGenreProvider extends SendProvider<GenreModel?> with FormProvider<CreateGenreModel>{
 
   final GenresService _genresService;
 

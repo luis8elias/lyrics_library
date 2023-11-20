@@ -6,7 +6,7 @@ abstract class GenresDataSource{
 
   Future<ResponseModel<List<GenreModel>?>> fetchGenres();
   
-  Future<ResponseModel<String?>> createGenre({
+  Future<ResponseModel<GenreModel?>> createGenre({
     required CreateGenreModel createGenreModel
   });
 

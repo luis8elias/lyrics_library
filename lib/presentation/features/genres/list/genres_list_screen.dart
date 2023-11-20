@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lyrics_library/presentation/presentation.dart';
+import 'package:lyrics_library/presentation/widgets/transparent_appbar.dart';
 import 'package:lyrics_library/utils/extensions/string_extensions.dart';
 
 import '/presentation/features/genres/list/providers/providers.dart';
@@ -25,51 +27,91 @@ class GenresListScreen extends ConsumerWidget {
     final lang = Lang.of(context);
     final GlobalKey<ScaffoldState> key = GlobalKey();
     final prov = ref.read(genresListProvider);
-    final bottomPadding = Platform.isIOS ? 50.0 : 70.0;
+    final reactiveProv = ref.watch(genresListProvider);
+    final bottomPadding = Platform.isIOS ? 50.0 : 65.0;
    
     return  Scaffold(
-      appBar: AppBar(
-        titleSpacing: 0,
-        centerTitle: true,
-        title: Text(
-          lang.genresListScreen_title,
-          style: theme.textTheme.titleSmall,
-        ),
-        leading: IconButton(
-          onPressed: (){},
-          icon: Icon(
-            CupertinoIcons.ellipsis_circle,
-            color: theme.colorScheme.primary,
-          ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(
-              right: Sizes.kPadding/2
-            ),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius),
-              onTap: () => GoRouter.of(context).pushNamed(CreateGenreScreen.routeName),
-              child: Container(
-                height: 28,
-                width: 28,
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.primary,
-                  borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
-                ),
-                child: Icon(
-                  CupertinoIcons.add,
-                  color: theme.colorScheme.onPrimary,
-                  size: 15,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
       body: CustomBottomNavBar(
         selectedIndex: 2,
         scaffoldKey: key,
+        appBar: CustomAppBar(
+          actions: [
+            SizedBox(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  right: Sizes.kPadding/2
+                ),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius),
+                  onTap: () => GoRouter.of(context).pushNamed(CreateGenreScreen.routeName),
+                  child: Container(
+                    height: 28,
+                    width: 28,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primary,
+                      borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
+                    ),
+                    child: Icon(
+                      CupertinoIcons.add,
+                      color: theme.colorScheme.onPrimary,
+                      size: 15,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+          leading: reactiveProv.isSelectGenreOpened ?
+          SizedBox(
+            width: 50,
+            child: TextButton(
+              onPressed: () => prov.openCloseSelectGenre(), 
+              child: const Text('OK')
+            ),
+          )
+          : SizedBox(
+            width: 50,
+            child: IconButton(
+              onPressed: () => prov.openCloseSelectGenre(),
+              icon: Icon(
+                CupertinoIcons.check_mark_circled,
+                color: theme.colorScheme.primary,
+              ),
+            ),
+          ),
+          title: lang.genresListScreen_title
+        ),
+        buttonBottomRow: prov.isSelectGenreOpened 
+        ? FadeInUp(
+          duration: const Duration(milliseconds: 100),
+          child:  Padding(
+            padding: const EdgeInsets.symmetric(horizontal: Sizes.kPadding),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextButton(
+                  onPressed: reactiveProv.selectedGenres.isNotEmpty 
+                  ? (){}
+                  : null, 
+                  child: const Text('Editar')
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: theme.colorScheme.error
+                  ),
+                  onPressed: reactiveProv.selectedGenres.isNotEmpty
+                  ? (){}
+                  : null,  
+                  child: const Text(
+                    'Eliminar',
+                  )
+                ),
+              ],
+            ),
+          ),
+        )
+        : null,
         body: FetchProviderBuilder(
           provider: genresListProvider,
           loaderWidget: const LoadingScreen(),
@@ -92,19 +134,44 @@ class GenresListScreen extends ConsumerWidget {
                       itemCount: genres!.length,
                       itemBuilder: (context, index) => Padding(
                         padding: EdgeInsets.only(
-                          bottom: (index+1) == genres.length ? bottomPadding : 0
+                          bottom: (index+1) == genres.length ? bottomPadding : 0,
+                          top: index == 0 ? 40 : 0,
                         ),
                         child: ListTile(
-                          title: Text(
-                            genres[index].name.capitalize(),
-                            style: theme.textTheme.displaySmall,
-                          ),
+                          leading: reactiveProv.isSelectGenreOpened ? FadeInLeft(
+                            duration: const Duration(milliseconds: 100),
+                            child: CupertinoCheckbox(
+                              checkColor: theme.colorScheme.onPrimary,
+                              activeColor: theme.colorScheme.primary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
+                              ),
+                              value: reactiveProv.selectedGenres.contains(genres[index].id), 
+                              onChanged: (value){
+                                prov.selectGenre(genres[index].id);
+                              },
+                            ),
+                          ) : null,
+                          title: reactiveProv.isSelectGenreOpened 
+                          ? FadeInLeft(
+                            duration: const Duration(milliseconds: 100),
+                            child: Text(
+                              genres[index].name.capitalize(),
+                              style: theme.textTheme.displaySmall,
+                            ),
+                          )
+                          : FadeInRight(
+                            duration: const Duration(milliseconds: 100),
+                            child: Text(
+                              genres[index].name.capitalize(),
+                              style: theme.textTheme.displaySmall,
+                            ),
+                          ) ,
                         ),
                       ),
                     ),
                   )
-                )
-                
+                ),
               ],
             );
           },

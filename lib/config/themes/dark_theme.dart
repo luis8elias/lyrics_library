@@ -20,6 +20,7 @@ final darkTheme = ThemeData(
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarBrightness: Brightness.light,
         statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light
       )
     ),
     textTheme: GoogleFonts.openSansTextTheme(
@@ -42,9 +43,14 @@ final darkTheme = ThemeData(
           color: _darkColorScheme.onSecondary,
           fontSize: 17
         ),
-        bodySmall:TextStyle(
+        bodySmall: TextStyle(
           color: _darkColorScheme.onSecondary,
           fontSize: 8
+        ),
+        labelLarge: TextStyle(
+          fontSize: 16,
+          color: _darkColorScheme.primary,
+          fontWeight: FontWeight.w500
         ) 
         // bodySmall: TextStyle(color: _darkColorScheme.onBackground),
         // bodyLarge: TextStyle(color: _darkColorScheme.onBackground),
@@ -116,5 +122,5 @@ final darkTheme = ThemeData(
   onSurface: const Color(0xFFF9F9F9),
   surfaceVariant: const Color(0xFF1D2427),
   onSurfaceVariant: const Color(0xFFC1C7CE),
-  inverseSurface: const Color(0xFFE2E2E5),
+  inverseSurface: Color.fromARGB(255, 45, 55, 60),
 );

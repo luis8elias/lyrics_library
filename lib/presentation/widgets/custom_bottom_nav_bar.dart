@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:go_router/go_router.dart';
 
+import '/presentation/widgets/transparent_appbar.dart';
 import '/presentation/presentation.dart';
 import '/utils/constants/sizes.dart';
 
@@ -13,12 +14,16 @@ class CustomBottomNavBar extends StatefulWidget {
     super.key,
     required this.selectedIndex,
     required this.body,
-    required this.scaffoldKey
+    required this.scaffoldKey,
+    this.appBar,
+    this.buttonBottomRow
   });
 
   final int selectedIndex;
   final Widget body;
   final GlobalKey<ScaffoldState> scaffoldKey;
+  final CustomAppBar? appBar;
+  final Widget? buttonBottomRow;
 
   @override
   State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
@@ -79,6 +84,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
           Positioned.fill(
             child: widget.body,
           ),
+          if(widget.buttonBottomRow == null)
           Align(
             alignment: Alignment.bottomCenter,
             child: KeyboardVisibilityBuilder(
@@ -93,14 +99,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                         height: Sizes.kBottomNavHeight,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: theme.colorScheme.background.withOpacity(0.5),
-                          //color: Colors.red.withOpacity(0.6),
-                          border: Border(
-                            top: BorderSide(
-                              color: theme.colorScheme.outline,
-                              width: 0.5
-                            )
-                          )
+                          color: theme.colorScheme.inverseSurface.withOpacity(0.5),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -109,6 +108,59 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                             selectedIndex: widget.selectedIndex,
                             index: items.indexOf(item),
                           )).toList()
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          if(widget.buttonBottomRow != null)
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: KeyboardVisibilityBuilder(
+              builder: (context, isKeyboardVisible) {
+                return  Visibility(
+                  visible: !isKeyboardVisible,
+                  child: ClipRRect(
+                    clipBehavior: Clip.antiAlias,
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                      child: Container(
+                        height: Sizes.kBottomNavHeight,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.inverseSurface.withOpacity(0.5),
+                        ),
+                        child: widget.buttonBottomRow
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          if(widget.appBar != null)
+          Align(
+            alignment: Alignment.topCenter,
+            child: KeyboardVisibilityBuilder(
+              builder: (context, isKeyboardVisible) {
+                return  Visibility(
+                  visible: !isKeyboardVisible,
+                  child: ClipRRect(
+                    clipBehavior: Clip.antiAlias,
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                      child: Container(
+                        height: Sizes.kAppBarSize,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.inverseSurface.withOpacity(0.5),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 40),
+                          child: widget.appBar,
                         ),
                       ),
                     ),
