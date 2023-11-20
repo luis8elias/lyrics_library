@@ -29,16 +29,19 @@ class GenresListProvider extends FetchProvider<List<GenreModel>?>{
   Future<void> addGenre({required 
     GenreModel genreModel
   }) async{
-    final currentGenres = model;
-    currentGenres?.add(genreModel);
-    model = currentGenres;
+    model!.add(genreModel);
     notifyListeners();
   }
 
-  void openCloseSelectGenre() {
+  void openCloseSelectGenre({
+    Guid? genreId
+  }) {
     isSelectGenreOpened = !isSelectGenreOpened;
     if(!isSelectGenreOpened){
       _clearSelectedGenres();
+    }
+    if(genreId != null){
+      selectedGenres.add(genreId);
     }
     notifyListeners();
   }
@@ -53,6 +56,12 @@ class GenresListProvider extends FetchProvider<List<GenreModel>?>{
     }else{
       selectedGenres.add(genreId);
     }
+    notifyListeners();
+  }
+
+  void deleteGenres(){
+    model!.removeWhere((genre) => selectedGenres.contains(genre.id));
+    openCloseSelectGenre();
     notifyListeners();
   }
 

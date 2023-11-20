@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/presentation/features/genres/delete/delete_genre_button.dart';
 import 'package:lyrics_library/presentation/presentation.dart';
 import 'package:lyrics_library/presentation/widgets/transparent_appbar.dart';
 import 'package:lyrics_library/utils/extensions/string_extensions.dart';
@@ -87,26 +88,14 @@ class GenresListScreen extends ConsumerWidget {
           child:  Padding(
             padding: const EdgeInsets.symmetric(horizontal: Sizes.kPadding),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextButton(
-                  onPressed: reactiveProv.selectedGenres.isNotEmpty 
-                  ? (){}
-                  : null, 
-                  child: const Text('Editar')
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: theme.colorScheme.error
-                  ),
+                DeleteGenreButton(
                   onPressed: reactiveProv.selectedGenres.isNotEmpty
                   ? (){}
-                  : null,  
-                  child: const Text(
-                    'Eliminar',
-                  )
-                ),
+                  : null,
+                )
               ],
             ),
           ),
@@ -124,6 +113,7 @@ class GenresListScreen extends ConsumerWidget {
                 ),
                 Expanded(
                   child: RefreshIndicator(
+                    displacement: 100,
                     onRefresh: () => Future.sync(
                       () => prov.refreshGenres(),
                     ),
@@ -138,6 +128,14 @@ class GenresListScreen extends ConsumerWidget {
                           top: index == 0 ? 40 : 0,
                         ),
                         child: ListTile(
+                          onTap:  prov.isSelectGenreOpened  
+                          ? ()=> prov.selectGenre(genres[index].id)
+                          : null,
+                          onLongPress: prov.isSelectGenreOpened 
+                          ? null 
+                          : ()=> prov.openCloseSelectGenre(
+                            genreId: genres[index].id
+                          ),
                           leading: reactiveProv.isSelectGenreOpened ? FadeInLeft(
                             duration: const Duration(milliseconds: 100),
                             child: CupertinoCheckbox(

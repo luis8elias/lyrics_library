@@ -8,6 +8,7 @@ import '/data/models/response_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 
 class GenresLocalSource extends GenresDataSource{
+
   @override
   Future<ResponseModel<List<GenreModel>?>> fetchGenres() async{
 
@@ -74,6 +75,46 @@ class GenresLocalSource extends GenresDataSource{
       return ResponseModel(
         success: false,
         message: 'Ocurrió un problema al crear el género'
+      );
+
+    }
+    
+  }
+  
+  @override
+  Future<ResponseModel<String>> deleteGenres({
+    required List<Guid> genresIds
+  }) async {
+
+    try {
+
+      final questionSymbols = genresIds.map((e) => '?').join(',');
+      questionSymbols;
+
+      final result = await  SQLite.instance.rawDelete('DELETE FROM ${GenresTable.name} WHERE ${GenresTable.columnId} IN ($questionSymbols)', genresIds.map((e) => e.toString()).toList());
+      
+      if(result == 0){
+        return ResponseModel(
+          success: false,
+          message: 'Ocurrió un problema al eliminar el género'
+        );
+      }
+      await Future.delayed(const Duration(milliseconds: 500));
+      
+      return ResponseModel(
+        success: true, 
+        message: genresIds.length > 1 ? 'Géneros eliminados' : 'Género eliminado' ,
+        model: ''
+      );
+
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en GenresLocalSource método [deleteGenres]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al eliminar el género'
       );
 
     }

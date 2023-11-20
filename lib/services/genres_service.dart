@@ -1,3 +1,4 @@
+import 'package:flutter_guid/flutter_guid.dart';
 import 'package:lyrics_library/data/models/response_model.dart';
 import 'package:lyrics_library/presentation/features/genres/create/models/create_genre_model.dart';
 import 'package:lyrics_library/presentation/features/genres/shared/models/genre_model.dart';
@@ -19,5 +20,13 @@ class GenresService {
     required CreateGenreModel createGenreModel
   }) async {
     return _localSource.createGenre(createGenreModel: createGenreModel);
+  }
+
+  Future<ResponseModel<String>> deleteGenres({
+    required List<Guid> genresIds
+  }) async {
+    return _localSource.deleteGenres(
+      genresIds: genresIds
+    );
   }
 }

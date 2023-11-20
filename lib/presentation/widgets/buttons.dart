@@ -155,3 +155,40 @@ class BackButtonWidget extends StatelessWidget {
     );
   }
 }
+
+class BasicTextButton extends StatelessWidget {
+  const BasicTextButton({
+    Key? key,
+    required this.onPressed,
+    required this.text,
+    this.buildChild
+  }) : super(key: key);
+
+  final String text;
+  final VoidCallback? onPressed;
+  final Widget Function(Widget loadingChild)? buildChild;
+
+  @override
+  Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+
+    final loadingChild = SizedBox(
+      height: Platform.isIOS ? 10 : 20,
+      child: LoadingWidget(
+        iosSize: 10,
+        androidSize: 20,
+        androidProgressColor: theme.colorScheme.onBackground,
+      ),
+    );
+
+    return TextButton(
+      onPressed: onPressed, 
+      child: buildChild != null 
+      ? buildChild!(loadingChild)
+      : Text(
+        text,
+      )
+    );
+  }
+}
