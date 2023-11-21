@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/presentation.dart';
 
 final routes =  [
@@ -47,6 +48,13 @@ final routes =  [
         name: CreateGenreScreen.routeName,
         builder: (context, state) => const CreateGenreScreen(),
       ),
+      GoRoute(
+        path: EditGenreScreen.routePath,
+        name: EditGenreScreen.routeName,
+        builder: (context, state) => EditGenreScreen(
+          genreModel: state.extra as GenreModel,
+        ),
+      )
     ]
   ),
 

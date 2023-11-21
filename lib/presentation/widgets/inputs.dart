@@ -75,8 +75,7 @@ class _BasicInputState extends State<BasicInput> {
     final theme = Theme.of(context);
 
     return TextFormField(
-      //initialValue: widget.initalValue,
-      
+      initialValue: widget.initalValue,
       focusNode: focusNode,
       controller: widget.controller,
       textAlign: widget.textAlign,

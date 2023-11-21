@@ -1,5 +1,6 @@
 import 'package:flutter_guid/flutter_guid.dart';
 import 'package:lyrics_library/presentation/features/genres/create/models/create_genre_model.dart';
+import 'package:lyrics_library/presentation/features/genres/edit/models/edit_genre_model.dart';
 
 import '/utils/db/sqlite.dart';
 import '/utils/logger/logger_helper.dart';
@@ -89,8 +90,6 @@ class GenresLocalSource extends GenresDataSource{
     try {
 
       final questionSymbols = genresIds.map((e) => '?').join(',');
-      questionSymbols;
-
       final result = await  SQLite.instance.rawDelete('DELETE FROM ${GenresTable.name} WHERE ${GenresTable.columnId} IN ($questionSymbols)', genresIds.map((e) => e.toString()).toList());
       
       if(result == 0){
@@ -115,6 +114,49 @@ class GenresLocalSource extends GenresDataSource{
       return ResponseModel(
         success: false,
         message: 'Ocurrió un problema al eliminar el género'
+      );
+
+    }
+    
+  }
+
+  @override
+  Future<ResponseModel<String>> editGenre({
+    required EditGenreModel editGenreModel
+  }) async{
+
+    try {
+
+      final editedGenre = editGenreModel.toMapWithoutId();
+      final rowsAffected = await  SQLite.instance.update(
+        GenresTable.name, 
+        editedGenre,
+        where: '${GenresTable.columnId} = ?',
+        whereArgs: [editGenreModel.id.toString()]
+      );
+      
+      if(rowsAffected == 0){
+        return ResponseModel(
+          success: false,
+          message: 'Ocurrió un problema al editar el género'
+        );
+      }
+      await Future.delayed(const Duration(milliseconds: 500));
+      
+      return ResponseModel(
+        success: true, 
+        message: 'Género editado' ,
+        model: ''
+      );
+
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en GenresLocalSource método [editGenre]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al editar el género'
       );
 
     }

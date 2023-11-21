@@ -28,7 +28,7 @@ class DeleteGenreButton extends ConsumerWidget {
       onError: (error) => SnackbarHelper.show(context, error),
       onSuccess: (model, message) {
         ref.read(genresListProvider).deleteGenres();
-        SnackbarHelper.show(context, message);
+        //SnackbarHelper.show(context, message);
       },
       child: SendProviderBuilder(
         provider: deleteGenreProvider,

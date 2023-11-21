@@ -340,6 +340,36 @@ class Lang {
     );
   }
 
+  /// `Edit genre`
+  String get genresEditScreen_title {
+    return Intl.message(
+      'Edit genre',
+      name: 'genresEditScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get genresEditScreen_nameInput {
+    return Intl.message(
+      'Name',
+      name: 'genresEditScreen_nameInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get genresEditScreen_editButtonText {
+    return Intl.message(
+      'Edit',
+      name: 'genresEditScreen_editButtonText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Delete genre?`
   String get genresDelete_title {
     return Intl.message(

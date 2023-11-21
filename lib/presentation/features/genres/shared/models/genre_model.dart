@@ -1,4 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/presentation/features/genres/edit/models/edit_genre_model.dart';
 
 class GenreModel {
 
@@ -35,4 +37,22 @@ class GenreModel {
     ).toList();
   }
 
+   static GenreModel fromEditGenreModel(EditGenreModel editGenreModel){
+    return GenreModel.fromMap(editGenreModel.toMap());
+  }
+
+  
+
+
+  GenreModel copyWith({
+    Guid? id,
+    String? name,
+    Guid? ownerId,
+  }) {
+    return GenreModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      ownerId: ownerId ?? this.ownerId,
+    );
+  }
 }

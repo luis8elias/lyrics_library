@@ -45,6 +45,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("¿Eliminar género?"),
         "genresDelete_titlePlural":
             MessageLookupByLibrary.simpleMessage("¿Eliminar géneros?"),
+        "genresEditScreen_editButtonText":
+            MessageLookupByLibrary.simpleMessage("Editar"),
+        "genresEditScreen_nameInput":
+            MessageLookupByLibrary.simpleMessage("Nombre"),
+        "genresEditScreen_title":
+            MessageLookupByLibrary.simpleMessage("Editar género"),
         "genresListScreen_title":
             MessageLookupByLibrary.simpleMessage("Géneros"),
         "loadingScreen_loading":

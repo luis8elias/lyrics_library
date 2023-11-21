@@ -29,7 +29,7 @@ class CreateGenreScreen extends ConsumerWidget {
         onError: (error) => SnackbarHelper.show(context,error),
         onSuccess: (model, message) async{
           GoRouter.of(context).pop();
-          SnackbarHelper.show(context,message);
+          //SnackbarHelper.show(context,message);
           ref.read(genresListProvider).addGenre(genreModel: model!);
         },
         child: const _CreateGenreScreenUI()

@@ -66,6 +66,13 @@
 
 
 
+    "@_GENRES_EDIT_SCREEN": {},
+    "genresEditScreen_title" : "Edit genre",
+    "genresEditScreen_nameInput" : "Name",
+    "genresEditScreen_editButtonText" : "Edit",
+
+
+
     "@_GENRES_DELETE": {},
     "genresDelete_title" : "Delete genre?",
     "genresDelete_titlePlural" : "Delete genres?",

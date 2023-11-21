@@ -62,6 +62,13 @@
     "genresCreateScreen_createButtonText" : "Crear",
 
 
+
+    "@_GENRES_EDIT_SCREEN": {},
+    "genresEditScreen_title" : "Editar género",
+    "genresEditScreen_nameInput" : "Nombre",
+    "genresEditScreen_editButtonText" : "Editar",
+
+
     "@_GENRES_DELETE": {},
     "genresDelete_title" : "¿Eliminar género?",
     "genresDelete_titlePlural" : "¿Eliminar géneros?",

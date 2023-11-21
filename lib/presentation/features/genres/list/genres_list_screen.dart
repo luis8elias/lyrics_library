@@ -87,7 +87,15 @@ class GenresListScreen extends ConsumerWidget {
               children: [
                 TextButton(
                   onPressed: reactiveProv.isOneGenreSelected 
-                  ? (){}
+                  ? ()=> GoRouter.of(context).go(
+                    context.namedLocation(
+                      EditGenreScreen.routeName,
+                      pathParameters: {
+                        'gid': prov.getFirstGenreSelected.id.toString()
+                      },
+                    ),
+                    extra: prov.getFirstGenreSelected
+                  )
                   : null, 
                   child: Text(lang.actions_edit)
                 ),

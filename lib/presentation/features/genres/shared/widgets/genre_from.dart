@@ -35,7 +35,7 @@ class GenreForm extends StatelessWidget {
             ),
             BasicInput(
               initalValue: genreModel?.name,
-              label: lang.genresCreateScreen_nameInput,
+              label: lang.genresEditScreen_nameInput,
               validator: (value) => Validator.validateRequired(value!.trim()),
               onChanged: (value) => onNameChanged(value),
             ),

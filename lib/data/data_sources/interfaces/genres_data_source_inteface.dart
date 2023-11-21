@@ -1,4 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/presentation/features/genres/edit/models/edit_genre_model.dart';
 
 import '/presentation/features/genres/create/models/create_genre_model.dart';
 import '/data/models/response_model.dart';
@@ -14,6 +15,10 @@ abstract class GenresDataSource{
 
   Future<ResponseModel<String>> deleteGenres({
     required List<Guid> genresIds
+  });
+
+  Future<ResponseModel<String>> editGenre({
+    required EditGenreModel editGenreModel
   });
 
 }
