@@ -14,7 +14,6 @@ import '/presentation/widgets/custom_bottom_nav_bar.dart';
 import '/presentation/widgets/providers.dart';
 import '/presentation/widgets/transparent_appbar.dart';
 import '/utils/constants/sizes.dart';
-import '/utils/extensions/string_extensions.dart';
 
 class GenresListScreen extends ConsumerWidget {
   const GenresListScreen({super.key});
@@ -170,14 +169,14 @@ class GenresListScreen extends ConsumerWidget {
                           ? FadeInLeft(
                             duration: const Duration(milliseconds: 100),
                             child: Text(
-                              genres[index].name.capitalize(),
+                              genres[index].name,
                               style: theme.textTheme.displaySmall,
                             ),
                           )
                           : FadeInRight(
                             duration: const Duration(milliseconds: 100),
                             child: Text(
-                              genres[index].name.capitalize(),
+                              genres[index].name,
                               style: theme.textTheme.displaySmall,
                             ),
                           ) ,

@@ -1,4 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/utils/extensions/string_extensions.dart';
 
 import '/data/data_sources/interfaces/genres_data_source_inteface.dart';
 import '/data/models/response_model.dart';
@@ -48,7 +49,7 @@ class GenresLocalSource extends GenresDataSource{
 
       final genre = GenreModel(
         id: Guid.newGuid,
-        name: createGenreModel.name!, 
+        name: createGenreModel.name!.capitalize(), 
         ownerId: Guid.newGuid
       );
       
@@ -128,7 +129,7 @@ class GenresLocalSource extends GenresDataSource{
   }) async{
 
     try {
-
+      
       final editedGenre = editGenreModel.toMapWithoutId();
       final rowsAffected = await  SQLite.instance.update(
         GenresTable.name, 

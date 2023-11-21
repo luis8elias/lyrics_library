@@ -2,6 +2,7 @@
 import 'package:flutter_guid/flutter_guid.dart';
 
 import '/data/models/form_model.dart';
+import '/utils/extensions/string_extensions.dart';
 import '/utils/utils.dart';
 
 class EditGenreModel extends FormModel {
@@ -25,7 +26,7 @@ class EditGenreModel extends FormModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id.toString(),
-      'name': name,
+      'name': name?.capitalize(),
       'ownerId': ownerId.toString(),
       'sync' : isSync,
       'isRemoved': isRemoved
@@ -34,7 +35,7 @@ class EditGenreModel extends FormModel {
 
   Map<String, dynamic> toMapWithoutId() {
     return <String, dynamic>{
-      'name': name,
+      'name': name?.capitalize(),
       'ownerId' : ownerId.toString(),
       'sync' : isSync,
       'isRemoved': isRemoved

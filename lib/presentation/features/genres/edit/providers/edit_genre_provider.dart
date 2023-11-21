@@ -1,4 +1,6 @@
 
+import 'package:lyrics_library/utils/extensions/string_extensions.dart';
+
 import '/presentation/features/genres/edit/models/edit_genre_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/providers/providers.dart';
@@ -43,7 +45,7 @@ class EditGenreProvider extends SendProvider<GenreModel> with FormProvider<EditG
   void initFormModel({required GenreModel genreModel}){
     super.updateInnerFormModel((formModel) => formModel.copyWith(
       id: genreModel.id,
-      name: genreModel.name,
+      name: genreModel.name.capitalize(),
       ownerId: genreModel.ownerId
     ),runtimeType.toString());
   }
