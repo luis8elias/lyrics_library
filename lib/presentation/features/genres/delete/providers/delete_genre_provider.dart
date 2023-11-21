@@ -1,6 +1,6 @@
 import 'package:flutter_guid/flutter_guid.dart';
-import 'package:lyrics_library/presentation/providers/send_provider.dart';
-import 'package:lyrics_library/services/genres_service.dart';
+import '/presentation/providers/send_provider.dart';
+import '/services/genres_service.dart';
 
 class DeleteGenreProvider extends SendProvider<String?>{
   final GenresService _genresService;

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/presentation/features/genres/list/providers/providers.dart';
-import 'package:lyrics_library/presentation/widgets/providers.dart';
-import 'package:lyrics_library/utils/snackbar/snackbar_helper.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/genres/edit/providers/providers.dart';
 import '/presentation/features/genres/edit/widgets/edit_genre_button.dart';
+import '/presentation/features/genres/list/providers/providers.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/features/genres/shared/widgets/genre_from.dart';
 import '/presentation/widgets/buttons.dart';
+import '/presentation/widgets/providers.dart';
+import '/utils/snackbar/snackbar_helper.dart';
 
 class EditGenreScreen extends ConsumerStatefulWidget {
   const EditGenreScreen({

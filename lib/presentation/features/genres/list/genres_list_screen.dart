@@ -5,16 +5,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/presentation/features/genres/delete/delete_genre_button.dart';
-import 'package:lyrics_library/presentation/presentation.dart';
-import 'package:lyrics_library/presentation/widgets/transparent_appbar.dart';
-import 'package:lyrics_library/utils/extensions/string_extensions.dart';
 
-import '/presentation/features/genres/list/providers/providers.dart';
-import '/presentation/widgets/providers.dart';
 import '/config/lang/generated/l10n.dart';
+import '/presentation/features/genres/delete/delete_genre_button.dart';
+import '/presentation/features/genres/list/providers/providers.dart';
+import '/presentation/presentation.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';
+import '/presentation/widgets/providers.dart';
+import '/presentation/widgets/transparent_appbar.dart';
 import '/utils/constants/sizes.dart';
+import '/utils/extensions/string_extensions.dart';
 
 class GenresListScreen extends ConsumerWidget {
   const GenresListScreen({super.key});

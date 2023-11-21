@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/config/config.dart';
+import '/config/config.dart';
 import '/presentation/presentation.dart';
 import '/utils/utils.dart';
 

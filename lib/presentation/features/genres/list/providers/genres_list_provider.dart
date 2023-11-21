@@ -1,5 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
-import 'package:lyrics_library/data/models/response_model.dart';
+import '/data/models/response_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/providers/providers.dart';
 import '/services/genres_service.dart';

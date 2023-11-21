@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:lyrics_library/utils/db/sqlite.dart';
 
-import '/utils/utils.dart';
 import '/presentation/presentation.dart';
+import '/utils/db/sqlite.dart';
+import '/utils/utils.dart';
 
 export '/config/lang/generated/l10n.dart';
-export '/config/routes/routes.dart';
 export '/config/routes/register_routes.dart';
+export '/config/routes/routes.dart';
 export '/config/themes/dark_theme.dart';
-
-
 
 class Config{
   static const defaultLocale = Locale('en');

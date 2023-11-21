@@ -1,12 +1,12 @@
 import 'package:flutter_guid/flutter_guid.dart';
-import 'package:lyrics_library/presentation/features/genres/create/models/create_genre_model.dart';
-import 'package:lyrics_library/presentation/features/genres/edit/models/edit_genre_model.dart';
 
-import '/utils/db/sqlite.dart';
-import '/utils/logger/logger_helper.dart';
 import '/data/data_sources/interfaces/genres_data_source_inteface.dart';
 import '/data/models/response_model.dart';
+import '/presentation/features/genres/create/models/create_genre_model.dart';
+import '/presentation/features/genres/edit/models/edit_genre_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
+import '/utils/db/sqlite.dart';
+import '/utils/logger/logger_helper.dart';
 
 class GenresLocalSource extends GenresDataSource{
 

@@ -1,7 +1,7 @@
 
-import 'package:lyrics_library/presentation/features/genres/edit/models/edit_genre_model.dart';
-import 'package:lyrics_library/presentation/features/genres/shared/models/genre_model.dart';
-import 'package:lyrics_library/presentation/providers/providers.dart';
+import '/presentation/features/genres/edit/models/edit_genre_model.dart';
+import '/presentation/features/genres/shared/models/genre_model.dart';
+import '/presentation/providers/providers.dart';
 
 import '/services/genres_service.dart';
 

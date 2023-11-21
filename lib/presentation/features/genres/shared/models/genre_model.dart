@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_guid/flutter_guid.dart';
-import 'package:lyrics_library/presentation/features/genres/edit/models/edit_genre_model.dart';
+import '/presentation/features/genres/edit/models/edit_genre_model.dart';
 
 class GenreModel {
 
