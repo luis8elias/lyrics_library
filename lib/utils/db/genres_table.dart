@@ -6,10 +6,12 @@ class GenresTable{
   static const columnId = 'id';
   static const columnName = 'name';
   static const columnOwnerId = 'ownerId';
+  static const columnSync = 'sync';
+  static const columnIsRemoved = 'isRemoved';
 
   static Future<void> create(Database db) async {
     await db.execute(
-      'CREATE TABLE ${GenresTable.name}(${GenresTable.columnId} TEXT PRIMARY KEY, ${GenresTable.columnName} TEXT, ownerId TEXT)'
+      'CREATE TABLE ${GenresTable.name}(${GenresTable.columnId} TEXT PRIMARY KEY, ${GenresTable.columnName} TEXT, ${GenresTable.columnOwnerId} TEXT, ${GenresTable.columnSync} INTEGER, ${GenresTable.columnIsRemoved} INTEGER)'
     );
     _seed(db);
   }
@@ -23,7 +25,9 @@ class GenresTable{
       await db.insert(GenresTable.name, {
         'id': Guid.newGuid.toString(),
         'name': 'demo',
-        'ownerId': Guid.newGuid.toString()
+        'ownerId': Guid.newGuid.toString(),
+        'sync' : 0,
+        'isRemoved' : 0
       });
     }
   }

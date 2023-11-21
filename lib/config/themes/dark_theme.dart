@@ -21,7 +21,7 @@ final darkTheme = ThemeData(
         statusBarBrightness: Brightness.light,
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.light
-      )
+      ),
     ),
     textTheme: GoogleFonts.openSansTextTheme(
       TextTheme(

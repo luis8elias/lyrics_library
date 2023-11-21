@@ -29,7 +29,8 @@ class GenresListScreen extends ConsumerWidget {
     final GlobalKey<ScaffoldState> key = GlobalKey();
     final prov = ref.read(genresListProvider);
     final reactiveProv = ref.watch(genresListProvider);
-    final bottomPadding = Platform.isIOS ? 50.0 : 65.0;
+    final bottomPadding = Platform.isIOS ? 50.0 : 60.0;
+    final topPadding = Platform.isIOS ? 30.0 : 40.0;
    
     return  Scaffold(
       body: CustomBottomNavBar(
@@ -132,12 +133,20 @@ class GenresListScreen extends ConsumerWidget {
                       itemBuilder: (context, index) => Padding(
                         padding: EdgeInsets.only(
                           bottom: (index+1) == genres.length ? bottomPadding : 0,
-                          top: index == 0 ? 30 : 0,
+                          top: index == 0 ? topPadding : 0,
                         ),
                         child: ListTile(
-                          onTap:  prov.isSelectGenreOpened  
+                          onTap: prov.isSelectGenreOpened  
                           ? ()=> prov.selectGenre(genres[index].id)
-                          : null,
+                          : ()=> GoRouter.of(context).go(
+                            context.namedLocation(
+                              EditGenreScreen.routeName,
+                              pathParameters: {
+                                'gid': genres[index].id.toString()
+                              },
+                            ),
+                            extra: genres[index]
+                          ),
                           onLongPress: prov.isSelectGenreOpened 
                           ? null 
                           : ()=> prov.openCloseSelectGenre(

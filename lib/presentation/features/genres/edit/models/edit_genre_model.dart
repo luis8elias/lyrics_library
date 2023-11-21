@@ -9,11 +9,15 @@ class EditGenreModel extends FormModel {
   final Guid? id;
   final String? name;
   final Guid?  ownerId;
+  final int isRemoved;
+  final int isSync;
 
   EditGenreModel({
     this.id,
     this.name,
     this.ownerId,
+    this.isRemoved = 0,
+    this.isSync = 0,
   });
   
   
@@ -22,14 +26,18 @@ class EditGenreModel extends FormModel {
     return <String, dynamic>{
       'id': id.toString(),
       'name': name,
-      'ownerId': ownerId.toString()
+      'ownerId': ownerId.toString(),
+      'sync' : isSync,
+      'isRemoved': isRemoved
     };
   }
 
   Map<String, dynamic> toMapWithoutId() {
     return <String, dynamic>{
       'name': name,
-      'ownerId' : ownerId.toString()
+      'ownerId' : ownerId.toString(),
+      'sync' : isSync,
+      'isRemoved': isRemoved
     };
   }
 

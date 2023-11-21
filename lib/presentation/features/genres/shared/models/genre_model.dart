@@ -7,11 +7,19 @@ class GenreModel {
   final Guid id;
   final String name;
   final Guid ownerId;
+  final int isRemoved;
+  final int isSync;
+  
+
+  bool get isRemovedAsBool => isRemoved == 1;
+  bool get isSyncAsBool => isSync == 1; 
 
   GenreModel({
     required this.id, 
     required this.name, 
-    required this.ownerId
+    required this.ownerId,
+    this.isRemoved = 0,
+    this.isSync = 0,
   });
   
 
@@ -20,6 +28,8 @@ class GenreModel {
       'id': id.toString(),
       'name': name,
       'ownerId': ownerId.toString(),
+      'sync' : isSync,
+      'isRemoved': isRemoved
     };
   }
 
@@ -28,6 +38,8 @@ class GenreModel {
       id: Guid(map['id']),
       name: map['name'] as String,
       ownerId: Guid(map['ownerId']),
+      isSync: map['sync'],
+      isRemoved: map['isRemoved']
     );
   }
 
@@ -37,7 +49,7 @@ class GenreModel {
     ).toList();
   }
 
-   static GenreModel fromEditGenreModel(EditGenreModel editGenreModel){
+    static GenreModel fromEditGenreModel(EditGenreModel editGenreModel){
     return GenreModel.fromMap(editGenreModel.toMap());
   }
 

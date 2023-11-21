@@ -16,7 +16,9 @@ class GenresLocalSource extends GenresDataSource{
     try {
       
       final genresMapList = await SQLite.instance.query(
-        GenresTable.name
+        GenresTable.name,
+        where: '${GenresTable.columnIsRemoved} = ?',
+        whereArgs: [0]
       );
       await Future.delayed(const Duration(milliseconds: 500));
       return ResponseModel(
@@ -90,7 +92,7 @@ class GenresLocalSource extends GenresDataSource{
     try {
 
       final questionSymbols = genresIds.map((e) => '?').join(',');
-      final result = await  SQLite.instance.rawDelete('DELETE FROM ${GenresTable.name} WHERE ${GenresTable.columnId} IN ($questionSymbols)', genresIds.map((e) => e.toString()).toList());
+      final result = await  SQLite.instance.rawUpdate('UPDATE ${GenresTable.name} SET isRemoved = ? WHERE ${GenresTable.columnId} IN ($questionSymbols)', [1, ...genresIds.map((e) => e.toString()).toList()]);
       
       if(result == 0){
         return ResponseModel(
