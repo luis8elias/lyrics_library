@@ -130,6 +130,16 @@ class Lang {
     );
   }
 
+  /// `Back`
+  String get actions_back {
+    return Intl.message(
+      'Back',
+      name: 'actions_back',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Loading...`
   String get loadingScreen_loading {
     return Intl.message(

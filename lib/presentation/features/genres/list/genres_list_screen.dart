@@ -62,22 +62,16 @@ class GenresListScreen extends ConsumerWidget {
               ),
             ),
           ],
-          leading: reactiveProv.isSelectGenreOpened ?
-          SizedBox(
-            width: 50,
-            child: TextButton(
-              onPressed: () => prov.openCloseSelectGenre(), 
-              child: Text(lang.actions_ok)
-            ),
+          leading: reactiveProv.isSelectGenreOpened 
+          ? TextButton(
+            onPressed: () => prov.openCloseSelectGenre(), 
+            child: Text(lang.actions_ok)
           )
-          : SizedBox(
-            width: 50,
-            child: IconButton(
-              onPressed: () => prov.openCloseSelectGenre(),
-              icon: Icon(
-                CupertinoIcons.check_mark_circled,
-                color: theme.colorScheme.primary,
-              ),
+          : IconButton(
+            onPressed: () => prov.openCloseSelectGenre(),
+            icon: Icon(
+              CupertinoIcons.check_mark_circled,
+              color: theme.colorScheme.primary,
             ),
           ),
           title: lang.genresListScreen_title
@@ -98,10 +92,8 @@ class GenresListScreen extends ConsumerWidget {
                   child: Text(lang.actions_edit)
                 ),
                 DeleteGenreButton(
-                  onPressed: reactiveProv.selectedGenres.isNotEmpty
-                  ? (){}
-                  : null,
-                )
+                  enabled: reactiveProv.selectedGenres.isNotEmpty
+                ),
               ],
             ),
           ),
@@ -124,14 +116,15 @@ class GenresListScreen extends ConsumerWidget {
                       () => prov.refreshGenres(),
                     ),
                     child: ListView.separated(
-                      separatorBuilder: (context, index) => const Divider(
-                        thickness: 0.09,
+                      separatorBuilder: (context, index) => Container(
+                        height: 0.5,
+                        color: theme.colorScheme.outline,
                       ),
                       itemCount: genres!.length,
                       itemBuilder: (context, index) => Padding(
                         padding: EdgeInsets.only(
                           bottom: (index+1) == genres.length ? bottomPadding : 0,
-                          top: index == 0 ? 40 : 0,
+                          top: index == 0 ? 30 : 0,
                         ),
                         child: ListTile(
                           onTap:  prov.isSelectGenreOpened  

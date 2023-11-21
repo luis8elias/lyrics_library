@@ -13,14 +13,15 @@ import '/utils/constants/sizes.dart';
 class DeleteGenreButton extends ConsumerWidget {
   const DeleteGenreButton({
     super.key,
-    required this.onPressed
+    required this.enabled
   });
-  final VoidCallback? onPressed;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
     final lang = Lang.of(context);
+    final theme = Theme.of(context);
 
     return  SendProviderListener(
       provider: deleteGenreProvider,
@@ -37,9 +38,8 @@ class DeleteGenreButton extends ConsumerWidget {
           text: lang.actions_delete
         ),
         child: TextButton(
-          onPressed: onPressed != null 
+          onPressed: enabled 
           ? (){
-            onPressed!();
             showModalBottomSheet(
               enableDrag: false,
               context: context, 
@@ -47,6 +47,9 @@ class DeleteGenreButton extends ConsumerWidget {
             );
           }
           : null,
+          style: TextButton.styleFrom(
+            foregroundColor: theme.colorScheme.error
+          ),
           child: Text(
             lang.actions_delete,
           )
@@ -146,11 +149,9 @@ class DeleteGenresBottomSheet extends ConsumerWidget {
                 ),
               ),
               Container(
-                color: theme.colorScheme.background,
-                child: Divider(
-                  color: theme.colorScheme.outline,
-                  thickness: 0.5,
-                ),
+                height: 0.5,
+                color : theme.colorScheme.outline
+               
               ),
               Material(
                 borderRadius: const BorderRadius.only(
