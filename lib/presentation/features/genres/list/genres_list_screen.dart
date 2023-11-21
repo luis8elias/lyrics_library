@@ -9,6 +9,7 @@ import 'package:go_router/go_router.dart';
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/genres/delete/delete_genre_button.dart';
 import '/presentation/features/genres/list/providers/providers.dart';
+import '/presentation/features/genres/list/widgets/genres_leading.dart';
 import '/presentation/presentation.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';
 import '/presentation/widgets/providers.dart';
@@ -18,7 +19,7 @@ import '/utils/constants/sizes.dart';
 class GenresListScreen extends ConsumerWidget {
   const GenresListScreen({super.key});
 
-   static const String routeName = '/genres';
+  static const String routeName = '/genres';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -37,43 +38,30 @@ class GenresListScreen extends ConsumerWidget {
         scaffoldKey: key,
         appBar: CustomAppBar(
           actions: [
-            SizedBox(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  right: Sizes.kPadding/2
-                ),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius),
-                  onTap: () => GoRouter.of(context).pushNamed(CreateGenreScreen.routeName),
-                  child: Container(
-                    height: 28,
-                    width: 28,
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.primary,
-                      borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
-                    ),
-                    child: Icon(
-                      CupertinoIcons.add,
-                      color: theme.colorScheme.onPrimary,
-                      size: 15,
-                    ),
+            Padding(
+              padding: const EdgeInsets.only(
+                right: Sizes.kPadding/2
+              ),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius),
+                onTap: () => GoRouter.of(context).pushNamed(CreateGenreScreen.routeName),
+                child: Container(
+                  height: 28,
+                  width: 28,
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.primary,
+                    borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
+                  ),
+                  child: Icon(
+                    CupertinoIcons.add,
+                    color: theme.colorScheme.onPrimary,
+                    size: 15,
                   ),
                 ),
               ),
             ),
           ],
-          leading: reactiveProv.isSelectGenreOpened 
-          ? TextButton(
-            onPressed: () => prov.openCloseSelectGenre(), 
-            child: Text(lang.actions_ok)
-          )
-          : IconButton(
-            onPressed: () => prov.openCloseSelectGenre(),
-            icon: Icon(
-              CupertinoIcons.check_mark_circled,
-              color: theme.colorScheme.primary,
-            ),
-          ),
+          leading: const GenresLeading(),
           title: lang.genresListScreen_title
         ),
         buttonBottomRow: prov.isSelectGenreOpened 
