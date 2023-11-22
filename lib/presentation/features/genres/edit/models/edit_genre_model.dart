@@ -1,24 +1,24 @@
 
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/data/models/syncable_model.dart';
 
 import '/data/models/form_model.dart';
 import '/utils/extensions/string_extensions.dart';
 import '/utils/utils.dart';
 
-class EditGenreModel extends FormModel {
+class EditGenreModel extends SyncableModel implements FormModel {
 
   final Guid? id;
   final String? name;
   final Guid?  ownerId;
-  final int isRemoved;
-  final int isSync;
+
 
   EditGenreModel({
     this.id,
     this.name,
     this.ownerId,
-    this.isRemoved = 0,
-    this.isSync = 0,
+    super.isRemoved = 0,
+    super.isSync = 0,
   });
   
   

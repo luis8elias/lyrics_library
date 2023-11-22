@@ -9,10 +9,11 @@ import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/utils/db/sqlite.dart';
 import '/utils/logger/logger_helper.dart';
 
-class GenresLocalSource extends GenresDataSource{
+class GenresLocalSource extends GenresDataSource {
+  GenresLocalSource({required super.sessionService});
 
   @override
-  Future<ResponseModel<List<GenreModel>?>> fetchGenres() async{
+  Future<ResponseModel<List<GenreModel>?>> fetchGenres() async {
 
     try {
       
@@ -47,10 +48,13 @@ class GenresLocalSource extends GenresDataSource{
 
     try {
 
+      final authModel = await sessionService.getAuthModel();
+
+
       final genre = GenreModel(
         id: Guid.newGuid,
         name: createGenreModel.name!.capitalize(), 
-        ownerId: Guid.newGuid
+        ownerId: Guid(authModel?.userId)
       );
       
       final result = await SQLite.instance.insert(

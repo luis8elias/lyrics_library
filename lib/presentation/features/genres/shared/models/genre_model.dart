@@ -1,25 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/data/models/syncable_model.dart';
 import '/presentation/features/genres/edit/models/edit_genre_model.dart';
 
-class GenreModel {
+class GenreModel extends SyncableModel{
 
   final Guid id;
   final String name;
   final Guid ownerId;
-  final int isRemoved;
-  final int isSync;
-  
 
-  bool get isRemovedAsBool => isRemoved == 1;
-  bool get isSyncAsBool => isSync == 1; 
 
   GenreModel({
     required this.id, 
     required this.name, 
     required this.ownerId,
-    this.isRemoved = 0,
-    this.isSync = 0,
+    super.isRemoved = 0,
+    super.isSync = 0,
   });
   
 
@@ -67,4 +63,5 @@ class GenreModel {
       ownerId: ownerId ?? this.ownerId,
     );
   }
+  
 }

@@ -67,7 +67,9 @@ class GenresListProvider extends FetchProvider<List<GenreModel>?>{
   void editGenre(GenreModel genreModel){
     final index = model!.indexWhere((genre) => genre.id == genreModel.id);
     model![index] = genreModel;
-    openCloseSelectGenre();
+    if(isSelectGenreOpened){
+      openCloseSelectGenre();
+    }
     notifyListeners();
   }
 

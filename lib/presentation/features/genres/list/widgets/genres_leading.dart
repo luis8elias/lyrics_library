@@ -16,23 +16,33 @@ class GenresLeading extends ConsumerWidget {
     final prov = ref.read(genresListProvider);
     final theme = Theme.of(context);
 
-    if(reactiveProv.model!.isEmpty){
-      return const SizedBox.shrink();
-    }
+    try {
+      
+      if(reactiveProv.model == null){
+        return const SizedBox.shrink();
+      }
 
-    if(reactiveProv.isSelectGenreOpened){
-      return TextButton(
-        onPressed: () => prov.openCloseSelectGenre(), 
-        child: Text(lang.actions_ok)
+      if(reactiveProv.model!.isEmpty){
+        return const SizedBox.shrink();
+      }
+
+      if(reactiveProv.isSelectGenreOpened){
+        return TextButton(
+          onPressed: () => prov.openCloseSelectGenre(), 
+          child: Text(lang.actions_ok)
+        );
+      }
+
+      return IconButton(
+        onPressed: () => prov.openCloseSelectGenre(),
+        icon: Icon(
+          CupertinoIcons.check_mark_circled,
+          color: theme.colorScheme.primary,
+        ),
       );
-    }
 
-    return IconButton(
-      onPressed: () => prov.openCloseSelectGenre(),
-      icon: Icon(
-        CupertinoIcons.check_mark_circled,
-        color: theme.colorScheme.primary,
-      ),
-    );
+    } catch (e) {
+      return  const SizedBox.shrink();
+    }
   }
 }

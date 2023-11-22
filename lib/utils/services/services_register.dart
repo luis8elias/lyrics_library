@@ -10,16 +10,6 @@ import '/services/songs_service.dart';
 class ServicesRegister{
   static void start(){
 
-    //Sources
-    //Api
-    Injector.appInstance.registerSingleton<SongsApiSource>(
-      () => SongsApiSource()
-    );
-    //Local
-    Injector.appInstance.registerSingleton<GenresLocalSource>(
-      () => GenresLocalSource()
-    );
-
     //Services
     Injector.appInstance.registerSingleton<SessionService>(
       () => SessionService()
@@ -32,6 +22,20 @@ class ServicesRegister{
         apiSource: Injector.appInstance.get<SongsApiSource>()
       )
     );
+
+    //Sources
+    //Api
+    Injector.appInstance.registerSingleton<SongsApiSource>(
+      () => SongsApiSource()
+    );
+    //Local
+    Injector.appInstance.registerSingleton<GenresLocalSource>(
+      () => GenresLocalSource(
+        sessionService: Injector.appInstance.get()
+      )
+    );
+
+    
 
     Injector.appInstance.registerSingleton<GenresService>(
       () => GenresService(

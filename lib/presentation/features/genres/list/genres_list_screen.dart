@@ -62,6 +62,7 @@ class GenresListScreen extends ConsumerWidget {
             ),
           ],
           leading: const GenresLeading(),
+          //leading: SizedBox.shrink(),
           title: lang.genresListScreen_title
         ),
         buttonBottomRow: prov.isSelectGenreOpened 
