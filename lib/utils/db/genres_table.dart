@@ -24,7 +24,7 @@ class GenresTable{
     if(maps.isEmpty ){
       await db.insert(GenresTable.name, {
         'id': Guid.newGuid.toString(),
-        'name': 'demo',
+        'name': 'Demo',
         'ownerId': Guid.newGuid.toString(),
         'sync' : 0,
         'isRemoved' : 0

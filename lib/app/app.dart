@@ -13,9 +13,8 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     
-    //final themeProv = ref.watch(themeProvider);
     final sessionProv = ref.read(sessionProvider);
-    registerRoutes(sessionProv: sessionProv,ref: ref);
+    registerRoutes(sessionProv: sessionProv, ref: ref);
 
     return MaterialApp.router(
       title:'Lyrics App',

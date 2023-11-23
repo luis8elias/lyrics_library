@@ -18,9 +18,9 @@ final darkTheme = ThemeData(
         fontWeight: FontWeight.w500,
       ),
       systemOverlayStyle: const SystemUiOverlayStyle(
-        statusBarBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light
+        statusBarIconBrightness: Brightness.light,
       ),
     ),
     textTheme: GoogleFonts.openSansTextTheme(
