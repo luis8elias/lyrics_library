@@ -97,9 +97,13 @@ class GenresLocalSource extends GenresDataSource {
     try {
 
       final questionSymbols = genresIds.map((e) => '?').join(',');
-      final result = await  SQLite.instance.rawUpdate('UPDATE ${GenresTable.name} SET isRemoved = ? WHERE ${GenresTable.colId} IN ($questionSymbols)', [1, ...genresIds.map((e) => e.toString()).toList()]);
+      final rowsAffected = await  SQLite.instance.rawUpdate(
+        'UPDATE ${GenresTable.name} SET isRemoved = ? '
+        'WHERE ${GenresTable.colId} IN ($questionSymbols)',
+        [1, ...genresIds.map((e) => e.toString()).toList()]
+      );
       
-      if(result == 0){
+      if(rowsAffected == 0){
         return ResponseModel(
           success: false,
           message: 'Ocurrió un problema al eliminar el género'
