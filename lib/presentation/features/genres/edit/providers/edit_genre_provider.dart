@@ -1,6 +1,5 @@
 
-import 'package:lyrics_library/utils/extensions/string_extensions.dart';
-
+import '/utils/extensions/string_extensions.dart';
 import '/presentation/features/genres/edit/models/edit_genre_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/providers/providers.dart';

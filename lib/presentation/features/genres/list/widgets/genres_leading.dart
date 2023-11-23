@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lyrics_library/config/lang/generated/l10n.dart';
 
+import '/config/lang/generated/l10n.dart';
 import '/presentation/features/genres/list/providers/providers.dart';
 
 class GenresLeading extends ConsumerWidget {

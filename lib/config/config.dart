@@ -18,6 +18,7 @@ class Config{
   static final androidClientId = dotenv.env['ANDROID_CLIENT_ID'];
   static final iosClientId = dotenv.env['IOS_CLIENT_IOS'];
   static final apiUrl = dotenv.env['API_URL'];
+  static const songsPageSize = 25;
   static const preferredOrientations = [
     DeviceOrientation.portraitUp, 
     DeviceOrientation.portraitDown,

@@ -4,6 +4,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 import '/utils/db/genres_table.dart';
+import '/utils/db/songs_table.dart';
 
 class SQLite{
   static late Database instance;
@@ -16,6 +17,7 @@ class SQLite{
       version: 1,
       onCreate: (Database db, int version) async {
         await GenresTable.create(db);
+        await SongsTable.create(db);
       }
     );
   }

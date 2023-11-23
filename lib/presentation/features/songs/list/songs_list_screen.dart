@@ -1,9 +1,12 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '/presentation/features/songs/shared/model/song_model.dart';
+import '/presentation/widgets/transparent_appbar.dart';
 import '/presentation/features/songs/list/providers/providers.dart';
 import '/presentation/presentation.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';
@@ -34,22 +37,53 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
     final theme = Theme.of(context);
     final prov = ref.read(songsListProvider);
     final bottomPadding = Platform.isIOS ? 50.0 : 70.0;
+    final topPadding = Platform.isIOS ? 45.0 : 40.0;
     final progressIndicatorPadding = Platform.isIOS ? Sizes.kBottomNavHeight : Sizes.kBottomNavHeight + 30;
 
     return  Scaffold(
       body: CustomBottomNavBar(
         selectedIndex: 1,
         scaffoldKey: key,
+        appBar: CustomAppBar(
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(
+                right: Sizes.kPadding/2
+              ),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius),
+                onTap: () => {},
+                child: Container(
+                  height: 28,
+                  width: 28,
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.primary,
+                    borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
+                  ),
+                  child: Icon(
+                    CupertinoIcons.add,
+                    color: theme.colorScheme.onPrimary,
+                    size: 15,
+                  ),
+                ),
+              ),
+            ),
+          ],
+          //leading: const GenresLeading(),
+          leading: const SizedBox.shrink(),
+          title: 'Songs'
+        ),
         body: RefreshIndicator(
+          displacement: 100,
           onRefresh: () => Future.sync(
             () => prov.songsController.refresh(),
           ),
-          child: PagedListView<int, String>.separated(
+          child: PagedListView<int, SongModel>.separated(
             separatorBuilder: (context, index) => const Divider(
               thickness: 0.09,
             ),
             pagingController: prov.songsController,
-            builderDelegate: PagedChildBuilderDelegate<String>(
+            builderDelegate: PagedChildBuilderDelegate<SongModel>(
               firstPageProgressIndicatorBuilder: (context) => const LoadingScreen(),
               newPageProgressIndicatorBuilder: (context) => Padding(
                 padding:  EdgeInsets.only(
@@ -62,17 +96,19 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                 return Padding(
                 padding: EdgeInsets.only(
                   //Comparar con totalSongs
-                  bottom: (index+1) == 55 ? bottomPadding : 0.0
+                  bottom: (index+1) == 55 ? bottomPadding : 0.0,
+                  top: index == 0 ? topPadding : 0,
                 ),
                 child: ListTile(
                   title: Text(
-                    item,
+                    item.title,
                     style: theme.textTheme.displaySmall,
                   ),
                   subtitle: Container(
                     margin: const EdgeInsets.only(top: 5),
                     child: Row(
                       children: [
+                        if(item.genreModel != null)
                         Container(
                           height: 25,
                           margin: const EdgeInsets.only(right: 10),
@@ -86,7 +122,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                           ),
                           child: Center(
                             child: Text(
-                              'Cumbia',
+                              item.genreModel!.name,
                               style: theme.textTheme.bodySmall?.copyWith(
                                 color: theme.colorScheme.onSecondary,
                                 fontWeight: FontWeight.bold

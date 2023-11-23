@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '/config/config.dart';
+import '/presentation/features/songs/shared/model/song_model.dart';
 import '/services/songs_service.dart';
 
 class SongsListProvider extends ChangeNotifier{
@@ -8,10 +10,10 @@ class SongsListProvider extends ChangeNotifier{
   final SongsService _songsService;
   SongsListProvider({required SongsService songsService}) : _songsService = songsService;
 
-  final PagingController<int, String> _pagingController = PagingController(firstPageKey: 1);
-  final _pageSize = 20;
+  final PagingController<int, SongModel> _pagingController = PagingController(firstPageKey: 1);
+  final _pageSize = Config.songsPageSize;
 
-   PagingController<int, String> get songsController => _pagingController;
+   PagingController<int, SongModel> get songsController => _pagingController;
   
 
   void addListenerToPagingController(){

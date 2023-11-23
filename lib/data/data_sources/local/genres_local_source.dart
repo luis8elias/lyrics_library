@@ -1,6 +1,6 @@
 import 'package:flutter_guid/flutter_guid.dart';
-import 'package:lyrics_library/utils/extensions/string_extensions.dart';
 
+import '/utils/extensions/string_extensions.dart';
 import '/data/data_sources/interfaces/genres_data_source_inteface.dart';
 import '/data/models/response_model.dart';
 import '/presentation/features/genres/create/models/create_genre_model.dart';
@@ -19,7 +19,7 @@ class GenresLocalSource extends GenresDataSource {
       
       final genresMapList = await SQLite.instance.query(
         GenresTable.name,
-        where: '${GenresTable.columnIsRemoved} = ?',
+        where: '${GenresTable.colIsRemoved} = ?',
         whereArgs: [0]
       );
       await Future.delayed(const Duration(milliseconds: 500));
@@ -97,7 +97,7 @@ class GenresLocalSource extends GenresDataSource {
     try {
 
       final questionSymbols = genresIds.map((e) => '?').join(',');
-      final result = await  SQLite.instance.rawUpdate('UPDATE ${GenresTable.name} SET isRemoved = ? WHERE ${GenresTable.columnId} IN ($questionSymbols)', [1, ...genresIds.map((e) => e.toString()).toList()]);
+      final result = await  SQLite.instance.rawUpdate('UPDATE ${GenresTable.name} SET isRemoved = ? WHERE ${GenresTable.colId} IN ($questionSymbols)', [1, ...genresIds.map((e) => e.toString()).toList()]);
       
       if(result == 0){
         return ResponseModel(
@@ -138,7 +138,7 @@ class GenresLocalSource extends GenresDataSource {
       final rowsAffected = await  SQLite.instance.update(
         GenresTable.name, 
         editedGenre,
-        where: '${GenresTable.columnId} = ?',
+        where: '${GenresTable.colId} = ?',
         whereArgs: [editGenreModel.id.toString()]
       );
       
