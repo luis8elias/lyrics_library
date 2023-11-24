@@ -77,7 +77,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
           title: 'Songs'
         ),
         body: RefreshIndicator(
-          displacement: 100,
+          displacement: topPadding,
           onRefresh: () => Future.sync(
             () => prov.songsController.refresh(),
           ),

@@ -108,7 +108,7 @@ class GenresListScreen extends ConsumerWidget {
                 ),
                 Expanded(
                   child: RefreshIndicator(
-                    displacement: 100,
+                    displacement: topPadding,
                     onRefresh: () => Future.sync(
                       () => prov.refreshGenres(),
                     ),

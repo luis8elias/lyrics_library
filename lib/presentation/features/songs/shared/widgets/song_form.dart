@@ -58,6 +58,7 @@ class _SongFormState extends State<SongForm> {
               style: theme.textTheme.displayMedium?.copyWith(
                 color: theme.colorScheme.onSurface
               ),
+              textCapitalization: TextCapitalization.sentences,
               onChanged: (value) => widget.onTitleChanged(value),
               decoration: InputDecoration(
                 hintText: lang.songsCreateScreen_titleInput,

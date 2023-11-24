@@ -27,7 +27,7 @@ class LoginDivider extends StatelessWidget {
         Text(
           lang.loginScreen_alternativesDivider,
           style: theme.textTheme.bodyMedium?.copyWith(
-            fontSize: 14
+            fontSize: 12
           ),
         ),
         Expanded(
