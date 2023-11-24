@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_guid/flutter_guid.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import '/presentation/providers/providers.dart';
 
 import '/config/config.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/services/songs_service.dart';
 
-class SongsListProvider extends ChangeNotifier{
+class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>{
 
   final SongsService _songsService;
   SongsListProvider({required SongsService songsService}) : _songsService = songsService;
@@ -15,6 +17,10 @@ class SongsListProvider extends ChangeNotifier{
   int totalSongs = 0;
 
   PagingController<int, SongModel> get songsController => _pagingController;
+
+  SongModel get getFirstSongSelected => _pagingController.itemList!.firstWhere(
+    (element) => element.id == selectedItems[0]
+  );
   
 
   void addListenerToPagingController(){
@@ -49,6 +55,28 @@ class SongsListProvider extends ChangeNotifier{
 
   Future<void> refresh() async {
     _pagingController.refresh();
+    notifyListeners();
+  }
+
+  @override
+  void openCloseSelectItem({Guid? id}) {
+    super.openCloseSelectItem(
+      id: id
+    );
+    notifyListeners();
+  }
+
+  @override
+  void selectItem({required Guid id}) {
+    super.selectItem(
+      id: id
+    );
+    notifyListeners();
+  }
+
+   void deleteSongs(){
+    _pagingController.itemList!.removeWhere((song) => selectedItems.contains(song.id));
+    openCloseSelectItem();
     notifyListeners();
   }
 

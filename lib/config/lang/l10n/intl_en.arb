@@ -89,9 +89,29 @@
 
 
 
+    "@_SONGS_LIST_SCREEN": {},
+    "songsListScreen_title" : "Songs",
+
+
+
     "@_SONGS_CREATE_SCREEN": {},
     "songsCreateScreen_title" : "Create Song",
-    "songsCreateScreen_titleInput" : "Title"
+    "songsCreateScreen_titleInput" : "Title",
+
+
+
+    "@_SONGS_DELETE": {},
+    "songsDelete_title" : "Delete song?",
+    "songsDelete_titlePlural" : "Delete songs?",
+    "songsDelete_deleteButton" : "Delete song",
+    "songsDelete_deleteButtonPlural" : "Delete {songsCount} songs",
+    "@songsDelete_deleteButtonPlural": {
+      "placeholders": {
+        "songsCount": {
+          "type": "int"
+        }
+      }
+    }
 
 
 

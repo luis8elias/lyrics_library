@@ -22,7 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(genresCount) => "Delete ${genresCount} genres";
 
-  static String m1(length) => "Password must be at least ${length} characters";
+  static String m1(songsCount) => "Delete ${songsCount} songs";
+
+  static String m2(length) => "Password must be at least ${length} characters";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -87,9 +89,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create Song"),
         "songsCreateScreen_titleInput":
             MessageLookupByLibrary.simpleMessage("Title"),
+        "songsDelete_deleteButton":
+            MessageLookupByLibrary.simpleMessage("Delete song"),
+        "songsDelete_deleteButtonPlural": m1,
+        "songsDelete_title":
+            MessageLookupByLibrary.simpleMessage("Delete song?"),
+        "songsDelete_titlePlural":
+            MessageLookupByLibrary.simpleMessage("Delete songs?"),
+        "songsListScreen_title": MessageLookupByLibrary.simpleMessage("Songs"),
         "validator_confirmPassword":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
-        "validator_confirmPasswordLength": m1,
+        "validator_confirmPasswordLength": m2,
         "validator_email": MessageLookupByLibrary.simpleMessage("Wrong email"),
         "validator_required":
             MessageLookupByLibrary.simpleMessage("This field is required")

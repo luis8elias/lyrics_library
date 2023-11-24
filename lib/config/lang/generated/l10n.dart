@@ -420,6 +420,16 @@ class Lang {
     );
   }
 
+  /// `Songs`
+  String get songsListScreen_title {
+    return Intl.message(
+      'Songs',
+      name: 'songsListScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Create Song`
   String get songsCreateScreen_title {
     return Intl.message(
@@ -437,6 +447,46 @@ class Lang {
       name: 'songsCreateScreen_titleInput',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Delete song?`
+  String get songsDelete_title {
+    return Intl.message(
+      'Delete song?',
+      name: 'songsDelete_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete songs?`
+  String get songsDelete_titlePlural {
+    return Intl.message(
+      'Delete songs?',
+      name: 'songsDelete_titlePlural',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete song`
+  String get songsDelete_deleteButton {
+    return Intl.message(
+      'Delete song',
+      name: 'songsDelete_deleteButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete {songsCount} songs`
+  String songsDelete_deleteButtonPlural(int songsCount) {
+    return Intl.message(
+      'Delete $songsCount songs',
+      name: 'songsDelete_deleteButtonPlural',
+      desc: '',
+      args: [songsCount],
     );
   }
 }

@@ -3,28 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '/config/lang/generated/l10n.dart';
-import '/presentation/features/genres/list/providers/providers.dart';
+import '/presentation/features/songs/list/providers/providers.dart';
 
-class GenresLeading extends ConsumerWidget {
-  const GenresLeading({super.key});
+class SongsAppBarLeading extends ConsumerWidget {
+  const SongsAppBarLeading({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final reactiveProv = ref.watch(genresListProvider);
+    final reactiveProv = ref.watch(songsListProvider);
     final lang = Lang.of(context);
-    final prov = ref.read(genresListProvider);
+    final prov = ref.read(songsListProvider);
     final theme = Theme.of(context);
 
     try {
-      
-      if(reactiveProv.model == null){
-        return const SizedBox.shrink();
-      }
-
-      if(reactiveProv.model!.isEmpty){
-        return const SizedBox.shrink();
-      }
 
       if(reactiveProv.isSelectItemOpened){
         return TextButton(

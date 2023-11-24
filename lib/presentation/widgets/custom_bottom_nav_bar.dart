@@ -14,14 +14,12 @@ class CustomBottomNavBar extends StatefulWidget {
     super.key,
     required this.selectedIndex,
     required this.body,
-    required this.scaffoldKey,
     this.appBar,
     this.buttonBottomRow
   });
 
   final int selectedIndex;
   final Widget body;
-  final GlobalKey<ScaffoldState> scaffoldKey;
   final CustomAppBar? appBar;
   final Widget? buttonBottomRow;
 
@@ -67,7 +65,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       BottomNavigationBarItem(
         icon: CupertinoIcons.ellipsis_vertical,
         onPressed: (context){
-          widget.scaffoldKey.currentState?.openDrawer();
+         
         },
         label: 'More'
       )

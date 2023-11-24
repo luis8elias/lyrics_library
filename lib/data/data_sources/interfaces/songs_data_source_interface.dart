@@ -1,3 +1,5 @@
+import 'package:flutter_guid/flutter_guid.dart';
+
 import '/presentation/features/songs/create/models/create_song_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/presentation/features/songs/list/models/songs_list_model.dart';
@@ -19,6 +21,9 @@ abstract class SongsDataSource{
     required CreateSongModel createSongModel,
   });
 
+  Future<ResponseModel<String>> deleteSongs({
+    required List<Guid> songsIds
+  });
   
 
 }

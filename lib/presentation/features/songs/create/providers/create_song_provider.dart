@@ -36,7 +36,6 @@ class CreateSongProvider extends SendProvider<SongModel?> with FormProvider<Crea
   }
 
   void resetFormModel(){
-    print('Reset');
     updateFormModel((formModel) => CreateSongModel());
   }
 

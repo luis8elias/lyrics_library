@@ -1,3 +1,5 @@
+import 'package:flutter_guid/flutter_guid.dart';
+
 import '/presentation/features/songs/create/models/create_song_model.dart';
 import '/presentation/features/songs/list/models/songs_list_model.dart';
 import '/config/config.dart';
@@ -104,6 +106,46 @@ class SongsLocalSource extends SongsDataSource {
       return ResponseModel(
         success: false,
         message: 'Ocurrió un problema al crear la canción'
+      );
+
+    }
+  }
+
+  @override
+  Future<ResponseModel<String>> deleteSongs({
+    required List<Guid> songsIds
+  }) async{
+    try {
+
+      final questionSymbols = songsIds.map((e) => '?').join(',');
+      final rowsAffected = await  SQLite.instance.rawUpdate(
+        'UPDATE ${SongsTable.name} SET isRemoved = ? '
+        'WHERE ${SongsTable.colId} IN ($questionSymbols)',
+        [1, ...songsIds.map((e) => e.toString()).toList()]
+      );
+      
+      if(rowsAffected == 0){
+        return ResponseModel(
+          success: false,
+          message: 'Ocurrió un problema al eliminar'
+        );
+      }
+      await Future.delayed(const Duration(milliseconds: 500));
+      
+      return ResponseModel(
+        success: true, 
+        message: songsIds.length > 1 ? 'Canciones eliminados' : 'Canción eliminada' ,
+        model: ''
+      );
+
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en SongsLocalSource método [deleteSongs]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al eliminar la canción'
       );
 
     }

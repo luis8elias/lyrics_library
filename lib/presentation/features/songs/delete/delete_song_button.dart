@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '/presentation/features/songs/list/providers/providers.dart';
+import '/presentation/features/songs/delete/providers/providers.dart';
 import '/config/lang/generated/l10n.dart';
 import '/presentation/widgets/buttons.dart';
 import '/presentation/widgets/providers.dart';
 import '/utils/snackbar/snackbar_helper.dart';
-import '/presentation/features/genres/delete/providers/providers.dart';
-import '/presentation/features/genres/list/providers/providers.dart';
 import '/utils/constants/sizes.dart';
 
-class DeleteGenreButton extends ConsumerWidget {
-  const DeleteGenreButton({
+class DeleteSongButton extends ConsumerWidget {
+  const DeleteSongButton({
     super.key,
     required this.enabled
   });
@@ -24,14 +24,13 @@ class DeleteGenreButton extends ConsumerWidget {
     final theme = Theme.of(context);
 
     return  SendProviderListener(
-      provider: deleteGenreProvider,
+      provider: deleteSongProvider,
       onError: (error) => SnackbarHelper.show(context, error),
       onSuccess: (model, message) {
-        ref.read(genresListProvider).deleteGenres();
-        //SnackbarHelper.show(context, message);
+        ref.read(songsListProvider).deleteSongs();
       },
       child: SendProviderBuilder(
-        provider: deleteGenreProvider,
+        provider: deleteSongProvider,
         loaderWidget: BasicTextButton(
           onPressed: null,
           buildChild: (loadingChild) => loadingChild,
@@ -43,7 +42,7 @@ class DeleteGenreButton extends ConsumerWidget {
             showModalBottomSheet(
               enableDrag: false,
               context: context, 
-              builder: (context) => const DeleteGenresBottomSheet()
+              builder: (context) => const _DeleteSongsBottomSheet()
             );
           }
           : null,
@@ -60,18 +59,16 @@ class DeleteGenreButton extends ConsumerWidget {
 }
 
 
-class DeleteGenresBottomSheet extends ConsumerWidget {
-  const DeleteGenresBottomSheet({
-    super.key,
-  });
+class _DeleteSongsBottomSheet extends ConsumerWidget {
+  const _DeleteSongsBottomSheet();
 
   
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
     final theme = Theme.of(context);
-    final prov = ref.read(genresListProvider);
-    final deleteGenresProv = ref.read(deleteGenreProvider);
+    final prov = ref.read(songsListProvider);
+    final deleteSongsProv = ref.read(deleteSongProvider);
     final lang = Lang.of(context);
 
     return Container(
@@ -97,8 +94,8 @@ class DeleteGenresBottomSheet extends ConsumerWidget {
                 ),
                 child: Text(
                   prov.selectedItems.length == 1 
-                  ? lang.genresDelete_title
-                  : lang.genresDelete_titlePlural,
+                  ? lang.songsDelete_title
+                  : lang.songsDelete_titlePlural,
                   textAlign: TextAlign.center,
                   style: theme.textTheme.displaySmall!.copyWith(
                     fontWeight: FontWeight.bold,
@@ -125,8 +122,8 @@ class DeleteGenresBottomSheet extends ConsumerWidget {
                   minLeadingWidth: 25,
                   onTap: (){
                     Navigator.of(context).pop();
-                    deleteGenresProv.deleteGenres(
-                      genresIds: prov.selectedItems
+                    deleteSongsProv.deleteSongs(
+                      songsIds: prov.selectedItems
                     );
                   },
                   trailing: Icon(
@@ -135,13 +132,13 @@ class DeleteGenresBottomSheet extends ConsumerWidget {
                   ),
                   title: prov.selectedItems.length == 1 
                   ? Text(
-                    lang.genresDelete_deleteButton,
+                    lang.songsDelete_deleteButton,
                     style: theme.textTheme.bodyMedium!.copyWith(
                       color: theme.colorScheme.error,
                     ),
                   )
                   : Text(
-                    lang.genresDelete_deleteButtonPlural(prov.selectedItems.length),
+                    lang.songsDelete_deleteButtonPlural(prov.selectedItems.length),
                     style: theme.textTheme.bodyMedium!.copyWith(
                       color: theme.colorScheme.error,
                     ),

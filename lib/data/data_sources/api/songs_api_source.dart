@@ -76,4 +76,12 @@ class SongsApiSource extends SongsDataSource{
   }) {
     throw UnimplementedError();
   }
+  
+  @override
+  Future<ResponseModel<String>> deleteSongs({
+    required List<Guid> songsIds
+  }) {
+    // TODO: implement deleteSongs
+    throw UnimplementedError();
+  }
 }

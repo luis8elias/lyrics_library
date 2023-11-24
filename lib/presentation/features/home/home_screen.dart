@@ -17,12 +17,10 @@ class HomeScreen extends ConsumerWidget {
 
     //final theme = Theme.of(context);
     final provider = ref.watch(sessionProvider);
-    final GlobalKey<ScaffoldState> key = GlobalKey();
    
     return  Scaffold(
       body: CustomBottomNavBar(
         selectedIndex: 0,
-        scaffoldKey: key,
         body: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(
@@ -42,7 +40,7 @@ class HomeScreen extends ConsumerWidget {
             ),
           ),
         ),
-      )
+      ),
     );
   }
 }

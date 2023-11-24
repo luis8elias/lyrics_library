@@ -22,7 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(genresCount) => "Eliminar ${genresCount} géneros";
 
-  static String m1(length) =>
+  static String m1(songsCount) => "Eliminar ${songsCount} géneros";
+
+  static String m2(length) =>
       "La contraseña debe ser como mínimo de ${length} caracteres";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -90,9 +92,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Crear Canción"),
         "songsCreateScreen_titleInput":
             MessageLookupByLibrary.simpleMessage("Título"),
+        "songsDelete_deleteButton":
+            MessageLookupByLibrary.simpleMessage("Eliminar canción"),
+        "songsDelete_deleteButtonPlural": m1,
+        "songsDelete_title":
+            MessageLookupByLibrary.simpleMessage("¿Eliminar canción?"),
+        "songsDelete_titlePlural":
+            MessageLookupByLibrary.simpleMessage("¿Eliminar canciones?"),
+        "songsListScreen_title":
+            MessageLookupByLibrary.simpleMessage("Canciones"),
         "validator_confirmPassword": MessageLookupByLibrary.simpleMessage(
             "Las contraseñas no coinciden"),
-        "validator_confirmPasswordLength": m1,
+        "validator_confirmPasswordLength": m2,
         "validator_email":
             MessageLookupByLibrary.simpleMessage("Correo incorrecto"),
         "validator_required":

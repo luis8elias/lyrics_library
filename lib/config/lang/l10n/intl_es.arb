@@ -82,12 +82,31 @@
         }
       }
     },
+
+
+    "@_SONGS_LIST_SCREEN": {},
+    "songsListScreen_title" : "Canciones",
     
 
 
     "@_SONGS_CREATE_SCREEN": {},
     "songsCreateScreen_title" : "Crear Canción",
-    "songsCreateScreen_titleInput" : "Título"
+    "songsCreateScreen_titleInput" : "Título",
+
+
+
+    "@_SONGS_DELETE": {},
+    "songsDelete_title" : "¿Eliminar canción?",
+    "songsDelete_titlePlural" : "¿Eliminar canciones?",
+    "songsDelete_deleteButton" : "Eliminar canción",
+    "songsDelete_deleteButtonPlural" : "Eliminar {songsCount} géneros",
+    "@songsDelete_deleteButtonPlural": {
+      "placeholders": {
+        "songsCount": {
+          "type": "int"
+        }
+      }
+    }
     
 
 

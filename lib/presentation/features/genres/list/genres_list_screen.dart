@@ -26,7 +26,6 @@ class GenresListScreen extends ConsumerWidget {
 
     final theme = Theme.of(context);
     final lang = Lang.of(context);
-    final GlobalKey<ScaffoldState> key = GlobalKey();
     final prov = ref.read(genresListProvider);
     final reactiveProv = ref.watch(genresListProvider);
     final bottomPadding = Platform.isIOS ? 50.0 : 60.0;
@@ -35,7 +34,6 @@ class GenresListScreen extends ConsumerWidget {
     return  Scaffold(
       body: CustomBottomNavBar(
         selectedIndex: 2,
-        scaffoldKey: key,
         appBar: CustomAppBar(
           actions: [
             Padding(
@@ -62,10 +60,9 @@ class GenresListScreen extends ConsumerWidget {
             ),
           ],
           leading: const GenresLeading(),
-          //leading: SizedBox.shrink(),
-          title: lang.genresListScreen_title
+          title: lang.genresListScreen_title,
         ),
-        buttonBottomRow: prov.isSelectGenreOpened 
+        buttonBottomRow: prov.isSelectItemOpened 
         ? FadeInUp(
           duration: const Duration(milliseconds: 100),
           child:  Padding(
@@ -75,7 +72,7 @@ class GenresListScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextButton(
-                  onPressed: reactiveProv.isOneGenreSelected 
+                  onPressed: reactiveProv.isOneItemSelected 
                   ? ()=> GoRouter.of(context).go(
                     context.namedLocation(
                       EditGenreScreen.routeName,
@@ -89,7 +86,7 @@ class GenresListScreen extends ConsumerWidget {
                   child: Text(lang.actions_edit)
                 ),
                 DeleteGenreButton(
-                  enabled: reactiveProv.selectedGenres.isNotEmpty
+                  enabled: reactiveProv.selectedItems.isNotEmpty
                 ),
               ],
             ),
@@ -108,7 +105,7 @@ class GenresListScreen extends ConsumerWidget {
                 ),
                 Expanded(
                   child: RefreshIndicator(
-                    displacement: topPadding,
+                    displacement: Platform.isIOS ? Sizes.kAppBarSize : topPadding,
                     onRefresh: () => Future.sync(
                       () => prov.refreshGenres(),
                     ),
@@ -124,8 +121,8 @@ class GenresListScreen extends ConsumerWidget {
                           top: index == 0 ? topPadding : 0,
                         ),
                         child: ListTile(
-                          onTap: prov.isSelectGenreOpened  
-                          ? ()=> prov.selectGenre(genres[index].id)
+                          onTap: prov.isSelectItemOpened  
+                          ? ()=> prov.selectItem(id: genres[index].id)
                           : ()=> GoRouter.of(context).go(
                             context.namedLocation(
                               EditGenreScreen.routeName,
@@ -135,12 +132,12 @@ class GenresListScreen extends ConsumerWidget {
                             ),
                             extra: genres[index]
                           ),
-                          onLongPress: prov.isSelectGenreOpened 
+                          onLongPress: prov.isSelectItemOpened 
                           ? null 
-                          : ()=> prov.openCloseSelectGenre(
-                            genreId: genres[index].id
+                          : ()=> prov.openCloseSelectItem(
+                            id: genres[index].id
                           ),
-                          leading: reactiveProv.isSelectGenreOpened ? FadeInLeft(
+                          leading: reactiveProv.isSelectItemOpened ? FadeInLeft(
                             duration: const Duration(milliseconds: 100),
                             child: CupertinoCheckbox(
                               checkColor: theme.colorScheme.onPrimary,
@@ -148,13 +145,15 @@ class GenresListScreen extends ConsumerWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
                               ),
-                              value: reactiveProv.selectedGenres.contains(genres[index].id), 
+                              value: reactiveProv.selectedItems.contains(genres[index].id), 
                               onChanged: (value){
-                                prov.selectGenre(genres[index].id);
+                                prov.selectItem(
+                                  id: genres[index].id
+                                );
                               },
                             ),
                           ) : null,
-                          title: reactiveProv.isSelectGenreOpened 
+                          title: reactiveProv.isSelectItemOpened 
                           ? FadeInLeft(
                             duration: const Duration(milliseconds: 100),
                             child: Text(
