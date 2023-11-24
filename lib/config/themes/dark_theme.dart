@@ -54,7 +54,7 @@ final darkTheme = ThemeData(
           fontWeight: FontWeight.w700
         ),
         labelLarge: TextStyle(
-          fontSize: 12,
+          fontSize: 14,
           color: _darkColorScheme.primary,
           fontWeight: FontWeight.w500
         ),
