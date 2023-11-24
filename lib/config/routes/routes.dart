@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/config/routes/custom_transiton_page.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/presentation.dart';
 
@@ -8,12 +9,6 @@ final routes =  [
     path: LoadingScreen.routeName,
     name: LoadingScreen.routeName,
     builder: (context, state) => const LoadingScreen(),
-  ),
-
-  GoRoute(
-    path: HomeScreen.routeName,
-    name: HomeScreen.routeName,
-    builder: (context, state) => const HomeScreen(),
   ),
 
   GoRoute(
@@ -29,13 +24,27 @@ final routes =  [
     ]
   ),
 
+  GoRoute(
+    path: HomeScreen.routeName,
+    name: HomeScreen.routeName,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+      state: state,
+      context: context,
+      child: const HomeScreen()
+    ),
+  ),
+
   
 
   GoRoute(
     path: 
     SongsListScreen.routeName,
     name: SongsListScreen.routeName,
-    builder: (context, state) => const SongsListScreen(),
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+      state: state,
+      context: context,
+      child: const SongsListScreen()
+    ),
     routes: [
       GoRoute(
         path: CreateSongScreen.routePath,
@@ -48,7 +57,11 @@ final routes =  [
   GoRoute(
     path: GenresListScreen.routeName,
     name: GenresListScreen.routeName,
-    builder: (context, state) => const GenresListScreen(),
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+      state: state,
+      context: context,
+      child: const GenresListScreen()
+    ),
     routes: [
       GoRoute(
         path: CreateGenreScreen.routePath,

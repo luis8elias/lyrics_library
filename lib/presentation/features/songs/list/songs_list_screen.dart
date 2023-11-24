@@ -88,6 +88,10 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
             pagingController: reactiveProv.songsController,
             builderDelegate: PagedChildBuilderDelegate<SongModel>(
               firstPageProgressIndicatorBuilder: (context) => const LoadingScreen(),
+              noItemsFoundIndicatorBuilder: (conetxt)=> SizedBox(
+                height: MediaQuery.sizeOf(context).height - Sizes.kBottomNavHeight,
+                child: const Center(child: Text('No items'))
+              ),
               newPageProgressIndicatorBuilder: (context) => Padding(
                 padding:  EdgeInsets.only(
                   top: 20,
