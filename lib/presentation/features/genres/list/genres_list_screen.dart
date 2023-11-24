@@ -30,7 +30,7 @@ class GenresListScreen extends ConsumerWidget {
     final prov = ref.read(genresListProvider);
     final reactiveProv = ref.watch(genresListProvider);
     final bottomPadding = Platform.isIOS ? 50.0 : 60.0;
-    final topPadding = Platform.isIOS ? 30.0 : 40.0;
+    final topPadding = Platform.isIOS ? 30.0 : Sizes.kAppBarSize * 0.60;
    
     return  Scaffold(
       body: CustomBottomNavBar(

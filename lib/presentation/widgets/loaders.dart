@@ -55,13 +55,15 @@ class LoadingWidget extends StatelessWidget {
     this.padding = EdgeInsets.zero,
     this.iosSize,
     this.androidSize,
-    this.androidProgressColor
+    this.androidProgressColor,
+    this.strokeWidth = 4.0
   });
 
   final EdgeInsets padding;
   final double? iosSize;
   final double? androidSize;
   final Color? androidProgressColor;
+  final double strokeWidth;
   @override
   Widget build(BuildContext context) {
 
@@ -88,6 +90,7 @@ class LoadingWidget extends StatelessWidget {
             width: androidSize,
             child: CircularProgressIndicator(
               color: androidProgressColor ?? theme.primaryColor,
+              strokeWidth: strokeWidth,
             ),
           ),
         ),

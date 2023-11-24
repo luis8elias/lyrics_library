@@ -30,6 +30,7 @@ class BasicButton extends StatelessWidget {
       child: LoadingWidget(
         iosSize: 10,
         androidSize: 20,
+        strokeWidth: 2,
         androidProgressColor: theme.colorScheme.onBackground,
       ),
     );
@@ -87,6 +88,7 @@ class BasicOutlinedIconButton extends StatelessWidget {
     final loadingChild = LoadingWidget(
       iosSize: 10,
       androidSize: 20,
+      strokeWidth: 2,
       androidProgressColor: theme.colorScheme.onBackground,
     );
 
@@ -178,6 +180,7 @@ class BasicTextButton extends StatelessWidget {
       child: LoadingWidget(
         iosSize: 10,
         androidSize: 20,
+        strokeWidth: 2,
         androidProgressColor: theme.colorScheme.onBackground,
       ),
     );

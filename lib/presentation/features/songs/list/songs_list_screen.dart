@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '/presentation/features/songs/shared/model/song_model.dart';
@@ -30,14 +31,16 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
   }
 
 
+
   @override
   Widget build(BuildContext context) {
 
     final GlobalKey<ScaffoldState> key = GlobalKey();
     final theme = Theme.of(context);
     final prov = ref.read(songsListProvider);
+    final reactiveProv = ref.watch(songsListProvider);
     final bottomPadding = Platform.isIOS ? 50.0 : 70.0;
-    final topPadding = Platform.isIOS ? 45.0 : 40.0;
+    final topPadding = Platform.isIOS ? 45.0 : Sizes.kAppBarSize * 0.70;
     final progressIndicatorPadding = Platform.isIOS ? Sizes.kBottomNavHeight : Sizes.kBottomNavHeight + 30;
 
     return  Scaffold(
@@ -52,7 +55,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
               ),
               child: InkWell(
                 borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius),
-                onTap: () => {},
+                onTap: () => GoRouter.of(context).pushNamed(CreateSongScreen.routeName),
                 child: Container(
                   height: 28,
                   width: 28,
@@ -82,7 +85,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
             separatorBuilder: (context, index) => const Divider(
               thickness: 0.09,
             ),
-            pagingController: prov.songsController,
+            pagingController: reactiveProv.songsController,
             builderDelegate: PagedChildBuilderDelegate<SongModel>(
               firstPageProgressIndicatorBuilder: (context) => const LoadingScreen(),
               newPageProgressIndicatorBuilder: (context) => Padding(
@@ -100,6 +103,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                   top: index == 0 ? topPadding : 0,
                 ),
                 child: ListTile(
+                  onTap: (){},
                   title: Text(
                     item.title,
                     style: theme.textTheme.displaySmall,
@@ -108,6 +112,28 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                     margin: const EdgeInsets.only(top: 5),
                     child: Row(
                       children: [
+                        if(item.isNew)
+                        Container(
+                          height: 25,
+                          margin: const EdgeInsets.only(right: 5),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.transparent,
+                            border: Border.all(
+                              color: theme.colorScheme.primary
+                            )
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Nuevo',
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                color: theme.colorScheme.onSecondary,
+                                fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ),
+                        ),
                         if(item.genreModel != null)
                         Container(
                           height: 25,
@@ -153,7 +179,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                         ),
                       ],
                     ),
-                  )  
+                  ),  
                 ));
               },
             ),

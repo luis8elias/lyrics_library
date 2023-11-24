@@ -32,12 +32,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "actions_delete": MessageLookupByLibrary.simpleMessage("Eliminar"),
         "actions_edit": MessageLookupByLibrary.simpleMessage("Editar"),
         "actions_ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "actions_save": MessageLookupByLibrary.simpleMessage("Guardar"),
         "genresCreateScreen_createButtonText":
             MessageLookupByLibrary.simpleMessage("Crear"),
         "genresCreateScreen_nameInput":
             MessageLookupByLibrary.simpleMessage("Nombre"),
         "genresCreateScreen_title":
-            MessageLookupByLibrary.simpleMessage("Crear género"),
+            MessageLookupByLibrary.simpleMessage("Crear Género"),
         "genresDelete_deleteButton":
             MessageLookupByLibrary.simpleMessage("Eliminar género"),
         "genresDelete_deleteButtonPlural": m0,
@@ -50,7 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "genresEditScreen_nameInput":
             MessageLookupByLibrary.simpleMessage("Nombre"),
         "genresEditScreen_title":
-            MessageLookupByLibrary.simpleMessage("Editar género"),
+            MessageLookupByLibrary.simpleMessage("Editar Género"),
         "genresListScreen_title":
             MessageLookupByLibrary.simpleMessage("Géneros"),
         "loadingScreen_loading":
@@ -85,6 +86,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Regístrarse"),
         "registerScreen_title": MessageLookupByLibrary.simpleMessage(
             "¡Hola! Regístrese para comenzar"),
+        "songsCreateScreen_title":
+            MessageLookupByLibrary.simpleMessage("Crear Canción"),
+        "songsCreateScreen_titleInput":
+            MessageLookupByLibrary.simpleMessage("Título"),
         "validator_confirmPassword": MessageLookupByLibrary.simpleMessage(
             "Las contraseñas no coinciden"),
         "validator_confirmPasswordLength": m1,

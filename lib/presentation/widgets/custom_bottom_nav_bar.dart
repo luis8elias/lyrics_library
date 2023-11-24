@@ -219,7 +219,7 @@ class IconBtn extends StatelessWidget {
               style: TextStyle(
                 color: selectedIndex ==  index ? theme.primaryColor : theme.colorScheme.onBackground
               ),
-            )
+            ),
           ],
         ),
       )

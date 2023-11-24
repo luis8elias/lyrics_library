@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '/config/lang/generated/l10n.dart';
-import '/presentation/features/genres/create/providers/proivders.dart';
+import '/presentation/features/genres/create/providers/providers.dart';
 import '/presentation/features/genres/create/widgets/create_genre_button.dart';
 import '/presentation/features/genres/list/providers/providers.dart';
 import '/presentation/features/genres/shared/widgets/genre_from.dart';

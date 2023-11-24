@@ -22,6 +22,7 @@
     "actions_ok" : "Ok",
     "actions_cancel" : "Cancelar",
     "actions_back" : "Volver",
+    "actions_save" : "Guardar",
 
 
 
@@ -57,14 +58,14 @@
 
 
     "@_GENRES_CREATE_SCREEN": {},
-    "genresCreateScreen_title" : "Crear género",
+    "genresCreateScreen_title" : "Crear Género",
     "genresCreateScreen_nameInput" : "Nombre",
     "genresCreateScreen_createButtonText" : "Crear",
 
 
 
     "@_GENRES_EDIT_SCREEN": {},
-    "genresEditScreen_title" : "Editar género",
+    "genresEditScreen_title" : "Editar Género",
     "genresEditScreen_nameInput" : "Nombre",
     "genresEditScreen_editButtonText" : "Editar",
 
@@ -80,5 +81,16 @@
           "type": "int"
         }
       }
-    }
+    },
+    
+
+
+    "@_SONGS_CREATE_SCREEN": {},
+    "songsCreateScreen_title" : "Crear Canción",
+    "songsCreateScreen_titleInput" : "Título"
+    
+
+
+
+    
 }

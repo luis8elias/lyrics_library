@@ -29,7 +29,7 @@ class SongsTable{
         '${SongsTable.colIsRemoved} INTEGER '
       ')'
     );
-    _seed(db);
+    //_seed(db);
   }
 
   static Future<void> _seed(Database db) async {

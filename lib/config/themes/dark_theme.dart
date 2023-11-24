@@ -26,8 +26,9 @@ final darkTheme = ThemeData(
     textTheme: GoogleFonts.openSansTextTheme(
       TextTheme(
         titleMedium: TextStyle(
-          fontSize: 24,
-          color: _darkColorScheme.onBackground
+          fontSize: 22,
+          color: _darkColorScheme.onBackground,
+          fontWeight: FontWeight.bold
         ),
         titleSmall: TextStyle(
           fontSize: 18,
@@ -41,17 +42,23 @@ final darkTheme = ThemeData(
         ),
         bodyMedium: TextStyle(
           color: _darkColorScheme.onSecondary,
-          fontSize: 17
+          fontSize: 14
         ),
         bodySmall: TextStyle(
           color: _darkColorScheme.onSecondary,
-          fontSize: 8
+          fontSize: 10
+        ),
+        displayMedium: TextStyle(
+          fontSize: 20,
+          color: _darkColorScheme.onPrimary,
+          fontWeight: FontWeight.w700
         ),
         labelLarge: TextStyle(
-          fontSize: 16,
+          fontSize: 12,
           color: _darkColorScheme.primary,
           fontWeight: FontWeight.w500
-        ) 
+        ),
+        
         // bodySmall: TextStyle(color: _darkColorScheme.onBackground),
         // bodyLarge: TextStyle(color: _darkColorScheme.onBackground),
         // bodyMedium: TextStyle(

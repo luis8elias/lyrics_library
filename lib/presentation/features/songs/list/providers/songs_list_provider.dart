@@ -46,5 +46,11 @@ class SongsListProvider extends ChangeNotifier{
     totalSongs = response.model!.totalSongs;
   }
 
+
+  Future<void> refresh() async {
+    _pagingController.refresh();
+    notifyListeners();
+  }
+
   
 }

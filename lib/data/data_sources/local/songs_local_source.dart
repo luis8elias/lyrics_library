@@ -1,5 +1,5 @@
-import 'package:lyrics_library/presentation/features/songs/list/models/songs_list_model.dart';
-
+import '/presentation/features/songs/create/models/create_song_model.dart';
+import '/presentation/features/songs/list/models/songs_list_model.dart';
 import '/config/config.dart';
 import '/data/data_sources/interfaces/songs_data_source_interface.dart';
 import '/data/models/response_model.dart';
@@ -60,6 +60,50 @@ class SongsLocalSource extends SongsDataSource {
       return ResponseModel(
         success: false,
         message: 'Ocurrió un probelma al obtener las canciones'
+      );
+
+    }
+  }
+
+  @override
+  Future<ResponseModel<SongModel>> createSong({
+    required CreateSongModel createSongModel
+  }) async{
+     try {
+
+      final authModel = await sessionService.getAuthModel();
+
+      final song = SongModel.fromCreateSongModel(
+        createSongModel: createSongModel,
+        userId: authModel?.userId ?? ''
+      );
+      
+      final result = await SQLite.instance.insert(
+        SongsTable.name, song.toInsertMap()
+      );
+
+    if(result == 0){
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al crear la canción'
+      );
+    }
+    await Future.delayed(const Duration(milliseconds: 500));
+    
+    return ResponseModel(
+      success: true, 
+      message: 'Canción creado',
+      model: song
+    );
+
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en SongsLocalSource método [createSong]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al crear la canción'
       );
 
     }

@@ -140,6 +140,16 @@ class Lang {
     );
   }
 
+  /// `Save`
+  String get actions_save {
+    return Intl.message(
+      'Save',
+      name: 'actions_save',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Loading...`
   String get loadingScreen_loading {
     return Intl.message(
@@ -310,10 +320,10 @@ class Lang {
     );
   }
 
-  /// `Create genre`
+  /// `Create Genre`
   String get genresCreateScreen_title {
     return Intl.message(
-      'Create genre',
+      'Create Genre',
       name: 'genresCreateScreen_title',
       desc: '',
       args: [],
@@ -340,10 +350,10 @@ class Lang {
     );
   }
 
-  /// `Edit genre`
+  /// `Edit Genre`
   String get genresEditScreen_title {
     return Intl.message(
-      'Edit genre',
+      'Edit Genre',
       name: 'genresEditScreen_title',
       desc: '',
       args: [],
@@ -407,6 +417,26 @@ class Lang {
       name: 'genresDelete_deleteButtonPlural',
       desc: '',
       args: [genresCount],
+    );
+  }
+
+  /// `Create Song`
+  String get songsCreateScreen_title {
+    return Intl.message(
+      'Create Song',
+      name: 'songsCreateScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title`
+  String get songsCreateScreen_titleInput {
+    return Intl.message(
+      'Title',
+      name: 'songsCreateScreen_titleInput',
+      desc: '',
+      args: [],
     );
   }
 }

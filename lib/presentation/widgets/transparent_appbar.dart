@@ -21,19 +21,19 @@ class CustomAppBar extends StatelessWidget{
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SizedBox(
-          width: 100,
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: leading,
-          )
+        Expanded(
+          child: leading,
         ),
-        Text(
-          title,
-          style: theme.textTheme.titleSmall,
+        Expanded(
+          flex: 4,
+          child: Center(
+            child: Text(
+              title,
+              style: theme.textTheme.titleSmall,
+            ),
+          ),
         ),
-        SizedBox(
-          width: 100,
+        Expanded(
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.end,

@@ -36,6 +36,13 @@ final routes =  [
     SongsListScreen.routeName,
     name: SongsListScreen.routeName,
     builder: (context, state) => const SongsListScreen(),
+    routes: [
+      GoRoute(
+        path: CreateSongScreen.routePath,
+        name: CreateSongScreen.routeName,
+        builder: (context, state) => const CreateSongScreen(),
+      ),
+    ]
   ),
 
   GoRoute(
