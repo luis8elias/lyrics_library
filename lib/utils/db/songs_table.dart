@@ -45,18 +45,26 @@ class SongsTable{
 
       if(genreMaps.isNotEmpty){
 
-        final rowsAffected = await db.insert(SongsTable.name, {
-          SongsTable.colId : Guid.newGuid.toString(),
-          SongsTable.colTitle : 'Seeded Song',
-          SongsTable.colLyric : 'Lorem ipsum dolor',
-          SongsTable.colOwnerId : Guid.newGuid.toString(),
-          SongsTable.colGenreId : GenreModel.fromMap(genreMaps[0]).idAsStr,
-          SongsTable.colSync : 0,
-          SongsTable.colIsRemoved : 0
-        });
-        if(rowsAffected > 0){
-          Log.g('🫡 Song seed success');
-        }else{
+        try {
+          int totalRowsInserted = 0;
+
+          for (var i = 1; i <= 100; i++) {
+
+            final rowsInserted = await db.insert(SongsTable.name, {
+              SongsTable.colId : Guid.newGuid.toString(),
+              SongsTable.colTitle : 'Seeded Song $i',
+              SongsTable.colLyric : 'Lorem ipsum dolor',
+              SongsTable.colOwnerId : Guid.newGuid.toString(),
+              SongsTable.colGenreId : GenreModel.fromMap(genreMaps[0]).idAsStr,
+              SongsTable.colSync : 0,
+              SongsTable.colIsRemoved : 0
+            });
+            totalRowsInserted = rowsInserted;
+          }
+
+          Log.g('🫡 $totalRowsInserted songs seed success');
+
+        } catch (e) {
           Log.r('🫡 Song seed failed');
         }
 

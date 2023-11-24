@@ -46,9 +46,5 @@ class SongsListProvider extends ChangeNotifier{
     totalSongs = response.model!.totalSongs;
   }
 
-  // @override
-  // void dispose() {
-  //   _pagingController.dispose();
-  //   super.dispose();
-  // }
+  
 }

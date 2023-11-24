@@ -41,7 +41,7 @@ class SongModel extends SyncableModel{
       title: map['title'] as String,
       lyric: map['lyric'] as String,
       ownerId: Guid(map['ownerId']),
-      genreModel: map['genreGenreId'] != null ? GenreModel.fromSongMap(map) : null,
+      genreModel: map['genreName'] != null ? GenreModel.fromSongMap(map) : null,
       isSync: map['sync'],
       isRemoved: map['isRemoved']
     );
