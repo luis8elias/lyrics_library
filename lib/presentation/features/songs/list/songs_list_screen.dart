@@ -96,7 +96,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                 return Padding(
                 padding: EdgeInsets.only(
                   //Comparar con totalSongs
-                  bottom: (index+1) == 55 ? bottomPadding : 0.0,
+                  bottom: (index+1) == prov.totalSongs ? bottomPadding : 0.0,
                   top: index == 0 ? topPadding : 0,
                 ),
                 child: ListTile(

@@ -44,7 +44,7 @@ class GenreModel extends SyncableModel{
 
   factory GenreModel.fromSongMap(Map<String, dynamic> map) {
     return GenreModel(
-      id: Guid(map['genreGenreId']),
+      id: Guid(map['genreId']),
       name: map['genreName'] as String,
       ownerId: Guid(map['genreOwnerId']),
       isSync: map['genreSync'],

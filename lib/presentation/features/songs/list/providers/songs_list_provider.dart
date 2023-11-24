@@ -12,8 +12,9 @@ class SongsListProvider extends ChangeNotifier{
 
   final PagingController<int, SongModel> _pagingController = PagingController(firstPageKey: 1);
   final _pageSize = Config.songsPageSize;
+  int totalSongs = 0;
 
-   PagingController<int, SongModel> get songsController => _pagingController;
+  PagingController<int, SongModel> get songsController => _pagingController;
   
 
   void addListenerToPagingController(){
@@ -35,13 +36,14 @@ class SongsListProvider extends ChangeNotifier{
       _pagingController.error = response.message;
       return;
     }
-    final isLastPage = response.model!.length < _pageSize;
+    final isLastPage = response.model!.items.length < _pageSize;
     if (isLastPage) {
-      _pagingController.appendLastPage(response.model!);
+      _pagingController.appendLastPage(response.model!.items);
     } else {
       final nextPage = page + 1;
-      _pagingController.appendPage(response.model!, nextPage);
+      _pagingController.appendPage(response.model!.items, nextPage);
     }
+    totalSongs = response.model!.totalSongs;
   }
 
   // @override

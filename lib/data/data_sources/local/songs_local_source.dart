@@ -1,3 +1,5 @@
+import 'package:lyrics_library/presentation/features/songs/list/models/songs_list_model.dart';
+
 import '/config/config.dart';
 import '/data/data_sources/interfaces/songs_data_source_interface.dart';
 import '/data/models/response_model.dart';
@@ -12,7 +14,7 @@ class SongsLocalSource extends SongsDataSource {
   final int limit = Config.songsPageSize;
 
   @override
-  Future<ResponseModel<List<SongModel>?>> fetchSongs({
+  Future<ResponseModel<SongsListModel>> fetchSongs({
     required int page
   }) async{
 
@@ -27,21 +29,29 @@ class SongsLocalSource extends SongsDataSource {
       
       final songsMapList = await SQLite.instance.rawQuery(
         'SELECT S.*, '
-        'G.id as genreGenreId, '
         'G.name as genreName, '
         'G.ownerId as genreOwnerId, '
         'G.sync as genreSync, '
         'G.isRemoved as genreIsRemoved '
         'FROM ${SongsTable.name} as S LEFT JOIN ${GenresTable.name} as G ON '
         'S.${SongsTable.colGenreId} = G.${GenresTable.colId} '
-        'LIMIT $limit OFFSET ${limit * (page -1)}'
+        'WHERE S.${SongsTable.colIsRemoved} = 0 '
+        'LIMIT $limit OFFSET ${limit * (page -1)} '
+        
       );
       await Future.delayed(const Duration(milliseconds: 500));
+      final songs = SongModel.fromMapList(songsMapList);
+      final count = await SQLite.instance.rawQuery(
+        'SELECT COUNT(*) as total FROM ${SongsTable.name} '
+        'WHERE ${SongsTable.colIsRemoved} = 0'
+      );
       return ResponseModel(
         success: true,
-        model: SongModel.fromMapList(songsMapList)
+        model: SongsListModel(
+          totalSongs: count[0]['total'] as int,
+          items: songs
+        )
       );
-
     } catch (e) {
 
       Log.y('🤡 ${e.toString()}');

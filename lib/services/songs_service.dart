@@ -1,4 +1,4 @@
-import '/presentation/features/songs/shared/model/song_model.dart';
+import '/presentation/features/songs/list/models/songs_list_model.dart';
 import '/data/data_sources/local/songs_local_source.dart';
 import '/data/data_sources/api/songs_api_source.dart';
 import '/data/models/response_model.dart';
@@ -12,10 +12,10 @@ class SongsService{
     required SongsLocalSource localSource
   })
   :
-  //_apiSource = apiSource,
+  //_apiSource = apiSource;
   _localSource = localSource;
 
-  Future<ResponseModel<List<SongModel>?>> fetchSongs({
+  Future<ResponseModel<SongsListModel>> fetchSongs({
     required int page,
   }) async {
     return _localSource.fetchSongs(
