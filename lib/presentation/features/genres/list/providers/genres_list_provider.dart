@@ -1,5 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
-import 'package:lyrics_library/presentation/providers/selectable_list_provider.dart';
+import '/presentation/providers/selectable_list_provider.dart';
 import '/data/models/response_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/providers/providers.dart';

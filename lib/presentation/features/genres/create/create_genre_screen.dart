@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '/presentation/widgets/screen_scaffold.dart';
+import '/presentation/widgets/transparent_appbar.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/genres/create/providers/providers.dart';
@@ -45,11 +47,13 @@ class _CreateGenreScreenUI extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final prov = ref.read(createGenreProvider);
-    final theme = Theme.of(context);
     final lang = Lang.of(context);
 
-    return  Scaffold(
-      appBar: AppBar(
+   
+
+    return ScreenScaffold(
+      appBar: CustomAppBar(
+        actions: const[], 
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: BackButtonWidget(
@@ -57,19 +61,20 @@ class _CreateGenreScreenUI extends ConsumerWidget {
               prov.resetFormModel();
               GoRouter.of(context).pop();
             },
-          )
-        ),
-        centerTitle: true,
-        title: Text(
-          lang.genresCreateScreen_title,
-          style: theme.textTheme.titleSmall,
-        ),
+          ),
+        ), 
+        title: lang.genresCreateScreen_title
       ),
-      body: GenreForm(
-        actionButton: const CreateGenreButton(),
-        onNameChanged: (name) => prov.updateFormModel((formModel) => formModel.copyWith(
-          name: name
-        )),
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: Sizes.kAppBarSize + 5
+        ),
+        child: GenreForm(
+          actionButton: const CreateGenreButton(),
+          onNameChanged: (name) => prov.updateFormModel(
+            (formModel) => formModel.copyWith( name: name),
+          ),
+        ),
       ),
     );
   }

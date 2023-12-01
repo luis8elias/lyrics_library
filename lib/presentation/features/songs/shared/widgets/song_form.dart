@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '/config/lang/generated/l10n.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/utils/constants/sizes.dart';
 
@@ -8,11 +7,13 @@ class SongForm extends StatefulWidget {
   const SongForm({
     super.key,
     this.songModel,
-   required this.onTitleChanged,
-   required this.onLyricChanged,
+    required this.titleInputLabel,
+    required this.onTitleChanged,
+    required this.onLyricChanged,
   });
 
   final SongModel? songModel;
+  final String titleInputLabel;
   final void Function(String name) onTitleChanged;
   final void Function(String name) onLyricChanged;
 
@@ -37,7 +38,6 @@ class _SongFormState extends State<SongForm> {
   Widget build(BuildContext context) {
 
     final theme = Theme.of(context);
-    final lang = Lang.of(context);
     
     return  SingleChildScrollView(
       child: Padding(
@@ -51,6 +51,7 @@ class _SongFormState extends State<SongForm> {
               height: Sizes.kAppBarSize + 5,
             ),
             TextFormField(
+              initialValue: widget.songModel?.title,
               focusNode: titleNode,
               onFieldSubmitted: (String value){
                 lyricNode.requestFocus();
@@ -61,7 +62,7 @@ class _SongFormState extends State<SongForm> {
               textCapitalization: TextCapitalization.sentences,
               onChanged: (value) => widget.onTitleChanged(value),
               decoration: InputDecoration(
-                hintText: lang.songsCreateScreen_titleInput,
+                hintText: widget.titleInputLabel,
                 fillColor: theme.colorScheme.background,
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
@@ -71,6 +72,7 @@ class _SongFormState extends State<SongForm> {
               ),
             ),
             TextFormField(
+              initialValue: widget.songModel?.lyric,
               focusNode: lyricNode,
               style: theme.textTheme.labelLarge?.copyWith(
                 color: theme.colorScheme.onSurface

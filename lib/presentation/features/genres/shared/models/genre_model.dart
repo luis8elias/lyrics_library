@@ -58,7 +58,7 @@ class GenreModel extends SyncableModel{
     ).toList();
   }
 
-    static GenreModel fromEditGenreModel(EditGenreModel editGenreModel){
+  static GenreModel fromEditGenreModel(EditGenreModel editGenreModel){
     return GenreModel.fromMap(editGenreModel.toMap());
   }
 

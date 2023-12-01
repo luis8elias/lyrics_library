@@ -70,7 +70,6 @@
     "@_GENRES_EDIT_SCREEN": {},
     "genresEditScreen_title" : "Edit Genre",
     "genresEditScreen_nameInput" : "Name",
-    "genresEditScreen_editButtonText" : "Edit",
 
 
 
@@ -111,7 +110,13 @@
           "type": "int"
         }
       }
-    }
+    },
+
+
+
+    "@_SONGS_EDIT_SCREEN": {},
+    "songsEditScreen_title" : "Edit Song",
+    "songsEditScreen_titleInput" : "Title"
 
 
 

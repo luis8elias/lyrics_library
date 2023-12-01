@@ -47,8 +47,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Delete genre?"),
         "genresDelete_titlePlural":
             MessageLookupByLibrary.simpleMessage("Delete genres?"),
-        "genresEditScreen_editButtonText":
-            MessageLookupByLibrary.simpleMessage("Edit"),
         "genresEditScreen_nameInput":
             MessageLookupByLibrary.simpleMessage("Name"),
         "genresEditScreen_title":
@@ -96,6 +94,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Delete song?"),
         "songsDelete_titlePlural":
             MessageLookupByLibrary.simpleMessage("Delete songs?"),
+        "songsEditScreen_title":
+            MessageLookupByLibrary.simpleMessage("Edit Song"),
+        "songsEditScreen_titleInput":
+            MessageLookupByLibrary.simpleMessage("Title"),
         "songsListScreen_title": MessageLookupByLibrary.simpleMessage("Songs"),
         "validator_confirmPassword":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),

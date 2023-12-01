@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/presentation/features/songs/list/providers/providers.dart';
-import 'package:lyrics_library/presentation/features/songs/shared/widgets/save_song_button.dart';
+import '/presentation/features/songs/list/providers/providers.dart';
+import '/presentation/features/songs/shared/widgets/save_song_button.dart';
 
 import '/presentation/features/songs/create/providers/providers.dart';
 import '/presentation/widgets/providers.dart';
@@ -70,6 +70,7 @@ class _CreateSongScreenUI extends ConsumerWidget {
         title: lang.songsCreateScreen_title
       ),
       body: SongForm(
+        titleInputLabel: lang.songsCreateScreen_titleInput,
         onTitleChanged: (value) => prov.updateFormModel((formModel) => formModel.copyWith(
           title: value
         )),

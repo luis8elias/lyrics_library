@@ -1,4 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
+import '/presentation/features/songs/edit/models/edit_song_model.dart';
 
 import '/presentation/features/songs/create/models/create_song_model.dart';
 import '/presentation/features/songs/list/models/songs_list_model.dart';
@@ -39,7 +40,6 @@ class SongsLocalSource extends SongsDataSource {
         'S.${SongsTable.colGenreId} = G.${GenresTable.colId} '
         'WHERE S.${SongsTable.colIsRemoved} = 0 '
         'LIMIT $limit OFFSET ${limit * (page -1)} '
-        
       );
       await Future.delayed(const Duration(milliseconds: 500));
       final songs = SongModel.fromMapList(songsMapList);
@@ -146,6 +146,62 @@ class SongsLocalSource extends SongsDataSource {
       return ResponseModel(
         success: false,
         message: 'Ocurrió un problema al eliminar la canción'
+      );
+
+    }
+  }
+
+  @override
+  Future<ResponseModel<SongModel?>> editSong({
+    required EditSongModel editSongModel
+  }) async{
+     try {
+
+      final editedSong = editSongModel.toMapWithoutId();
+      final rowsAffected = await  SQLite.instance.update(
+        SongsTable.name, 
+        editedSong,
+        where: '${SongsTable.colId} = ?',
+        whereArgs: [editSongModel.id.toString()]
+      );
+      
+      if(rowsAffected == 0){
+        return ResponseModel(
+          success: false,
+          message: 'Ocurrió un problema al editar la canción'
+        );
+      }
+      await Future.delayed(const Duration(milliseconds: 500));
+
+
+      final songsList = await SQLite.instance.rawQuery(
+        'SELECT S.*, '
+        'G.name as genreName, '
+        'G.ownerId as genreOwnerId, '
+        'G.sync as genreSync, '
+        'G.isRemoved as genreIsRemoved '
+        'FROM ${SongsTable.name} as S LEFT JOIN ${GenresTable.name} as G ON '
+        'S.${SongsTable.colGenreId} = G.${GenresTable.colId} '
+        'WHERE S.${SongsTable.colId} = ? ',
+        [editSongModel.id.toString()]
+      );
+
+      final song = SongModel.fromMap(songsList[0]);
+      
+      return ResponseModel(
+        success: true, 
+        message: 'Canción editada' ,
+        model: song
+      );
+
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en SongsLocalSource método [editSong]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al editar la canción'
       );
 
     }

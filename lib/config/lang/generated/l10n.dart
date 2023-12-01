@@ -370,16 +370,6 @@ class Lang {
     );
   }
 
-  /// `Edit`
-  String get genresEditScreen_editButtonText {
-    return Intl.message(
-      'Edit',
-      name: 'genresEditScreen_editButtonText',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Delete genre?`
   String get genresDelete_title {
     return Intl.message(
@@ -487,6 +477,26 @@ class Lang {
       name: 'songsDelete_deleteButtonPlural',
       desc: '',
       args: [songsCount],
+    );
+  }
+
+  /// `Edit Song`
+  String get songsEditScreen_title {
+    return Intl.message(
+      'Edit Song',
+      name: 'songsEditScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title`
+  String get songsEditScreen_titleInput {
+    return Intl.message(
+      'Title',
+      name: 'songsEditScreen_titleInput',
+      desc: '',
+      args: [],
     );
   }
 }

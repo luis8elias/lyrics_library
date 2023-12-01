@@ -1,4 +1,4 @@
-import 'package:lyrics_library/presentation/features/songs/shared/model/song_model.dart';
+import '/presentation/features/songs/shared/model/song_model.dart';
 
 class SongsListModel{
   final int totalSongs;

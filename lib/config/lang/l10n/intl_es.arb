@@ -67,8 +67,6 @@
     "@_GENRES_EDIT_SCREEN": {},
     "genresEditScreen_title" : "Editar Género",
     "genresEditScreen_nameInput" : "Nombre",
-    "genresEditScreen_editButtonText" : "Editar",
-
 
     "@_GENRES_DELETE": {},
     "genresDelete_title" : "¿Eliminar género?",
@@ -106,7 +104,13 @@
           "type": "int"
         }
       }
-    }
+    },
+
+
+
+    "@_SONGS_EDIT_SCREEN": {},
+    "songsEditScreen_title" : "Edita Canción",
+    "songsEditScreen_titleInput" : "Título"
     
 
 

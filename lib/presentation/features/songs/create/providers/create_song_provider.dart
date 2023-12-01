@@ -1,4 +1,4 @@
-import 'package:lyrics_library/services/songs_service.dart';
+import '/services/songs_service.dart';
 
 import '/presentation/features/songs/create/models/create_song_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';

@@ -80,5 +80,16 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
     notifyListeners();
   }
 
+  void editSong(SongModel songModel){
+    final index = _pagingController.itemList!.indexWhere(
+      (song) => song.id == songModel.id
+    );
+    _pagingController.itemList![index] = songModel;
+    if(isSelectItemOpened){
+      openCloseSelectItem();
+    }
+    notifyListeners();
+  }
+
   
 }

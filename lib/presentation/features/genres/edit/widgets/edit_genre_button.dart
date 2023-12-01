@@ -21,13 +21,13 @@ class EditGenreButton extends ConsumerWidget {
       loaderWidget: BasicButton(
         onPressed: null,
         buildChild: (loadingChild) => loadingChild,
-        text: lang.genresEditScreen_editButtonText
+        text: lang.actions_edit
       ),
       child: BasicButton(
         onPressed: provider.isFormValid ?
         () => provider.editGenre() 
         : null, 
-        text: lang.genresEditScreen_editButtonText
+        text: lang.actions_edit
       ),
     );
   }

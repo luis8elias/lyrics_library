@@ -1,4 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
+import '/presentation/features/songs/edit/models/edit_song_model.dart';
 
 import '/presentation/features/songs/create/models/create_song_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
@@ -40,6 +41,14 @@ class SongsService{
   }) async {
     return _localSource.deleteSongs(
       songsIds: songsIds
+    );
+  }
+
+  Future<ResponseModel<SongModel?>> editSong({
+    required EditSongModel editSongModel,
+  }) async {
+    return _localSource.editSong(
+      editSongModel: editSongModel
     );
   }
 

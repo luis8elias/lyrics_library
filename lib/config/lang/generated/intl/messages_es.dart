@@ -48,8 +48,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("¿Eliminar género?"),
         "genresDelete_titlePlural":
             MessageLookupByLibrary.simpleMessage("¿Eliminar géneros?"),
-        "genresEditScreen_editButtonText":
-            MessageLookupByLibrary.simpleMessage("Editar"),
         "genresEditScreen_nameInput":
             MessageLookupByLibrary.simpleMessage("Nombre"),
         "genresEditScreen_title":
@@ -99,6 +97,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("¿Eliminar canción?"),
         "songsDelete_titlePlural":
             MessageLookupByLibrary.simpleMessage("¿Eliminar canciones?"),
+        "songsEditScreen_title":
+            MessageLookupByLibrary.simpleMessage("Edita Canción"),
+        "songsEditScreen_titleInput":
+            MessageLookupByLibrary.simpleMessage("Título"),
         "songsListScreen_title":
             MessageLookupByLibrary.simpleMessage("Canciones"),
         "validator_confirmPassword": MessageLookupByLibrary.simpleMessage(

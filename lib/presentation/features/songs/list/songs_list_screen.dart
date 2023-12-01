@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '/config/lang/generated/l10n.dart';
@@ -75,16 +76,15 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
               children: [
                 TextButton(
                   onPressed: reactiveProv.isOneItemSelected 
-                  ?(){}
-                  // ? ()=> GoRouter.of(context).go(
-                  //   context.namedLocation(
-                  //     EditGenreScreen.routeName,
-                  //     pathParameters: {
-                  //       'sid': prov.getFirstSongSelected.id.toString()
-                  //     },
-                  //   ),
-                  //   extra: prov.getFirstSongSelected
-                  // )
+                  ? ()=> GoRouter.of(context).go(
+                    context.namedLocation(
+                      EditSongScreen.routeName,
+                      pathParameters: {
+                        'sid': prov.getFirstSongSelected.id.toString()
+                      },
+                    ),
+                    extra: prov.getFirstSongSelected
+                  )
                   : null, 
                   child: Text(lang.actions_edit)
                 ),
@@ -116,6 +116,11 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                 ),
                 child: ListTile(
                   onTap: (){},
+                  onLongPress: prov.isSelectItemOpened 
+                  ? null 
+                  : ()=> prov.openCloseSelectItem(
+                    id: song.id
+                  ),
                   leading: reactiveProv.isSelectItemOpened ? FadeInLeft(
                     duration: const Duration(milliseconds: 100),
                     child: SongLeading(songModel: song),

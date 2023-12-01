@@ -1,4 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
+import '/presentation/features/songs/edit/models/edit_song_model.dart';
 
 import '/data/data_sources/interfaces/songs_data_source_interface.dart';
 import '/presentation/features/songs/create/models/create_song_model.dart';
@@ -82,6 +83,14 @@ class SongsApiSource extends SongsDataSource{
     required List<Guid> songsIds
   }) {
     // TODO: implement deleteSongs
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResponseModel<SongModel?>> editSong({
+    required EditSongModel editSongModel
+  }) {
+    // TODO: implement editSong
     throw UnimplementedError();
   }
 }
