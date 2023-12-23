@@ -36,8 +36,10 @@ class SongsLocalSource extends SongsDataSource {
         'G.ownerId as genreOwnerId, '
         'G.sync as genreSync, '
         'G.isRemoved as genreIsRemoved '
-        'FROM ${SongsTable.name} as S LEFT JOIN ${GenresTable.name} as G ON '
+        'FROM ${SongsTable.name} as S '
+        'LEFT JOIN ${GenresTable.name} as G ON '
         'S.${SongsTable.colGenreId} = G.${GenresTable.colId} '
+        'AND G.isRemoved == 0 '
         'WHERE S.${SongsTable.colIsRemoved} = 0 '
         'LIMIT $limit OFFSET ${limit * (page -1)} '
       );

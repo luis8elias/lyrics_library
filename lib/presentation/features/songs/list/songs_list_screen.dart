@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -46,6 +47,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
 
     final lang = Lang.of(context);
     final prov = ref.read(songsListProvider);
+    final theme = Theme.of(context);
     final reactiveProv = ref.watch(songsListProvider);
     final bottomPadding = Platform.isIOS ? 50.0 : 70.0;
     final topPadding = Platform.isIOS ? Sizes.kAppBarSize * 0.45 : Sizes.kAppBarSize * 0.70;
@@ -54,8 +56,20 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
       body: CustomBottomNavBar(
         selectedIndex: 1,
         appBar: CustomAppBar(
-          actions: const [
+          actions: [
             Padding(
+              padding: const EdgeInsets.only(
+                right: Sizes.kPadding/2
+              ),
+              child: IconButton(
+                onPressed: (){},
+                icon: Icon(
+                  CupertinoIcons.search,
+                  color: theme.colorScheme.onBackground,
+                ),
+              ),
+            ),
+            const Padding(
               padding: EdgeInsets.only(
                 right: Sizes.kPadding/2
               ),
@@ -115,7 +129,23 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                   top: index == 0 ? topPadding : 0,
                 ),
                 child: ListTile(
-                  onTap: (){},
+                  onTap: (){
+                    if( !reactiveProv.isSelectItemOpened ){
+                      GoRouter.of(context).go(
+                        context.namedLocation(
+                          ReadSongScreen.routeName,
+                          pathParameters: {
+                            'sid': song.id.toString()
+                          },
+                        ),
+                        extra: song
+                      );
+                    }else{
+                      prov.selectItem(
+                        id: song.id
+                      );
+                    }
+                  },
                   onLongPress: prov.isSelectItemOpened 
                   ? null 
                   : ()=> prov.openCloseSelectItem(

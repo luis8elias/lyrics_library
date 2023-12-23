@@ -100,6 +100,9 @@ class _EditGenreScreenUI extends ConsumerWidget {
         onLyricChanged: (value) => prov.updateFormModel((formModel) => formModel.copyWith(
           lyric: value
         )),
+        onGenreChanged: (value) => prov.updateFormModel((formModel) => formModel.copyWith(
+          genre: value
+        )),
       ),
     );
   }

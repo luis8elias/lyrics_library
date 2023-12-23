@@ -53,7 +53,10 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
   }
 
 
-  Future<void> refresh() async {
+  void refresh() {
+    if(isSelectItemOpened){
+      openCloseSelectItem();
+    }
     _pagingController.refresh();
     notifyListeners();
   }
@@ -74,7 +77,8 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
     notifyListeners();
   }
 
-   void deleteSongs(){
+  void deleteSongs(){
+    totalSongs -= 1;
     _pagingController.itemList!.removeWhere((song) => selectedItems.contains(song.id));
     openCloseSelectItem();
     notifyListeners();

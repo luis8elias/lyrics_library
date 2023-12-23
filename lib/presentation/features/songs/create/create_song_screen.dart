@@ -51,6 +51,7 @@ class _CreateSongScreenUI extends ConsumerWidget {
     final prov = ref.read(createSongProvider);
     
     return ScreenScaffold(
+      resizeToAvoidBottomInset: true,
       appBar: CustomAppBar(
         actions: [
           SaveSongButton(
@@ -76,6 +77,9 @@ class _CreateSongScreenUI extends ConsumerWidget {
         )),
         onLyricChanged: (value) => prov.updateFormModel((formModel) => formModel.copyWith(
           lyric: value
+        )),
+        onGenreChanged: (value) => prov.updateFormModel((formModel) => formModel.copyWith(
+          genre: value
         )),
       ),
     );

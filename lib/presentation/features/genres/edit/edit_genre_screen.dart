@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '/presentation/widgets/screen_scaffold.dart';
+import '/presentation/widgets/transparent_appbar.dart';
+import '/utils/constants/sizes.dart';
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/genres/edit/providers/providers.dart';
 import '/presentation/features/genres/edit/widgets/edit_genre_button.dart';
@@ -66,12 +69,12 @@ class _EditGenreScreenUI extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final theme = Theme.of(context);
     final lang = Lang.of(context);
     final prov = ref.read(editGenreProvider);
     
-    return Scaffold(
-      appBar: AppBar(
+    return ScreenScaffold(
+      appBar: CustomAppBar(
+        actions: const[], 
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: BackButtonWidget(
@@ -81,18 +84,19 @@ class _EditGenreScreenUI extends ConsumerWidget {
             },
           )
         ),
-        centerTitle: true,
-        title: Text(
-          lang.genresEditScreen_title,
-          style: theme.textTheme.titleSmall,
-        ),
+        title: lang.genresEditScreen_title
       ),
-      body: GenreForm(
-        genreModel: genreModel,
-        actionButton: const EditGenreButton(),
-        onNameChanged: (name) => prov.updateFormModel((formModel) => formModel.copyWith(
-          name: name
-        )),
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: Sizes.kAppBarSize + 5
+        ),
+        child: GenreForm(
+          genreModel: genreModel,
+          actionButton: const EditGenreButton(),
+          onNameChanged: (name) => prov.updateFormModel((formModel) => formModel.copyWith(
+            name: name
+          )),
+        ),
       ),
     );
   }

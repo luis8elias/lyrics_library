@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+
 import '/config/routes/custom_transiton_page.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
@@ -57,6 +58,13 @@ final routes =  [
         path: EditSongScreen.routePath,
         name: EditSongScreen.routeName,
         builder: (context, state) => EditSongScreen(
+          songModel: state.extra as SongModel,
+        ),
+      ),
+      GoRoute(
+        path: ReadSongScreen.routePath,
+        name: ReadSongScreen.routeName,
+        builder: (context, state) => ReadSongScreen(
           songModel: state.extra as SongModel,
         ),
       ),

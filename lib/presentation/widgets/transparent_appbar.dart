@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '/utils/utils.dart';
+
 
 class CustomAppBar extends StatelessWidget{
   const CustomAppBar({
@@ -21,9 +23,13 @@ class CustomAppBar extends StatelessWidget{
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(
+        Padding(
+          padding: const EdgeInsets.only(
+            left: Sizes.kPadding * 0.5
+          ),
           child: leading,
         ),
+        const Spacer(),
         Expanded(
           flex: 4,
           child: Center(
@@ -34,6 +40,7 @@ class CustomAppBar extends StatelessWidget{
           ),
         ),
         Expanded(
+          flex: 2,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.end,

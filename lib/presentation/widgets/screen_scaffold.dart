@@ -9,11 +9,13 @@ class ScreenScaffold extends StatelessWidget {
   const ScreenScaffold({
     super.key,
     required this.appBar,
-    required this.body
+    required this.body,
+    this.resizeToAvoidBottomInset = false
   });
 
   final Widget body;
   final CustomAppBar? appBar;
+  final bool resizeToAvoidBottomInset; 
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class ScreenScaffold extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       body: Stack(
         children: [
           Positioned.fill(

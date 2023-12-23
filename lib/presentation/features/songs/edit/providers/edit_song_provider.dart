@@ -45,7 +45,8 @@ class EditSongProvider extends SendProvider<SongModel> with FormProvider<EditSon
       id: songModel.id,
       title: songModel.title.capitalize(),
       lyric: songModel.lyric.capitalize(),
-      ownerId: songModel.ownerId
+      ownerId: songModel.ownerId,
+      genre: songModel.genreModel
     ),runtimeType.toString());
   }
 

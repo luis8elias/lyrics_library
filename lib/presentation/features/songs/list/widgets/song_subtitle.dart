@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '/presentation/features/songs/list/providers/providers.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
+import '/presentation/features/songs/shared/widgets/genre_circle.dart';
 
 class SongSubtitle extends ConsumerWidget {
   const SongSubtitle({
@@ -52,26 +53,8 @@ class _SongSubtitle extends StatelessWidget {
       child: Row(
         children: [
           if(songModel.genreModel != null)
-          Container(
-            height: 25,
-            margin: const EdgeInsets.only(right: 10),
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: theme.colorScheme.primary.withOpacity(0.3),
-              border: Border.all(
-                color: theme.colorScheme.primary
-              )
-            ),
-            child: Center(
-              child: Text(
-                songModel.genreModel!.name,
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSecondary,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
+          GenreCricle(
+            genreName: songModel.genreModel!.name,
           ),
           Container(
             height: 25,
@@ -88,7 +71,7 @@ class _SongSubtitle extends StatelessWidget {
               child: Text(
                 'D',
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSecondary,
+                  color: theme.colorScheme.onBackground,
                   fontWeight: FontWeight.bold
                 ),
               ),

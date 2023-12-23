@@ -32,6 +32,13 @@ class GenreModel extends SyncableModel{
     };
   }
 
+  bool get isEmpty => (
+    id == Guid.defaultValue &&
+    name.isEmpty &&
+    id == Guid.defaultValue &&
+    isSync == 0
+  );
+
   factory GenreModel.fromMap(Map<String, dynamic> map) {
     return GenreModel(
       id: Guid(map['id']),
@@ -39,6 +46,16 @@ class GenreModel extends SyncableModel{
       ownerId: Guid(map['ownerId']),
       isSync: map['sync'],
       isRemoved: map['isRemoved']
+    );
+  }
+
+  factory GenreModel.empty() {
+    return GenreModel(
+      id: Guid.defaultValue,
+      name: '',
+      ownerId: Guid.defaultValue,
+      isSync: 0,
+      isRemoved: 0
     );
   }
 
