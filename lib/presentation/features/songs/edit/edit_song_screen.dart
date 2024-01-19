@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+
 import '/presentation/features/songs/list/providers/providers.dart';
 import '/presentation/features/songs/shared/widgets/save_song_button.dart';
-
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/songs/edit/providers/providers.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/presentation/features/songs/shared/widgets/song_form.dart';
 import '/presentation/widgets/buttons.dart';
 import '/presentation/widgets/providers.dart';
-import '/presentation/widgets/screen_scaffold.dart';
-import '/presentation/widgets/transparent_appbar.dart';
 import '/utils/snackbar/snackbar_helper.dart';
 
 class EditSongScreen extends ConsumerStatefulWidget {
@@ -71,25 +69,26 @@ class _EditGenreScreenUI extends ConsumerWidget {
     final lang = Lang.of(context);
     final reactiveProv = ref.watch(editSongProvider);
     final prov = ref.read(editSongProvider);
+    final theme = Theme.of(context);
     
-    return ScreenScaffold(
-      appBar: CustomAppBar(
+    return Scaffold(
+      appBar: AppBar(
         actions: [
           SaveSongButton(
             onPressed:  reactiveProv.isFormValid ? prov.editGenre : null,
             providerListenable: editSongProvider,
           ),
         ], 
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: BackButtonWidget(
-            onPressed: () {
-              prov.resetFormModel();
-              GoRouter.of(context).pop();
-            },
-          ),
+        leading: BackButtonWidget(
+          onPressed: () {
+            prov.resetFormModel();
+            GoRouter.of(context).pop();
+          },
         ), 
-        title: lang.songsEditScreen_title
+        title: Text(
+          lang.songsEditScreen_title,
+          style: theme.textTheme.titleSmall,
+        ),
       ),
       body: SongForm(
         songModel: songModel,

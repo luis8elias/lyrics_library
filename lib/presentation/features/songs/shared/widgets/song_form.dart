@@ -55,7 +55,7 @@ class _SongFormState extends State<SongForm> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: Sizes.kAppBarSize + 5,
+                    height: Sizes.kPadding,
                   ),
                   TextFormField(
                     initialValue: widget.songModel?.title,

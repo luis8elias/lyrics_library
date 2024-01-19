@@ -9,7 +9,17 @@ class NoSongsFound extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.sizeOf(context).height - Sizes.kBottomNavHeight,
-      child: const Center(child: Text('No items'))
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('No items'),
+            SizedBox(
+              height: Sizes.kBottomNavHeight,
+            )
+          ],
+        ),
+      ),
     );
   }
 }

@@ -13,7 +13,6 @@ import '/presentation/features/genres/list/widgets/genres_leading.dart';
 import '/presentation/presentation.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';
 import '/presentation/widgets/providers.dart';
-import '/presentation/widgets/transparent_appbar.dart';
 import '/utils/constants/sizes.dart';
 
 class GenresListScreen extends ConsumerWidget {
@@ -29,12 +28,14 @@ class GenresListScreen extends ConsumerWidget {
     final prov = ref.read(genresListProvider);
     final reactiveProv = ref.watch(genresListProvider);
     final bottomPadding = Platform.isIOS ? 50.0 : 60.0;
-    final topPadding = Platform.isIOS ? 30.0 : Sizes.kAppBarSize * 0.60;
    
     return  Scaffold(
       body: CustomBottomNavBar(
         selectedIndex: 2,
-        appBar: CustomAppBar(
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: theme.colorScheme.inverseSurface.withOpacity(0.5),
+          leading: const GenresLeading(),
           actions: [
             Padding(
               padding: const EdgeInsets.only(
@@ -59,8 +60,10 @@ class GenresListScreen extends ConsumerWidget {
               ),
             ),
           ],
-          leading: const GenresLeading(),
-          title: lang.genresListScreen_title,
+          title: Text(
+            lang.genresListScreen_title,
+            style: theme.textTheme.titleSmall,
+          ),
         ),
         buttonBottomRow: prov.isSelectItemOpened 
         ? FadeInUp(
@@ -105,7 +108,6 @@ class GenresListScreen extends ConsumerWidget {
                 ),
                 Expanded(
                   child: RefreshIndicator(
-                    displacement: Platform.isIOS ? Sizes.kAppBarSize : topPadding,
                     onRefresh: () => Future.sync(
                       () => prov.refreshGenres(),
                     ),
@@ -118,7 +120,6 @@ class GenresListScreen extends ConsumerWidget {
                       itemBuilder: (context, index) => Padding(
                         padding: EdgeInsets.only(
                           bottom: (index+1) == genres.length ? bottomPadding : 0,
-                          top: index == 0 ? topPadding : 0,
                         ),
                         child: ListTile(
                           onTap: prov.isSelectItemOpened  

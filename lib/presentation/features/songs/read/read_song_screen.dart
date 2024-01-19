@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '/presentation/widgets/screen_scaffold.dart';
-import '/presentation/widgets/transparent_appbar.dart';
 import '/utils/utils.dart';
 
 //import '/config/lang/generated/l10n.dart';
@@ -28,8 +26,8 @@ class ReadSongScreen extends ConsumerWidget {
     //final lang = Lang.of(context);
     //final prov = ref.read(editGenreProvider);
     
-    return ScreenScaffold(
-      appBar: CustomAppBar(
+    return Scaffold(
+      appBar: AppBar(
         actions: const[], 
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -40,7 +38,10 @@ class ReadSongScreen extends ConsumerWidget {
             },
           ),
         ),
-        title: songModel.title
+        title: Text(
+          songModel.title,
+          style: theme.textTheme.titleSmall,
+        ),
       ),
       body: Stack(
         children: [
@@ -56,7 +57,7 @@ class ReadSongScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                      height: Sizes.kAppBarSize + (Sizes.kPadding * 1.5),
+                      height: Sizes.kPadding,
                     ),
                     Text(
                       songModel.lyric,

@@ -20,7 +20,7 @@ import '/presentation/features/songs/list/widgets/songs_appbar_leading.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/presentation/presentation.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';
-import '/presentation/widgets/transparent_appbar.dart';
+
 import '/utils/utils.dart';
 
 class SongsListScreen extends ConsumerStatefulWidget {
@@ -33,6 +33,7 @@ class SongsListScreen extends ConsumerStatefulWidget {
 }
 
 class _SongsListScreenState extends ConsumerState<SongsListScreen> {
+
 
   @override
   void initState() {
@@ -50,23 +51,25 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
     final theme = Theme.of(context);
     final reactiveProv = ref.watch(songsListProvider);
     final bottomPadding = Platform.isIOS ? 50.0 : 70.0;
-    final topPadding = Platform.isIOS ? Sizes.kAppBarSize * 0.45 : Sizes.kAppBarSize * 0.70;
 
     return  Scaffold(
       body: CustomBottomNavBar(
         selectedIndex: 1,
-        appBar: CustomAppBar(
+        appBar: AppBar(
+          backgroundColor: theme.colorScheme.inverseSurface.withOpacity(0.5),
+          centerTitle: true,
           actions: [
-            Padding(
-              padding: const EdgeInsets.only(
-                right: Sizes.kPadding/2
-              ),
-              child: IconButton(
-                onPressed: (){},
-                icon: Icon(
-                  CupertinoIcons.search,
-                  color: theme.colorScheme.onBackground,
-                ),
+            IconButton(
+              onPressed: (){
+                // showSearch<int>(
+                //   context: context, delegate: SearchSongScreen(searchFieldLabelHint: 'Buscar Song'),
+                //   query: ''
+                //   //query: ref.read(songsListProvider).filterModel.query
+                // );
+              },
+              icon: Icon(
+                CupertinoIcons.search,
+                color: theme.colorScheme.onBackground,
               ),
             ),
             const Padding(
@@ -76,8 +79,11 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
               child: CreateSongButton()
             ),
           ],
+          title: Text(
+            lang.songsListScreen_title,
+            style: theme.textTheme.titleSmall,
+          ),
           leading: const SongsAppBarLeading(),
-          title: lang.songsListScreen_title
         ),
         buttonBottomRow: prov.isSelectItemOpened 
         ? FadeInUp(
@@ -111,7 +117,6 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
         )
         : null,
         body: RefreshIndicator(
-          displacement: Platform.isIOS ? Sizes.kAppBarSize : topPadding,
           onRefresh: () => Future.sync(
             () => prov.songsController.refresh(),
           ),
@@ -126,7 +131,6 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                 return Padding(
                 padding: EdgeInsets.only(
                   bottom: (index+1) == prov.totalSongs ? bottomPadding : 0.0,
-                  top: index == 0 ? topPadding : 0,
                 ),
                 child: ListTile(
                   onTap: (){

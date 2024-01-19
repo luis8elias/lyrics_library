@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '/presentation/widgets/screen_scaffold.dart';
-import '/presentation/widgets/transparent_appbar.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/genres/create/providers/providers.dart';
@@ -48,11 +46,10 @@ class _CreateGenreScreenUI extends ConsumerWidget {
 
     final prov = ref.read(createGenreProvider);
     final lang = Lang.of(context);
+    final theme = Theme.of(context);
 
-   
-
-    return ScreenScaffold(
-      appBar: CustomAppBar(
+    return Scaffold(
+      appBar: AppBar(
         actions: const[], 
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -63,11 +60,14 @@ class _CreateGenreScreenUI extends ConsumerWidget {
             },
           ),
         ), 
-        title: lang.genresCreateScreen_title
+        title: Text(
+          lang.genresCreateScreen_title,
+          style: theme.textTheme.titleSmall,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.only(
-          top: Sizes.kAppBarSize + 5
+          top: Sizes.kPadding
         ),
         child: GenreForm(
           actionButton: const CreateGenreButton(),

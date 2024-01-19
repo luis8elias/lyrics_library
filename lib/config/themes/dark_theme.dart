@@ -10,7 +10,7 @@ final darkTheme = ThemeData(
     brightness: Brightness.dark,
     appBarTheme: AppBarTheme(
       surfaceTintColor: Colors.transparent,
-      backgroundColor: Colors.transparent,
+      backgroundColor: _darkColorScheme.inverseSurface.withOpacity(0.5),
       elevation: 0,
       titleTextStyle: TextStyle(
         color: _darkColorScheme.onSurface,
@@ -114,9 +114,9 @@ final darkTheme = ThemeData(
 
  final _darkColorScheme = ColorScheme(
   brightness: Brightness.dark,
-  primary: const Color(0xFFA2F263),
-  primaryContainer: const Color(0xFFA2F263).withOpacity(0.15),
-  onPrimary: const Color(0xff1e2528),
+  primary: const Color(0xFFa2f263),
+  primaryContainer: const Color(0xFFa2f263).withOpacity(0.15),
+  onPrimary: const Color(0xff060708),
   secondary: const Color(0xFF636366),
   onSecondary: const Color(0xFFEBEBF5).withOpacity(0.60),
   tertiary: const Color(0xFFff8862),

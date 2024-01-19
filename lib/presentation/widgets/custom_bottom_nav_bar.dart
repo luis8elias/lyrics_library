@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:go_router/go_router.dart';
 
-import '/presentation/widgets/transparent_appbar.dart';
 import '/presentation/presentation.dart';
 import '/utils/constants/sizes.dart';
 
@@ -20,7 +19,7 @@ class CustomBottomNavBar extends StatefulWidget {
 
   final int selectedIndex;
   final Widget body;
-  final CustomAppBar? appBar;
+  final PreferredSizeWidget? appBar;
   final Widget? buttonBottomRow;
 
   @override
@@ -77,6 +76,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
     final theme = Theme.of(context);
 
     return Scaffold(
+      appBar: widget.appBar,
       body: Stack(
         children: [
           Positioned.fill(
@@ -139,34 +139,6 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               },
             ),
           ),
-          if(widget.appBar != null)
-          Align(
-            alignment: Alignment.topCenter,
-            child: KeyboardVisibilityBuilder(
-              builder: (context, isKeyboardVisible) {
-                return  Visibility(
-                  visible: !isKeyboardVisible,
-                  child: ClipRRect(
-                    clipBehavior: Clip.antiAlias,
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                      child: Container(
-                        height: Sizes.kAppBarSize,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.inverseSurface.withOpacity(0.5),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 40),
-                          child: widget.appBar,
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          )
         ],
       ),
     );

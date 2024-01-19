@@ -17,7 +17,7 @@ class App extends ConsumerWidget {
     registerRoutes(sessionProv: sessionProv, ref: ref);
 
     return MaterialApp.router(
-      title:'Lyrics App',
+      title:'Lyrics Library',
       debugShowCheckedModeBanner: true,
       theme: darkTheme,
       routeInformationProvider: Injector.appInstance.get<GoRouter>().routeInformationProvider,
