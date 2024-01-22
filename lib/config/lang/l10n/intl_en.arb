@@ -116,7 +116,12 @@
 
     "@_SONGS_EDIT_SCREEN": {},
     "songsEditScreen_title" : "Edit Song",
-    "songsEditScreen_titleInput" : "Title"
+    "songsEditScreen_titleInput" : "Title",
+
+
+
+    "@_MORE_OPTIONS_SCREEN": {},
+    "moreOptionsScreen_title" : "More options"
 
 
 

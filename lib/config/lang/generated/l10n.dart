@@ -499,6 +499,16 @@ class Lang {
       args: [],
     );
   }
+
+  /// `More options`
+  String get moreOptionsScreen_title {
+    return Intl.message(
+      'More options',
+      name: 'moreOptionsScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

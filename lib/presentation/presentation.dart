@@ -1,3 +1,4 @@
+export 'features/more/menu/menu_options_screen.dart';
 export 'features/songs/read/read_song_screen.dart';
 export 'features/songs/edit/edit_song_screen.dart';
 export 'features/auth/login/login_screen.dart';

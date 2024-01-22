@@ -64,7 +64,9 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       BottomNavigationBarItem(
         icon: CupertinoIcons.ellipsis_vertical,
         onPressed: (context){
-         
+          GoRouter.of(context).goNamed(
+            MenuOptionsScreen.routeName
+          );
         },
         label: 'More'
       )

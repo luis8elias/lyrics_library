@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 
 
+
 import '/config/routes/custom_transiton_page.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
@@ -93,6 +94,16 @@ final routes =  [
         ),
       )
     ]
+  ),
+
+  GoRoute(
+    path: MenuOptionsScreen.routeName,
+    name: MenuOptionsScreen.routeName,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+      state: state,
+      context: context,
+      child: const MenuOptionsScreen()
+    ),
   ),
 
 ];

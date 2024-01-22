@@ -74,6 +74,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Inicia sesión con Google"),
         "loginScreen_welcome": MessageLookupByLibrary.simpleMessage(
             "¡Bienvenido! ¡Me alegra verte de nuevo!"),
+        "moreOptionsScreen_title":
+            MessageLookupByLibrary.simpleMessage("Más opciones"),
         "registerScreen_confrimPasswordInput":
             MessageLookupByLibrary.simpleMessage("Confirmar contraseña"),
         "registerScreen_emailInput":
