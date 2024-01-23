@@ -107,3 +107,48 @@ class LoadingWidget extends StatelessWidget {
     );
   }
 }
+
+
+class CleanLoaderWidget extends StatelessWidget {
+  const CleanLoaderWidget({
+    super.key,
+    this.androidSize,
+    this.iosSize,
+    this.strokeWidth = 1.0
+  });
+
+  final double? iosSize;
+  final double? androidSize;
+  final double strokeWidth;
+
+  @override
+  Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+
+    if(Platform.isIOS){
+      return  Center(
+        child: CupertinoActivityIndicator(
+          radius: iosSize ?? 15,
+          color: theme.colorScheme.onBackground,
+        ),
+      );
+    }
+
+    if(androidSize != null){
+      return  SizedBox(
+        height: androidSize,
+        width: androidSize,
+        child: CircularProgressIndicator(
+          color: theme.primaryColor,
+          strokeWidth: strokeWidth,
+        ),
+      );
+    }
+
+
+    return CircularProgressIndicator(
+      color: theme.primaryColor,
+    );
+  }
+}

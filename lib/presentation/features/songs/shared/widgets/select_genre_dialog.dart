@@ -88,7 +88,7 @@ class _SelectGenreDialogState extends State<SelectGenreDialog> {
     if(genreModel == null){
       return TextButton(
         onPressed: ()=> openDialog(context),
-        child: const Text('Add Genre')
+        child: const Text('Select Genre')
       );
     }
 
@@ -147,7 +147,7 @@ class _SelectGenreDialogUIState extends ConsumerState<_SelectGenreDialogUI> {
       contentPadding: EdgeInsets.zero,
       surfaceTintColor: theme.scaffoldBackgroundColor,
       backgroundColor: theme.scaffoldBackgroundColor,
-      title: const Text('Add Genre'),
+      title: const Text('Select genre'),
       content: SizedBox(
         height: MediaQuery.sizeOf(context).height * 0.5,
         child: FetchProviderBuilder(

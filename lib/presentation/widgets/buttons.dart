@@ -145,14 +145,12 @@ class BackButtonWidget extends StatelessWidget {
 
     final theme = Theme.of(context);
     
-    return InkWell(
-      borderRadius: BorderRadius.circular(Sizes.kBorderRadius),
-      onTap: onPressed ?? () => GoRouter.of(context).pop(),
-      child: Center(
-        child: Icon(
-          CupertinoIcons.back,
-          color: theme.colorScheme.primary,
-        )
+    return IconButton(
+      splashRadius: 10,
+      onPressed: onPressed ?? () => GoRouter.of(context).pop(),
+      icon: Icon(
+        CupertinoIcons.back,
+        color: theme.colorScheme.primary,
       ),
     );
   }

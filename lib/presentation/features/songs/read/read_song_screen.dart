@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -28,19 +31,61 @@ class ReadSongScreen extends ConsumerWidget {
     
     return Scaffold(
       appBar: AppBar(
-        actions: const[], 
+        centerTitle: true,
+        actions: [
+          IconButton(
+            splashRadius: 10,
+            onPressed: (){},
+            icon: Icon(
+              Platform.isIOS ? CupertinoIcons.share : Icons.share_outlined ,
+              color: theme.colorScheme.primary,
+            ),
+          ),
+        ], 
         leading: Padding(
           padding: const EdgeInsets.all(8.0),
           child: BackButtonWidget(
             onPressed: () {
-              //prov.resetFormModel();
               GoRouter.of(context).pop();
             },
           ),
         ),
-        title: Text(
-          songModel.title,
-          style: theme.textTheme.titleSmall,
+        title: Column(
+          children: [
+            Text(
+              songModel.title,
+              style: theme.textTheme.titleSmall,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(
+              height: 4,
+            ),
+            Container(
+              height: 15,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: theme.colorScheme.primary.withOpacity(0.3),
+                border: Border.all(
+                  color: theme.colorScheme.primary
+                ),
+              ),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    bottom: 2
+                  ),
+                  child: Text(
+                    songModel.genreModel!.name,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onBackground,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 8
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       body: Stack(
