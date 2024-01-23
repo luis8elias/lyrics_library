@@ -46,7 +46,7 @@ class _SongSubtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final theme = Theme.of(context);
+    //final theme = Theme.of(context);
 
     return Container(
       margin: const EdgeInsets.only(top: 5),
@@ -56,27 +56,27 @@ class _SongSubtitle extends StatelessWidget {
           GenreCricle(
             genreName: songModel.genreModel!.name,
           ),
-          Container(
-            height: 25,
-            margin: const EdgeInsets.only(right: 5),
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Colors.transparent,
-              border: Border.all(
-                color: theme.colorScheme.primary
-              )
-            ),
-            child: Center(
-              child: Text(
-                'D',
-                style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onBackground,
-                  fontWeight: FontWeight.bold
-                ),
-              ),
-            ),
-          ),
+          // Container(
+          //   height: 25,
+          //   margin: const EdgeInsets.only(right: 5),
+          //   padding: const EdgeInsets.symmetric(horizontal: 10),
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(15),
+          //     color: Colors.transparent,
+          //     border: Border.all(
+          //       color: theme.colorScheme.primary
+          //     )
+          //   ),
+          //   child: Center(
+          //     child: Text(
+          //       'D',
+          //       style: theme.textTheme.bodySmall?.copyWith(
+          //         color: theme.colorScheme.onBackground,
+          //         fontWeight: FontWeight.bold
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
