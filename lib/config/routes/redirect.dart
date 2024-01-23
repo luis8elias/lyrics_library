@@ -19,18 +19,17 @@ FutureOr<String?> redirect(
     return null;
   }
 
-  // if(goRouterState.path == LoginScreen.routeName ){
-  //   return LoginScreen.routeName;
-  // }
+  if(goRouterState.path == LoginScreen.routeName ){
+    return LoginScreen.routeName;
+  }
 
-  // final logoutScreens = [
-  //   SongsListScreen.routeName,
-  //   GenresListScreen.routeName
-  // ];
+  final logoutScreens = [
+    MenuOptionsScreen.routeName,
+  ];
 
-  // if(logoutScreens.contains(goRouterState.location) &&  providerRoute == LoginScreen.routeName){
-  //   return providerRoute;
-  // }
+  if(logoutScreens.contains(goRouterState.fullPath) &&  providerRoute == LoginScreen.routeName){
+    return providerRoute;
+  }
 
 
   final provStateRoutes = [

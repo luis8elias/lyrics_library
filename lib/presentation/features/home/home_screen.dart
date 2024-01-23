@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '/utils/utils.dart';
-import '/app/providers/providers.dart';
-import '/presentation/widgets/buttons.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';
 
 
@@ -16,30 +13,30 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     //final theme = Theme.of(context);
-    final provider = ref.watch(sessionProvider);
    
-    return  Scaffold(
+    return  const Scaffold(
       body: CustomBottomNavBar(
         selectedIndex: 0,
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: Sizes.kPadding
-            ),
-            child: provider.isLoadingLogout 
-            ? Center(
-              child: BasicButton(
-                onPressed: null,
-                buildChild: (loadingChild) => loadingChild,
-                text: ''
-              ),
-            )
-            : BasicButton(
-              onPressed:  () => provider.logoutUser(),
-              text: 'Cerrar sesión'
-            ),
-          ),
-        ),
+        body: Placeholder(),
+        // body: Center(
+        //   child: Padding(
+        //     padding: const EdgeInsets.symmetric(
+        //       horizontal: Sizes.kPadding
+        //     ),
+        //     child: provider.isLoadingLogout 
+        //     ? Center(
+        //       child: BasicButton(
+        //         onPressed: null,
+        //         buildChild: (loadingChild) => loadingChild,
+        //         text: ''
+        //       ),
+        //     )
+        //     : BasicButton(
+        //       onPressed:  () => provider.logoutUser(),
+        //       text: 'Cerrar sesión'
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }

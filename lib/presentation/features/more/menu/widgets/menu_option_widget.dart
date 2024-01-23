@@ -13,6 +13,8 @@ class MenuOptionWidget extends StatelessWidget {
     required this.icon,
     required this.menuRoundedOption,
     required this.title,
+    required this.onPressed,
+    this.buidTrailing,
     this.color 
   });
 
@@ -20,6 +22,8 @@ class MenuOptionWidget extends StatelessWidget {
   final String title;
   final IconData icon;
   final Color? color;
+  final VoidCallback onPressed;
+  final Widget Function(Widget trailing)? buidTrailing;
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +48,16 @@ class MenuOptionWidget extends StatelessWidget {
           ),
         ),
         minLeadingWidth: 25,
-        onTap: (){},
-        trailing: Icon(
+        onTap: onPressed,
+        trailing: buidTrailing == null ? 
+        Icon(
           icon,
           color: color ?? theme.colorScheme.onBackground,
-        ),
+        )
+        : buidTrailing!(Icon(
+          icon,
+          color: color ?? theme.colorScheme.onBackground,
+        )),
         title: Text(
           title,
           style: theme.textTheme.bodyMedium!.copyWith(

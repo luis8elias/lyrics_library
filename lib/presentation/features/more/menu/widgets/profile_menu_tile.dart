@@ -33,9 +33,12 @@ class ProfileMenuTile extends StatelessWidget {
         ),
         minLeadingWidth: 25,
         onTap: (){},
-        leading: const CircleAvatar(
-          backgroundImage: NetworkImage('https://s1.eestatic.com/2022/04/05/actualidad/662693884_223269247_1706x960.jpg'),
+        leading: CircleAvatar(
+          backgroundColor: theme.colorScheme.primary,
           radius: 30,
+          child: const Text(
+            'JU',
+          ),
         ),
         title: Text(
           'Jorge Urquijo',

@@ -1,22 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lyrics_library/config/lang/generated/l10n.dart';
-import 'package:lyrics_library/presentation/features/more/menu/widgets/menu_option_widget.dart';
-import 'package:lyrics_library/utils/constants/sizes.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '/app/providers/providers.dart';
+import '/config/lang/generated/l10n.dart';
+import '/presentation/features/more/menu/widgets/menu_option_widget.dart';
 import '/presentation/widgets/widgets.dart';
+import '/utils/constants/sizes.dart';
 import 'widgets/profile_menu_tile.dart';
 
-class MenuOptionsScreen extends StatelessWidget {
+class MenuOptionsScreen extends ConsumerWidget {
   const MenuOptionsScreen({super.key});
 
   static const String routeName = '/more';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
 
     final theme = Theme.of(context);
     final lang = Lang.of(context);
+    final sessionProv = ref.watch(sessionProvider);
     
     return Scaffold(
       appBar: AppBar(
@@ -43,25 +46,29 @@ class MenuOptionsScreen extends StatelessWidget {
                 const SizedBox(
                   height: Sizes.kPadding * 2,
                 ),
-                const MenuOptionWidget(
-                  title: 'Setlist',
+                MenuOptionWidget(
+                  onPressed: (){},
+                  title: 'Setlists',
                   icon: CupertinoIcons.music_note_list,
                   menuRoundedOption: MenuRoundedOption.top,
                 ),
                 const MenuOptionDivider(),
-                const MenuOptionWidget(
+                MenuOptionWidget(
+                  onPressed: (){},
                   title: 'Groups',
                   icon: CupertinoIcons.person_3_fill,
                   menuRoundedOption: MenuRoundedOption.none,
                 ),
                 const MenuOptionDivider(),
-                const MenuOptionWidget(
+                MenuOptionWidget(
+                  onPressed: (){},
                   title: 'Font size',
                   icon: CupertinoIcons.textformat_size,
                   menuRoundedOption: MenuRoundedOption.none,
                 ),
                 const MenuOptionDivider(),
                 MenuOptionWidget(
+                  onPressed: ()=> sessionProv.logoutUser(),
                   title: 'Logout',
                   icon: Icons.logout_outlined,
                   menuRoundedOption: MenuRoundedOption.bottom,
