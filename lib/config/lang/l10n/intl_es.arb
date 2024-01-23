@@ -115,7 +115,14 @@
 
 
     "@_MORE_OPTIONS_SCREEN": {},
-    "moreOptionsScreen_title" : "Más opciones"
+    "moreOptionsScreen_title" : "Más opciones",
+    "moreOptionsScreen_noName" : "Sin nombre",
+    "moreOptionsScreen_noEmail" : "Sin correo electrónico",
+    "moreOptionsScreen_setlists" : "Listas predefinidas",
+    "moreOptionsScreen_groups" : "Grupos",
+    "moreOptionsScreen_fontSize" : "Tamaño de letra",
+    "moreOptionsScreen_lang" : "Lenguaje",
+    "moreOptionsScreen_logout" : "Cerrar sesión"
     
 
 

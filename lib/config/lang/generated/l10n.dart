@@ -509,6 +509,76 @@ class Lang {
       args: [],
     );
   }
+
+  /// `No name`
+  String get moreOptionsScreen_noName {
+    return Intl.message(
+      'No name',
+      name: 'moreOptionsScreen_noName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No email`
+  String get moreOptionsScreen_noEmail {
+    return Intl.message(
+      'No email',
+      name: 'moreOptionsScreen_noEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Setlists`
+  String get moreOptionsScreen_setlists {
+    return Intl.message(
+      'Setlists',
+      name: 'moreOptionsScreen_setlists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Groups`
+  String get moreOptionsScreen_groups {
+    return Intl.message(
+      'Groups',
+      name: 'moreOptionsScreen_groups',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Font size`
+  String get moreOptionsScreen_fontSize {
+    return Intl.message(
+      'Font size',
+      name: 'moreOptionsScreen_fontSize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get moreOptionsScreen_lang {
+    return Intl.message(
+      'Language',
+      name: 'moreOptionsScreen_lang',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get moreOptionsScreen_logout {
+    return Intl.message(
+      'Logout',
+      name: 'moreOptionsScreen_logout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

@@ -121,7 +121,17 @@
 
 
     "@_MORE_OPTIONS_SCREEN": {},
-    "moreOptionsScreen_title" : "More options"
+    "moreOptionsScreen_title" : "More options",
+    "moreOptionsScreen_noName" : "No name",
+    "moreOptionsScreen_noEmail" : "No email",
+    "moreOptionsScreen_setlists" : "Setlists",
+    "moreOptionsScreen_groups" : "Groups",
+    "moreOptionsScreen_fontSize" : "Font size",
+    "moreOptionsScreen_lang" : "Language",
+    "moreOptionsScreen_logout" : "Logout"
+
+
+
 
 
 

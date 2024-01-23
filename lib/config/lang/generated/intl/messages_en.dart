@@ -71,6 +71,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Login with Google"),
         "loginScreen_welcome": MessageLookupByLibrary.simpleMessage(
             "Welcome! glad to see you again!"),
+        "moreOptionsScreen_fontSize":
+            MessageLookupByLibrary.simpleMessage("Font size"),
+        "moreOptionsScreen_groups":
+            MessageLookupByLibrary.simpleMessage("Groups"),
+        "moreOptionsScreen_lang":
+            MessageLookupByLibrary.simpleMessage("Language"),
+        "moreOptionsScreen_logout":
+            MessageLookupByLibrary.simpleMessage("Logout"),
+        "moreOptionsScreen_noEmail":
+            MessageLookupByLibrary.simpleMessage("No email"),
+        "moreOptionsScreen_noName":
+            MessageLookupByLibrary.simpleMessage("No name"),
+        "moreOptionsScreen_setlists":
+            MessageLookupByLibrary.simpleMessage("Setlists"),
         "moreOptionsScreen_title":
             MessageLookupByLibrary.simpleMessage("More options"),
         "registerScreen_confrimPasswordInput":

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:lyrics_library/presentation/features/auth/shared/models/auth_model.dart';
 
 import '/services/auth_service.dart';
 import '/data/enums/session_status.dart';
@@ -24,6 +25,7 @@ class SessionProvider extends  ChangeNotifier{
   SessionState state = SessionState.loading;
   bool isTheFirstTime = true;
   bool isLoadingLogout = false;
+  AuthModel? userSession;
 
 
   set setIsLoadingLogout(bool newValue){
@@ -56,6 +58,7 @@ class SessionProvider extends  ChangeNotifier{
     if (authModel == null) {
       return _applyState(SessionState.unauthenticatedUser);
     }
+    userSession = authModel;
     return _applyState(SessionState.authenticatedUser);
   }
 
@@ -67,6 +70,7 @@ class SessionProvider extends  ChangeNotifier{
     final logoutResp = await _authService.logout();
     if(logoutResp.success){
       await _sessionService.deletesAuthModel();
+      userSession = null;
       _applyState(SessionState.unauthenticatedUser);
     }
   }

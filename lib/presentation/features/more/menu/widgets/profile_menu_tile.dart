@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:lyrics_library/utils/constants/sizes.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lyrics_library/config/lang/generated/l10n.dart';
 
-class ProfileMenuTile extends StatelessWidget {
+import '/app/providers/providers.dart';
+import '/utils/constants/sizes.dart';
+
+class ProfileMenuTile extends ConsumerWidget {
   const ProfileMenuTile({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
 
     final theme = Theme.of(context);
+    final sessionProv = ref.read(sessionProvider);
+    final lang = Lang.of(context);
 
     return Material(
       borderRadius: const BorderRadius.only(
@@ -36,19 +42,34 @@ class ProfileMenuTile extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: theme.colorScheme.primary,
           radius: 20,
-          child: const Text(
-            'JU',
-            style: TextStyle(
+          child: Text(
+            sessionProv.userSession!.getDisplayNameInitials,
+            style: const TextStyle(
               fontSize: 15
             ),
           ),
         ),
-        title: Text(
-          'Jorge Urquijo',
-          style: theme.textTheme.bodyMedium!.copyWith(
-            color: theme.colorScheme.onBackground,
-            fontWeight: FontWeight.bold
-          ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              sessionProv.userSession!.displayName.isEmpty ? lang.moreOptionsScreen_noName : sessionProv.userSession!.displayName,
+              style: theme.textTheme.bodyMedium!.copyWith(
+                color: theme.colorScheme.onBackground,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            const SizedBox(
+              height: 3,
+            ),
+            Text(
+              sessionProv.userSession!.email.isEmpty ? lang.moreOptionsScreen_noEmail : sessionProv.userSession!.email,
+              style: theme.textTheme.bodyMedium!.copyWith(
+                fontSize: 10,
+                color: theme.hintColor,
+              ),
+            ),
+          ],
         ),
       ),
     );

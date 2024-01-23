@@ -41,34 +41,43 @@ class MenuOptionsScreen extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(
-                  height: Sizes.kPadding * 2,
+                  height: Sizes.kPadding
                 ),
                 const ProfileMenuTile(),
                 const SizedBox(
-                  height: Sizes.kPadding * 2,
+                  height: Sizes.kPadding,
                 ),
                 MenuOptionWidget(
                   onPressed: (){},
-                  title: 'Setlists',
+                  title: lang.moreOptionsScreen_setlists,
                   icon: CupertinoIcons.music_note_list,
                   menuRoundedOption: MenuRoundedOption.top,
                 ),
                 const MenuOptionDivider(),
                 MenuOptionWidget(
                   onPressed: (){},
-                  title: 'Groups',
+                  title: lang.moreOptionsScreen_groups,
                   icon: CupertinoIcons.person_3_fill,
-                  menuRoundedOption: MenuRoundedOption.none,
+                  menuRoundedOption: MenuRoundedOption.bottom,
+                ),
+                const SizedBox(
+                  height: Sizes.kPadding,
+                ),
+                MenuOptionWidget(
+                  onPressed: (){},
+                  title: lang.moreOptionsScreen_fontSize,
+                  icon: CupertinoIcons.textformat_size,
+                  menuRoundedOption: MenuRoundedOption.top,
                 ),
                 const MenuOptionDivider(),
                 MenuOptionWidget(
                   onPressed: (){},
-                  title: 'Font size',
-                  icon: CupertinoIcons.textformat_size,
+                  title: lang.moreOptionsScreen_lang,
+                  icon: Icons.language_outlined,
                   menuRoundedOption: MenuRoundedOption.bottom,
                 ),
                 const SizedBox(
-                  height: Sizes.kPadding * 2,
+                  height: Sizes.kPadding ,
                 ),
                 // MenuOptionWidget(
                 //   onPressed: ()=> sessionProv.logoutUser(),
