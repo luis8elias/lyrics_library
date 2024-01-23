@@ -23,6 +23,7 @@ class MenuOptionsScreen extends ConsumerWidget {
     
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           lang.moreOptionsScreen_title,
           style: theme.textTheme.titleSmall,
@@ -64,21 +65,61 @@ class MenuOptionsScreen extends ConsumerWidget {
                   onPressed: (){},
                   title: 'Font size',
                   icon: CupertinoIcons.textformat_size,
-                  menuRoundedOption: MenuRoundedOption.none,
-                ),
-                const MenuOptionDivider(),
-                MenuOptionWidget(
-                  onPressed: ()=> sessionProv.logoutUser(),
-                  title: 'Logout',
-                  icon: Icons.logout_outlined,
                   menuRoundedOption: MenuRoundedOption.bottom,
-                  color: theme.colorScheme.error,
+                ),
+                const SizedBox(
+                  height: Sizes.kPadding * 2,
+                ),
+                // MenuOptionWidget(
+                //   onPressed: ()=> sessionProv.logoutUser(),
+                //   title: 'Logout',
+                //   icon: Icons.logout_outlined,
+                //   menuRoundedOption: MenuRoundedOption.all,
+                //   color: theme.colorScheme.error,
+                // ),
+                Material(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(Sizes.kBorderRadius),
+                    topRight: Radius.circular(Sizes.kBorderRadius),
+                    bottomLeft: Radius.circular(Sizes.kBorderRadius),
+                    bottomRight: Radius.circular(Sizes.kBorderRadius),
+                  ),
+                  color: theme.colorScheme.inverseSurface.withOpacity(0.5),
+                  child: ListTile(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(Sizes.kBorderRadius),
+                        topRight: Radius.circular(Sizes.kBorderRadius),
+                        bottomLeft: Radius.circular(Sizes.kBorderRadius),
+                        bottomRight: Radius.circular(Sizes.kBorderRadius),
+                      ),
+                    ),
+                    minLeadingWidth: 25,
+                    onTap: sessionProv.isLoadingLogout 
+                    ? null 
+                    : ()=> sessionProv.logoutUser(),
+                    trailing: sessionProv.isLoadingLogout 
+                    ? const CleanLoaderWidget(
+                      iosSize: 10,
+                      androidSize: 20,
+                    )
+                    : Icon(
+                      Icons.logout_outlined,
+                      color: theme.colorScheme.error,
+                    ),
+                    title: Text(
+                      'Logout',
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                        color: theme.colorScheme.error,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
         ),
-      )
+      ),
     );
   }
 }

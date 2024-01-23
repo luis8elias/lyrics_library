@@ -4,7 +4,8 @@ import 'package:lyrics_library/utils/constants/sizes.dart';
 enum MenuRoundedOption{
   top,
   bottom,
-  none
+  none,
+  all
 }
 
 class MenuOptionWidget extends StatelessWidget {
@@ -14,7 +15,6 @@ class MenuOptionWidget extends StatelessWidget {
     required this.menuRoundedOption,
     required this.title,
     required this.onPressed,
-    this.buidTrailing,
     this.color 
   });
 
@@ -23,7 +23,6 @@ class MenuOptionWidget extends StatelessWidget {
   final IconData icon;
   final Color? color;
   final VoidCallback onPressed;
-  final Widget Function(Widget trailing)? buidTrailing;
 
   @override
   Widget build(BuildContext context) {
@@ -32,32 +31,27 @@ class MenuOptionWidget extends StatelessWidget {
 
     return Material(
       borderRadius: BorderRadius.only(
-        topLeft: menuRoundedOption == MenuRoundedOption.top ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
-        topRight: menuRoundedOption == MenuRoundedOption.top ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
-        bottomLeft: menuRoundedOption == MenuRoundedOption.bottom ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
-        bottomRight: menuRoundedOption == MenuRoundedOption.bottom ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
+        topLeft: menuRoundedOption == MenuRoundedOption.top  || menuRoundedOption == MenuRoundedOption.all ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
+        topRight: menuRoundedOption == MenuRoundedOption.top || menuRoundedOption == MenuRoundedOption.all ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
+        bottomLeft: menuRoundedOption == MenuRoundedOption.bottom || menuRoundedOption == MenuRoundedOption.all ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
+        bottomRight: menuRoundedOption == MenuRoundedOption.bottom || menuRoundedOption == MenuRoundedOption.all ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
       ),
       color: theme.colorScheme.inverseSurface.withOpacity(0.5),
       child: ListTile(
         shape:  RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            topLeft: menuRoundedOption == MenuRoundedOption.top ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
-            topRight: menuRoundedOption == MenuRoundedOption.top ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
-            bottomLeft: menuRoundedOption == MenuRoundedOption.bottom ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
-            bottomRight: menuRoundedOption == MenuRoundedOption.bottom ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
+            topLeft: menuRoundedOption == MenuRoundedOption.top || menuRoundedOption == MenuRoundedOption.all ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
+            topRight: menuRoundedOption == MenuRoundedOption.top || menuRoundedOption == MenuRoundedOption.all ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
+            bottomLeft: menuRoundedOption == MenuRoundedOption.bottom || menuRoundedOption == MenuRoundedOption.all ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
+            bottomRight: menuRoundedOption == MenuRoundedOption.bottom || menuRoundedOption == MenuRoundedOption.all ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
           ),
         ),
         minLeadingWidth: 25,
         onTap: onPressed,
-        trailing: buidTrailing == null ? 
-        Icon(
+        trailing: Icon(
           icon,
           color: color ?? theme.colorScheme.onBackground,
-        )
-        : buidTrailing!(Icon(
-          icon,
-          color: color ?? theme.colorScheme.onBackground,
-        )),
+        ),
         title: Text(
           title,
           style: theme.textTheme.bodyMedium!.copyWith(
