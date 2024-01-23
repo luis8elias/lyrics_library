@@ -19,8 +19,8 @@ class ProfileMenuTile extends StatelessWidget {
       color: theme.colorScheme.inverseSurface.withOpacity(0.5),
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 15
+          horizontal: 10,
+          vertical: 5
         ),
         visualDensity: const VisualDensity(vertical: 3),
         shape: const  RoundedRectangleBorder(
@@ -35,9 +35,12 @@ class ProfileMenuTile extends StatelessWidget {
         onTap: (){},
         leading: CircleAvatar(
           backgroundColor: theme.colorScheme.primary,
-          radius: 30,
+          radius: 20,
           child: const Text(
             'JU',
+            style: TextStyle(
+              fontSize: 15
+            ),
           ),
         ),
         title: Text(
