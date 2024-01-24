@@ -9,8 +9,8 @@ import '/presentation/widgets/widgets.dart';
 import '/utils/constants/sizes.dart';
 import 'widgets/profile_menu_tile.dart';
 
-class MenuOptionsScreen extends ConsumerWidget {
-  const MenuOptionsScreen({super.key});
+class MoreOptionsScreen extends ConsumerWidget {
+  const MoreOptionsScreen({super.key});
 
   static const String routeName = '/more';
 
@@ -58,6 +58,13 @@ class MenuOptionsScreen extends ConsumerWidget {
                   onPressed: (){},
                   title: lang.moreOptionsScreen_groups,
                   icon: CupertinoIcons.person_3_fill,
+                  menuRoundedOption: MenuRoundedOption.none,
+                ),
+                const MenuOptionDivider(),
+                MenuOptionWidget(
+                  onPressed: (){},
+                  title: lang.moreOptionsScreen_scanLyrics,
+                  icon: CupertinoIcons.qrcode,
                   menuRoundedOption: MenuRoundedOption.bottom,
                 ),
                 const SizedBox(

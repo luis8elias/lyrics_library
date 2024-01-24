@@ -83,6 +83,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No email"),
         "moreOptionsScreen_noName":
             MessageLookupByLibrary.simpleMessage("No name"),
+        "moreOptionsScreen_scanLyrics":
+            MessageLookupByLibrary.simpleMessage("Scan lyrics"),
         "moreOptionsScreen_setlists":
             MessageLookupByLibrary.simpleMessage("Setlists"),
         "moreOptionsScreen_title":

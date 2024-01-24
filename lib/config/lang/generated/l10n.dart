@@ -550,6 +550,16 @@ class Lang {
     );
   }
 
+  /// `Scan lyrics`
+  String get moreOptionsScreen_scanLyrics {
+    return Intl.message(
+      'Scan lyrics',
+      name: 'moreOptionsScreen_scanLyrics',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Font size`
   String get moreOptionsScreen_fontSize {
     return Intl.message(

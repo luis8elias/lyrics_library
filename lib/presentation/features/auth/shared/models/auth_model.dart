@@ -25,7 +25,7 @@ class AuthModel{
 
     final nameArr = displayName.split(' ');
     if(nameArr.length > 1){
-      return '${nameArr[0][0]} ${nameArr[1][0]}'.toUpperCase();
+      return '${nameArr[0][0]}${nameArr[1][0]}'.toUpperCase();
     }
     return nameArr[0][0].toUpperCase();
   }

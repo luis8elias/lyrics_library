@@ -90,8 +90,8 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                     ),
                   );
                 },
-                child: const Text(
-                  'Cancel'
+                child: Text(
+                  lang.actions_cancel
                 ),
               ),
             )
@@ -149,11 +149,11 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
         : null,
         body: Column(
           children: [
-            if(showSearchInput) 
-            Container(
-              color: theme.colorScheme.inverseSurface.withOpacity(0.5),
-              height: 50,
-            ),
+            // if(showSearchInput) 
+            // Container(
+            //   color: theme.colorScheme.inverseSurface.withOpacity(0.5),
+            //   height: 50,
+            // ),
             Expanded(
               child: RefreshIndicator(
                 onRefresh: () => Future.sync(
@@ -208,7 +208,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

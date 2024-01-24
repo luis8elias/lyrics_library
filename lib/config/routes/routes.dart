@@ -97,12 +97,12 @@ final routes =  [
   ),
 
   GoRoute(
-    path: MenuOptionsScreen.routeName,
-    name: MenuOptionsScreen.routeName,
+    path: MoreOptionsScreen.routeName,
+    name: MoreOptionsScreen.routeName,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
       state: state,
       context: context,
-      child: const MenuOptionsScreen()
+      child: const MoreOptionsScreen()
     ),
   ),
 

@@ -126,6 +126,7 @@
     "moreOptionsScreen_noEmail" : "No email",
     "moreOptionsScreen_setlists" : "Setlists",
     "moreOptionsScreen_groups" : "Groups",
+    "moreOptionsScreen_scanLyrics" : "Scan lyrics",
     "moreOptionsScreen_fontSize" : "Font size",
     "moreOptionsScreen_lang" : "Language",
     "moreOptionsScreen_logout" : "Logout"

@@ -120,6 +120,7 @@
     "moreOptionsScreen_noEmail" : "Sin correo electrónico",
     "moreOptionsScreen_setlists" : "Listas predefinidas",
     "moreOptionsScreen_groups" : "Grupos",
+    "moreOptionsScreen_scanLyrics" : "Escanear letras",
     "moreOptionsScreen_fontSize" : "Tamaño de letra",
     "moreOptionsScreen_lang" : "Lenguaje",
     "moreOptionsScreen_logout" : "Cerrar sesión"

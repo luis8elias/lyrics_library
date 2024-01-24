@@ -34,6 +34,7 @@ class GenresLeading extends ConsumerWidget {
       }
 
       return IconButton(
+        iconSize: 25,
         onPressed: () => prov.openCloseSelectItem(),
         icon: Icon(
           CupertinoIcons.check_mark_circled,

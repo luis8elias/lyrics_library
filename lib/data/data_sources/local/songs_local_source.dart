@@ -51,7 +51,7 @@ class SongsLocalSource extends SongsDataSource {
         "S.${SongsTable.colLyric} LIKE '%$q%') "
         'LIMIT $limit OFFSET ${limit * (page - 1)} '
       );
-      await Future.delayed(const Duration(milliseconds: 300));
+      await Future.delayed(Config.manualLocalServicesDelay);
       final songs = SongModel.fromMapList(songsMapList);
       final count = await SQLite.instance.rawQuery(
         'SELECT COUNT(*) as total FROM ${SongsTable.name} '
@@ -100,7 +100,7 @@ class SongsLocalSource extends SongsDataSource {
         message: 'Ocurrió un problema al crear la canción'
       );
     }
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(Config.manualLocalServicesDelay);
     
     return ResponseModel(
       success: true, 
@@ -140,7 +140,7 @@ class SongsLocalSource extends SongsDataSource {
           message: 'Ocurrió un problema al eliminar'
         );
       }
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(Config.manualLocalServicesDelay);
       
       return ResponseModel(
         success: true, 
@@ -181,7 +181,7 @@ class SongsLocalSource extends SongsDataSource {
           message: 'Ocurrió un problema al editar la canción'
         );
       }
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(Config.manualLocalServicesDelay);
 
 
       final songsList = await SQLite.instance.rawQuery(

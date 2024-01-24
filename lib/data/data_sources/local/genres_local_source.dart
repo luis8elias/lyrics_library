@@ -1,12 +1,13 @@
 import 'package:flutter_guid/flutter_guid.dart';
 
-import '/utils/extensions/string_extensions.dart';
+import '/config/config.dart';
 import '/data/data_sources/interfaces/genres_data_source_inteface.dart';
 import '/data/models/response_model.dart';
 import '/presentation/features/genres/create/models/create_genre_model.dart';
 import '/presentation/features/genres/edit/models/edit_genre_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/utils/db/sqlite.dart';
+import '/utils/extensions/string_extensions.dart';
 import '/utils/logger/logger_helper.dart';
 
 class GenresLocalSource extends GenresDataSource {
@@ -22,7 +23,7 @@ class GenresLocalSource extends GenresDataSource {
         where: '${GenresTable.colIsRemoved} = ?',
         whereArgs: [0]
       );
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(Config.manualLocalServicesDelay);
       return ResponseModel(
         success: true,
         model: GenreModel.fromMapList(genresMapList)
@@ -67,7 +68,7 @@ class GenresLocalSource extends GenresDataSource {
         message: 'Ocurrió un problema al crear el género'
       );
     }
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(Config.manualLocalServicesDelay);
     
     return ResponseModel(
       success: true, 
@@ -109,7 +110,7 @@ class GenresLocalSource extends GenresDataSource {
           message: 'Ocurrió un problema al eliminar el género'
         );
       }
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(Config.manualLocalServicesDelay);
       
       return ResponseModel(
         success: true, 
@@ -152,7 +153,7 @@ class GenresLocalSource extends GenresDataSource {
           message: 'Ocurrió un problema al editar el género'
         );
       }
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(Config.manualLocalServicesDelay);
       
       return ResponseModel(
         success: true, 

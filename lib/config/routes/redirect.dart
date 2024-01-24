@@ -24,7 +24,7 @@ FutureOr<String?> redirect(
   }
 
   final logoutScreens = [
-    MenuOptionsScreen.routeName,
+    MoreOptionsScreen.routeName,
   ];
 
   if(logoutScreens.contains(goRouterState.fullPath) &&  providerRoute == LoginScreen.routeName){
