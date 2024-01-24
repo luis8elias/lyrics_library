@@ -9,6 +9,7 @@ final darkTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.dark,
     appBarTheme: AppBarTheme(
+      centerTitle: true,
       surfaceTintColor: Colors.transparent,
       backgroundColor: _darkColorScheme.inverseSurface.withOpacity(0.5),
       elevation: 0,

@@ -57,9 +57,11 @@ class ReadSongScreen extends ConsumerWidget {
               style: theme.textTheme.titleSmall,
               overflow: TextOverflow.ellipsis,
             ),
+            if(songModel.genreModel != null)
             const SizedBox(
               height: 4,
             ),
+            if(songModel.genreModel != null)
             Container(
               height: 15,
               decoration: BoxDecoration(
@@ -75,7 +77,7 @@ class ReadSongScreen extends ConsumerWidget {
                     bottom: 2
                   ),
                   child: Text(
-                    songModel.genreModel!.name,
+                    songModel.genreModel?.name ?? '',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onBackground,
                       fontWeight: FontWeight.bold,

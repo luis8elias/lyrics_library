@@ -1,11 +1,12 @@
 import 'package:flutter_guid/flutter_guid.dart';
-import '/presentation/features/songs/edit/models/edit_song_model.dart';
 
-import '/presentation/features/songs/create/models/create_song_model.dart';
-import '/presentation/features/songs/list/models/songs_list_model.dart';
 import '/config/config.dart';
 import '/data/data_sources/interfaces/songs_data_source_interface.dart';
 import '/data/models/response_model.dart';
+import '/presentation/features/songs/create/models/create_song_model.dart';
+import '/presentation/features/songs/edit/models/edit_song_model.dart';
+import '/presentation/features/songs/list/models/songs_filter_model.dart';
+import '/presentation/features/songs/list/models/songs_list_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/utils/db/songs_table.dart';
 import '/utils/db/sqlite.dart';
@@ -18,7 +19,8 @@ class SongsLocalSource extends SongsDataSource {
 
   @override
   Future<ResponseModel<SongsListModel>> fetchSongs({
-    required int page
+    required int page,
+    SongFilterModel? filters
   }) async{
 
     if(page == 0){
@@ -29,6 +31,10 @@ class SongsLocalSource extends SongsDataSource {
     }
 
     try {
+
+      
+      
+      final q = filters?.query ?? '';
       
       final songsMapList = await SQLite.instance.rawQuery(
         'SELECT S.*, '
@@ -40,10 +46,12 @@ class SongsLocalSource extends SongsDataSource {
         'LEFT JOIN ${GenresTable.name} as G ON '
         'S.${SongsTable.colGenreId} = G.${GenresTable.colId} '
         'AND G.isRemoved == 0 '
-        'WHERE S.${SongsTable.colIsRemoved} = 0 '
-        'LIMIT $limit OFFSET ${limit * (page -1)} '
+        'WHERE S.${SongsTable.colIsRemoved} = 0 AND '
+        "(S.${SongsTable.colTitle} LIKE '%$q%' OR "
+        "S.${SongsTable.colLyric} LIKE '%$q%') "
+        'LIMIT $limit OFFSET ${limit * (page - 1)} '
       );
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 300));
       final songs = SongModel.fromMapList(songsMapList);
       final count = await SQLite.instance.rawQuery(
         'SELECT COUNT(*) as total FROM ${SongsTable.name} '

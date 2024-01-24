@@ -73,6 +73,7 @@ class _EditGenreScreenUI extends ConsumerWidget {
     
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         actions: [
           SaveSongButton(
             onPressed:  reactiveProv.isFormValid ? prov.editGenre : null,

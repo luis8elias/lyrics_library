@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_guid/flutter_guid.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:lyrics_library/presentation/features/songs/list/models/songs_filter_model.dart';
 import '/presentation/providers/providers.dart';
 
 import '/config/config.dart';
@@ -15,6 +18,7 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
   final PagingController<int, SongModel> _pagingController = PagingController(firstPageKey: 1);
   final _pageSize = Config.songsPageSize;
   int totalSongs = 0;
+  SongFilterModel _filters = SongFilterModel();
 
   PagingController<int, SongModel> get songsController => _pagingController;
 
@@ -37,7 +41,10 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
 
 
   Future<void> fetchSongs({required int page}) async {
-    final response = await _songsService.fetchSongs(page: page);
+    final response = await _songsService.fetchSongs(
+      page: page,
+      filters: _filters
+    );
     if(response.isFailed){
       _pagingController.error = response.message;
       return;
@@ -94,6 +101,13 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
     }
     notifyListeners();
   }
+
+  void updateFilters(SongFilterModel Function(SongFilterModel filters) update){
+    _filters = update(_filters);
+    songsController.refresh();
+    log('[ SongsListProvider ] Model 👉🏼 ${_filters.toMap().toString()}');
+  }
+  
 
   
 }

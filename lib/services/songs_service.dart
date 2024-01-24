@@ -1,4 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/presentation/features/songs/list/models/songs_filter_model.dart';
 import '/presentation/features/songs/edit/models/edit_song_model.dart';
 
 import '/presentation/features/songs/create/models/create_song_model.dart';
@@ -22,9 +23,11 @@ class SongsService{
 
   Future<ResponseModel<SongsListModel>> fetchSongs({
     required int page,
+    SongFilterModel? filters
   }) async {
     return _localSource.fetchSongs(
       page: page,
+      filters: filters
     );
   }
 

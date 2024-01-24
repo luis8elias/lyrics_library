@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
+import '/presentation/features/songs/list/widgets/search_song_input.dart';
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/songs/delete/delete_song_button.dart';
 import '/presentation/features/songs/list/providers/providers.dart';
@@ -20,7 +21,6 @@ import '/presentation/features/songs/list/widgets/songs_appbar_leading.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/presentation/presentation.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';
-
 import '/utils/utils.dart';
 
 class SongsListScreen extends ConsumerStatefulWidget {
@@ -33,6 +33,8 @@ class SongsListScreen extends ConsumerStatefulWidget {
 }
 
 class _SongsListScreenState extends ConsumerState<SongsListScreen> {
+
+  bool showSearchInput = false;
 
 
   @override
@@ -56,30 +58,59 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
       body: CustomBottomNavBar(
         selectedIndex: 1,
         appBar: AppBar(
-          backgroundColor: theme.colorScheme.inverseSurface.withOpacity(0.5),
           centerTitle: true,
           actions: [
+            if(!showSearchInput)
             IconButton(
+              iconSize: 25,
               onPressed: (){
-                // showSearch<int>(
-                //   context: context, delegate: SearchSongScreen(searchFieldLabelHint: 'Buscar Song'),
-                //   query: ''
-                //   //query: ref.read(songsListProvider).filterModel.query
-                // );
+                setState(() {
+                  showSearchInput = true;
+                });
               },
               icon: Icon(
                 CupertinoIcons.search,
                 color: theme.colorScheme.onBackground,
               ),
             ),
-            const Padding(
+            showSearchInput 
+            ? FadeIn(
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  alignment: Alignment.centerRight,
+                  textStyle: theme.textTheme.labelLarge,
+                ),
+                onPressed: (){
+                  setState(() {
+                    showSearchInput = false;
+                  });
+                  prov.updateFilters(
+                    (filters) => filters.copyWith(
+                      query: ''
+                    ),
+                  );
+                },
+                child: const Text(
+                  'Cancel'
+                ),
+              ),
+            )
+            : const Padding(
               padding: EdgeInsets.only(
-                right: Sizes.kPadding/2
+                right: Sizes.kPadding / 2,
               ),
               child: CreateSongButton()
             ),
           ],
-          title: Text(
+          title: showSearchInput ? 
+          SearchSongInput(
+            onChangeSearch: (query) => prov.updateFilters((filters) {
+              return filters.copyWith(
+                query: query
+              );
+            }),
+          )
+          : Text(
             lang.songsListScreen_title,
             style: theme.textTheme.titleSmall,
           ),
@@ -116,55 +147,69 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
           ),
         )
         : null,
-        body: RefreshIndicator(
-          onRefresh: () => Future.sync(
-            () => prov.songsController.refresh(),
-          ),
-          child: PagedListView<int, SongModel>.separated(
-            separatorBuilder: (context, index) => const Divider(thickness: 0.09 ),
-            pagingController: reactiveProv.songsController,
-            builderDelegate: PagedChildBuilderDelegate<SongModel>(
-              firstPageProgressIndicatorBuilder: (context) => const LoadingScreen(),
-              noItemsFoundIndicatorBuilder: (conetxt)=> const NoSongsFound(),
-              newPageProgressIndicatorBuilder: (context) => const NewPageProgressIndicator(),
-              itemBuilder: (context, song, index) {
-                return Padding(
-                padding: EdgeInsets.only(
-                  bottom: (index+1) == prov.totalSongs ? bottomPadding : 0.0,
-                ),
-                child: ListTile(
-                  onTap: (){
-                    if( !reactiveProv.isSelectItemOpened ){
-                      GoRouter.of(context).go(
-                        context.namedLocation(
-                          ReadSongScreen.routeName,
-                          pathParameters: {
-                            'sid': song.id.toString()
-                          },
-                        ),
-                        extra: song
-                      );
-                    }else{
-                      prov.selectItem(
-                        id: song.id
-                      );
-                    }
-                  },
-                  onLongPress: prov.isSelectItemOpened 
-                  ? null 
-                  : ()=> prov.openCloseSelectItem(
-                    id: song.id
-                  ),
-                  leading: reactiveProv.isSelectItemOpened ? FadeInLeft(
-                    duration: const Duration(milliseconds: 100),
-                    child: SongLeading(songModel: song),
-                  ) : null,
-                  title: SongTitle(title: song.title),
-                  subtitle: SongSubtitle(songModel: song)
-                ));
-              },
+        body: Column(
+          children: [
+            if(showSearchInput) 
+            Container(
+              color: theme.colorScheme.inverseSurface.withOpacity(0.5),
+              height: 50,
             ),
-          ),
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: () => Future.sync(
+                  () => prov.songsController.refresh(),
+                ),
+                child: PagedListView<int, SongModel>.separated(
+                  separatorBuilder: (context, index) => Container(
+                    height: 0.5,
+                    color : theme.colorScheme.outline
+                  ),
+                  pagingController: reactiveProv.songsController,
+                  builderDelegate: PagedChildBuilderDelegate<SongModel>(
+                    firstPageProgressIndicatorBuilder: (context) => const LoadingScreen(),
+                    noItemsFoundIndicatorBuilder: (conetxt)=> const NoSongsFound(),
+                    newPageProgressIndicatorBuilder: (context) => const NewPageProgressIndicator(),
+                    itemBuilder: (context, song, index) {
+                      return Padding(
+                      padding: EdgeInsets.only(
+                        bottom: (index+1) == prov.totalSongs ? bottomPadding : 0.0,
+                      ),
+                      child: ListTile(
+                        onTap: (){
+                          if( !reactiveProv.isSelectItemOpened ){
+                            GoRouter.of(context).go(
+                              context.namedLocation(
+                                ReadSongScreen.routeName,
+                                pathParameters: {
+                                  'sid': song.id.toString()
+                                },
+                              ),
+                              extra: song
+                            );
+                          }else{
+                            prov.selectItem(
+                              id: song.id
+                            );
+                          }
+                        },
+                        onLongPress: prov.isSelectItemOpened 
+                        ? null 
+                        : ()=> prov.openCloseSelectItem(
+                          id: song.id
+                        ),
+                        leading: reactiveProv.isSelectItemOpened ? FadeInLeft(
+                          duration: const Duration(milliseconds: 100),
+                          child: SongLeading(songModel: song),
+                        ) : null,
+                        title: SongTitle(title: song.title),
+                        subtitle: song.genreModel != null ? SongSubtitle(songModel: song): null
+                      ));
+                    },
+                  ),
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

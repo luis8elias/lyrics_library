@@ -52,6 +52,7 @@ class _CreateSongScreenUI extends ConsumerWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
+        centerTitle: true,
         actions: [
           SaveSongButton(
             onPressed:  reactiveProv.isFormValid ? prov.createSong : null,

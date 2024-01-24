@@ -9,6 +9,7 @@ import '/utils/db/songs_table.dart';
 class SQLite{
   static late Database instance;
   
+  
   static Future<void> initializeDatabase() async {
     final databasesPath = await getDatabasesPath();
     String path = join(databasesPath, 'lyrics.db');

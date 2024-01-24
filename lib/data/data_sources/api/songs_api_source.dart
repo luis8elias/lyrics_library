@@ -1,4 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/presentation/features/songs/list/models/songs_filter_model.dart';
 import '/presentation/features/songs/edit/models/edit_song_model.dart';
 
 import '/data/data_sources/interfaces/songs_data_source_interface.dart';
@@ -29,6 +30,7 @@ class SongsApiSource extends SongsDataSource{
   @override
   Future<ResponseModel<SongsListModel>> fetchSongs({
     required int page,
+    SongFilterModel? filters
   }) async {
     await Future.delayed(const Duration(seconds: 2));
     final authModel = await sessionService.getAuthModel();

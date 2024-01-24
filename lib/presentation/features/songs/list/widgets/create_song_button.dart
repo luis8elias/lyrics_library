@@ -17,8 +17,8 @@ class CreateSongButton extends StatelessWidget {
       borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius),
       onTap: () => GoRouter.of(context).pushNamed(CreateSongScreen.routeName),
       child: Container(
-        height: 28,
-        width: 28,
+        height: 35,
+        width: 35,
         decoration: BoxDecoration(
           color: theme.colorScheme.primary,
           borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
