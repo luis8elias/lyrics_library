@@ -589,6 +589,36 @@ class Lang {
       args: [],
     );
   }
+
+  /// `Hold the button and start speaking`
+  String get spechToTextBotomShet_holdBtn {
+    return Intl.message(
+      'Hold the button and start speaking',
+      name: 'spechToTextBotomShet_holdBtn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Now I'm listening... release the stop button`
+  String get spechToTextBotomShet_releaseBtn {
+    return Intl.message(
+      'Now I\'m listening... release the stop button',
+      name: 'spechToTextBotomShet_releaseBtn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I didn't understand, say it again`
+  String get spechToTextBotomShet_noUnderstand {
+    return Intl.message(
+      'I didn\'t understand, say it again',
+      name: 'spechToTextBotomShet_noUnderstand',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

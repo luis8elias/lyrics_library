@@ -4,6 +4,10 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>It is used to do voice searches</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>It is used to do voice searches</string>
 	<key>CFBundleDisplayName</key>
 	<string>Lyrics Library</string>
 	<key>CFBundleExecutable</key>

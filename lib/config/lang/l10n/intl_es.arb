@@ -123,7 +123,14 @@
     "moreOptionsScreen_scanLyrics" : "Escanear letras",
     "moreOptionsScreen_fontSize" : "Tamaño de letra",
     "moreOptionsScreen_lang" : "Lenguaje",
-    "moreOptionsScreen_logout" : "Cerrar sesión"
+    "moreOptionsScreen_logout" : "Cerrar sesión",
+
+
+
+    "@_SPEECH_TO_TEXT_BOTTOMSHEET": {},
+    "spechToTextBotomShet_holdBtn" : "Presiona el botón y comienza a hablar",
+    "spechToTextBotomShet_releaseBtn" : "Ahora estoy escuchando... suelte el botón para detener",
+    "spechToTextBotomShet_noUnderstand" : "No entendí dilo de nuevo"
     
 
 

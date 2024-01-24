@@ -129,7 +129,14 @@
     "moreOptionsScreen_scanLyrics" : "Scan lyrics",
     "moreOptionsScreen_fontSize" : "Font size",
     "moreOptionsScreen_lang" : "Language",
-    "moreOptionsScreen_logout" : "Logout"
+    "moreOptionsScreen_logout" : "Logout",
+
+
+
+    "@_SPEECH_TO_TEXT_BOTTOMSHEET": {},
+    "spechToTextBotomShet_holdBtn" : "Hold the button and start speaking",
+    "spechToTextBotomShet_releaseBtn" : "Now I'm listening... release the stop button",
+    "spechToTextBotomShet_noUnderstand" : "I didn't understand, say it again"
 
 
 

@@ -121,6 +121,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Título"),
         "songsListScreen_title":
             MessageLookupByLibrary.simpleMessage("Canciones"),
+        "spechToTextBotomShet_holdBtn": MessageLookupByLibrary.simpleMessage(
+            "Presiona el botón y comienza a hablar"),
+        "spechToTextBotomShet_noUnderstand":
+            MessageLookupByLibrary.simpleMessage("No entendí dilo de nuevo"),
+        "spechToTextBotomShet_releaseBtn": MessageLookupByLibrary.simpleMessage(
+            "Ahora estoy escuchando... suelte el botón para detener"),
         "validator_confirmPassword": MessageLookupByLibrary.simpleMessage(
             "Las contraseñas no coinciden"),
         "validator_confirmPasswordLength": m2,

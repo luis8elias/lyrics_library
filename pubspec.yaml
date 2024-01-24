@@ -29,9 +29,9 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animate_do: ^3.1.2
+  avatar_glow: ^3.0.1
   cupertino_icons: ^1.0.6
   device_info_plus: ^9.0.3
-  diacritic: ^0.1.5
   dio: ^5.3.3
   flutter:
     sdk: flutter
@@ -50,6 +50,7 @@ dependencies:
   jwt_decoder: ^2.0.1
   intl: ^0.18.1
   riverpod: ^2.4.3
+  speech_to_text: ^6.5.1
   sqflite: ^2.3.0
   path: ^1.8.3
   
