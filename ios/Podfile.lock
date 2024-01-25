@@ -25,13 +25,17 @@ PODS:
   - GTMAppAuth (2.0.0):
     - AppAuth/Core (~> 1.6)
     - GTMSessionFetcher/Core (< 4.0, >= 1.5)
-  - GTMSessionFetcher/Core (3.1.1)
+  - GTMSessionFetcher/Core (3.2.0)
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - speech_to_text (0.0.1):
+    - Flutter
+    - Try
   - sqflite (0.0.3):
     - Flutter
     - FMDB (>= 2.7.5)
+  - Try (2.1.1)
 
 DEPENDENCIES:
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
@@ -40,6 +44,7 @@ DEPENDENCIES:
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - speech_to_text (from `.symlinks/plugins/speech_to_text/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
 
 SPEC REPOS:
@@ -49,6 +54,7 @@ SPEC REPOS:
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
+    - Try
 
 EXTERNAL SOURCES:
   device_info_plus:
@@ -63,6 +69,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_sign_in_ios/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  speech_to_text:
+    :path: ".symlinks/plugins/speech_to_text/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
 
@@ -76,10 +84,12 @@ SPEC CHECKSUMS:
   google_sign_in_ios: 8115e3fbe097e6509beb819ed602d47369d9011f
   GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
-  GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
+  GTMSessionFetcher: 41b9ef0b4c08a6db4b7eb51a21ae5183ec99a2c8
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
+  speech_to_text: b43a7d99aef037bd758ed8e45d79bbac035d2dfe
   sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
+  Try: 5ef669ae832617b3cee58cb2c6f99fb767a4ff96
 
-PODFILE CHECKSUM: 70d9d25280d0dd177a5f637cdb0f0b0b12c6a189
+PODFILE CHECKSUM: 7be2f5f74864d463a8ad433546ed1de7e0f29aef
 
 COCOAPODS: 1.13.0
