@@ -10,6 +10,7 @@ class SongsTable{
   static const colId = 'id';
   static const colTitle = 'title';
   static const colLyric = 'lyric';
+  static const colSearchKeywords = 'searchKeywords';
   static const colOwnerId = 'ownerId';
   static const colGenreId = 'genreId';
   static const colSync = 'sync';
@@ -23,6 +24,7 @@ class SongsTable{
         '${SongsTable.colId} TEXT PRIMARY KEY, '
         '${SongsTable.colTitle} TEXT, '
         '${SongsTable.colLyric} TEXT, '
+        '${SongsTable.colSearchKeywords} TEXT, '
         '${SongsTable.colOwnerId} TEXT, '
         '${SongsTable.colGenreId} TEXT, '
         '${SongsTable.colSync} INTEGER, '
@@ -54,6 +56,7 @@ class SongsTable{
               SongsTable.colId : Guid.newGuid.toString(),
               SongsTable.colTitle : 'Seeded Song $i',
               SongsTable.colLyric : 'Lorem ipsum dolor',
+              SongsTable.colSearchKeywords : 'Seeded Song $i Lorem ipsum dolor',
               SongsTable.colOwnerId : Guid.newGuid.toString(),
               SongsTable.colGenreId : GenreModel.fromMap(genreMaps[0]).idAsStr,
               SongsTable.colSync : 0,

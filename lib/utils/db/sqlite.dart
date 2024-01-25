@@ -15,7 +15,7 @@ class SQLite{
     String path = join(databasesPath, 'lyrics.db');
     instance = await openDatabase(
       path, 
-      version: 1,
+      version: 2,
       onCreate: (Database db, int version) async {
         await GenresTable.create(db);
         await SongsTable.create(db);

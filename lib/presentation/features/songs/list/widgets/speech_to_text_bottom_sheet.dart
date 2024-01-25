@@ -120,11 +120,6 @@ class _SpeechToTextBottomSheetState extends State<SpeechToTextBottomSheet> {
                           }
                         },
                       );
-
-                      
-
-                      
-                      
                     }
                   }
                 },

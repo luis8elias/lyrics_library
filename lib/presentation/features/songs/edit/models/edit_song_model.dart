@@ -44,6 +44,7 @@ class EditSongModel extends SyncableModel implements FormModel {
     return <String, dynamic>{
       'title': title?.capitalize(),
       'lyric': lyric?.capitalize(),
+      'searchKeywords' : _getSearchKeywords(title ?? '', lyric ?? ''),
       'ownerId' : ownerId.toString(),
       'sync' : isSync,
       'isRemoved': isRemoved,
@@ -76,5 +77,10 @@ class EditSongModel extends SyncableModel implements FormModel {
       ownerId: ownerId ?? this.ownerId,
       genre: genre ?? this.genre
     );
+  }
+
+  static String _getSearchKeywords(String title, String lyric){
+    final fullStr = '$title $lyric';
+    return SearchKeywords.get(fullStr);
   }
 }

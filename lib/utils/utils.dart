@@ -6,3 +6,4 @@ export 'logger/logger_helper.dart';
 export '/utils/services/services_register.dart';
 export '/utils/constants/sizes.dart';
 export '/utils/debouncer/debouncer.dart';
+export '/utils/search_keywords/get_search_keywords.dart';

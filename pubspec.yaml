@@ -32,6 +32,7 @@ dependencies:
   avatar_glow: ^3.0.1
   cupertino_icons: ^1.0.6
   device_info_plus: ^9.1.1
+  diacritic: ^0.1.5
   dio: ^5.3.3
   flutter:
     sdk: flutter

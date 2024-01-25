@@ -1,4 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/utils/utils.dart';
 
 import '/config/config.dart';
 import '/data/data_sources/interfaces/songs_data_source_interface.dart';
@@ -33,8 +34,22 @@ class SongsLocalSource extends SongsDataSource {
     try {
 
       
-      
-      final q = filters?.query ?? '';
+      final q = SearchKeywords.get(filters?.query ?? '');
+      final qArr = q.split(' ');
+      String partOfRawQury = '';
+      if(qArr.length > 1){
+        for (var i = 0; i < qArr.length; i++) {
+          if(i == 0){
+            partOfRawQury = "(S.${SongsTable.colSearchKeywords} LIKE '%${qArr[i]}%' AND ";
+          }else if(i+1 == qArr.length){
+            partOfRawQury += "S.${SongsTable.colSearchKeywords} LIKE '%${qArr[i]}%' ) ";
+          }else{
+            partOfRawQury += "S.${SongsTable.colSearchKeywords} LIKE '%${qArr[i]}%' AND ";
+          }
+        }
+      }else{
+        partOfRawQury = "S.${SongsTable.colSearchKeywords} LIKE '%$q%' ";
+      }
       
       final songsMapList = await SQLite.instance.rawQuery(
         'SELECT S.*, '
@@ -47,8 +62,7 @@ class SongsLocalSource extends SongsDataSource {
         'S.${SongsTable.colGenreId} = G.${GenresTable.colId} '
         'AND G.isRemoved == 0 '
         'WHERE S.${SongsTable.colIsRemoved} = 0 AND '
-        "(S.${SongsTable.colTitle} LIKE '%$q%' OR "
-        "S.${SongsTable.colLyric} LIKE '%$q%') "
+        '$partOfRawQury'
         'LIMIT $limit OFFSET ${limit * (page - 1)} '
       );
       await Future.delayed(Config.manualLocalServicesDelay);
@@ -89,6 +103,8 @@ class SongsLocalSource extends SongsDataSource {
         createSongModel: createSongModel,
         userId: authModel?.userId ?? ''
       );
+
+      song;
       
       final result = await SQLite.instance.insert(
         SongsTable.name, song.toInsertMap()
@@ -168,7 +184,7 @@ class SongsLocalSource extends SongsDataSource {
      try {
 
       final editedSong = editSongModel.toMapWithoutId();
-      final rowsAffected = await  SQLite.instance.update(
+      final rowsAffected = await SQLite.instance.update(
         SongsTable.name, 
         editedSong,
         where: '${SongsTable.colId} = ?',
