@@ -36,7 +36,7 @@ FutureOr<String?> redirect(
     //LandingScreen.routeName,
     LoadingScreen.routeName,
     LoginScreen.routeName,
-    HomeScreen.routeName,
+    SongsListScreen.routeName,
   ];
 
   if (provStateRoutes.contains(goRouterState.fullPath)) {

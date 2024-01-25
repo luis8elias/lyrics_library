@@ -35,15 +35,6 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
     super.initState();
     items = [
       BottomNavigationBarItem(
-        icon: CupertinoIcons.home,
-        onPressed: (context) => {
-          GoRouter.of(context).goNamed(
-            HomeScreen.routeName
-          ),
-        },
-        label: 'Home'
-      ),
-      BottomNavigationBarItem(
         icon: CupertinoIcons.music_note,
         onPressed: (context) => {
           GoRouter.of(context).goNamed(
@@ -51,6 +42,15 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
           ),
         },
         label: 'Songs'
+      ),
+      BottomNavigationBarItem(
+        icon: CupertinoIcons.music_note_list,
+        onPressed: (context) => {
+          GoRouter.of(context).goNamed(
+            SetlistsScreen.routeName
+          ),
+        },
+        label: 'Setlists'
       ),
       BottomNavigationBarItem(
         icon: CupertinoIcons.list_bullet,

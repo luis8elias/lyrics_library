@@ -82,14 +82,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Lenguaje"),
         "moreOptionsScreen_logout":
             MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
+        "moreOptionsScreen_metrics":
+            MessageLookupByLibrary.simpleMessage("Metricas"),
         "moreOptionsScreen_noEmail":
             MessageLookupByLibrary.simpleMessage("Sin correo electrónico"),
         "moreOptionsScreen_noName":
             MessageLookupByLibrary.simpleMessage("Sin nombre"),
         "moreOptionsScreen_scanLyrics":
             MessageLookupByLibrary.simpleMessage("Escanear letras"),
-        "moreOptionsScreen_setlists":
-            MessageLookupByLibrary.simpleMessage("Listas predefinidas"),
         "moreOptionsScreen_title":
             MessageLookupByLibrary.simpleMessage("Más opciones"),
         "registerScreen_confrimPasswordInput":

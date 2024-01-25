@@ -56,7 +56,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
 
     return  Scaffold(
       body: CustomBottomNavBar(
-        selectedIndex: 1,
+        selectedIndex: 0,
         appBar: AppBar(
           centerTitle: true,
           actions: [

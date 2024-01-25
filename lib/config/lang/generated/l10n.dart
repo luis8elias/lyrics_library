@@ -530,11 +530,11 @@ class Lang {
     );
   }
 
-  /// `Setlists`
-  String get moreOptionsScreen_setlists {
+  /// `Metrics`
+  String get moreOptionsScreen_metrics {
     return Intl.message(
-      'Setlists',
-      name: 'moreOptionsScreen_setlists',
+      'Metrics',
+      name: 'moreOptionsScreen_metrics',
       desc: '',
       args: [],
     );

@@ -29,12 +29,12 @@ final routes =  [
   ),
 
   GoRoute(
-    path: HomeScreen.routeName,
-    name: HomeScreen.routeName,
+    path: SetlistsScreen.routeName,
+    name: SetlistsScreen.routeName,
     pageBuilder: (context, state) => buildPageWithDefaultTransition(
       state: state,
       context: context,
-      child: const HomeScreen()
+      child: const SetlistsScreen()
     ),
   ),
 
