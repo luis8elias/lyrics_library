@@ -31,10 +31,9 @@ class SongsTable{
         '${SongsTable.colIsRemoved} INTEGER '
       ')'
     );
-    //_seed(db);
   }
 
-  static Future<void> _seed(Database db) async {
+  static Future<void> seed(Database db) async {
     List<Map<String,dynamic>> songsMaps = await db.query(
       SongsTable.name,
       columns: [SongsTable.colId],

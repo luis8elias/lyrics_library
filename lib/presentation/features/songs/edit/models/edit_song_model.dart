@@ -1,9 +1,8 @@
-
 import 'package:flutter_guid/flutter_guid.dart';
-import 'package:lyrics_library/presentation/features/genres/shared/models/genre_model.dart';
 
-import '/data/models/syncable_model.dart';
 import '/data/models/form_model.dart';
+import '/data/models/syncable_model.dart';
+import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/utils/extensions/string_extensions.dart';
 import '/utils/utils.dart';
 

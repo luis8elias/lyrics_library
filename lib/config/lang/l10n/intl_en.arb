@@ -136,7 +136,38 @@
     "@_SPEECH_TO_TEXT_BOTTOMSHEET": {},
     "spechToTextBotomShet_holdBtn" : "Hold the button and start speaking",
     "spechToTextBotomShet_releaseBtn" : "Now I'm listening... release the stop button",
-    "spechToTextBotomShet_noUnderstand" : "I didn't understand, say it again"
+    "spechToTextBotomShet_noUnderstand" : "I didn't understand, say it again",
+
+
+    "@_SETLISTS_LIST_SCREEN": {},
+    "setlistsListScreen_title" : "Setlists",
+
+
+
+    "@_SETLISTS_CREATE_SCREEN": {},
+    "setlistsCreateScreen_title" : "Create Setlist",
+    "setlistsCreateScreen_nameInput" : "Name",
+    "setlistsCreateScreen_createButtonText" : "Create",
+
+
+
+    "@_SETLISTS_EDIT_SCREEN": {},
+    "setlistsEditScreen_title" : "Edit Setlist",
+    "setlistsEditScreen_nameInput" : "Name",
+
+
+    "@_SETLISTSS_DELETE": {},
+    "setlistsDelete_title" : "Delete setlist?",
+    "setlistsDelete_titlePlural" : "Delete setlists?",
+    "setlistsDelete_deleteButton" : "Delete setlist",
+    "setlistsDelete_deleteButtonPlural" : "Delete {setlistsCount} setlists",
+    "@setlistsDelete_deleteButtonPlural": {
+      "placeholders": {
+        "setlistsCount": {
+          "type": "int"
+        }
+      }
+    }
 
 
 

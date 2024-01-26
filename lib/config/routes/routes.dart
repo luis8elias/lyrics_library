@@ -1,9 +1,8 @@
 import 'package:go_router/go_router.dart';
 
-
-
 import '/config/routes/custom_transiton_page.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
+import '/presentation/features/setlists/shared/models/setlist_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/presentation/presentation.dart';
 
@@ -27,18 +26,6 @@ final routes =  [
       ),
     ]
   ),
-
-  GoRoute(
-    path: SetlistsScreen.routeName,
-    name: SetlistsScreen.routeName,
-    pageBuilder: (context, state) => buildPageWithDefaultTransition(
-      state: state,
-      context: context,
-      child: const SetlistsScreen()
-    ),
-  ),
-
-  
 
   GoRoute(
     path: 
@@ -67,6 +54,30 @@ final routes =  [
         name: ReadSongScreen.routeName,
         builder: (context, state) => ReadSongScreen(
           songModel: state.extra as SongModel,
+        ),
+      ),
+    ]
+  ),
+
+   GoRoute(
+    path: SetlistsScreen.routeName,
+    name: SetlistsScreen.routeName,
+    pageBuilder: (context, state) => buildPageWithDefaultTransition(
+      state: state,
+      context: context,
+      child: const SetlistsScreen()
+    ),
+    routes: [
+      GoRoute(
+        path: CreateSetlistScreen.routePath,
+        name: CreateSetlistScreen.routeName,
+        builder: (context, state) => const CreateSetlistScreen(),
+      ),
+      GoRoute(
+        path: EditSetlistScreen.routePath,
+        name: EditSetlistScreen.routeName,
+        builder: (context, state) =>  EditSetlistScreen(
+          setlistModel: state.extra as SetlistModel,
         ),
       ),
     ]

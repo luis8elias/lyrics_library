@@ -181,10 +181,13 @@ class IconBtn extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Icon(
-              icon,
-              color: selectedIndex ==  index ? theme.primaryColor : theme.colorScheme.onBackground, 
-              size: 20,
+            SizedBox(
+              height: 20,
+              child: Icon(
+                icon,
+                color: selectedIndex ==  index ? theme.primaryColor : theme.colorScheme.onBackground, 
+                size: 20,
+              ),
             ),
             Text(
               _CustomBottomNavBarState.items[index].label,

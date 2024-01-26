@@ -21,10 +21,10 @@ class GenresTable{
         '${GenresTable.colIsRemoved} INTEGER '
       ')'
     );
-    _seed(db);
+    //_seed(db);
   }
 
-  static Future<void> _seed(Database db) async {
+  static Future<void> seed(Database db, String ownerId) async {
     List<Map> maps = await db.query(
       GenresTable.name,
       columns: [GenresTable.colId],
@@ -32,8 +32,8 @@ class GenresTable{
     if(maps.isEmpty ){
       final rowsAffected = await db.insert(GenresTable.name, {
         'id': Guid.newGuid.toString(),
-        'name': 'Demo',
-        'ownerId': Guid.newGuid.toString(),
+        'name': 'Genero demo',
+        'ownerId': ownerId,
         'sync' : 0,
         'isRemoved' : 0
       });

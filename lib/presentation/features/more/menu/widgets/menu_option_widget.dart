@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lyrics_library/utils/constants/sizes.dart';
+
+import '/utils/constants/sizes.dart';
 
 enum MenuRoundedOption{
   top,

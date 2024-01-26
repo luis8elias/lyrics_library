@@ -1,11 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:lyrics_library/presentation/features/auth/shared/models/auth_model.dart';
 
-import '/services/auth_service.dart';
 import '/data/enums/session_status.dart';
+import '/presentation/features/auth/shared/models/auth_model.dart';
+import '/services/auth_service.dart';
 import '/services/session_service.dart';
+import '/utils/db/sqlite.dart';
 
 class SessionProvider extends  ChangeNotifier{
   final SessionService _sessionService;
@@ -59,6 +60,7 @@ class SessionProvider extends  ChangeNotifier{
       return _applyState(SessionState.unauthenticatedUser);
     }
     userSession = authModel;
+    await SQLite.seedTables(authModel.userId);
     return _applyState(SessionState.authenticatedUser);
   }
 

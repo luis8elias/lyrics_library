@@ -130,7 +130,41 @@
     "@_SPEECH_TO_TEXT_BOTTOMSHEET": {},
     "spechToTextBotomShet_holdBtn" : "Presiona el botón y comienza a hablar",
     "spechToTextBotomShet_releaseBtn" : "Ahora estoy escuchando... suelte el botón para detener",
-    "spechToTextBotomShet_noUnderstand" : "No entendí dilo de nuevo"
+    "spechToTextBotomShet_noUnderstand" : "No entendí dilo de nuevo",
+
+
+
+    "@_SETLISTS_LIST_SCREEN": {},
+    "setlistsListScreen_title" : "Listas",
+
+
+
+    "@_SETLISTS_CREATE_SCREEN": {},
+    "setlistsCreateScreen_title" : "Crear lista",
+    "setlistsCreateScreen_nameInput" : "Nombre",
+    "setlistsCreateScreen_createButtonText" : "Crear",
+
+
+
+    "@_SETLISTS_EDIT_SCREEN": {},
+    "setlistsEditScreen_title" : "Editar lista",
+    "setlistsEditScreen_nameInput" : "Nombre",
+
+
+
+    "@_SETLISTSS_DELETE": {},
+    "setlistsDelete_title" : "¿Eliminar lista?",
+    "setlistsDelete_titlePlural" : "¿Eliminar listas?",
+    "setlistsDelete_deleteButton" : "Eliminar lista",
+    "setlistsDelete_deleteButtonPlural" : "Eliminar {setlistsCount} listas",
+    "@setlistsDelete_deleteButtonPlural": {
+      "placeholders": {
+        "setlistsCount": {
+          "type": "int"
+        }
+      }
+    }
+
     
 
 

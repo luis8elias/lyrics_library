@@ -619,6 +619,106 @@ class Lang {
       args: [],
     );
   }
+
+  /// `Setlists`
+  String get setlistsListScreen_title {
+    return Intl.message(
+      'Setlists',
+      name: 'setlistsListScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Setlist`
+  String get setlistsCreateScreen_title {
+    return Intl.message(
+      'Create Setlist',
+      name: 'setlistsCreateScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get setlistsCreateScreen_nameInput {
+    return Intl.message(
+      'Name',
+      name: 'setlistsCreateScreen_nameInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get setlistsCreateScreen_createButtonText {
+    return Intl.message(
+      'Create',
+      name: 'setlistsCreateScreen_createButtonText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Setlist`
+  String get setlistsEditScreen_title {
+    return Intl.message(
+      'Edit Setlist',
+      name: 'setlistsEditScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get setlistsEditScreen_nameInput {
+    return Intl.message(
+      'Name',
+      name: 'setlistsEditScreen_nameInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete setlist?`
+  String get setlistsDelete_title {
+    return Intl.message(
+      'Delete setlist?',
+      name: 'setlistsDelete_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete setlists?`
+  String get setlistsDelete_titlePlural {
+    return Intl.message(
+      'Delete setlists?',
+      name: 'setlistsDelete_titlePlural',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete setlist`
+  String get setlistsDelete_deleteButton {
+    return Intl.message(
+      'Delete setlist',
+      name: 'setlistsDelete_deleteButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete {setlistsCount} setlists`
+  String setlistsDelete_deleteButtonPlural(int setlistsCount) {
+    return Intl.message(
+      'Delete $setlistsCount setlists',
+      name: 'setlistsDelete_deleteButtonPlural',
+      desc: '',
+      args: [setlistsCount],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

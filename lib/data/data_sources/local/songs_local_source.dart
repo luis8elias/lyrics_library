@@ -1,5 +1,4 @@
 import 'package:flutter_guid/flutter_guid.dart';
-import 'package:lyrics_library/utils/utils.dart';
 
 import '/config/config.dart';
 import '/data/data_sources/interfaces/songs_data_source_interface.dart';
@@ -12,6 +11,7 @@ import '/presentation/features/songs/shared/model/song_model.dart';
 import '/utils/db/songs_table.dart';
 import '/utils/db/sqlite.dart';
 import '/utils/logger/logger_helper.dart';
+import '/utils/utils.dart';
 
 class SongsLocalSource extends SongsDataSource {
   SongsLocalSource({required super.sessionService});

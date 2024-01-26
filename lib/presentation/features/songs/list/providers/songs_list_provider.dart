@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_guid/flutter_guid.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:lyrics_library/presentation/features/songs/list/models/songs_filter_model.dart';
-import '/presentation/providers/providers.dart';
 
 import '/config/config.dart';
+import '/presentation/features/songs/list/models/songs_filter_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
+import '/presentation/providers/providers.dart';
 import '/services/songs_service.dart';
 
 class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>{

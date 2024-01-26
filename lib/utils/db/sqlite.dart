@@ -1,10 +1,11 @@
-export '/utils/db/genres_table.dart';
-
-import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '/utils/db/genres_table.dart';
+import '/utils/db/setlists_table.dart';
 import '/utils/db/songs_table.dart';
+
+export '/utils/db/genres_table.dart';
 
 class SQLite{
   static late Database instance;
@@ -19,7 +20,14 @@ class SQLite{
       onCreate: (Database db, int version) async {
         await GenresTable.create(db);
         await SongsTable.create(db);
+        await SetlistsTable.create(db);
       }
     );
+  }
+
+
+  static Future<void> seedTables(String ownerId) async {
+    await GenresTable.seed(instance, ownerId);
+    await SetlistsTable.seed(instance, ownerId);
   }
 }

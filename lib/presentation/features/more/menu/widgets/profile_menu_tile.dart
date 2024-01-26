@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lyrics_library/config/lang/generated/l10n.dart';
 
 import '/app/providers/providers.dart';
+import '/config/lang/generated/l10n.dart';
 import '/utils/constants/sizes.dart';
 
 class ProfileMenuTile extends ConsumerWidget {

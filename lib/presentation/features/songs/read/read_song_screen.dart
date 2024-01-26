@@ -96,9 +96,9 @@ class ReadSongScreen extends ConsumerWidget {
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.only(
-                  left: Sizes.kPadding * 1.5,
-                  right: Sizes.kPadding * 1.5,
-                  bottom: Sizes.kPadding * 1.5,
+                  left: Sizes.kPadding ,
+                  right: Sizes.kPadding ,
+                  bottom: Sizes.kPadding ,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
