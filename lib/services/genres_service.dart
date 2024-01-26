@@ -14,8 +14,12 @@ class GenresService {
     required GenresLocalSource localSource
   }) : _localSource = localSource;
 
-  Future<ResponseModel<List<GenreModel>?>> fetchGenres() async {
-    return _localSource.fetchGenres();
+  Future<ResponseModel<List<GenreModel>?>> fetchGenres({
+    required String query
+  }) async {
+    return _localSource.fetchGenres(
+      query: query
+    );
   }
 
   Future<ResponseModel<GenreModel?>> createGenre({

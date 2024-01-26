@@ -5,24 +5,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/presentation/features/genres/shared/models/genre_model.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/genres/delete/delete_genre_button.dart';
 import '/presentation/features/genres/list/providers/providers.dart';
 import '/presentation/features/genres/list/widgets/genres_leading.dart';
+import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/presentation.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';
 import '/presentation/widgets/providers.dart';
+import '/presentation/widgets/search_input.dart';
 import '/utils/constants/sizes.dart';
 
-class GenresListScreen extends ConsumerWidget {
+class GenresListScreen extends ConsumerStatefulWidget {
   const GenresListScreen({super.key});
 
   static const String routeName = '/genres';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<GenresListScreen> createState() => _GenresListScreenState();
+}
+
+class _GenresListScreenState extends ConsumerState<GenresListScreen> {
+
+  bool showSearchInput = false;
+
+  @override
+  Widget build(BuildContext context) {
 
     final theme = Theme.of(context);
     final lang = Lang.of(context);
@@ -38,7 +47,38 @@ class GenresListScreen extends ConsumerWidget {
           backgroundColor: theme.colorScheme.inverseSurface.withOpacity(0.5),
           leading: const GenresLeading(),
           actions: [
-            Padding(
+            if(!showSearchInput)
+            IconButton(
+              iconSize: 25,
+              onPressed: (){
+                setState(() {
+                  showSearchInput = true;
+                });
+              },
+              icon: Icon(
+                CupertinoIcons.search,
+                color: theme.colorScheme.onBackground,
+              ),
+            ),
+            showSearchInput 
+            ? FadeIn(
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  alignment: Alignment.centerRight,
+                  textStyle: theme.textTheme.labelLarge,
+                ),
+                onPressed: (){
+                  setState(() {
+                    showSearchInput = false;
+                  });
+                  prov.updateQuery('');
+                },
+                child: Text(
+                  lang.actions_cancel
+                ),
+              ),
+            )
+            : Padding(
               padding: const EdgeInsets.only(
                 right: Sizes.kPadding/2
               ),
@@ -61,7 +101,11 @@ class GenresListScreen extends ConsumerWidget {
               ),
             ),
           ],
-          title: Text(
+          title: showSearchInput ? 
+          SearchInput(
+            onChangeSearch: (query) => prov.updateQuery(query),
+          )
+          : Text(
             lang.genresListScreen_title,
             style: theme.textTheme.titleSmall,
           ),

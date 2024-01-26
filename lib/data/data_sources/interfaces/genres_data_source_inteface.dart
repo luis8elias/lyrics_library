@@ -12,7 +12,9 @@ abstract class GenresDataSource{
 
   GenresDataSource({required this.sessionService});
 
-  Future<ResponseModel<List<GenreModel>?>> fetchGenres();
+  Future<ResponseModel<List<GenreModel>?>> fetchGenres({
+    required String query
+  });
   
   Future<ResponseModel<GenreModel?>> createGenre({
     required CreateGenreModel createGenreModel

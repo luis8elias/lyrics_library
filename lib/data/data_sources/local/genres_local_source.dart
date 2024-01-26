@@ -14,13 +14,16 @@ class GenresLocalSource extends GenresDataSource {
   GenresLocalSource({required super.sessionService});
 
   @override
-  Future<ResponseModel<List<GenreModel>?>> fetchGenres() async {
+  Future<ResponseModel<List<GenreModel>?>> fetchGenres({
+    required String query
+  }) async {
 
     try {
       
       final genresMapList = await SQLite.instance.query(
         GenresTable.name,
-        where: '${GenresTable.colIsRemoved} = ?',
+        where: '${GenresTable.colIsRemoved} = ? AND '
+        "${GenresTable.colName} LIKE '%$query%'",
         whereArgs: [0]
       );
       await Future.delayed(Config.manualLocalServicesDelay);

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_guid/flutter_guid.dart';
 import '/data/models/response_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
@@ -15,12 +17,15 @@ class GenresListProvider extends FetchProvider<List<GenreModel>?> with Selectabl
   GenreModel get getFirstGenreSelected => model!.firstWhere(
     (element) => element.id == selectedItems[0]
   );
+  String _query = '';
 
 
 
   @override
   Future<ResponseModel<List<GenreModel>?>> fetchMethod() {
-    return _genresService.fetchGenres();
+    return _genresService.fetchGenres(
+      query: _query
+    );
   }
 
   Future<void> refreshGenres() async{
@@ -66,6 +71,15 @@ class GenresListProvider extends FetchProvider<List<GenreModel>?> with Selectabl
       openCloseSelectItem();
     }
     notifyListeners();
+  }
+
+  void updateQuery(String newQuery){
+    if(newQuery.isEmpty && _query.isEmpty){
+      return;
+    }
+    _query = newQuery;
+    refreshGenres();
+    log('[ GenresListProvider ] Query 👉🏼 $_query');
   }
 
   

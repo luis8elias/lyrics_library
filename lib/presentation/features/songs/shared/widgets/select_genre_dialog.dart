@@ -238,7 +238,9 @@ class _FetchGenresDialogProvider extends FetchProvider<List<GenreModel>?> {
 
   @override
   Future<ResponseModel<List<GenreModel>?>> fetchMethod() {
-    return _genresService.fetchGenres();
+    return _genresService.fetchGenres(
+      query: ''
+    );
   } 
 
   void selectGenre(Guid genreId){
