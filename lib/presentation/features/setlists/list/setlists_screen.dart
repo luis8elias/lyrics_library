@@ -127,31 +127,53 @@ class _SetlistsScreenState extends ConsumerState<SetlistsScreen> {
           ),
         )
         : null,
-        body: FetchProviderBuilder(
-          provider: setlistsListProvider,
-          loaderWidget: const LoadingScreen(),
-          builder:(setlists) {
-            return RefreshIndicator(
-              onRefresh: () => Future.sync(
-                () => prov.refreshSetlists(),
+        body: Column(
+          children: [
+            Container(
+              height: 25,
+              padding: const EdgeInsets.symmetric(
+                horizontal: Sizes.kPadding
               ),
-              child: ListView.separated(
-                separatorBuilder: (context, index) => Container(
-                  height: 0.5,
-                  color: theme.colorScheme.outline,
-                ),
-                itemCount: setlists!.length,
-                itemBuilder: (context, index) => Padding(
-                  padding: EdgeInsets.only(
-                    bottom: (index+1) == setlists.length ? bottomPadding : 0,
-                  ),
-                  child: SetlistTile(
-                    setlistModel: setlists[index]
-                  ),
-                )
+              width: double.infinity,
+              color: theme.colorScheme.inverseSurface.withOpacity(0.5),
+              child: Text(
+                reactiveProv.isSelectItemOpened 
+                ? '${reactiveProv.selectedItems.length} ${lang.app_selectedItems}'
+                : reactiveProv.isModelInitialized ?
+                 '${reactiveProv.model!.length  } ${lang.app_items}'
+                 : '0 ${lang.app_items}',
+                style: theme.textTheme.bodySmall,
               ),
-            );
-          },
+            ),
+            Expanded(
+              child: FetchProviderBuilder(
+                provider: setlistsListProvider,
+                loaderWidget: const LoadingScreen(),
+                builder:(setlists) {
+                  return RefreshIndicator(
+                    onRefresh: () => Future.sync(
+                      () => prov.refreshSetlists(),
+                    ),
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) => Container(
+                        height: 0.5,
+                        color: theme.colorScheme.outline,
+                      ),
+                      itemCount: setlists!.length,
+                      itemBuilder: (context, index) => Padding(
+                        padding: EdgeInsets.only(
+                          bottom: (index+1) == setlists.length ? bottomPadding : 0,
+                        ),
+                        child: SetlistTile(
+                          setlistModel: setlists[index]
+                        ),
+                      )
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -16,6 +16,9 @@ abstract class FetchProvider<T> extends ChangeNotifier {
   FetchStatus status = FetchStatus.loading;
   String message = '';
   late T model;
+  bool isModelInitialized = false;
+
+
 
   void applyStatus(FetchStatus newStatus){
     log('[StatusUpdate💡] prevStatus: [${status.name}] => newStatus: [${newStatus.name}]');
@@ -36,6 +39,8 @@ abstract class FetchProvider<T> extends ChangeNotifier {
       return applyStatus(FetchStatus.failed);
     }
     model = resp.model as T;
+    isModelInitialized = true;
     applyStatus(FetchStatus.success);
+
   }
 }

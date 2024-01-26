@@ -22,6 +22,8 @@
     "app_setlists" : "Setlists",
     "app_genres" : "Genres",
     "app_more" : "More",
+    "app_items" : "Items",
+    "app_selectedItems" : "Selected items",
     
 
 

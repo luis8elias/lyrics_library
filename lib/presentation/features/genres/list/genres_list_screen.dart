@@ -97,106 +97,128 @@ class GenresListScreen extends ConsumerWidget {
           ),
         )
         : null,
-        body: FetchProviderBuilder(
-          provider: genresListProvider,
-          loaderWidget: const LoadingScreen(),
-          builder: (genres){
-            return RefreshIndicator(
-              onRefresh: () => Future.sync(
-                () => prov.refreshGenres(),
+        body: Column(
+          children: [
+            Container(
+              height: 25,
+              padding: const EdgeInsets.symmetric(
+                horizontal: Sizes.kPadding
               ),
-              child: ListView.separated(
-                separatorBuilder: (context, index) => Container(
-                  height: 0.5,
-                  color: theme.colorScheme.outline,
-                ),
-                itemCount: genres!.length,
-                itemBuilder: (context, index) => Padding(
-                  padding: EdgeInsets.only(
-                    bottom: (index+1) == genres.length ? bottomPadding : 0,
-                  ),
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: Sizes.kPadding,
-                      vertical: Sizes.kPadding * 0.3,
+              width: double.infinity,
+              color: theme.colorScheme.inverseSurface.withOpacity(0.5),
+              child: Text(
+                reactiveProv.isSelectItemOpened 
+                ? '${reactiveProv.selectedItems.length} ${lang.app_selectedItems}'
+                : reactiveProv.isModelInitialized ?
+                 '${reactiveProv.model!.length  } ${lang.app_items}'
+                 : '0 ${lang.app_items}',
+                style: theme.textTheme.bodySmall,
+              ),
+            ),
+            Expanded(
+              child: FetchProviderBuilder(
+                provider: genresListProvider,
+                loaderWidget: const LoadingScreen(),
+                builder: (genres){
+                  return RefreshIndicator(
+                    onRefresh: () => Future.sync(
+                      () => prov.refreshGenres(),
                     ),
-                    onTap: prov.isSelectItemOpened  
-                    ? ()=> prov.selectItem(id: genres[index].id)
-                    : ()=> GoRouter.of(context).go(
-                      context.namedLocation(
-                        EditGenreScreen.routeName,
-                        pathParameters: {
-                          'gid': genres[index].id.toString()
-                        },
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) => Container(
+                        height: 0.5,
+                        color: theme.colorScheme.outline,
                       ),
-                      extra: genres[index]
-                    ),
-                    onLongPress: prov.isSelectItemOpened 
-                    ? null 
-                    : ()=> prov.openCloseSelectItem(
-                      id: genres[index].id
-                    ),
-                    leading: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if(reactiveProv.isSelectItemOpened)
-                        FadeInLeft(
-                          duration: const Duration(milliseconds: 100),
-                          child: CupertinoCheckbox(
-                            checkColor: theme.colorScheme.onPrimary,
-                            activeColor: theme.colorScheme.primary,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
+                      itemCount: genres!.length,
+                      itemBuilder: (context, index) => Padding(
+                        padding: EdgeInsets.only(
+                          bottom: (index+1) == genres.length ? bottomPadding : 0,
+                        ),
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: Sizes.kPadding,
+                            vertical: Sizes.kPadding * 0.5,
+                          ),
+                          onTap: prov.isSelectItemOpened  
+                          ? ()=> prov.selectItem(id: genres[index].id)
+                          : ()=> GoRouter.of(context).go(
+                            context.namedLocation(
+                              EditGenreScreen.routeName,
+                              pathParameters: {
+                                'gid': genres[index].id.toString()
+                              },
                             ),
-                            value: reactiveProv.selectedItems.contains(genres[index].id), 
-                            onChanged: (value){
-                              prov.selectItem(
-                                id: genres[index].id
-                              );
-                            },
+                            extra: genres[index]
                           ),
-                        ),
-                        
-                        if(reactiveProv.isSelectItemOpened)
-                        const SizedBox(
-                          width: Sizes.kPadding,
-                        ),
-                        
-                        reactiveProv.isSelectItemOpened 
-                        ? FadeInLeft(
-                          duration: const Duration(milliseconds: 100),
-                          child: _GenreTileLeading(
-                            genreModel: genres[index],
+                          onLongPress: prov.isSelectItemOpened 
+                          ? null 
+                          : ()=> prov.openCloseSelectItem(
+                            id: genres[index].id
                           ),
-                        )
-                        : FadeInRight(
-                          duration: const Duration(milliseconds: 100),
-                          child: _GenreTileLeading(
-                            genreModel: genres[index],
+                          leading: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              if(reactiveProv.isSelectItemOpened)
+                              FadeInLeft(
+                                duration: const Duration(milliseconds: 100),
+                                child: CupertinoCheckbox(
+                                  checkColor: theme.colorScheme.onPrimary,
+                                  activeColor: theme.colorScheme.primary,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
+                                  ),
+                                  value: reactiveProv.selectedItems.contains(genres[index].id), 
+                                  onChanged: (value){
+                                    prov.selectItem(
+                                      id: genres[index].id
+                                    );
+                                  },
+                                ),
+                              ),
+                              
+                              if(reactiveProv.isSelectItemOpened)
+                              const SizedBox(
+                                width: Sizes.kPadding,
+                              ),
+                              
+                              reactiveProv.isSelectItemOpened 
+                              ? FadeInLeft(
+                                duration: const Duration(milliseconds: 100),
+                                child: _GenreTileLeading(
+                                  genreModel: genres[index],
+                                ),
+                              )
+                              : FadeInRight(
+                                duration: const Duration(milliseconds: 100),
+                                child: _GenreTileLeading(
+                                  genreModel: genres[index],
+                                ),
+                              ),
+                            ],
                           ),
+                          title: reactiveProv.isSelectItemOpened 
+                          ? FadeInLeft(
+                            duration: const Duration(milliseconds: 100),
+                            child: Text(
+                              genres[index].name,
+                              style: theme.textTheme.displaySmall,
+                            ),
+                          )
+                          : FadeInRight(
+                            duration: const Duration(milliseconds: 100),
+                            child: Text(
+                              genres[index].name,
+                              style: theme.textTheme.displaySmall,
+                            ),
+                          ) ,
                         ),
-                      ],
+                      ),
                     ),
-                    title: reactiveProv.isSelectItemOpened 
-                    ? FadeInLeft(
-                      duration: const Duration(milliseconds: 100),
-                      child: Text(
-                        genres[index].name,
-                        style: theme.textTheme.displaySmall,
-                      ),
-                    )
-                    : FadeInRight(
-                      duration: const Duration(milliseconds: 100),
-                      child: Text(
-                        genres[index].name,
-                        style: theme.textTheme.displaySmall,
-                      ),
-                    ) ,
-                  ),
-                ),
+                  );
+                },
               ),
-            );
-          },
+            ),
+          ],
         )
       )
     );

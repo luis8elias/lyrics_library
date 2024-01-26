@@ -149,11 +149,22 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
         : null,
         body: Column(
           children: [
-            // if(showSearchInput) 
-            // Container(
-            //   color: theme.colorScheme.inverseSurface.withOpacity(0.5),
-            //   height: 50,
-            // ),
+            Container(
+              height: 25,
+              padding: const EdgeInsets.symmetric(
+                horizontal: Sizes.kPadding
+              ),
+              width: double.infinity,
+              color: theme.colorScheme.inverseSurface.withOpacity(0.5),
+              child: Text(
+                reactiveProv.isSelectItemOpened 
+                ? '${reactiveProv.selectedItems.length} ${lang.app_selectedItems}'
+                : 
+                 '${reactiveProv.totalSongs} ${lang.app_items}'
+                 ,
+                style: theme.textTheme.bodySmall,
+              ),
+            ),
             Expanded(
               child: RefreshIndicator(
                 onRefresh: () => Future.sync(

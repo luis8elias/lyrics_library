@@ -140,6 +140,26 @@ class Lang {
     );
   }
 
+  /// `Items`
+  String get app_items {
+    return Intl.message(
+      'Items',
+      name: 'app_items',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selected items`
+  String get app_selectedItems {
+    return Intl.message(
+      'Selected items',
+      name: 'app_selectedItems',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Edit`
   String get actions_edit {
     return Intl.message(

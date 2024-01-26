@@ -17,6 +17,10 @@ class SongsAppBarLeading extends ConsumerWidget {
     final theme = Theme.of(context);
 
     try {
+      
+      if(reactiveProv.totalSongs == 0){
+        return const SizedBox.shrink();
+      }
 
       if(reactiveProv.isSelectItemOpened){
         return TextButton(
