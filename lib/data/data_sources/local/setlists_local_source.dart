@@ -15,13 +15,17 @@ class SetlistsLocalSource extends SetlistsDataSource {
   SetlistsLocalSource({required super.sessionService});
 
   @override
-  Future<ResponseModel<List<SetlistModel>?>> fetchSetlists() async{
+  Future<ResponseModel<List<SetlistModel>?>> fetchSetlists({
+    required String query
+  }) async{
     try {
       
       final setlistsMapList = await SQLite.instance.query(
         SetlistsTable.name,
-        where: '${SetlistsTable.colIsRemoved} = ?',
-        whereArgs: [0]
+        where: '${SetlistsTable.colIsAllowToRemove} = ? OR '
+        '( ${SetlistsTable.colIsRemoved} = ? AND '
+        "${SetlistsTable.colName} LIKE '%$query%' )",
+        whereArgs: [0, 0]
       );
       await Future.delayed(Config.manualLocalServicesDelay);
       return ResponseModel(

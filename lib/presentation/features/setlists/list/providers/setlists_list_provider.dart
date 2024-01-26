@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_guid/flutter_guid.dart';
 
 import '/data/models/response_model.dart';
@@ -16,12 +18,15 @@ class SetlistsListProvider extends FetchProvider<List<SetlistModel>?> with Selec
   SetlistModel get getFirstSetlistSelected => model!.firstWhere(
     (element) => element.id == selectedItems[0]
   );
+  String _query = '';
 
 
 
   @override
   Future<ResponseModel<List<SetlistModel>?>> fetchMethod() {
-    return _setlistsService.fetchSetlists();
+    return _setlistsService.fetchSetlists(
+      query: _query
+    );
   }
 
   Future<void> refreshSetlists() async{
@@ -67,6 +72,15 @@ class SetlistsListProvider extends FetchProvider<List<SetlistModel>?> with Selec
       openCloseSelectItem();
     }
     notifyListeners();
+  }
+
+  void updateQuery(String newQuery){
+    if(newQuery.isEmpty && _query.isEmpty){
+      return;
+    }
+    _query = newQuery;
+    refreshSetlists();
+    log('[ SetlistsListProvider ] Query 👉🏼 $_query');
   }
 
   

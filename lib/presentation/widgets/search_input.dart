@@ -1,12 +1,13 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'speech_to_text_bottom_sheet.dart';
 
+import '/config/lang/generated/l10n.dart';
+import '/presentation/widgets/speech_to_text_bottom_sheet.dart';
 import '/utils/utils.dart';
 
-class SearchSongInput extends StatefulWidget {
-  const SearchSongInput({
+class SearchInput extends StatefulWidget {
+  const SearchInput({
     super.key,
     required this.onChangeSearch
   });
@@ -14,10 +15,10 @@ class SearchSongInput extends StatefulWidget {
   final void Function(String query) onChangeSearch;
 
   @override
-  State<SearchSongInput> createState() => _SearchSongInputState();
+  State<SearchInput> createState() => _SearchInputState();
 }
 
-class _SearchSongInputState extends State<SearchSongInput> {
+class _SearchInputState extends State<SearchInput> {
   late TextEditingController controller;
   late FocusNode focusNode;
 
@@ -40,6 +41,7 @@ class _SearchSongInputState extends State<SearchSongInput> {
   Widget build(BuildContext context) {
 
     final theme = Theme.of(context);
+    final lang = Lang.of(context);
 
     return FadeIn(
       child: SizedBox(
@@ -105,7 +107,7 @@ class _SearchSongInputState extends State<SearchSongInput> {
             contentPadding: const EdgeInsets.only(
               left: 15,
             ),
-            hintText: 'Buscar',
+            hintText: lang.actions_search,
             hintStyle: theme.textTheme.bodyLarge!.copyWith(
               color: theme.colorScheme.outline,
             ),

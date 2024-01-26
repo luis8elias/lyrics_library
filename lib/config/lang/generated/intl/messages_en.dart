@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "actions_edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "actions_ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "actions_save": MessageLookupByLibrary.simpleMessage("Save"),
+        "actions_search": MessageLookupByLibrary.simpleMessage("Search"),
         "genresCreateScreen_createButtonText":
             MessageLookupByLibrary.simpleMessage("Create"),
         "genresCreateScreen_nameInput":

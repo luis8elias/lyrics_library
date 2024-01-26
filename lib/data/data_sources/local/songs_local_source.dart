@@ -10,7 +10,6 @@ import '/presentation/features/songs/list/models/songs_list_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/utils/db/songs_table.dart';
 import '/utils/db/sqlite.dart';
-import '/utils/logger/logger_helper.dart';
 import '/utils/utils.dart';
 
 class SongsLocalSource extends SongsDataSource {

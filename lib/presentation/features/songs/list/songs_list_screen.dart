@@ -7,7 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
-import '/presentation/features/songs/list/widgets/search_song_input.dart';
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/songs/delete/delete_song_button.dart';
 import '/presentation/features/songs/list/providers/providers.dart';
@@ -21,6 +20,7 @@ import '/presentation/features/songs/list/widgets/songs_appbar_leading.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/presentation/presentation.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';
+import '/presentation/widgets/search_input.dart';
 import '/utils/utils.dart';
 
 class SongsListScreen extends ConsumerStatefulWidget {
@@ -103,7 +103,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
             ),
           ],
           title: showSearchInput ? 
-          SearchSongInput(
+          SearchInput(
             onChangeSearch: (query) => prov.updateFilters((filters) {
               return filters.copyWith(
                 query: query

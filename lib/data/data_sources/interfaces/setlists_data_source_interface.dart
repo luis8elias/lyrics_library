@@ -12,7 +12,9 @@ abstract class SetlistsDataSource{
 
   SetlistsDataSource({required this.sessionService});
 
-  Future<ResponseModel<List<SetlistModel>?>> fetchSetlists();
+  Future<ResponseModel<List<SetlistModel>?>> fetchSetlists({
+    required String query
+  });
   
   Future<ResponseModel<SetlistModel?>> createSetlist({
     required CreateSetlistModel createSetlistModel

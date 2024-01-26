@@ -124,6 +124,7 @@ class SetlistTile extends ConsumerWidget {
           style: theme.textTheme.bodySmall,
         ),
       ),
+      trailing: !setlistModel.allowToRemoveBool ? const Icon(CupertinoIcons.pin_fill) : null,
     );
   }
 }

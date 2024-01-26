@@ -150,6 +150,16 @@ class Lang {
     );
   }
 
+  /// `Search`
+  String get actions_search {
+    return Intl.message(
+      'Search',
+      name: 'actions_search',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Loading...`
   String get loadingScreen_loading {
     return Intl.message(

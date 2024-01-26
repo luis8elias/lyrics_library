@@ -12,19 +12,28 @@ import '/presentation/features/setlists/list/providers/providers.dart';
 import '/presentation/features/setlists/list/widgets/setlist_tile.dart';
 import '/presentation/features/setlists/list/widgets/setlists_leading.dart';
 import '/presentation/widgets/providers.dart';
+import '/presentation/widgets/search_input.dart';
 import '/presentation/widgets/widgets.dart';
 import '/utils/constants/sizes.dart';
 import '/utils/utils.dart';
 import 'widgets/create_setlist_btn.dart';
 
-class SetlistsScreen extends ConsumerWidget {
+class SetlistsScreen extends ConsumerStatefulWidget {
   const SetlistsScreen({super.key});
 
   
   static const String routeName = '/setlists';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SetlistsScreen> createState() => _SetlistsScreenState();
+}
+
+class _SetlistsScreenState extends ConsumerState<SetlistsScreen> {
+
+  bool showSearchInput = false;
+
+  @override
+  Widget build(BuildContext context) {
 
     final theme = Theme.of(context);
     final lang = Lang.of(context);
@@ -39,25 +48,53 @@ class SetlistsScreen extends ConsumerWidget {
           centerTitle: true,
           leading: const SetlistsLeading(),
           actions: [
+            if(!showSearchInput)
             IconButton(
               iconSize: 25,
-              onPressed: (){},
+              onPressed: (){
+                setState(() {
+                  showSearchInput = true;
+                });
+              },
               icon: Icon(
                 CupertinoIcons.search,
                 color: theme.colorScheme.onBackground,
               ),
             ),
-            const Padding(
+            showSearchInput 
+            ? FadeIn(
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  alignment: Alignment.centerRight,
+                  textStyle: theme.textTheme.labelLarge,
+                ),
+                onPressed: (){
+                  setState(() {
+                    showSearchInput = false;
+                  });
+                  prov.updateQuery('');
+                },
+                child: Text(
+                  lang.actions_cancel
+                ),
+              ),
+            )
+            : const Padding(
               padding: EdgeInsets.only(
-                right: Sizes.kPadding/2
+                right: Sizes.kPadding / 2,
               ),
               child: CreateSetlistBtn()
             ),
+            
           ],
-          title: Text(
+          title: showSearchInput ? 
+          SearchInput(
+            onChangeSearch: (query) => prov.updateQuery(query),
+          )
+          : Text(
             lang.setlistsListScreen_title,
             style: theme.textTheme.titleSmall,
-          )
+          ),
         ),
         buttonBottomRow: prov.isSelectItemOpened 
         ? FadeInUp(

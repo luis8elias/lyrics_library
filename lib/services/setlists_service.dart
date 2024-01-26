@@ -13,8 +13,12 @@ class SetlistsService {
     required SetlistsLocalSource localSource
   }) : _localSource = localSource;
 
-  Future<ResponseModel<List<SetlistModel>?>> fetchSetlists() async {
-    return _localSource.fetchSetlists();
+  Future<ResponseModel<List<SetlistModel>?>> fetchSetlists({
+    required query
+  }) async {
+    return _localSource.fetchSetlists(
+      query: query
+    );
   }
 
   Future<ResponseModel<SetlistModel?>> createSetlist({
