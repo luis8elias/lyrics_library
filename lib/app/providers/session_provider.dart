@@ -60,8 +60,8 @@ class SessionProvider extends  ChangeNotifier{
       return _applyState(SessionState.unauthenticatedUser);
     }
     userSession = authModel;
+    _applyState(SessionState.authenticatedUser);
     await SQLite.seedTables(authModel.userId);
-    return _applyState(SessionState.authenticatedUser);
   }
 
 

@@ -116,9 +116,12 @@ class MoreOptionsScreen extends ConsumerWidget {
                     ? null 
                     : ()=> sessionProv.logoutUser(),
                     trailing: sessionProv.isLoadingLogout 
-                    ? const CleanLoaderWidget(
-                      iosSize: 10,
-                      androidSize: 20,
+                    ? const SizedBox(
+                      width: 20,
+                      child: CleanLoaderWidget(
+                        iosSize: 10,
+                        androidSize: 20,
+                      ),
                     )
                     : Icon(
                       Icons.logout_outlined,

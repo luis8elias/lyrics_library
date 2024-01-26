@@ -26,7 +26,7 @@ class BasicButton extends StatelessWidget {
     final theme = Theme.of(context);
 
     final loadingChild = SizedBox(
-      height: Platform.isIOS ? 10 : 20,
+      height: Platform.isIOS ? 16 : 20,
       child: LoadingWidget(
         iosSize: 10,
         androidSize: 20,
