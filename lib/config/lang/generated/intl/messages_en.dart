@@ -37,6 +37,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "actions_ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "actions_save": MessageLookupByLibrary.simpleMessage("Save"),
         "actions_search": MessageLookupByLibrary.simpleMessage("Search"),
+        "app_favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
+        "app_genres": MessageLookupByLibrary.simpleMessage("Genres"),
+        "app_more": MessageLookupByLibrary.simpleMessage("More"),
+        "app_setlists": MessageLookupByLibrary.simpleMessage("Setlists"),
+        "app_songs": MessageLookupByLibrary.simpleMessage("Songs"),
         "genresCreateScreen_createButtonText":
             MessageLookupByLibrary.simpleMessage("Create"),
         "genresCreateScreen_nameInput":

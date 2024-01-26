@@ -90,6 +90,56 @@ class Lang {
     );
   }
 
+  /// `Favorites`
+  String get app_favorites {
+    return Intl.message(
+      'Favorites',
+      name: 'app_favorites',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Songs`
+  String get app_songs {
+    return Intl.message(
+      'Songs',
+      name: 'app_songs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Setlists`
+  String get app_setlists {
+    return Intl.message(
+      'Setlists',
+      name: 'app_setlists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Genres`
+  String get app_genres {
+    return Intl.message(
+      'Genres',
+      name: 'app_genres',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `More`
+  String get app_more {
+    return Intl.message(
+      'More',
+      name: 'app_more',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Edit`
   String get actions_edit {
     return Intl.message(

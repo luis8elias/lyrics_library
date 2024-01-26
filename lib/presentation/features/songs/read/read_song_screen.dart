@@ -73,8 +73,8 @@ class ReadSongScreen extends ConsumerWidget {
               ),
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                    bottom: 2
+                  padding: EdgeInsets.only(
+                    bottom: Platform.isIOS ? 0: 2
                   ),
                   child: Text(
                     songModel.genreModel?.name ?? '',
@@ -86,6 +86,9 @@ class ReadSongScreen extends ConsumerWidget {
                   ),
                 ),
               ),
+            ),
+            const SizedBox(
+              height: 6,
             ),
           ],
         ),
@@ -111,6 +114,9 @@ class ReadSongScreen extends ConsumerWidget {
                       style: TextStyle(
                         color: theme.colorScheme.onSurface
                       ),
+                    ),
+                    const SizedBox(
+                      height: Sizes.kPadding,
                     ),
                   ],
                 ),

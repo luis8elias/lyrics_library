@@ -175,6 +175,12 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                         bottom: (index+1) == prov.totalSongs ? bottomPadding : 0.0,
                       ),
                       child: ListTile(
+                        contentPadding: const EdgeInsets.only(
+                          left: Sizes.kPadding,
+                          right: Sizes.kPadding * 0.5,
+                          top: Sizes.kPadding * 0.5,
+                          bottom: Sizes.kPadding * 0.5
+                        ),
                         onTap: (){
                           if( !reactiveProv.isSelectItemOpened ){
                             GoRouter.of(context).go(
@@ -202,7 +208,14 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                           child: SongLeading(songModel: song),
                         ) : null,
                         title: SongTitle(title: song.title),
-                        subtitle: song.genreModel != null ? SongSubtitle(songModel: song): null
+                        subtitle: song.genreModel != null ? SongSubtitle(songModel: song): null,
+                        trailing: FadeInRight(
+                          duration: const Duration(milliseconds: 100),
+                          child: IconButton(
+                            onPressed: (){}, 
+                            icon: const Icon(CupertinoIcons.heart)
+                          ),
+                        ),
                       ));
                     },
                   ),

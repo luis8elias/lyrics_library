@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/config/lang/generated/l10n.dart';
 
 import '/presentation/presentation.dart';
 import '/utils/constants/sizes.dart';
@@ -33,6 +34,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
   @override
   void initState() {
     super.initState();
+    final lang = Lang.current;
     items = [
       BottomNavigationBarItem(
         icon: CupertinoIcons.music_note,
@@ -41,7 +43,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             SongsListScreen.routeName
           ),
         },
-        label: 'Songs'
+        label: lang.app_songs
       ),
       BottomNavigationBarItem(
         icon: CupertinoIcons.music_note_list,
@@ -50,16 +52,16 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             SetlistsScreen.routeName
           ),
         },
-        label: 'Setlists'
+        label: lang.app_setlists
       ),
       BottomNavigationBarItem(
-        icon: CupertinoIcons.list_bullet,
+        icon: CupertinoIcons.collections,
         onPressed: (context) => {
           GoRouter.of(context).goNamed(
            GenresListScreen.routeName
           )
         },
-        label: 'Genres'
+        label: lang.app_genres
       ),
       BottomNavigationBarItem(
         icon: CupertinoIcons.ellipsis_vertical,
@@ -68,7 +70,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
             MoreOptionsScreen.routeName
           );
         },
-        label: 'More'
+        label: lang.app_more
       )
     ];
   } 

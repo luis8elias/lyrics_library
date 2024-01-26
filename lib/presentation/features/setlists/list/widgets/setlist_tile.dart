@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lyrics_library/config/lang/generated/l10n.dart';
 
 import '/presentation/features/setlists/list/providers/providers.dart';
 import '/presentation/features/setlists/shared/models/setlist_model.dart';
@@ -48,7 +49,6 @@ class SetlistTile extends ConsumerWidget {
       leading: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-
           if(reactiveProv.isSelectItemOpened)
           FadeInLeft(
             duration: const Duration(milliseconds: 100),
@@ -124,7 +124,12 @@ class SetlistTile extends ConsumerWidget {
           style: theme.textTheme.bodySmall,
         ),
       ),
-      trailing: !setlistModel.allowToRemoveBool ? const Icon(CupertinoIcons.pin_fill) : null,
+      trailing: !setlistModel.allowToRemoveBool ? 
+      FadeInRight(
+        duration: const Duration(milliseconds: 100),
+        child: const Icon(CupertinoIcons.pin_fill),
+      ) 
+      : null,
     );
   }
 }
@@ -183,9 +188,10 @@ class _SetlistTileTitle extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final theme = Theme.of(context);
+    final lang = Lang.of(context);
 
     return Text(
-      setlistModel.allowToRemoveBool ? setlistModel.name : 'Favorites',
+      setlistModel.allowToRemoveBool ? setlistModel.name : lang.app_favorites,
       style: theme.textTheme.displaySmall,
     );
   }

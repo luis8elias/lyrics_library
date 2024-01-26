@@ -16,6 +16,16 @@
 
 
     
+    "@_APP": {},
+    "app_favorites" : "Favorites",
+    "app_songs" : "Songs",
+    "app_setlists" : "Setlists",
+    "app_genres" : "Genres",
+    "app_more" : "More",
+    
+
+
+    
     "@_ACTIONS": {},
     "actions_edit" : "Edit",
     "actions_delete" : "Delete",
