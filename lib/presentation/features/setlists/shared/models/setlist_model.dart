@@ -11,7 +11,15 @@ class SetlistModel extends SyncableModel{
   final Guid ownerId;
   final int allowToRemove;
 
- String get idAsStr => id.toString();
+  String get idAsStr => id.toString();
+
+  String get nameInitials { 
+    final nameArr = name.split(' ');
+    if(nameArr.length > 1){
+      return '${nameArr[0][0].toUpperCase()}${nameArr[1][0].toUpperCase()}';
+    }
+    return name[0].toUpperCase();
+  }
 
 
   SetlistModel({

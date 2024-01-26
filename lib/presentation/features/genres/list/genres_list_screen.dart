@@ -251,9 +251,9 @@ class _GenreTileLeading extends StatelessWidget {
       child: 
       Center(
         child: Text(
-          genreModel.name[0].toUpperCase(),
+          genreModel.nameInitials,
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 18,
             color: theme.colorScheme.onBackground,
             fontWeight: FontWeight.bold
           ),

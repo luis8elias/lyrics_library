@@ -160,9 +160,9 @@ class _SetlistTileLeading extends StatelessWidget {
       child: setlistModel.allowToRemoveBool ?
       Center(
         child: Text(
-          setlistModel.name[0].toUpperCase(),
+          setlistModel.nameInitials,
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 18,
             color: theme.colorScheme.onBackground,
             fontWeight: FontWeight.bold
           ),

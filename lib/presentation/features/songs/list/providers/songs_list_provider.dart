@@ -57,6 +57,7 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
       _pagingController.appendPage(response.model!.items, nextPage);
     }
     totalSongs = response.model!.totalSongs;
+    notifyListeners();
   }
 
 
