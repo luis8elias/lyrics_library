@@ -34,14 +34,14 @@ class CreateSetlistScreen extends ConsumerWidget {
             setlistModel: model!
           );
         },
-        child: const _CreateGenreScreenUI()
+        child: const _CreateSetlistScreenUI()
       ),
     );
   }
 }
 
-class _CreateGenreScreenUI extends ConsumerWidget {
-  const _CreateGenreScreenUI();
+class _CreateSetlistScreenUI extends ConsumerWidget {
+  const _CreateSetlistScreenUI();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
