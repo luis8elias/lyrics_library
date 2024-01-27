@@ -13,7 +13,7 @@ class EditSongModel extends SyncableModel implements FormModel {
   final String? lyric;
   final Guid?  ownerId;
   final GenreModel? genre;
-  final bool? isFavorite;
+  final int? isFavorite;
 
 
   EditSongModel({
@@ -71,7 +71,7 @@ class EditSongModel extends SyncableModel implements FormModel {
     String? title,
     String? lyric,
     Guid?  ownerId,
-    bool? isFavorite,
+    int? isFavorite,
     GenreModel? genre,
   }) {
     return EditSongModel(
