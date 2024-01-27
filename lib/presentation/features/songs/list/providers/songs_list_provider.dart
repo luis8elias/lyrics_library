@@ -112,6 +112,19 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
     songsController.refresh();
     log('[ SongsListProvider ] Model 👉🏼 ${_filters.toMap().toString()}');
   }
+
+  void toggleFavoriteSong({
+    required SongModel songModel
+  }){
+    final index = _pagingController.itemList!.indexWhere(
+      (song) => song.id == songModel.id
+    );
+    _pagingController.itemList![index] = songModel;
+    if(isSelectItemOpened){
+      openCloseSelectItem();
+    }
+    notifyListeners();
+  }
   
 
   

@@ -23,13 +23,11 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
     required Guid setlistId, 
     required String query
   }) {
-    // TODO: implement fetchsSongsBySetlistId
     throw UnimplementedError();
   }
 
   @override
   Future<ResponseModel<SongModel?>> addSongsToSetlist() {
-    // TODO: implement addSongsToSetlist
     throw UnimplementedError();
   }
 
@@ -37,7 +35,6 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
   Future<ResponseModel<String>> deleteSongsFromSetlist({
     required List<Guid> songsIds
   }) {
-    // TODO: implement deleteSongsFromSetlist
     throw UnimplementedError();
   }
  

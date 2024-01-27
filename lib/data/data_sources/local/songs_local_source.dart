@@ -230,4 +230,51 @@ class SongsLocalSource extends SongsDataSource {
 
     }
   }
+  
+  @override
+  Future<ResponseModel<SongModel?>> toogleIsFavorite({
+    required SongModel songModel
+  }) async{
+
+    final isFavorite = songModel.isFavoriteAsBool;
+
+
+    try {
+      
+      final newValue = songModel.isFavoriteAsBool ? 0 : 1;
+      await Future.delayed(Config.manualLocalServicesDelay);
+      final isUpdated = await SQLite.instance.rawQuery(
+        'UPDATE ${SongsTable.name}  '
+        'SET ${SongsTable.colIsFavorite} = $newValue '
+        'WHERE ${SongsTable.colId} = ? ',
+        [songModel.id.toString()]
+      );
+
+      print(isUpdated);
+
+      
+
+      return ResponseModel(
+        success: true, 
+        message: 'Canción editada' ,
+        model: songModel.copyWith(
+          isFavorite: isFavorite ? 0 : 1
+        )
+      );
+      
+
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en SongsLocalSource método [toogleIsFavorite]');
+
+      return ResponseModel(
+        success: false,
+        message: isFavorite 
+        ? 'Ocurrió un problema al remover de favoritos'
+        : 'Ocurrió un problema al agregar a favoritos'
+      );
+      
+    }
+  }
 }

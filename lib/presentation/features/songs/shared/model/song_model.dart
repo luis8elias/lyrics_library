@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_guid/flutter_guid.dart';
 
 import '/data/models/syncable_model.dart';
@@ -6,15 +7,17 @@ import '/presentation/features/songs/create/models/create_song_model.dart';
 import '/utils/extensions/string_extensions.dart';
 import '/utils/utils.dart';
 
-class SongModel extends SyncableModel{
+class SongModel extends SyncableModel {
   final Guid id;
   final String title;
   final String lyric;
   final Guid ownerId;
   final GenreModel? genreModel;
   final bool isNew;
+  final int isFavorite;
 
   String? get genreIdAsStr => genreModel?.idAsStr;
+  bool get isFavoriteAsBool => isFavorite == 1;
 
   SongModel({
     super.isRemoved, 
@@ -24,6 +27,7 @@ class SongModel extends SyncableModel{
     required this.lyric, 
     required this.ownerId, 
     required this.genreModel,
+    required this.isFavorite,
     this.isNew = false,
   });
 
@@ -35,7 +39,8 @@ class SongModel extends SyncableModel{
       'ownerId': ownerId.toString(),
       'sync' : isSync,
       'genre': genreModel?.toMap(),
-      'isRemoved': isRemoved
+      'isRemoved': isRemoved,
+      'isFavorite' : isFavorite
     };
   }
 
@@ -49,6 +54,7 @@ class SongModel extends SyncableModel{
       'genreId': genreModel?.id.toString(),
       'sync' : isSync,
       'isRemoved': isRemoved,
+      'isFavorite' : isFavorite 
     };
   }
 
@@ -60,7 +66,8 @@ class SongModel extends SyncableModel{
       ownerId: Guid(map['ownerId']),
       genreModel: map['genreName'] != null ? GenreModel.fromSongMap(map) : null,
       isSync: map['sync'],
-      isRemoved: map['isRemoved']
+      isRemoved: map['isRemoved'],
+      isFavorite: map['isFavorite']
     );
   }
 
@@ -77,7 +84,8 @@ class SongModel extends SyncableModel{
       genreModel: createSongModel.genre,
       isRemoved: 0,
       isSync: 0,
-      isNew: true
+      isNew: true,
+      isFavorite: 0
     );
   }
 
@@ -92,4 +100,18 @@ class SongModel extends SyncableModel{
     return SearchKeywords.get(fullStr);
   }
   
+
+  SongModel copyWith({
+    int? isFavorite,
+  }) {
+    return SongModel(
+      id: id,
+      title: title,
+      lyric: lyric,
+      ownerId: ownerId ,
+      genreModel: genreModel ,
+      isNew: isNew,
+      isFavorite: isFavorite ?? this.isFavorite,
+    );
+  }
 }

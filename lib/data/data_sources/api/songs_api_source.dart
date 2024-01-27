@@ -16,7 +16,8 @@ class SongsApiSource extends SongsDataSource{
     return SongModel(
       id: Guid.newGuid, 
       title: name, 
-      lyric: 'demo', 
+      lyric: 'demo',
+      isFavorite: 0,
       ownerId: Guid(ownerId), 
       genreModel: GenreModel(
         id: Guid.newGuid, 
@@ -90,6 +91,13 @@ class SongsApiSource extends SongsDataSource{
   @override
   Future<ResponseModel<SongModel?>> editSong({
     required EditSongModel editSongModel
+  }) {
+    throw UnimplementedError();
+  }
+  
+  @override
+  Future<ResponseModel<SongModel?>> toogleIsFavorite({
+    required SongModel songModel
   }) {
     throw UnimplementedError();
   }

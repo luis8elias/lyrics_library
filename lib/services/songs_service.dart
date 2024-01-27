@@ -55,4 +55,12 @@ class SongsService{
     );
   }
 
+  Future<ResponseModel<SongModel?>> toogleIsFavorite({
+    required SongModel songModel,
+  }) async {
+    return _localSource.toogleIsFavorite(
+      songModel: songModel
+    );
+  }
+
 }

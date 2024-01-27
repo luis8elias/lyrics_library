@@ -7,7 +7,6 @@ class SetlistSongsTable{
   static const colSongId = 'songId';
   static const colIndexOrder = 'indexOrder';
   static const colOwnerId = 'ownerId';
-  static const colIsFavorite = 'isFavorite';
   static const colSync = 'sync';
   
 
@@ -19,7 +18,6 @@ class SetlistSongsTable{
         '${SetlistSongsTable.colSongId} TEXT, '
         '${SetlistSongsTable.colIndexOrder} INTEGER, '
         '${SetlistSongsTable.colOwnerId} TEXT, '
-        '${SetlistSongsTable.colIsFavorite} INTEGER, '
         '${SetlistSongsTable.colSync} INTEGER '
       ')'
     );

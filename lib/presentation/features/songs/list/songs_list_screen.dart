@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:lyrics_library/presentation/features/songs/list/widgets/like_song_button.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/songs/delete/delete_song_button.dart';
@@ -224,10 +225,16 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                         subtitle: song.genreModel != null ? SongSubtitle(songModel: song): null,
                         trailing: FadeInRight(
                           duration: const Duration(milliseconds: 100),
-                          child: IconButton(
-                            onPressed: (){}, 
-                            icon: const Icon(CupertinoIcons.heart)
-                          ),
+                          child: LikeSongButton(
+                            songModel: song,
+                            onActionEnd: (response) {
+                              if(response.success){
+                                prov.toggleFavoriteSong(songModel: response.model!);
+                              }else{
+                                SnackbarHelper.show(context, response.message!);
+                              }
+                            },
+                          )
                         ),
                       ));
                     },
@@ -241,3 +248,4 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
     );
   }
 }
+

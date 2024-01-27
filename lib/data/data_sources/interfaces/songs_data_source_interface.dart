@@ -30,6 +30,10 @@ abstract class SongsDataSource{
   Future<ResponseModel<SongModel?>> editSong({
     required EditSongModel editSongModel
   });
+
+  Future<ResponseModel<SongModel?>> toogleIsFavorite({
+    required SongModel songModel,
+  });
   
 
 }

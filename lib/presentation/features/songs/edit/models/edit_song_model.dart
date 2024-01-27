@@ -13,6 +13,7 @@ class EditSongModel extends SyncableModel implements FormModel {
   final String? lyric;
   final Guid?  ownerId;
   final GenreModel? genre;
+  final bool? isFavorite;
 
 
   EditSongModel({
@@ -22,7 +23,8 @@ class EditSongModel extends SyncableModel implements FormModel {
     this.ownerId,
     super.isRemoved = 0,
     super.isSync = 0,
-    this.genre
+    this.genre,
+    this.isFavorite
   });
   
   
@@ -35,7 +37,8 @@ class EditSongModel extends SyncableModel implements FormModel {
       'ownerId': ownerId.toString(),
       'sync' : isSync,
       'isRemoved': isRemoved,
-      'genreId' : genre?.id.toString()
+      'genreId' : genre?.id.toString(),
+      'isFavorite' : isFavorite 
     };
   }
 
@@ -47,7 +50,8 @@ class EditSongModel extends SyncableModel implements FormModel {
       'ownerId' : ownerId.toString(),
       'sync' : isSync,
       'isRemoved': isRemoved,
-      'genreId' : genre?.id.toString()
+      'genreId' : genre?.id.toString(),
+      'isFavorite' : isFavorite 
     };
   }
 
@@ -64,9 +68,10 @@ class EditSongModel extends SyncableModel implements FormModel {
   EditSongModel copyWith({
     Guid? id,
     String? name,
-    final String? title,
-    final String? lyric,
-    final Guid?  ownerId,
+    String? title,
+    String? lyric,
+    Guid?  ownerId,
+    bool? isFavorite,
     GenreModel? genre,
   }) {
     return EditSongModel(
@@ -74,7 +79,8 @@ class EditSongModel extends SyncableModel implements FormModel {
       title: title ?? this.title,
       lyric: lyric ?? this.lyric,
       ownerId: ownerId ?? this.ownerId,
-      genre: genre ?? this.genre
+      genre: genre ?? this.genre,
+      isFavorite: isFavorite ?? this.isFavorite
     );
   }
 
