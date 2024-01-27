@@ -193,3 +193,38 @@ class BasicTextButton extends StatelessWidget {
     );
   }
 }
+
+class CreateButton extends StatelessWidget {
+  const CreateButton({
+    super.key,
+    required this.onPressed
+  });
+
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+
+    final theme = Theme.of(context);
+
+    return  InkWell(
+      borderRadius: BorderRadius.circular(
+        Sizes.kRoundedBorderRadius
+      ),
+      onTap: onPressed,
+      child: Container(
+        height: 35,
+        width: 35,
+        decoration: BoxDecoration(
+          color: theme.colorScheme.primary,
+          borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
+        ),
+        child: Icon(
+          CupertinoIcons.add,
+          color: theme.colorScheme.onPrimary,
+          size: 15,
+        ),
+      ),
+    );
+  }
+}

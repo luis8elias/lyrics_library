@@ -10,7 +10,6 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/songs/delete/delete_song_button.dart';
 import '/presentation/features/songs/list/providers/providers.dart';
-import '/presentation/features/songs/list/widgets/create_song_button.dart';
 import '/presentation/features/songs/list/widgets/new_page_progress_indicator.dart';
 import '/presentation/features/songs/list/widgets/no_items_found.dart';
 import '/presentation/features/songs/list/widgets/song_leading.dart';
@@ -19,6 +18,7 @@ import '/presentation/features/songs/list/widgets/song_title.dart';
 import '/presentation/features/songs/list/widgets/songs_appbar_leading.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/presentation/presentation.dart';
+import '/presentation/widgets/buttons.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';
 import '/presentation/widgets/search_input.dart';
 import '/utils/utils.dart';
@@ -95,11 +95,13 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                 ),
               ),
             )
-            : const Padding(
-              padding: EdgeInsets.only(
+            : Padding(
+              padding: const EdgeInsets.only(
                 right: Sizes.kPadding / 2,
               ),
-              child: CreateSongButton()
+              child: CreateButton(
+                onPressed: () => GoRouter.of(context).pushNamed(CreateSongScreen.routeName)
+              )
             ),
           ],
           title: showSearchInput ? 

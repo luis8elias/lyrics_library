@@ -160,6 +160,16 @@ class Lang {
     );
   }
 
+  /// `Setlist`
+  String get app_setlist {
+    return Intl.message(
+      'Setlist',
+      name: 'app_setlist',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Edit`
   String get actions_edit {
     return Intl.message(

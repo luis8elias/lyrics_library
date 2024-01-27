@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/presentation/features/setlists/read/read_setlist_screen.dart';
 
 import '/config/routes/custom_transiton_page.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
@@ -77,6 +78,13 @@ final routes =  [
         path: EditSetlistScreen.routePath,
         name: EditSetlistScreen.routeName,
         builder: (context, state) =>  EditSetlistScreen(
+          setlistModel: state.extra as SetlistModel,
+        ),
+      ),
+      GoRoute(
+        path: ReadSetlistScreen.routePath,
+        name: ReadSetlistScreen.routeName,
+        builder: (context, state) => ReadSetlistScreen(
           setlistModel: state.extra as SetlistModel,
         ),
       ),

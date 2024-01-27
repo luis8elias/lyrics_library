@@ -43,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_more": MessageLookupByLibrary.simpleMessage("More"),
         "app_selectedItems":
             MessageLookupByLibrary.simpleMessage("Selected items"),
+        "app_setlist": MessageLookupByLibrary.simpleMessage("Setlist"),
         "app_setlists": MessageLookupByLibrary.simpleMessage("Setlists"),
         "app_songs": MessageLookupByLibrary.simpleMessage("Songs"),
         "genresCreateScreen_createButtonText":

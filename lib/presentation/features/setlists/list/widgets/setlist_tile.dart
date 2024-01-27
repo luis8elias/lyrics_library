@@ -2,7 +2,9 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lyrics_library/config/lang/generated/l10n.dart';
+import 'package:lyrics_library/presentation/features/setlists/read/read_setlist_screen.dart';
 
 import '/presentation/features/setlists/list/providers/providers.dart';
 import '/presentation/features/setlists/shared/models/setlist_model.dart';
@@ -27,16 +29,18 @@ class SetlistTile extends ConsumerWidget {
 
     return ListTile(
       onTap: prov.isSelectItemOpened  && setlistModel.allowToRemoveBool
-      ? ()=> prov.selectItem(id: setlistModel.id) : (){},
-      // : ()=> GoRouter.of(context).go(
-      //   context.namedLocation(
-      //     EditSetlistScreen.routeName,
-      //     pathParameters: {
-      //       'sid': setlistModel.id.toString()
-      //     },
-      //   ),
-      //   extra: setlistModel
-      // ),
+      ? ()=> prov.selectItem(id: setlistModel.id)
+      : prov.isSelectItemOpened  && !setlistModel.allowToRemoveBool 
+      ? null 
+      : ()=> GoRouter.of(context).go(
+        context.namedLocation(
+          ReadSetlistScreen.routeName,
+          pathParameters: {
+            'sid': setlistModel.id.toString()
+          },
+        ),
+        extra: setlistModel
+      ),
       onLongPress: prov.isSelectItemOpened 
       ? null 
       : ()=> prov.openCloseSelectItem(

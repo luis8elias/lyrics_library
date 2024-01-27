@@ -6,7 +6,6 @@ import '/data/models/response_model.dart';
 import '/presentation/features/setlists/create/models/create_setlist_model.dart';
 import '/presentation/features/setlists/edit/models/edit_setlist_model.dart';
 import '/presentation/features/setlists/shared/models/setlist_model.dart';
-import '/utils/db/setlists_table.dart';
 import '/utils/db/sqlite.dart';
 import '/utils/extensions/string_extensions.dart';
 import '/utils/logger/logger_helper.dart';

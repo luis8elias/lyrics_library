@@ -9,14 +9,17 @@ import '/data/models/response_model.dart';
 
 
 abstract class FetchProvider<T> extends ChangeNotifier {
-  FetchProvider() {
-    loadData();
+  FetchProvider({this.autoCall = true}) {
+    if(autoCall){
+      loadData();
+    }
   }
 
   FetchStatus status = FetchStatus.loading;
   String message = '';
   late T model;
   bool isModelInitialized = false;
+  final bool autoCall;
 
 
 

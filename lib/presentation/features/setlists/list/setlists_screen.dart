@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/presentation/widgets/buttons.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/setlists/delete/delete_setlist_button.dart';
@@ -16,7 +17,6 @@ import '/presentation/widgets/search_input.dart';
 import '/presentation/widgets/widgets.dart';
 import '/utils/constants/sizes.dart';
 import '/utils/utils.dart';
-import 'widgets/create_setlist_btn.dart';
 
 class SetlistsScreen extends ConsumerStatefulWidget {
   const SetlistsScreen({super.key});
@@ -79,11 +79,15 @@ class _SetlistsScreenState extends ConsumerState<SetlistsScreen> {
                 ),
               ),
             )
-            : const Padding(
-              padding: EdgeInsets.only(
+            : Padding(
+              padding: const EdgeInsets.only(
                 right: Sizes.kPadding / 2,
               ),
-              child: CreateSetlistBtn()
+              child: CreateButton(
+                onPressed: () => GoRouter.of(context).pushNamed(
+                  CreateSetlistScreen.routeName
+                ),
+              )
             ),
             
           ],
@@ -121,7 +125,7 @@ class _SetlistsScreenState extends ConsumerState<SetlistsScreen> {
                 ),
                 DeleteSetlistButton(
                   enabled: reactiveProv.selectedItems.isNotEmpty
-                )
+                ),
               ],
             ),
           ),

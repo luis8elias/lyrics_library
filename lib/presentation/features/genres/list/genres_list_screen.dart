@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/presentation/widgets/buttons.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/genres/delete/delete_genre_button.dart';
@@ -82,23 +83,11 @@ class _GenresListScreenState extends ConsumerState<GenresListScreen> {
               padding: const EdgeInsets.only(
                 right: Sizes.kPadding/2
               ),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius),
-                onTap: () => GoRouter.of(context).pushNamed(CreateGenreScreen.routeName),
-                child: Container(
-                  height: 35,
-                  width: 35,
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.primary,
-                    borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
-                  ),
-                  child: Icon(
-                    CupertinoIcons.add,
-                    color: theme.colorScheme.onPrimary,
-                    size: 15,
-                  ),
+              child: CreateButton(
+                onPressed:()=> GoRouter.of(context).pushNamed(
+                  CreateGenreScreen.routeName
                 ),
-              ),
+              )
             ),
           ],
           title: showSearchInput ? 
