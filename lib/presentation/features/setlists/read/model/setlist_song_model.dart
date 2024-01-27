@@ -22,8 +22,6 @@ class SetlistSongModel {
   }
 
   factory SetlistSongModel.fromMap(Map<String, dynamic> map) {
-    map;
-    print(map);
     return SetlistSongModel(
       id: Guid(map['id'] as String),
       title: map['title'] as String,
