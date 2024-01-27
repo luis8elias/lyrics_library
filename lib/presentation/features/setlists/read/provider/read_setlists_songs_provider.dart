@@ -32,7 +32,7 @@ class ReadSetlistsProvider extends FetchProvider<List<SetlistSongModel>?> with S
     );
   }
 
-  Future<void> refreshSetlists() async{
+  Future<void> refreshSetlistSongs() async{
     loadData();
   }
 
@@ -86,8 +86,17 @@ class ReadSetlistsProvider extends FetchProvider<List<SetlistSongModel>?> with S
       return;
     }
     _query = newQuery;
-    refreshSetlists();
+    refreshSetlistSongs();
     log('[ SetlistsListProvider ] Query 👉🏼 $_query');
+  }
+
+  void reorderSongs(int oldIndex, int newIndex){
+    if (oldIndex < newIndex) {
+      newIndex -= 1;
+    }
+    final SetlistSongModel item = model!.removeAt(oldIndex);
+    model!.insert(newIndex, item);
+    notifyListeners();
   }
 
   

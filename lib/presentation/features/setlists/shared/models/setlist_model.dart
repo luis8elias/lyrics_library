@@ -10,6 +10,7 @@ class SetlistModel extends SyncableModel{
   final String name;
   final Guid ownerId;
   final int allowToRemove;
+  final int totalSongs;
 
   String get idAsStr => id.toString();
 
@@ -26,6 +27,7 @@ class SetlistModel extends SyncableModel{
     required this.id, 
     required this.name, 
     required this.ownerId,
+    required this.totalSongs,
     super.isRemoved,
     super.isSync,
     this.allowToRemove = 1
@@ -57,7 +59,8 @@ class SetlistModel extends SyncableModel{
       ownerId: Guid(map['ownerId']),
       isSync: map['sync'],
       allowToRemove: map['allowToRemove'],
-      isRemoved: map['isRemoved']
+      isRemoved: map['isRemoved'],
+      totalSongs: map['totalSongs'] ?? 0
     );
   }
 
@@ -68,7 +71,8 @@ class SetlistModel extends SyncableModel{
       ownerId: Guid.defaultValue,
       isSync: 0,
       isRemoved: 0,
-      allowToRemove: 1
+      allowToRemove: 1,
+      totalSongs: 0
     );
   }
 
@@ -87,11 +91,13 @@ class SetlistModel extends SyncableModel{
     Guid? id,
     String? name,
     Guid? ownerId,
+    int? totalSongs
   }) {
     return SetlistModel(
       id: id ?? this.id,
       name: name ?? this.name,
       ownerId: ownerId ?? this.ownerId,
+      totalSongs: totalSongs ?? this.totalSongs
     );
   }
 

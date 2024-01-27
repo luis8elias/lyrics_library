@@ -1,4 +1,6 @@
 import 'package:injector/injector.dart';
+import 'package:lyrics_library/data/data_sources/local/setlist_songs_local_source.dart';
+import 'package:lyrics_library/services/setlist_songs_service.dart';
 
 import '/data/data_sources/api/songs_api_source.dart';
 import '/data/data_sources/local/genres_local_source.dart';
@@ -42,6 +44,11 @@ class ServicesRegister{
         sessionService: Injector.appInstance.get()
       )
     );
+    Injector.appInstance.registerSingleton<SetlistSongsLocalSource>(
+      () => SetlistSongsLocalSource(
+        sessionService: Injector.appInstance.get()
+      )
+    );
 
     //Services
     Injector.appInstance.registerSingleton<GenresService>(
@@ -60,6 +67,11 @@ class ServicesRegister{
     );
     Injector.appInstance.registerSingleton<SetlistsService>(
       () => SetlistsService(
+        localSource: Injector.appInstance.get()
+      )
+    );
+    Injector.appInstance.registerSingleton<SetlistSongsService>(
+      () => SetlistSongsService(
         localSource: Injector.appInstance.get()
       )
     );

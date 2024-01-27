@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
@@ -42,23 +44,21 @@ class _LikeSongButtonState extends State<LikeSongButton> {
 
     final theme = Theme.of(context);
 
-    return isLoading 
-    ? const SizedBox(
-      height: 30,
-      width: 45,
-      child: Center(
-        child: CleanLoaderWidget(
-          iosSize: 10,
-          androidSize: 20,
-        ),
-      ),
-    )
-    :  IconButton(
-      onPressed: () async{
+    return IconButton(
+      highlightColor: Colors.transparent,
+      onPressed: isLoading ? (){} :
+      () async{
         final response = await _toggleIsFavorite(widget.songModel);
         widget.onActionEnd(response);
       }, 
-      icon: Icon(
+      icon: isLoading  ?  SizedBox(
+        width: Platform.isIOS ? 30 : 20 ,
+        child: const CleanLoaderWidget(
+          iosSize: 10,
+          androidSize: 20,
+        ),
+      )
+      : Icon(
         widget.songModel.isFavoriteAsBool 
         ? CupertinoIcons.heart_fill
         : CupertinoIcons.heart,

@@ -153,7 +153,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
         body: Column(
           children: [
             Container(
-              height: 25,
+              height: 30,
               padding: const EdgeInsets.symmetric(
                 horizontal: Sizes.kPadding
               ),
@@ -192,8 +192,8 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                         contentPadding: const EdgeInsets.only(
                           left: Sizes.kPadding,
                           right: Sizes.kPadding * 0.5,
-                          top: Sizes.kPadding * 0.5,
-                          bottom: Sizes.kPadding * 0.5
+                          top: Sizes.kPadding * 0.2,
+                          bottom: Sizes.kPadding * 0.2
                         ),
                         onTap: (){
                           if( !reactiveProv.isSelectItemOpened ){

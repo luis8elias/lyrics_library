@@ -1,4 +1,7 @@
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/config/config.dart';
+import 'package:lyrics_library/utils/db/sqlite.dart';
+import 'package:lyrics_library/utils/logger/logger_helper.dart';
 
 import '/data/data_sources/interfaces/setlist_songs_data_source_interface.dart';
 import '/presentation/features/setlists/read/model/setlist_song_model.dart';
@@ -22,8 +25,40 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
   Future<ResponseModel<List<SetlistSongModel>?>> fetchsSongsBySetlistId({
     required Guid setlistId, 
     required String query
-  }) {
-    throw UnimplementedError();
+  }) async {
+
+    try {
+      final setlistSongsList = await SQLite.instance.rawQuery(
+        'SELECT S.id as id, '
+        'S.title as title, '
+        'G.name as genreName '
+        'FROM ${SetlistSongsTable.name} as SS JOIN ${SongsTable.name} as S ON '
+        'SS.${SetlistSongsTable.colSongId} = S.${SongsTable.colId} '
+        'LEFT JOIN ${GenresTable.name} as G ON '
+        'S.${SongsTable.colGenreId} = G.${GenresTable.colId} '
+        'WHERE SS.${SetlistSongsTable.colSetlistId} = ? '
+        "AND S.title LIKE '%$query%' ",
+        [setlistId.toString()]
+      );
+      await Future.delayed(Config.manualLocalServicesDelay);
+      final setlistSongs = SetlistSongModel.fromMapList(setlistSongsList);
+
+      return ResponseModel(
+        success: true,
+        model: setlistSongs
+      );
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en SetlistSongsLocalSource método [fetchsSongsBySetlistId]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un probelma al obtener las canciones'
+      );
+      
+    }
+   
   }
 
   @override

@@ -117,14 +117,14 @@ class SetlistTile extends ConsumerWidget {
       ? FadeInLeft(
         duration: const Duration(milliseconds: 100),
         child: Text(
-          '13 songs',
+          '${setlistModel.totalSongs} songs',
           style: theme.textTheme.bodySmall,
         ),
       )
       : FadeInRight(
         duration: const Duration(milliseconds: 100),
         child: Text(
-          '13 songs',
+          '${setlistModel.totalSongs} songs',
           style: theme.textTheme.bodySmall,
         ),
       ),

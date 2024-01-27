@@ -134,7 +134,7 @@ class _SetlistsScreenState extends ConsumerState<SetlistsScreen> {
         body: Column(
           children: [
             Container(
-              height: 25,
+              height: 30,
               padding: const EdgeInsets.symmetric(
                 horizontal: Sizes.kPadding
               ),

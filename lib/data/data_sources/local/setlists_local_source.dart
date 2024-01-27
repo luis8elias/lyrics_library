@@ -18,14 +18,20 @@ class SetlistsLocalSource extends SetlistsDataSource {
     required String query
   }) async{
     try {
-      
-      final setlistsMapList = await SQLite.instance.query(
-        SetlistsTable.name,
-        where: '${SetlistsTable.colIsAllowToRemove} = ? OR '
-        '( ${SetlistsTable.colIsRemoved} = ? AND '
-        "${SetlistsTable.colName} LIKE '%$query%' )",
-        whereArgs: [0, 0]
+
+      final setlistsMapList = await SQLite.instance.rawQuery(
+        'SELECT S.*, '
+        'COUNT(SS.id) AS totalSongs '
+        'FROM ${SetlistsTable.name} as S '
+        'LEFT JOIN ${SetlistSongsTable.name} as SS ON '
+        'S.${SetlistsTable.colId} = SS.${SetlistSongsTable.colSetlistId} '
+        'WHERE S.${SetlistsTable.colIsAllowToRemove} = 0 OR '
+        '( S.${SetlistsTable.colIsRemoved} = 0 AND '
+        "S.${SetlistsTable.colName} LIKE '%$query%' )"
+        'GROUP BY S.id , S.name '
+        'ORDER BY S.${SetlistsTable.colIsAllowToRemove} ASC '
       );
+
       await Future.delayed(Config.manualLocalServicesDelay);
       return ResponseModel(
         success: true,
@@ -57,7 +63,8 @@ class SetlistsLocalSource extends SetlistsDataSource {
       final setlist = SetlistModel(
         id: Guid.newGuid,
         name: createSetlistModel.name!.capitalize(), 
-        ownerId: Guid(authModel?.userId)
+        ownerId: Guid(authModel?.userId),
+        totalSongs: 0
       );
       
       final result = await SQLite.instance.insert(

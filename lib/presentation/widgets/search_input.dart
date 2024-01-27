@@ -45,7 +45,7 @@ class _SearchInputState extends State<SearchInput> {
 
     return FadeIn(
       child: SizedBox(
-        height: 40,
+        height: 35,
         child: TextFormField(
           focusNode: focusNode,
           onChanged: (value) => Debouncer.run(() {
@@ -57,25 +57,6 @@ class _SearchInputState extends State<SearchInput> {
             color: theme.colorScheme.onSurface
           ),
           decoration: InputDecoration(
-            // suffixIcon: IconButton(
-            //   visualDensity: VisualDensity.standard,
-            //   iconSize: 20,
-            //   style: IconButton.styleFrom(
-            //     padding: EdgeInsets.zero,
-            //     enableFeedback: false,
-            //     splashFactory: NoSplash.splashFactory
-            //   ),
-            //   onPressed: (){
-            //     if(controller.text.isNotEmpty){
-            //       controller.clear();
-            //       widget.onChangeSearch('');
-            //     }
-            //   },
-            //   icon: Icon(
-            //     CupertinoIcons.xmark_circle_fill,
-            //     color: theme.colorScheme.onBackground,
-            //   ),
-            // ),
             suffixIcon: IconButton(
               visualDensity: VisualDensity.standard,
               iconSize: 20,
