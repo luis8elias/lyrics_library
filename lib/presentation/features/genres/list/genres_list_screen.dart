@@ -133,7 +133,7 @@ class _GenresListScreenState extends ConsumerState<GenresListScreen> {
         body: Column(
           children: [
             Container(
-              height: 30,
+              height: 25,
               padding: const EdgeInsets.symmetric(
                 horizontal: Sizes.kPadding
               ),

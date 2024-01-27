@@ -45,7 +45,7 @@ class _SearchInputState extends State<SearchInput> {
 
     return FadeIn(
       child: SizedBox(
-        height: 35,
+        height: 40,
         child: TextFormField(
           focusNode: focusNode,
           onChanged: (value) => Debouncer.run(() {

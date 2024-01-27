@@ -15,13 +15,15 @@ class CustomBottomNavBar extends StatefulWidget {
     required this.selectedIndex,
     required this.body,
     this.appBar,
-    this.buttonBottomRow
+    this.buttonBottomRow,
+    this.hideBottomNavBar = false
   });
 
   final int selectedIndex;
   final Widget body;
   final PreferredSizeWidget? appBar;
   final Widget? buttonBottomRow;
+  final bool hideBottomNavBar;
 
   @override
   State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
@@ -86,7 +88,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
           Positioned.fill(
             child: widget.body,
           ),
-          if(widget.buttonBottomRow == null)
+          if(!widget.hideBottomNavBar && widget.buttonBottomRow == null)
           Align(
             alignment: Alignment.bottomCenter,
             child: KeyboardVisibilityBuilder(

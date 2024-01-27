@@ -4,12 +4,14 @@ class SetlistSongModel {
   final Guid id;
   final String title;
   final String? genreName;
+  final int indexOrder;
 
 
   SetlistSongModel({
     required this.id,
     required this.title,
     required this.genreName,
+    required this.indexOrder
   });
 
   static List<SetlistSongModel> fromMapList(List<Map<String,dynamic>> mapList){
@@ -26,6 +28,7 @@ class SetlistSongModel {
       id: Guid(map['id'] as String),
       title: map['title'] as String,
       genreName: map['genreName'] as String?,
+      indexOrder: map['indexOrder'] as int
     );
   }
  

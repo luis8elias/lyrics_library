@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:injector/injector.dart';
-import 'package:lyrics_library/data/models/response_model.dart';
-import 'package:lyrics_library/presentation/features/songs/shared/model/song_model.dart';
-import 'package:lyrics_library/presentation/widgets/widgets.dart';
-import 'package:lyrics_library/services/songs_service.dart';
+
+import '/data/models/response_model.dart';
+import '/presentation/features/songs/shared/model/song_model.dart';
+import '/presentation/widgets/widgets.dart';
+import '/services/setlist_songs_service.dart';
+
 
 class LikeSongButton extends StatefulWidget {
   const LikeSongButton({
@@ -25,13 +27,13 @@ class LikeSongButton extends StatefulWidget {
 class _LikeSongButtonState extends State<LikeSongButton> {
 
   bool isLoading = false;
-  final SongsService _songsService = Injector.appInstance.get();
+  final SetlistSongsService _setlistSongsService = Injector.appInstance.get();
 
   Future<ResponseModel<SongModel?>> _toggleIsFavorite(SongModel songModel) async{
     setState(() {
       isLoading = true;
     });
-    final resp = await _songsService.toogleIsFavorite(songModel: songModel);
+    final resp = await _setlistSongsService.toogleIsFavorite(songModel: songModel);
     setState(() {
       isLoading = false;
     });

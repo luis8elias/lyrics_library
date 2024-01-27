@@ -22,8 +22,9 @@ abstract class SetlistSongsDataSource{
     required List<Guid> songsIds
   });
 
-  // Future<ResponseModel<String>> editSetlist({
-  //   required EditSetlistModel editSetlistModel
-  // });
+  Future<ResponseModel<SongModel?>> toogleIsFavorite({
+    required SongModel songModel
+  });
+ 
 
 }

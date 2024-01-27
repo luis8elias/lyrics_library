@@ -95,10 +95,4 @@ class SongsApiSource extends SongsDataSource{
     throw UnimplementedError();
   }
   
-  @override
-  Future<ResponseModel<SongModel?>> toogleIsFavorite({
-    required SongModel songModel
-  }) {
-    throw UnimplementedError();
-  }
 }

@@ -6,18 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:lyrics_library/presentation/features/songs/list/widgets/like_song_button.dart';
+import 'package:lyrics_library/presentation/features/songs/list/widgets/song_title.dart';
 
+import '/presentation/features/songs/list/widgets/song_subtitle.dart';
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/songs/delete/delete_song_button.dart';
 import '/presentation/features/songs/list/providers/providers.dart';
+import '/presentation/features/songs/list/widgets/like_song_button.dart';
 import '/presentation/features/songs/list/widgets/new_page_progress_indicator.dart';
 import '/presentation/features/songs/list/widgets/no_items_found.dart';
 import '/presentation/features/songs/list/widgets/song_leading.dart';
-import '/presentation/features/songs/list/widgets/song_subtitle.dart';
-import '/presentation/features/songs/list/widgets/song_title.dart';
 import '/presentation/features/songs/list/widgets/songs_appbar_leading.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
+
 import '/presentation/presentation.dart';
 import '/presentation/widgets/buttons.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';

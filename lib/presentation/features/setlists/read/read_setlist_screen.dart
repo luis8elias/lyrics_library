@@ -5,10 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/presentation/features/genres/delete/delete_genre_button.dart';
+import 'package:lyrics_library/presentation/widgets/custom_bottom_nav_bar.dart';
 
 import '/config/lang/generated/l10n.dart';
+import '/presentation/features/setlists/read/widgets/setlist_song_subtitle.dart';
+import '/presentation/features/setlists/read/widgets/setlist_song_title.dart';
 import '/presentation/features/setlists/shared/models/setlist_model.dart';
-import '/presentation/features/songs/shared/widgets/genre_circle.dart';
 import '/presentation/widgets/buttons.dart';
 import '/presentation/widgets/providers.dart';
 import '/presentation/widgets/search_input.dart';
@@ -54,195 +57,232 @@ class _ReadSetlistScreenState extends ConsumerState<ReadSetlistScreen> {
     final reactiveProv = ref.watch(readSetlistSongsProvider);
     
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        actions: [
-          if(!showSearchInput)
-            IconButton(
-              iconSize: 25,
-              onPressed: (){
-                setState(() {
-                  showSearchInput = true;
-                });
-              },
-              icon: Icon(
-                CupertinoIcons.search,
-                color: theme.colorScheme.onBackground,
-              ),
-            ),
-            showSearchInput 
-            ? FadeIn(
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  alignment: Alignment.centerRight,
-                  textStyle: theme.textTheme.labelLarge,
-                ),
+      body: CustomBottomNavBar(
+        selectedIndex: 0,
+        hideBottomNavBar: true,
+        appBar: AppBar(
+          centerTitle: true,
+          actions: [
+            if(!showSearchInput)
+              IconButton(
+                iconSize: 25,
                 onPressed: (){
                   setState(() {
-                    showSearchInput = false;
+                    showSearchInput = true;
                   });
-                  prov.updateQuery('');
                 },
-                child: Text(
-                  lang.actions_cancel
+                icon: Icon(
+                  CupertinoIcons.search,
+                  color: theme.colorScheme.onBackground,
                 ),
               ),
+              showSearchInput 
+              ? FadeIn(
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    alignment: Alignment.centerRight,
+                    textStyle: theme.textTheme.labelLarge,
+                  ),
+                  onPressed: (){
+                    setState(() {
+                      showSearchInput = false;
+                    });
+                    prov.updateQuery('');
+                  },
+                  child: Text(
+                    lang.actions_cancel
+                  ),
+                ),
+              )
+            : Padding(
+              padding: const EdgeInsets.only(
+                right: Sizes.kPadding / 2,
+              ),
+              child: CreateButton(
+                onPressed: (){}
+              ),
+            ),
+          ], 
+          leading: reactiveProv.isSelectItemOpened ?
+          TextButton(
+            onPressed: () => prov.openCloseSelectItem(), 
+            child: Text(lang.actions_ok)
+          ):
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: BackButtonWidget(
+              onPressed: () {
+                GoRouter.of(context).pop();
+              },
+            ),
+          ),
+          title: showSearchInput ? 
+            SearchInput(
+              onChangeSearch: (query) => prov.updateQuery(query),
             )
-          : Padding(
-            padding: const EdgeInsets.only(
-              right: Sizes.kPadding / 2,
-            ),
-            child: CreateButton(
-              onPressed: (){}
-            ),
-          ),
-        ], 
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: BackButtonWidget(
-            onPressed: () {
-              GoRouter.of(context).pop();
-            },
+            : Text(
+            widget.setlistModel.allowToRemoveBool 
+            ? widget.setlistModel.name 
+            : lang.app_favorites,
+            style: theme.textTheme.titleSmall,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
-        title: showSearchInput ? 
-          SearchInput(
-            onChangeSearch: (query) => prov.updateQuery(query),
-          )
-          : Text(
-          widget.setlistModel.allowToRemoveBool 
-          ? widget.setlistModel.name 
-          : lang.app_favorites,
-          style: theme.textTheme.titleSmall,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ),
-      body: Column(
-        children: [
-          Container(
-            height: 30,
-            padding: const EdgeInsets.symmetric(
-              horizontal: Sizes.kPadding
-            ),
-            width: double.infinity,
-            color: theme.colorScheme.inverseSurface.withOpacity(0.5),
-            //color: Colors.red,
-            child: Column(
+        buttonBottomRow: prov.isSelectItemOpened 
+        ? FadeInUp(
+          duration: const Duration(milliseconds: 100),
+          child:  Padding(
+            padding: const EdgeInsets.symmetric(horizontal: Sizes.kPadding),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Text(
-                        reactiveProv.isSelectItemOpened 
-                        ? '${reactiveProv.selectedItems.length} ${lang.app_selectedItems}'
-                        : reactiveProv.isModelInitialized ?
-                        '${reactiveProv.model!.length  } ${lang.app_items}'
-                        : '0 ${lang.app_items}',
-                        style: theme.textTheme.bodySmall,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        height: 15,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: theme.colorScheme.primary.withOpacity(0.3),
-                          border: Border.all(
-                            color: theme.colorScheme.primary
-                          ),
-                        ),
-                        child: Center(
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              bottom: Platform.isIOS ? 0: 2
-                            ),
-                            child: Text(
-                              lang.app_setlist,
-                              style: theme.textTheme.bodySmall?.copyWith(
-                                color: theme.colorScheme.onBackground,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 8
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Expanded(
-                      flex: 2,
-                      child: SizedBox.shrink(),
-                    )
-                  ],
+                const SizedBox.shrink(),
+                DeleteGenreButton(
+                  enabled: reactiveProv.selectedItems.isNotEmpty
                 ),
               ],
             ),
           ),
-          Expanded(
-            child: FetchProviderBuilder(
-              provider: readSetlistSongsProvider,
-              builder: (songs) => RefreshIndicator(
-                onRefresh: () => Future.sync(
-                  () => prov.refreshSetlistSongs(),
-                ),
-                child: ReorderableListView.builder(
-                  itemCount: songs!.length,
-                  buildDefaultDragHandles: true,
-                  itemBuilder: (context, index) => Column(
-                    key: Key(songs[index].id.toString()),
+        )
+        : null,
+        body: Column(
+          children: [
+            Container(
+              height: 30,
+              padding: const EdgeInsets.symmetric(
+                horizontal: Sizes.kPadding
+              ),
+              width: double.infinity,
+              color: theme.colorScheme.inverseSurface.withOpacity(0.5),
+              //color: Colors.red,
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ListTile(
-                        onTap: (){},
-                        onLongPress: prov.isSelectItemOpened 
-                        ? null 
-                        : ()=> prov.openCloseSelectItem(
-                          id: songs[index].id
+                      Expanded(
+                        flex: 2,
+                        child: Text(
+                          reactiveProv.isSelectItemOpened 
+                          ? '${reactiveProv.selectedItems.length} ${lang.app_selectedItems}'
+                          : reactiveProv.isModelInitialized ?
+                          '${reactiveProv.model!.length  } ${lang.app_items}'
+                          : '0 ${lang.app_items}',
+                          style: theme.textTheme.bodySmall,
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: Sizes.kPadding,
-                          vertical: Sizes.kPadding * 0.3
-                        ),
-                        title: Text(
-                          songs[index].title,
-                          style: theme.textTheme.displaySmall,
-                        ),
-                        subtitle: Row(
-                        children: [
-                          if(songs[index].genreName != null)
-                            Container(
-                              margin: const EdgeInsets.only(top: 5),
-                              child: GenreCricle(
-                                genreName: songs[index].genreName!,
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          height: 15,
+                          margin: const EdgeInsets.only(
+                            top: 4
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: theme.colorScheme.primary.withOpacity(0.3),
+                            border: Border.all(
+                              color: theme.colorScheme.primary
+                            ),
+                          ),
+                          child: Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                bottom: Platform.isIOS ? 0: 2
+                              ),
+                              child: Text(
+                                lang.app_setlist,
+                                style: theme.textTheme.bodySmall?.copyWith(
+                                  color: theme.colorScheme.onBackground,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 8
+                                ),
                               ),
                             ),
-                          ],
-                        ),
-                        trailing:  ReorderableDragStartListener(
-                          index: index,
-                          child: const Icon(Icons.drag_handle),
+                          ),
                         ),
                       ),
-                      if(index + 1 != songs.length )
-                      Container(
-                        height: 0.5,
-                        color : theme.colorScheme.outline
-                      ),
+                      const Expanded(
+                        flex: 2,
+                        child: SizedBox.shrink(),
+                      )
                     ],
                   ),
-                  onReorder: (oldIndex, newIndex) {
-                    prov.reorderSongs(oldIndex, newIndex);
-                  },
+                ],
+              ),
+            ),
+            Expanded(
+              child: FetchProviderBuilder(
+                provider: readSetlistSongsProvider,
+                builder: (songs) => RefreshIndicator(
+                  onRefresh: () => Future.sync(
+                    () => prov.refreshSetlistSongs(),
+                  ),
+                  child: ReorderableListView.builder(
+                    itemCount: songs!.length,
+                    buildDefaultDragHandles: true,
+                    itemBuilder: (context, index) => Column(
+                      key: Key(songs[index].id.toString()),
+                      children: [
+                        ListTile(
+                          onTap: (){},
+                          onLongPress: prov.isSelectItemOpened 
+                          ? null 
+                          : ()=> prov.openCloseSelectItem(
+                            id: songs[index].id
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: Sizes.kPadding,
+                            vertical: Sizes.kPadding * 0.3
+                          ),
+                          title: SetlistSongTitle(title: songs[index].title),
+                          subtitle: songs[index].genreName != null ?
+                          SetlistSongSubtitle(genreName: songs[index].genreName!): null,
+                          leading: reactiveProv.isSelectItemOpened ? FadeInLeft(
+                            duration: const Duration(milliseconds: 100),
+                            child: CupertinoCheckbox(
+                              checkColor: theme.colorScheme.onPrimary,
+                              activeColor: theme.colorScheme.primary,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
+                              ),
+                              value: reactiveProv.selectedItems.contains(songs[index].id), 
+                              onChanged: (value){
+                                prov.selectItem(
+                                  id: songs[index].id
+                                );
+                              },
+                            ),
+                          ) : null,
+                          trailing:  FadeInRight(
+                            duration: const Duration(milliseconds: 100),
+                            child: ReorderableDragStartListener(
+                              index: index,
+                              child: const Icon(Icons.drag_handle),
+                            ),
+                          ),
+                        ),
+                        if(index + 1 != songs.length )
+                        Container(
+                          height: 0.5,
+                          color : theme.colorScheme.outline
+                        ),
+                      ],
+                    ),
+                    onReorder: (oldIndex, newIndex) {
+                      prov.reorderSongs(oldIndex, newIndex);
+                    },
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
