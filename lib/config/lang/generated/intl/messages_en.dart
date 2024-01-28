@@ -132,6 +132,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Edit Setlist"),
         "setlistsListScreen_title":
             MessageLookupByLibrary.simpleMessage("Setlists"),
+        "songsCreateScreen_lyricInput": MessageLookupByLibrary.simpleMessage(
+            "Write the lyrics of the song"),
         "songsCreateScreen_title":
             MessageLookupByLibrary.simpleMessage("Create Song"),
         "songsCreateScreen_titleInput":
@@ -143,6 +145,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Delete song?"),
         "songsDelete_titlePlural":
             MessageLookupByLibrary.simpleMessage("Delete songs?"),
+        "songsEditScreen_lyricInput": MessageLookupByLibrary.simpleMessage(
+            "Write the lyrics of the song"),
         "songsEditScreen_title":
             MessageLookupByLibrary.simpleMessage("Edit Song"),
         "songsEditScreen_titleInput":

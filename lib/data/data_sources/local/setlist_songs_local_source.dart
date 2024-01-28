@@ -49,7 +49,7 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
 
       return ResponseModel(
         success: false,
-        message: 'Ocurrió un probelma al obtener las canciones'
+        message: 'Ocurrió un problema al obtener las canciones'
       );
       
     }

@@ -110,6 +110,7 @@
     "@_SONGS_CREATE_SCREEN": {},
     "songsCreateScreen_title" : "Create Song",
     "songsCreateScreen_titleInput" : "Title",
+    "songsCreateScreen_lyricInput" : "Write the lyrics of the song",
 
 
 
@@ -131,6 +132,7 @@
     "@_SONGS_EDIT_SCREEN": {},
     "songsEditScreen_title" : "Edit Song",
     "songsEditScreen_titleInput" : "Title",
+    "songsEditScreen_lyricInput" : "Write the lyrics of the song",
 
 
 

@@ -12,11 +12,13 @@ class SongForm extends StatefulWidget {
     required this.titleInputLabel,
     required this.onTitleChanged,
     required this.onLyricChanged,
-    required this.onGenreChanged
+    required this.onGenreChanged,
+    required this.lyricsInputLabel
   });
 
   final SongModel? songModel;
   final String titleInputLabel;
+  final String lyricsInputLabel;
   final void Function(String name) onTitleChanged;
   final void Function(String name) onLyricChanged;
   final void Function(GenreModel genre) onGenreChanged;
@@ -87,7 +89,7 @@ class _SongFormState extends State<SongForm> {
                     onChanged: (value) => widget.onLyricChanged(value),
                     maxLines: null,
                     decoration: InputDecoration(
-                      hintText: '',
+                      hintText: widget.lyricsInputLabel,
                       fillColor: theme.colorScheme.background,
                       border: InputBorder.none,
                       focusedBorder: InputBorder.none,

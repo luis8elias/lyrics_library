@@ -94,6 +94,7 @@ class _EditGenreScreenUI extends ConsumerWidget {
       body: SongForm(
         songModel: songModel,
         titleInputLabel: lang.songsEditScreen_titleInput,
+        lyricsInputLabel: lang.songsEditScreen_lyricInput,
         onTitleChanged: (value) => prov.updateFormModel((formModel) => formModel.copyWith(
           title: value
         )),

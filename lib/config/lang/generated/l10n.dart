@@ -530,6 +530,16 @@ class Lang {
     );
   }
 
+  /// `Write the lyrics of the song`
+  String get songsCreateScreen_lyricInput {
+    return Intl.message(
+      'Write the lyrics of the song',
+      name: 'songsCreateScreen_lyricInput',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Delete song?`
   String get songsDelete_title {
     return Intl.message(
@@ -585,6 +595,16 @@ class Lang {
     return Intl.message(
       'Title',
       name: 'songsEditScreen_titleInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write the lyrics of the song`
+  String get songsEditScreen_lyricInput {
+    return Intl.message(
+      'Write the lyrics of the song',
+      name: 'songsEditScreen_lyricInput',
       desc: '',
       args: [],
     );

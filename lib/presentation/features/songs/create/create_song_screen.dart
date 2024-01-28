@@ -72,6 +72,7 @@ class _CreateSongScreenUI extends ConsumerWidget {
       ),
       body: SongForm(
         titleInputLabel: lang.songsCreateScreen_titleInput,
+        lyricsInputLabel: lang.songsCreateScreen_lyricInput,
         onTitleChanged: (value) => prov.updateFormModel((formModel) => formModel.copyWith(
           title: value
         )),
