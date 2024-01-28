@@ -5,41 +5,41 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/presentation/features/genres/delete/delete_genre_button.dart';
-import 'package:lyrics_library/presentation/widgets/custom_bottom_nav_bar.dart';
 
 import '/config/lang/generated/l10n.dart';
-import '/presentation/features/setlists/read/widgets/setlist_song_subtitle.dart';
-import '/presentation/features/setlists/read/widgets/setlist_song_title.dart';
+import '/presentation/features/genres/delete/delete_genre_button.dart';
+import '/presentation/features/setlist_songs/list/widgets/setlist_song_subtitle.dart';
+import '/presentation/features/setlist_songs/list/widgets/setlist_song_title.dart';
 import '/presentation/features/setlists/shared/models/setlist_model.dart';
 import '/presentation/widgets/buttons.dart';
+import '/presentation/widgets/custom_bottom_nav_bar.dart';
 import '/presentation/widgets/providers.dart';
 import '/presentation/widgets/search_input.dart';
 import '/utils/constants/sizes.dart';
 import 'provider/providers.dart';
 
-class ReadSetlistScreen extends ConsumerStatefulWidget {
-  const ReadSetlistScreen({
+class SetlistSongsListScreen extends ConsumerStatefulWidget {
+  const SetlistSongsListScreen({
     super.key,
     required this.setlistModel
   });
 
   final SetlistModel setlistModel;
 
-  static const String routeName = 'read-setlist';
+  static const String routeName = 'setlist-songs';
   static const String routePath = ':sid';
 
   @override
-  ConsumerState<ReadSetlistScreen> createState() => _ReadSetlistScreenState();
+  ConsumerState<SetlistSongsListScreen> createState() => _ReadSetlistScreenState();
 }
 
-class _ReadSetlistScreenState extends ConsumerState<ReadSetlistScreen> {
+class _ReadSetlistScreenState extends ConsumerState<SetlistSongsListScreen> {
 
   bool showSearchInput = false;
 
   @override
   void initState() {
-    final prov = ref.read(readSetlistSongsProvider);
+    final prov = ref.read(setlistSongsListProvider);
     prov.setSetlistId(setlistId: widget.setlistModel.id);
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -53,8 +53,8 @@ class _ReadSetlistScreenState extends ConsumerState<ReadSetlistScreen> {
 
     final theme = Theme.of(context);
     final lang = Lang.of(context);
-    final prov = ref.read(readSetlistSongsProvider);
-    final reactiveProv = ref.watch(readSetlistSongsProvider);
+    final prov = ref.read(setlistSongsListProvider);
+    final reactiveProv = ref.watch(setlistSongsListProvider);
     
     return Scaffold(
       body: CustomBottomNavBar(
@@ -218,7 +218,7 @@ class _ReadSetlistScreenState extends ConsumerState<ReadSetlistScreen> {
             ),
             Expanded(
               child: FetchProviderBuilder(
-                provider: readSetlistSongsProvider,
+                provider: setlistSongsListProvider,
                 builder: (songs) => RefreshIndicator(
                   onRefresh: () => Future.sync(
                     () => prov.refreshSetlistSongs(),

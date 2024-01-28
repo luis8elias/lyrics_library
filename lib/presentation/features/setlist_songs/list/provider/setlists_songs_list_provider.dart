@@ -2,16 +2,15 @@ import 'dart:developer';
 
 import 'package:flutter_guid/flutter_guid.dart';
 
-import '/presentation/features/setlists/read/model/setlist_song_model.dart';
-import '/services/setlist_songs_service.dart';
 import '/data/models/response_model.dart';
+import '/presentation/features/setlist_songs/list/model/setlist_song_model.dart';
 import '/presentation/providers/providers.dart';
+import '/services/setlist_songs_service.dart';
 
-
-class ReadSetlistsProvider extends FetchProvider<List<SetlistSongModel>?> with SelectableListProvider<Guid>{
+class SetlistSongsListProvider extends FetchProvider<List<SetlistSongModel>?> with SelectableListProvider<Guid>{
   final SetlistSongsService _setlistSongsService;
 
-  ReadSetlistsProvider({
+  SetlistSongsListProvider({
     required SetlistSongsService setlistSongsService
   }) : _setlistSongsService = setlistSongsService, super(autoCall: false);
 

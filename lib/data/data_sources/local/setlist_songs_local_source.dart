@@ -2,8 +2,8 @@ import 'package:flutter_guid/flutter_guid.dart';
 
 import '/config/config.dart';
 import '/data/data_sources/interfaces/setlist_songs_data_source_interface.dart';
-import '/presentation/features/setlists/add_song/models/add_song_to_setlist_model.dart';
-import '/presentation/features/setlists/read/model/setlist_song_model.dart';
+import '../../../presentation/features/setlist_songs/add/models/add_song_to_setlist_model.dart';
+import '../../../presentation/features/setlist_songs/list/model/setlist_song_model.dart';
 import '/presentation/features/setlists/shared/models/setlist_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/utils/db/sqlite.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter_guid/flutter_guid.dart';
 import 'package:lyrics_library/presentation/features/songs/shared/model/song_model.dart';
 
-import '/presentation/features/setlists/read/model/setlist_song_model.dart';
+import '../presentation/features/setlist_songs/list/model/setlist_song_model.dart';
 import '/data/models/response_model.dart';
 import '/data/data_sources/local/setlist_songs_local_source.dart';
 

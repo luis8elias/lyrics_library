@@ -2,8 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '/presentation/features/setlists/read/provider/providers.dart';
-
+import '/presentation/features/setlist_songs/list/provider/providers.dart';
 
 class SetlistSongTitle extends ConsumerWidget {
   const SetlistSongTitle({
@@ -17,7 +16,7 @@ class SetlistSongTitle extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final theme = Theme.of(context);
-    final reactiveProv = ref.watch(readSetlistSongsProvider);
+    final reactiveProv = ref.watch(setlistSongsListProvider);
     const duration = Duration(milliseconds: 100);
 
     if(reactiveProv.isSelectItemOpened){

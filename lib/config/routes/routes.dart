@@ -1,5 +1,5 @@
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/presentation/features/setlists/read/read_setlist_screen.dart';
+import 'package:lyrics_library/presentation/features/setlist_songs/list/setlist_songs_list_screen.dart';
 
 import '/config/routes/custom_transiton_page.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
@@ -82,9 +82,9 @@ final routes =  [
         ),
       ),
       GoRoute(
-        path: ReadSetlistScreen.routePath,
-        name: ReadSetlistScreen.routeName,
-        builder: (context, state) => ReadSetlistScreen(
+        path: SetlistSongsListScreen.routePath,
+        name: SetlistSongsListScreen.routeName,
+        builder: (context, state) => SetlistSongsListScreen(
           setlistModel: state.extra as SetlistModel,
         ),
       ),
