@@ -1,4 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/presentation/features/setlist_songs/list/model/setlist_song_order_model.dart';
 
 import '/config/config.dart';
 import '/data/data_sources/interfaces/setlist_songs_data_source_interface.dart';
@@ -22,7 +23,8 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
 
     try {
       final setlistSongsList = await SQLite.instance.rawQuery(
-        'SELECT S.id as id, '
+        'SELECT SS.id as id, '
+        'S.id as songId, '
         'S.title as title, '
         'G.name as genreName, '
         'SS.indexOrder as indexOrder '
@@ -107,14 +109,24 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
         );
       }else{
 
-        final addSongToSetlist = AddSongToSetListModel(
-          id: Guid.newGuid, 
-          setlistId: setlistModel.id, 
-          songId: songModel.id, 
-          ownerId: authModel?.userId ?? ''
-        );
+      final maxOrder = await SQLite.instance.rawQuery(
+        'SELECT MAX(${SetlistSongsTable.colIndexOrder}) as max '
+        'FROM ${SetlistSongsTable.name} '
+        'WHERE ${SetlistSongsTable.colSetlistId} = ? ',
+        [setlistModel.id.toString()]
+      );
 
-        batch.insert(
+      final newIndex = maxOrder[0]['max'] as int? ?? 0;
+
+      final addSongToSetlist = AddSongToSetListModel(
+        id: Guid.newGuid, 
+        setlistId: setlistModel.id, 
+        songId: songModel.id, 
+        ownerId: authModel?.userId ?? '',
+        indexOrder: newIndex + 1
+      );
+
+      batch.insert(
           SetlistSongsTable.name,
           addSongToSetlist.toMap(),
         );
@@ -134,13 +146,50 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
     } catch (e) {
 
       Log.y('🤡 ${e.toString()}');
-      Log.y('😭 Error en SongsLocalSource método [toogleIsFavorite]');
+      Log.y('😭 Error en SetlistSongsLocalSource método [toogleIsFavorite]');
 
       return ResponseModel(
         success: false,
         message: isFavorite 
         ? 'Ocurrió un problema al remover de favoritos'
         : 'Ocurrió un problema al agregar a favoritos'
+      );
+      
+    }
+  }
+
+  @override
+  Future<ResponseModel> orderSongs({
+    required List<SetlistSongOrderModel> songsOrdered
+  }) async{
+    try {
+
+      final batch = SQLite.instance.batch();
+
+      for (var sS in songsOrdered) {
+        batch.update(
+          SetlistSongsTable.name,
+          {SetlistSongsTable.colIndexOrder: sS.indexOrder},
+          where: '${SetlistSongsTable.colId} = ?', 
+          whereArgs: [sS.setlistSongId.toString()]
+        );
+      }
+
+      await batch.commit();
+
+      return ResponseModel(
+        success: true, 
+        message: 'Canciones ordenadas' ,
+      );
+      
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en SetlistSongsLocalSource método [orderSongs]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al guardar el orden de las canciones'
       );
       
     }

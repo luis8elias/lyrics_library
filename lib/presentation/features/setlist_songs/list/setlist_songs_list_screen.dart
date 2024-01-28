@@ -5,11 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/utils/utils.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/genres/delete/delete_genre_button.dart';
-import '/presentation/features/setlist_songs/list/widgets/setlist_song_subtitle.dart';
-import '/presentation/features/setlist_songs/list/widgets/setlist_song_title.dart';
+import '/presentation/features/setlist_songs/list/widgets/setlist_songs_reorderable_list.dart';
 import '/presentation/features/setlists/shared/models/setlist_model.dart';
 import '/presentation/widgets/buttons.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';
@@ -223,59 +223,12 @@ class _ReadSetlistScreenState extends ConsumerState<SetlistSongsListScreen> {
                   onRefresh: () => Future.sync(
                     () => prov.refreshSetlistSongs(),
                   ),
-                  child: ReorderableListView.builder(
-                    itemCount: songs!.length,
-                    buildDefaultDragHandles: true,
-                    itemBuilder: (context, index) => Column(
-                      key: Key(songs[index].id.toString()),
-                      children: [
-                        ListTile(
-                          onTap: (){},
-                          onLongPress: prov.isSelectItemOpened 
-                          ? null 
-                          : ()=> prov.openCloseSelectItem(
-                            id: songs[index].id
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: Sizes.kPadding,
-                            vertical: Sizes.kPadding * 0.3
-                          ),
-                          title: SetlistSongTitle(title: songs[index].title),
-                          subtitle: songs[index].genreName != null ?
-                          SetlistSongSubtitle(genreName: songs[index].genreName!): null,
-                          leading: reactiveProv.isSelectItemOpened ? FadeInLeft(
-                            duration: const Duration(milliseconds: 100),
-                            child: CupertinoCheckbox(
-                              checkColor: theme.colorScheme.onPrimary,
-                              activeColor: theme.colorScheme.primary,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
-                              ),
-                              value: reactiveProv.selectedItems.contains(songs[index].id), 
-                              onChanged: (value){
-                                prov.selectItem(
-                                  id: songs[index].id
-                                );
-                              },
-                            ),
-                          ) : null,
-                          trailing:  FadeInRight(
-                            duration: const Duration(milliseconds: 100),
-                            child: ReorderableDragStartListener(
-                              index: index,
-                              child: const Icon(Icons.drag_handle),
-                            ),
-                          ),
-                        ),
-                        if(index + 1 != songs.length )
-                        Container(
-                          height: 0.5,
-                          color : theme.colorScheme.outline
-                        ),
-                      ],
-                    ),
-                    onReorder: (oldIndex, newIndex) {
-                      prov.reorderSongs(oldIndex, newIndex);
+                  child: SetlistSongsReorderableList(
+                    songs: songs!,
+                    onActionEnd: (response, oldIndex, newIndex){
+                      if(response.isFailed){
+                        SnackbarHelper.show(context, response.message!);
+                      }
                     },
                   ),
                 ),

@@ -81,7 +81,7 @@ class ReadSongScreen extends ConsumerWidget {
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onBackground,
                       fontWeight: FontWeight.bold,
-                      fontSize: 8
+                      fontSize: 8,
                     ),
                   ),
                 ),
@@ -105,14 +105,19 @@ class ReadSongScreen extends ConsumerWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const SizedBox(
                       height: Sizes.kPadding,
                     ),
-                    Text(
-                      songModel.lyric,
-                      style: TextStyle(
-                        color: theme.colorScheme.onSurface
+                    SizedBox(
+                      width: double.infinity,
+                      child: Text(
+                        songModel.lyric,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: theme.colorScheme.onSurface
+                        ),
                       ),
                     ),
                     const SizedBox(

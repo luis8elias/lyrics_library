@@ -2,6 +2,7 @@ import 'package:flutter_guid/flutter_guid.dart';
 
 class SetlistSongModel {
   final Guid id;
+  final Guid songId;
   final String title;
   final String? genreName;
   final int indexOrder;
@@ -9,6 +10,7 @@ class SetlistSongModel {
 
   SetlistSongModel({
     required this.id,
+    required this.songId,
     required this.title,
     required this.genreName,
     required this.indexOrder
@@ -26,6 +28,7 @@ class SetlistSongModel {
   factory SetlistSongModel.fromMap(Map<String, dynamic> map) {
     return SetlistSongModel(
       id: Guid(map['id'] as String),
+      songId: Guid(map['songId'] as String),
       title: map['title'] as String,
       genreName: map['genreName'] as String?,
       indexOrder: map['indexOrder'] as int

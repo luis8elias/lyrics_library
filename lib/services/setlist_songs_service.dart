@@ -1,4 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/presentation/features/setlist_songs/list/model/setlist_song_order_model.dart';
 import 'package:lyrics_library/presentation/features/songs/shared/model/song_model.dart';
 
 import '../presentation/features/setlist_songs/list/model/setlist_song_model.dart';
@@ -27,6 +28,14 @@ class SetlistSongsService {
   }) async {
     return _localSource.toogleIsFavorite(
       songModel: songModel
+    );
+  }
+
+  Future<ResponseModel> orderSongs({
+    required List<SetlistSongOrderModel> songsOrdered,
+  }) async {
+    return _localSource.orderSongs(
+      songsOrdered: songsOrdered
     );
   }
 
