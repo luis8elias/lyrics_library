@@ -151,7 +151,7 @@ class _SpeechToTextBottomSheetState extends State<SpeechToTextBottomSheet> {
               ),
             ),
             const SizedBox(
-              height: Sizes.kPadding * 2,
+              height: Sizes.kPadding * 4,
             ),
           ],
         ),

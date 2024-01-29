@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
+import '/presentation/features/songs/shared/widgets/select_genre_bottom_sheet.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
-import '/presentation/features/songs/shared/widgets/select_genre_dialog.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/utils/constants/sizes.dart';
 
@@ -110,10 +109,10 @@ class _SongFormState extends State<SongForm> {
                   left: Sizes.kPadding * 0.5,
                   bottom: Sizes.kPadding * 0.5
                 ),
-                child: SelectGenreDialog(
+                child: SelectGenreBottomSheet(
                   genreModel: widget.songModel?.genreModel,
-                  onGenreChanged : (genreId){
-                    widget.onGenreChanged(genreId);
+                  onGenreChanged : (genre){
+                    widget.onGenreChanged(genre);
                   }
                 ),
               )

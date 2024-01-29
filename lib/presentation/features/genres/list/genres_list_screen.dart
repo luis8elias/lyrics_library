@@ -217,13 +217,13 @@ class _GenresListScreenState extends ConsumerState<GenresListScreen> {
                               reactiveProv.isSelectItemOpened 
                               ? FadeInLeft(
                                 duration: const Duration(milliseconds: 100),
-                                child: _GenreTileLeading(
+                                child: GenreTileLeading(
                                   genreModel: genres[index],
                                 ),
                               )
                               : FadeInRight(
                                 duration: const Duration(milliseconds: 100),
-                                child: _GenreTileLeading(
+                                child: GenreTileLeading(
                                   genreModel: genres[index],
                                 ),
                               ),
@@ -259,8 +259,9 @@ class _GenresListScreenState extends ConsumerState<GenresListScreen> {
 }
 
 
-class _GenreTileLeading extends StatelessWidget {
-  const _GenreTileLeading({
+class GenreTileLeading extends StatelessWidget {
+  const GenreTileLeading({
+    super.key, 
     required this.genreModel
   });
 

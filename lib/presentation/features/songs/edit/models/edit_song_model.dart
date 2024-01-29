@@ -79,7 +79,7 @@ class EditSongModel extends SyncableModel implements FormModel {
       title: title ?? this.title,
       lyric: lyric ?? this.lyric,
       ownerId: ownerId ?? this.ownerId,
-      genre: genre ?? this.genre,
+      genre: genre != null && genre.isEmpty ? null :  genre ?? this.genre,
       isFavorite: isFavorite ?? this.isFavorite
     );
   }
