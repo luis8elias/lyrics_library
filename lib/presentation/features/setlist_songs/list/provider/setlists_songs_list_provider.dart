@@ -98,6 +98,12 @@ class SetlistSongsListProvider extends FetchProvider<List<SetlistSongModel>?> wi
     notifyListeners();
   }
 
+  void deleteSongs(){
+    model!.removeWhere((song) => selectedItems.contains(song.songId));
+    openCloseSelectItem();
+    notifyListeners();
+  }
+
   
 
 }

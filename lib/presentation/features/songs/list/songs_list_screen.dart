@@ -54,7 +54,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
     final prov = ref.read(songsListProvider);
     final theme = Theme.of(context);
     final reactiveProv = ref.watch(songsListProvider);
-    final bottomPadding = Platform.isIOS ? 50.0 : 70.0;
+    final bottomPadding = Platform.isIOS ? 42.0 : 70.0;
 
     return  Scaffold(
       body: CustomBottomNavBar(

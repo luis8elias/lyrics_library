@@ -190,6 +190,16 @@ class Lang {
     );
   }
 
+  /// `Remove`
+  String get actions_remove {
+    return Intl.message(
+      'Remove',
+      name: 'actions_remove',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Ok`
   String get actions_ok {
     return Intl.message(
@@ -827,6 +837,46 @@ class Lang {
       name: 'setlistsDelete_deleteButtonPlural',
       desc: '',
       args: [setlistsCount],
+    );
+  }
+
+  /// `Remove song from setlist?`
+  String get setlistSongsRemove_title {
+    return Intl.message(
+      'Remove song from setlist?',
+      name: 'setlistSongsRemove_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove songs from setlist?`
+  String get setlistSongsRemove_titlePlural {
+    return Intl.message(
+      'Remove songs from setlist?',
+      name: 'setlistSongsRemove_titlePlural',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove song from setlist`
+  String get setlistSongsRemove_removeButton {
+    return Intl.message(
+      'Remove song from setlist',
+      name: 'setlistSongsRemove_removeButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove {songsCount} songs from setlist`
+  String setlistSongsRemove_removeButtonPlural(int songsCount) {
+    return Intl.message(
+      'Remove $songsCount songs from setlist',
+      name: 'setlistSongsRemove_removeButtonPlural',
+      desc: '',
+      args: [songsCount],
     );
   }
 }

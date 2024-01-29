@@ -32,6 +32,7 @@
     "@_ACTIONS": {},
     "actions_edit" : "Edit",
     "actions_delete" : "Delete",
+    "actions_remove" : "Remove",
     "actions_ok" : "Ok",
     "actions_cancel" : "Cancel",
     "actions_back" : "Back",
@@ -172,7 +173,7 @@
     "setlistsEditScreen_nameInput" : "Name",
 
 
-    "@_SETLISTSS_DELETE": {},
+    "@_SETLISTS_DELETE": {},
     "setlistsDelete_title" : "Delete setlist?",
     "setlistsDelete_titlePlural" : "Delete setlists?",
     "setlistsDelete_deleteButton" : "Delete setlist",
@@ -180,6 +181,21 @@
     "@setlistsDelete_deleteButtonPlural": {
       "placeholders": {
         "setlistsCount": {
+          "type": "int"
+        }
+      }
+    },
+
+
+
+    "@_SETLIST_SONGS_REMOVE": {},
+    "setlistSongsRemove_title" : "Remove song from setlist?",
+    "setlistSongsRemove_titlePlural" : "Remove songs from setlist?",
+    "setlistSongsRemove_removeButton" : "Remove song from setlist",
+    "setlistSongsRemove_removeButtonPlural" : "Remove {songsCount} songs from setlist",
+    "@setlistSongsRemove_removeButtonPlural": {
+      "placeholders": {
+        "songsCount": {
           "type": "int"
         }
       }

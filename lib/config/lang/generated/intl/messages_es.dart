@@ -22,11 +22,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(genresCount) => "Eliminar ${genresCount} géneros";
 
-  static String m1(setlistsCount) => "Eliminar ${setlistsCount} listas";
+  static String m1(songsCount) => "¿Quitar ${songsCount} canciones de lista";
 
-  static String m2(songsCount) => "Eliminar ${songsCount} géneros";
+  static String m2(setlistsCount) => "Eliminar ${setlistsCount} listas";
 
-  static String m3(length) =>
+  static String m3(songsCount) => "Eliminar ${songsCount} géneros";
+
+  static String m4(length) =>
       "La contraseña debe ser como mínimo de ${length} caracteres";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -36,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "actions_delete": MessageLookupByLibrary.simpleMessage("Eliminar"),
         "actions_edit": MessageLookupByLibrary.simpleMessage("Editar"),
         "actions_ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "actions_remove": MessageLookupByLibrary.simpleMessage("Quitar"),
         "actions_save": MessageLookupByLibrary.simpleMessage("Guardar"),
         "actions_search": MessageLookupByLibrary.simpleMessage("Buscar"),
         "app_favorites": MessageLookupByLibrary.simpleMessage("Favoritos"),
@@ -116,6 +119,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Regístrarse"),
         "registerScreen_title": MessageLookupByLibrary.simpleMessage(
             "¡Hola! Regístrese para comenzar"),
+        "setlistSongsRemove_removeButton":
+            MessageLookupByLibrary.simpleMessage("¿Quitar canción de lista"),
+        "setlistSongsRemove_removeButtonPlural": m1,
+        "setlistSongsRemove_title":
+            MessageLookupByLibrary.simpleMessage("¿Quitar canción de lista?"),
+        "setlistSongsRemove_titlePlural":
+            MessageLookupByLibrary.simpleMessage("¿Quitar canciones de lista?"),
         "setlistsCreateScreen_createButtonText":
             MessageLookupByLibrary.simpleMessage("Crear"),
         "setlistsCreateScreen_nameInput":
@@ -124,7 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Crear lista"),
         "setlistsDelete_deleteButton":
             MessageLookupByLibrary.simpleMessage("Eliminar lista"),
-        "setlistsDelete_deleteButtonPlural": m1,
+        "setlistsDelete_deleteButtonPlural": m2,
         "setlistsDelete_title":
             MessageLookupByLibrary.simpleMessage("¿Eliminar lista?"),
         "setlistsDelete_titlePlural":
@@ -143,7 +153,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Título"),
         "songsDelete_deleteButton":
             MessageLookupByLibrary.simpleMessage("Eliminar canción"),
-        "songsDelete_deleteButtonPlural": m2,
+        "songsDelete_deleteButtonPlural": m3,
         "songsDelete_title":
             MessageLookupByLibrary.simpleMessage("¿Eliminar canción?"),
         "songsDelete_titlePlural":
@@ -164,7 +174,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ahora estoy escuchando... suelte el botón para detener"),
         "validator_confirmPassword": MessageLookupByLibrary.simpleMessage(
             "Las contraseñas no coinciden"),
-        "validator_confirmPasswordLength": m3,
+        "validator_confirmPasswordLength": m4,
         "validator_email":
             MessageLookupByLibrary.simpleMessage("Correo incorrecto"),
         "validator_required":

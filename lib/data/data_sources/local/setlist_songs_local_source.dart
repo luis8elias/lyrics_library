@@ -194,4 +194,63 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
       
     }
   }
+  
+  @override
+  Future<ResponseModel<String>> deleteSongs({
+    required List<Guid> songsIds, 
+    required Guid setlistId
+  }) async{
+     try {
+
+      final setlistsResult = await SQLite.instance.query(
+        SetlistsTable.name,
+        columns: [SetlistsTable.colIsAllowToRemove],
+        where: '${SetlistsTable.colId} = ?',
+        whereArgs: [setlistId.toString()]
+      );
+      final isFavoriteSetlist = setlistsResult[0][SetlistsTable.colIsAllowToRemove] == 0;
+
+      final batch = SQLite.instance.batch();
+
+      for (var songId in songsIds) {
+        batch.delete(
+          SetlistSongsTable.name, 
+          where: '${SetlistSongsTable.colSongId} = ? AND '
+          '${SetlistSongsTable.colSetlistId} = ?',
+          whereArgs: [
+            songId.toString(),
+            setlistId.toString()
+          ]
+        );
+
+        if(isFavoriteSetlist){
+          batch.update(
+            SongsTable.name,
+            {SongsTable.colIsFavorite: 0},
+            where: '${SongsTable.colId} = ?', 
+            whereArgs: [songId.toString()]
+          );
+        }
+      }
+      await batch.commit();
+    
+
+      return ResponseModel(
+        success: true,
+        message: 'Canciones removidas'
+      );
+      //final batch = SQLite.instance.batch();
+       
+     } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en SetlistSongsLocalSource método [orderSongs]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al quitar las canciones de la lista'
+      );
+       
+     }
+  }
 }

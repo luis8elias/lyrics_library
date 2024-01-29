@@ -22,11 +22,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(genresCount) => "Delete ${genresCount} genres";
 
-  static String m1(setlistsCount) => "Delete ${setlistsCount} setlists";
+  static String m1(songsCount) => "Remove ${songsCount} songs from setlist";
 
-  static String m2(songsCount) => "Delete ${songsCount} songs";
+  static String m2(setlistsCount) => "Delete ${setlistsCount} setlists";
 
-  static String m3(length) => "Password must be at least ${length} characters";
+  static String m3(songsCount) => "Delete ${songsCount} songs";
+
+  static String m4(length) => "Password must be at least ${length} characters";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -35,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "actions_delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "actions_edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "actions_ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "actions_remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "actions_save": MessageLookupByLibrary.simpleMessage("Save"),
         "actions_search": MessageLookupByLibrary.simpleMessage("Search"),
         "app_favorites": MessageLookupByLibrary.simpleMessage("Favorites"),
@@ -113,6 +116,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Register"),
         "registerScreen_title": MessageLookupByLibrary.simpleMessage(
             "Hello! Register to get started"),
+        "setlistSongsRemove_removeButton":
+            MessageLookupByLibrary.simpleMessage("Remove song from setlist"),
+        "setlistSongsRemove_removeButtonPlural": m1,
+        "setlistSongsRemove_title":
+            MessageLookupByLibrary.simpleMessage("Remove song from setlist?"),
+        "setlistSongsRemove_titlePlural":
+            MessageLookupByLibrary.simpleMessage("Remove songs from setlist?"),
         "setlistsCreateScreen_createButtonText":
             MessageLookupByLibrary.simpleMessage("Create"),
         "setlistsCreateScreen_nameInput":
@@ -121,7 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create Setlist"),
         "setlistsDelete_deleteButton":
             MessageLookupByLibrary.simpleMessage("Delete setlist"),
-        "setlistsDelete_deleteButtonPlural": m1,
+        "setlistsDelete_deleteButtonPlural": m2,
         "setlistsDelete_title":
             MessageLookupByLibrary.simpleMessage("Delete setlist?"),
         "setlistsDelete_titlePlural":
@@ -140,7 +150,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Title"),
         "songsDelete_deleteButton":
             MessageLookupByLibrary.simpleMessage("Delete song"),
-        "songsDelete_deleteButtonPlural": m2,
+        "songsDelete_deleteButtonPlural": m3,
         "songsDelete_title":
             MessageLookupByLibrary.simpleMessage("Delete song?"),
         "songsDelete_titlePlural":
@@ -161,7 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Now I\'m listening... release the stop button"),
         "validator_confirmPassword":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
-        "validator_confirmPasswordLength": m3,
+        "validator_confirmPasswordLength": m4,
         "validator_email": MessageLookupByLibrary.simpleMessage("Wrong email"),
         "validator_required":
             MessageLookupByLibrary.simpleMessage("This field is required")

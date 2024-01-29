@@ -83,6 +83,19 @@ class SetlistsListProvider extends FetchProvider<List<SetlistModel>?> with Selec
     log('[ SetlistsListProvider ] Query 👉🏼 $_query');
   }
 
+  void decrementSetlistTotalSongsCount(Guid setlistId, int count){
+    final index = model!.indexWhere((setlist) => setlist.id == setlistId);
+    final setlistCoopy = model![index].copyWith(
+      totalSongs: model![index].totalSongs - count,
+      
+    );
+    model![index] = setlistCoopy;
+    if(isSelectItemOpened){
+      openCloseSelectItem();
+    }
+    notifyListeners();
+  }
+
   
 
 }

@@ -31,6 +31,7 @@
     "@_ACTIONS": {},
     "actions_edit" : "Editar",
     "actions_delete" : "Eliminar",
+    "actions_remove" : "Quitar",
     "actions_ok" : "Ok",
     "actions_cancel" : "Cancelar",
     "actions_back" : "Volver",
@@ -167,7 +168,7 @@
 
 
 
-    "@_SETLISTSS_DELETE": {},
+    "@_SETLISTS_DELETE": {},
     "setlistsDelete_title" : "¿Eliminar lista?",
     "setlistsDelete_titlePlural" : "¿Eliminar listas?",
     "setlistsDelete_deleteButton" : "Eliminar lista",
@@ -175,6 +176,21 @@
     "@setlistsDelete_deleteButtonPlural": {
       "placeholders": {
         "setlistsCount": {
+          "type": "int"
+        }
+      }
+    },
+
+
+
+    "@_SETLIST_SONGS_DELETE": {},
+    "setlistSongsRemove_title" : "¿Quitar canción de lista?",
+    "setlistSongsRemove_titlePlural" : "¿Quitar canciones de lista?",
+    "setlistSongsRemove_removeButton" : "¿Quitar canción de lista",
+    "setlistSongsRemove_removeButtonPlural" : "¿Quitar {songsCount} canciones de lista",
+    "@setlistSongsRemove_removeButtonPlural": {
+      "placeholders": {
+        "songsCount": {
           "type": "int"
         }
       }

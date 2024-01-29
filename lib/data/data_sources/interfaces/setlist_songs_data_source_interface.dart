@@ -30,6 +30,11 @@ abstract class SetlistSongsDataSource{
   Future<ResponseModel> orderSongs({
     required List<SetlistSongOrderModel> songsOrdered,
   });
+
+  Future<ResponseModel<String>> deleteSongs({
+    required List<Guid> songsIds,
+    required Guid setlistId
+  });
  
 
 }

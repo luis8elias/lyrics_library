@@ -73,7 +73,7 @@ class _SetlistSongsReorderableListState extends ConsumerState<SetlistSongsReorde
             onLongPress: prov.isSelectItemOpened 
             ? null 
             : ()=> prov.openCloseSelectItem(
-              id: widget.songs[index].id
+              id: widget.songs[index].songId
             ),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: Sizes.kPadding,
@@ -90,10 +90,10 @@ class _SetlistSongsReorderableListState extends ConsumerState<SetlistSongsReorde
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
                 ),
-                value: reactiveProv.selectedItems.contains(widget.songs[index].id), 
+                value: reactiveProv.selectedItems.contains(widget.songs[index].songId), 
                 onChanged: (value){
                   prov.selectItem(
-                    id: widget.songs[index].id
+                    id: widget.songs[index].songId
                   );
                 },
               ),

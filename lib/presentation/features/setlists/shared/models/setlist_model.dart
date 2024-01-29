@@ -97,7 +97,8 @@ class SetlistModel extends SyncableModel{
       id: id ?? this.id,
       name: name ?? this.name,
       ownerId: ownerId ?? this.ownerId,
-      totalSongs: totalSongs ?? this.totalSongs
+      totalSongs: totalSongs ?? this.totalSongs,
+      allowToRemove: allowToRemove
     );
   }
 

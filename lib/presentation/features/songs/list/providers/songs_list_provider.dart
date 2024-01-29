@@ -86,7 +86,7 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
   }
 
   void deleteSongs(){
-    totalSongs -= 1;
+    totalSongs -= selectedItems.length;
     _pagingController.itemList!.removeWhere((song) => selectedItems.contains(song.id));
     openCloseSelectItem();
     notifyListeners();

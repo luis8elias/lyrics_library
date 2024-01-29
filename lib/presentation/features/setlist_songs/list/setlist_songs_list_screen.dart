@@ -5,17 +5,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/utils/utils.dart';
 
 import '/config/lang/generated/l10n.dart';
-import '/presentation/features/genres/delete/delete_genre_button.dart';
 import '/presentation/features/setlist_songs/list/widgets/setlist_songs_reorderable_list.dart';
+import '/presentation/features/setlist_songs/remove/remove_song_from_setlist.dart';
 import '/presentation/features/setlists/shared/models/setlist_model.dart';
 import '/presentation/widgets/buttons.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';
 import '/presentation/widgets/providers.dart';
 import '/presentation/widgets/search_input.dart';
-import '/utils/constants/sizes.dart';
+import '/utils/utils.dart';
 import 'provider/providers.dart';
 
 class SetlistSongsListScreen extends ConsumerStatefulWidget {
@@ -138,8 +137,9 @@ class _ReadSetlistScreenState extends ConsumerState<SetlistSongsListScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox.shrink(),
-                DeleteGenreButton(
-                  enabled: reactiveProv.selectedItems.isNotEmpty
+                RemoveSongsFromSetlistButton(
+                  enabled: reactiveProv.selectedItems.isNotEmpty,
+                  setlistId: widget.setlistModel.id,
                 ),
               ],
             ),
