@@ -49,39 +49,44 @@ class _CreateSongScreenUI extends ConsumerWidget {
     final prov = ref.read(createSongProvider);
     final theme = Theme.of(context);
     
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        centerTitle: true,
-        actions: [
-          SaveSongButton(
-            onPressed:  reactiveProv.isFormValid ? prov.createSong : null,
-            providerListenable: createSongProvider,
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        appBar: AppBar(
+          centerTitle: true,
+          actions: [
+            SaveSongButton(
+              onPressed:  reactiveProv.isFormValid ? prov.createSong : null,
+              providerListenable: createSongProvider,
+            ),
+          ],
+          leading: BackButtonWidget(
+            onPressed: () {
+              prov.resetFormModel();
+              GoRouter.of(context).pop();
+            },
           ),
-        ],
-        leading: BackButtonWidget(
-          onPressed: () {
-            prov.resetFormModel();
-            GoRouter.of(context).pop();
-          },
+          title: Text(
+            lang.songsCreateScreen_title,
+            style: theme.textTheme.titleSmall,
+          ),
         ),
-        title: Text(
-          lang.songsCreateScreen_title,
-          style: theme.textTheme.titleSmall,
+        body: SongForm(
+          titleInputLabel: lang.songsCreateScreen_titleInput,
+          lyricsInputLabel: lang.songsCreateScreen_lyricInput,
+          onTitleChanged: (value) => prov.updateFormModel((formModel) => formModel.copyWith(
+            title: value
+          )),
+          onLyricChanged: (value) => prov.updateFormModel((formModel) => formModel.copyWith(
+            lyric: value
+          )),
+          onGenreChanged: (value) => prov.updateFormModel((formModel) => formModel.copyWith(
+            genre: value
+          )),
         ),
-      ),
-      body: SongForm(
-        titleInputLabel: lang.songsCreateScreen_titleInput,
-        lyricsInputLabel: lang.songsCreateScreen_lyricInput,
-        onTitleChanged: (value) => prov.updateFormModel((formModel) => formModel.copyWith(
-          title: value
-        )),
-        onLyricChanged: (value) => prov.updateFormModel((formModel) => formModel.copyWith(
-          lyric: value
-        )),
-        onGenreChanged: (value) => prov.updateFormModel((formModel) => formModel.copyWith(
-          genre: value
-        )),
       ),
     );
   }
