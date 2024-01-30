@@ -33,7 +33,10 @@ class _SongFormState extends State<SongForm> {
 
   @override
   void initState() {
-    titleNode.requestFocus();
+    if(widget.songModel == null){
+      titleNode.requestFocus();
+    }
+    
     super.initState();
   }
   

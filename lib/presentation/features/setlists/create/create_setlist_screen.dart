@@ -50,31 +50,36 @@ class _CreateSetlistScreenUI extends ConsumerWidget {
     final lang = Lang.of(context);
     final theme = Theme.of(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        actions: const[], 
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: BackButtonWidget(
-            onPressed: () {
-              prov.resetFormModel();
-              GoRouter.of(context).pop();
-            },
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          actions: const[], 
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: BackButtonWidget(
+              onPressed: () {
+                prov.resetFormModel();
+                GoRouter.of(context).pop();
+              },
+            ),
+          ), 
+          title: Text(
+            lang.setlistsCreateScreen_title,
+            style: theme.textTheme.titleSmall,
           ),
-        ), 
-        title: Text(
-          lang.setlistsCreateScreen_title,
-          style: theme.textTheme.titleSmall,
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(
-          top: Sizes.kPadding
-        ),
-        child: GenreForm(
-          actionButton: const CreateSetlistButton(),
-          onNameChanged: (name) => prov.updateFormModel(
-            (formModel) => formModel.copyWith( name: name),
+        body: Padding(
+          padding: const EdgeInsets.only(
+            top: Sizes.kPadding
+          ),
+          child: GenreForm(
+            actionButton: const CreateSetlistButton(),
+            onNameChanged: (name) => prov.updateFormModel(
+              (formModel) => formModel.copyWith( name: name),
+            ),
           ),
         ),
       ),

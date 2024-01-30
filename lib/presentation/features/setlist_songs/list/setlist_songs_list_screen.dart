@@ -55,186 +55,191 @@ class _ReadSetlistScreenState extends ConsumerState<SetlistSongsListScreen> {
     final prov = ref.read(setlistSongsListProvider);
     final reactiveProv = ref.watch(setlistSongsListProvider);
     
-    return Scaffold(
-      body: CustomBottomNavBar(
-        selectedIndex: 0,
-        hideBottomNavBar: true,
-        appBar: AppBar(
-          centerTitle: true,
-          actions: [
-            if(!showSearchInput)
-              IconButton(
-                iconSize: 25,
-                onPressed: (){
-                  setState(() {
-                    showSearchInput = true;
-                  });
-                },
-                icon: Icon(
-                  CupertinoIcons.search,
-                  color: theme.colorScheme.onBackground,
-                ),
-              ),
-              showSearchInput 
-              ? FadeIn(
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    alignment: Alignment.centerRight,
-                    textStyle: theme.textTheme.labelLarge,
-                  ),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        body: CustomBottomNavBar(
+          selectedIndex: 0,
+          hideBottomNavBar: true,
+          appBar: AppBar(
+            centerTitle: true,
+            actions: [
+              if(!showSearchInput)
+                IconButton(
+                  iconSize: 25,
                   onPressed: (){
                     setState(() {
-                      showSearchInput = false;
+                      showSearchInput = true;
                     });
-                    prov.updateQuery('');
                   },
-                  child: Text(
-                    lang.actions_cancel
+                  icon: Icon(
+                    CupertinoIcons.search,
+                    color: theme.colorScheme.onBackground,
                   ),
                 ),
-              )
-            : Padding(
-              padding: const EdgeInsets.only(
-                right: Sizes.kPadding / 2,
-              ),
-              child: CreateButton(
-                onPressed: (){}
-              ),
-            ),
-          ], 
-          leading: reactiveProv.isSelectItemOpened ?
-          TextButton(
-            onPressed: () => prov.openCloseSelectItem(), 
-            child: Text(lang.actions_ok)
-          ):
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: BackButtonWidget(
-              onPressed: () {
-                GoRouter.of(context).pop();
-              },
-            ),
-          ),
-          title: showSearchInput ? 
-            SearchInput(
-              onChangeSearch: (query) => prov.updateQuery(query),
-            )
-            : Text(
-            widget.setlistModel.allowToRemoveBool 
-            ? widget.setlistModel.name 
-            : lang.app_favorites,
-            style: theme.textTheme.titleSmall,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-        buttonBottomRow: prov.isSelectItemOpened 
-        ? FadeInUp(
-          duration: const Duration(milliseconds: 100),
-          child:  Padding(
-            padding: const EdgeInsets.symmetric(horizontal: Sizes.kPadding),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox.shrink(),
-                RemoveSongsFromSetlistButton(
-                  enabled: reactiveProv.selectedItems.isNotEmpty,
-                  setlistId: widget.setlistModel.id,
+                showSearchInput 
+                ? FadeIn(
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      alignment: Alignment.centerRight,
+                      textStyle: theme.textTheme.labelLarge,
+                    ),
+                    onPressed: (){
+                      setState(() {
+                        showSearchInput = false;
+                      });
+                      prov.updateQuery('');
+                    },
+                    child: Text(
+                      lang.actions_cancel
+                    ),
+                  ),
+                )
+              : Padding(
+                padding: const EdgeInsets.only(
+                  right: Sizes.kPadding / 2,
                 ),
-              ],
+                child: CreateButton(
+                  onPressed: (){}
+                ),
+              ),
+            ], 
+            leading: reactiveProv.isSelectItemOpened ?
+            TextButton(
+              onPressed: () => prov.openCloseSelectItem(), 
+              child: Text(lang.actions_ok)
+            ):
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: BackButtonWidget(
+                onPressed: () {
+                  GoRouter.of(context).pop();
+                },
+              ),
+            ),
+            title: showSearchInput ? 
+              SearchInput(
+                onChangeSearch: (query) => prov.updateQuery(query),
+              )
+              : Text(
+              widget.setlistModel.allowToRemoveBool 
+              ? widget.setlistModel.name 
+              : lang.app_favorites,
+              style: theme.textTheme.titleSmall,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
-        )
-        : null,
-        body: Column(
-          children: [
-            Container(
-              height: 30,
-              padding: const EdgeInsets.symmetric(
-                horizontal: Sizes.kPadding
-              ),
-              width: double.infinity,
-              color: theme.colorScheme.inverseSurface.withOpacity(0.5),
-              //color: Colors.red,
-              child: Column(
+          buttonBottomRow: prov.isSelectItemOpened 
+          ? FadeInUp(
+            duration: const Duration(milliseconds: 100),
+            child:  Padding(
+              padding: const EdgeInsets.symmetric(horizontal: Sizes.kPadding),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        flex: 2,
-                        child: Text(
-                          reactiveProv.isSelectItemOpened 
-                          ? '${reactiveProv.selectedItems.length} ${lang.app_selectedItems}'
-                          : reactiveProv.isModelInitialized ?
-                          '${reactiveProv.model!.length  } ${lang.app_items}'
-                          : '0 ${lang.app_items}',
-                          style: theme.textTheme.bodySmall,
+                  const SizedBox.shrink(),
+                  RemoveSongsFromSetlistButton(
+                    enabled: reactiveProv.selectedItems.isNotEmpty,
+                    setlistId: widget.setlistModel.id,
+                  ),
+                ],
+              ),
+            ),
+          )
+          : null,
+          body: Column(
+            children: [
+              Container(
+                height: 30,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Sizes.kPadding
+                ),
+                width: double.infinity,
+                color: theme.colorScheme.inverseSurface.withOpacity(0.5),
+                //color: Colors.red,
+                child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            reactiveProv.isSelectItemOpened 
+                            ? '${reactiveProv.selectedItems.length} ${lang.app_selectedItems}'
+                            : reactiveProv.isModelInitialized ?
+                            '${reactiveProv.model!.length  } ${lang.app_items}'
+                            : '0 ${lang.app_items}',
+                            style: theme.textTheme.bodySmall,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Container(
-                          height: 15,
-                          margin: const EdgeInsets.only(
-                            top: 4
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: theme.colorScheme.primary.withOpacity(0.3),
-                            border: Border.all(
-                              color: theme.colorScheme.primary
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Expanded(
+                          flex: 3,
+                          child: Container(
+                            height: 15,
+                            margin: const EdgeInsets.only(
+                              top: 4
                             ),
-                          ),
-                          child: Center(
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                bottom: Platform.isIOS ? 0: 2
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: theme.colorScheme.primary.withOpacity(0.3),
+                              border: Border.all(
+                                color: theme.colorScheme.primary
                               ),
-                              child: Text(
-                                lang.app_setlist,
-                                style: theme.textTheme.bodySmall?.copyWith(
-                                  color: theme.colorScheme.onBackground,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 8
+                            ),
+                            child: Center(
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: Platform.isIOS ? 0: 2
+                                ),
+                                child: Text(
+                                  lang.app_setlist,
+                                  style: theme.textTheme.bodySmall?.copyWith(
+                                    color: theme.colorScheme.onBackground,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 8
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      const Expanded(
-                        flex: 2,
-                        child: SizedBox.shrink(),
-                      )
-                    ],
-                  ),
-                ],
+                        const Expanded(
+                          flex: 2,
+                          child: SizedBox.shrink(),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: FetchProviderBuilder(
-                provider: setlistSongsListProvider,
-                builder: (songs) => RefreshIndicator(
-                  onRefresh: () => Future.sync(
-                    () => prov.refreshSetlistSongs(),
-                  ),
-                  child: SetlistSongsReorderableList(
-                    songs: songs!,
-                    onActionEnd: (response, oldIndex, newIndex){
-                      if(response.isFailed){
-                        SnackbarHelper.show(context, response.message!);
-                      }
-                    },
+              Expanded(
+                child: FetchProviderBuilder(
+                  provider: setlistSongsListProvider,
+                  builder: (songs) => RefreshIndicator(
+                    onRefresh: () => Future.sync(
+                      () => prov.refreshSetlistSongs(),
+                    ),
+                    child: SetlistSongsReorderableList(
+                      songs: songs!,
+                      onActionEnd: (response, oldIndex, newIndex){
+                        if(response.isFailed){
+                          SnackbarHelper.show(context, response.message!);
+                        }
+                      },
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -44,7 +44,7 @@ class SetlistTile extends ConsumerWidget {
       onLongPress: prov.isSelectItemOpened 
       ? null 
       : ()=> prov.openCloseSelectItem(
-        id: setlistModel.id
+        id: setlistModel.allowToRemoveBool ? setlistModel.id : null
       ),
       contentPadding: const EdgeInsets.symmetric(
         horizontal: Sizes.kPadding,

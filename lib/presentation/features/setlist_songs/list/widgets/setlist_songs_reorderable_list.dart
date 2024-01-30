@@ -69,9 +69,11 @@ class _SetlistSongsReorderableListState extends ConsumerState<SetlistSongsReorde
         key: Key(widget.songs[index].id.toString()),
         children: [
           ListTile(
-            onTap: (){},
+            onTap: prov.isSelectItemOpened ? ()=> prov.selectItem(
+              id: widget.songs[index].songId
+            ) : null,
             onLongPress: prov.isSelectItemOpened 
-            ? null 
+            ? null
             : ()=> prov.openCloseSelectItem(
               id: widget.songs[index].songId
             ),
