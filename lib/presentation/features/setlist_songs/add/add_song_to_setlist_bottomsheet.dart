@@ -125,7 +125,9 @@ class _AddSongToSetlistBottomsheetState extends ConsumerState<AddSongToSetlistBo
                         ),
                         child: SearchInput(
                           onChangeSearch: (query) => {
-                           
+                            prov.updateFilters((filters) => filters.copyWith(
+                              query: query
+                            ))
                           },
                           autoFocus: false,
                         ),
