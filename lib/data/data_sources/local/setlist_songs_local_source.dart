@@ -428,4 +428,39 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
        
      }
   }
+  
+  @override
+  Future<ResponseModel<String>> fetchSongLyricsBySongId({
+    required Guid songId
+  }) async {
+    try {
+
+      final songs = await SQLite.instance.query(
+        SongsTable.name,
+        columns: [SongsTable.colLyric],
+        where: '${SongsTable.colId} = ?',
+        whereArgs: [songId.toString()]
+      );
+
+      final lyric = songs[0]['lyric'] as String?;
+
+      return ResponseModel(
+        success: true,
+        message: 'Letra de canción',
+        model: lyric ?? ''
+      );
+
+
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en SetlistSongsLocalSource método [fetchSongLyricsBySongId]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al obtener la letra'
+      );
+      
+    }
+  }
 }

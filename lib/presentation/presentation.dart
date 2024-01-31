@@ -7,6 +7,10 @@ export 'features/setlists/list/setlists_screen.dart';
 export 'features/setlists/create/create_setlist_screen.dart';
 export 'features/setlists/edit/edit_setlist_screen.dart';
 
+export '/presentation/features/setlist_songs/list/setlist_songs_list_screen.dart';
+export '/presentation/features/setlist_songs/read/read_setlist_song_screen.dart';
+
+
 export 'features/genres/create/create_genre_screen.dart';
 export 'features/genres/edit/edit_genre_screen.dart';
 export 'features/genres/list/genres_list_screen.dart';

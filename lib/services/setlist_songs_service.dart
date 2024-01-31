@@ -28,7 +28,7 @@ class SetlistSongsService {
     required Guid setlistId, 
     required String query,
     required page,
-  }) async{
+  }){
     return _localSource.fetchSongsToAddToSetlist(
       setlistId: setlistId, 
       query: query,
@@ -38,7 +38,7 @@ class SetlistSongsService {
 
   Future<ResponseModel<SongModel?>> toogleIsFavorite({
     required SongModel songModel,
-  }) async {
+  }){
     return _localSource.toogleIsFavorite(
       songModel: songModel
     );
@@ -46,7 +46,7 @@ class SetlistSongsService {
 
   Future<ResponseModel> orderSongs({
     required List<SetlistSongOrderModel> songsOrdered,
-  }) async {
+  }){
     return _localSource.orderSongs(
       songsOrdered: songsOrdered
     );
@@ -55,7 +55,7 @@ class SetlistSongsService {
   Future<ResponseModel<String>> deleteSongs({
     required List<Guid> songsIds,
     required Guid setlistId
-  }) async {
+  }){
     return _localSource.deleteSongsFromSetlist(
       songsIds: songsIds,
       setlistId: setlistId
@@ -65,11 +65,17 @@ class SetlistSongsService {
   Future<ResponseModel<SetlistSongModel?>> addSongToSetlist({
     required Guid songId,
     required Guid setlistId,
-  })async {
+  }){
     return _localSource.addSongToSetlist(
       songId: songId,
       setlistId: setlistId
     );
+  }
+
+  Future<ResponseModel<String>> fetchSongLyricsBySongId({
+    required Guid songId,
+  }){
+    return _localSource.fetchSongLyricsBySongId(songId: songId);
   }
 
   

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lyrics_library/config/lang/generated/l10n.dart';
 import 'package:lyrics_library/presentation/features/setlist_songs/list/setlist_songs_list_screen.dart';
+import 'package:lyrics_library/presentation/features/setlists/shared/models/setlists_route_params_model.dart';
 
 import '/presentation/features/setlists/list/providers/providers.dart';
 import '/presentation/features/setlists/shared/models/setlist_model.dart';
@@ -39,7 +40,9 @@ class SetlistTile extends ConsumerWidget {
             'sid': setlistModel.id.toString()
           },
         ),
-        extra: setlistModel
+        extra: SetlistRouteParamsModel(
+          setlistModel: setlistModel
+        )
       ),
       onLongPress: prov.isSelectItemOpened 
       ? null 

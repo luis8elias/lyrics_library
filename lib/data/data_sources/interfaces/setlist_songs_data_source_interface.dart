@@ -43,6 +43,10 @@ abstract class SetlistSongsDataSource{
     required List<Guid> songsIds,
     required Guid setlistId
   });
+
+  Future<ResponseModel<String>> fetchSongLyricsBySongId({
+    required Guid songId,
+  });
  
 
 }

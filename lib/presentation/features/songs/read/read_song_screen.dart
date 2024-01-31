@@ -114,7 +114,7 @@ class ReadSongScreen extends ConsumerWidget {
                       width: double.infinity,
                       child: Text(
                         songModel.lyric,
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.left,
                         style: TextStyle(
                           color: theme.colorScheme.onSurface
                         ),

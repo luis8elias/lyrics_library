@@ -171,13 +171,15 @@ class _AddSongToSetlistBottomsheetState extends ConsumerState<AddSongToSetlistBo
                                           if(response.isFailed){
                                             SnackbarHelper.show(
                                               context:context,
-                                              message: response.message!
+                                              message: response.message!,
+                                              duration: const Duration(milliseconds: 900)
                                             );
                                             return;
                                           }
                                           SnackbarHelper.show(
                                            context:context,
-                                              message: response.message!
+                                              message: response.message!,
+                                              duration: const Duration(milliseconds: 700)
                                           );
                                           prov.removeSong(response.model!.songId);
                                           ref.read(setlistSongsListProvider).addSong(response.model!);

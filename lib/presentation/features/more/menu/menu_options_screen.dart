@@ -48,18 +48,18 @@ class MoreOptionsScreen extends ConsumerWidget {
                   height: Sizes.kPadding,
                 ),
                 
-                MenuOptionWidget(
-                  onPressed: (){},
-                  title: lang.moreOptionsScreen_groups,
-                  icon: CupertinoIcons.person_3_fill,
-                  menuRoundedOption: MenuRoundedOption.top,
-                ),
-                const MenuOptionDivider(),
+                // MenuOptionWidget(
+                //   onPressed: (){},
+                //   title: lang.moreOptionsScreen_groups,
+                //   icon: CupertinoIcons.person_3_fill,
+                //   menuRoundedOption: MenuRoundedOption.top,
+                // ),
+                // const MenuOptionDivider(),
                 MenuOptionWidget(
                   onPressed: (){},
                   title: lang.moreOptionsScreen_metrics,
                   icon: CupertinoIcons.chart_bar_square,
-                  menuRoundedOption: MenuRoundedOption.none,
+                  menuRoundedOption: MenuRoundedOption.top,
                 ),
                 const MenuOptionDivider(),
                 MenuOptionWidget(

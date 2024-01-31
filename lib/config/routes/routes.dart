@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/presentation/features/setlist_songs/list/setlist_songs_list_screen.dart';
 
+import '/presentation/features/setlists/shared/models/setlists_route_params_model.dart';
 import '/config/routes/custom_transiton_page.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/features/setlists/shared/models/setlist_model.dart';
@@ -84,9 +84,25 @@ final routes =  [
       GoRoute(
         path: SetlistSongsListScreen.routePath,
         name: SetlistSongsListScreen.routeName,
-        builder: (context, state) => SetlistSongsListScreen(
-          setlistModel: state.extra as SetlistModel,
-        ),
+        builder: (context, state) {
+          final extra = state.extra as SetlistRouteParamsModel;
+          return SetlistSongsListScreen(
+          setlistModel: extra.setlistModel,
+        );
+        },
+        routes: [
+          GoRoute(
+            path: ReadSetlistSongScreen.routePath,
+            name: ReadSetlistSongScreen.routeName,
+            builder: (context, state) {
+              final extra = state.extra as SetlistRouteParamsModel;
+              return ReadSetlistSongScreen(
+              setlistSongs: extra.setlistSongs,
+              selectedIndex: int.parse(state.pathParameters['selectedIndex'].toString()),
+            );
+            },
+          ),
+        ]
       ),
     ]
   ),

@@ -2,7 +2,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:injector/injector.dart';
+import 'package:lyrics_library/presentation/features/setlists/shared/models/setlists_route_params_model.dart';
+import 'package:lyrics_library/presentation/presentation.dart';
 
 import '/data/models/response_model.dart';
 import '/presentation/features/setlist_songs/list/model/setlist_song_model.dart';
@@ -43,7 +46,7 @@ class _SetlistSongsReorderableListState extends ConsumerState<SetlistSongsReorde
   }) async{
 
     final  songsOrdered =  List.generate(songs.length, (index) {
-        return SetlistSongOrderModel(
+      return SetlistSongOrderModel(
         indexOrder: (index + 1),
         setlistSongId: songs[index].id,
         title: songs[index].title
@@ -69,9 +72,25 @@ class _SetlistSongsReorderableListState extends ConsumerState<SetlistSongsReorde
         key: Key(widget.songs[index].id.toString()),
         children: [
           ListTile(
-            onTap: prov.isSelectItemOpened ? ()=> prov.selectItem(
+            onTap: prov.isSelectItemOpened 
+            ? ()=> prov.selectItem(
               id: widget.songs[index].songId
-            ) : null,
+            ) 
+            : (){
+              final extra = GoRouter.of(context).routerDelegate.currentConfiguration.extra as SetlistRouteParamsModel;
+              GoRouter.of(context).go(
+                context.namedLocation(
+                  ReadSetlistSongScreen.routeName,
+                  pathParameters: {
+                    'sid': prov.getSetlistId.toString(),
+                    'selectedIndex': (index + 1).toString()
+                  },
+                ),
+                extra: extra.copyWith(
+                  setlistSongs: widget.songs
+                )
+              );
+            },
             onLongPress: prov.isSelectItemOpened 
             ? null
             : ()=> prov.openCloseSelectItem(
