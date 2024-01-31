@@ -26,7 +26,10 @@ class CreateSetlistScreen extends ConsumerWidget {
       },
       child: SendProviderListener(
         provider: createSetlistProvider,
-        onError: (error) => SnackbarHelper.show(context,error),
+        onError: (error) => SnackbarHelper.show(
+          context: context,
+          message: error
+        ),
         onSuccess: (model, message) async{
           GoRouter.of(context).pop();
           //SnackbarHelper.show(context,message);

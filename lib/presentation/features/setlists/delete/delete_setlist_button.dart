@@ -25,7 +25,10 @@ class DeleteSetlistButton extends ConsumerWidget {
 
     return  SendProviderListener(
       provider: deleteSetlistsProvider,
-      onError: (error) => SnackbarHelper.show(context, error),
+      onError: (error) => SnackbarHelper.show(
+        context: context,
+        message: error
+      ),
       onSuccess: (model, message) {
         ref.read(setlistsListProvider).deleteSetlists();
         //SnackbarHelper.show(context, message);

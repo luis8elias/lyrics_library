@@ -25,7 +25,10 @@ class DeleteSongButton extends ConsumerWidget {
 
     return  SendProviderListener(
       provider: deleteSongProvider,
-      onError: (error) => SnackbarHelper.show(context, error),
+      onError: (error) => SnackbarHelper.show(
+        context: context,
+        message: error
+      ),
       onSuccess: (model, message) {
         ref.read(songsListProvider).deleteSongs();
       },

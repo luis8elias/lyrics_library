@@ -22,7 +22,10 @@ class LoginScreen extends ConsumerWidget {
 
     return SendProviderListener(
       provider: loginProvider,
-      onError: (error) => SnackbarHelper.show(context,error),
+      onError: (error) => SnackbarHelper.show(
+        context: context,
+        message: error
+      ),
       onSuccess: (model, message) {
         sessionProv.checkIfUserIsAuthenticated();
       },
@@ -42,7 +45,10 @@ class LoginGoogleListener extends ConsumerWidget {
 
     return SendProviderListener(
       provider: loginGoogleProvider,
-      onError: (error) => SnackbarHelper.show(context,error),
+      onError: (error) => SnackbarHelper.show(
+        context: context,
+        message: error
+      ),
       onSuccess: (model, message) {
         sessionProv.checkIfUserIsAuthenticated();
       },

@@ -31,7 +31,10 @@ class RemoveSongsFromSetlistButton extends ConsumerWidget {
 
     return  SendProviderListener(
       provider: removeSongsFromSetlistProvider,
-      onError: (error) => SnackbarHelper.show(context, error),
+      onError: (error) => SnackbarHelper.show(
+        context: context,
+        message: error
+      ),
       onSuccess: (model, message) {
         final count = ssListProv.selectedItems.length;
         ssListProv.deleteSongs();

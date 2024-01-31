@@ -26,7 +26,10 @@ class CreateSongScreen extends ConsumerWidget {
       },
       child: SendProviderListener(
         provider: createSongProvider,
-        onError: (error) => SnackbarHelper.show(context,error),
+        onError: (error) => SnackbarHelper.show(
+          context: context,
+          message: error
+        ),
         onSuccess: (model, message) async{
           GoRouter.of(context).pop();
           ref.read(songsListProvider).refresh();

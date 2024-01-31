@@ -3,16 +3,22 @@ import '/utils/utils.dart';
 
 class SnackbarHelper{
 
-  static void show(BuildContext context, String message){
+  static void show({
+    required BuildContext context,
+    required String message, 
+    Duration? duration
+  }){
 
     final brightness = Theme.of(context).brightness;
     final theme = Theme.of(context);
 
+    const defaultDuration = Duration(seconds: 2);
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         padding: const EdgeInsets.all(Sizes.kPadding),
-    
         behavior: SnackBarBehavior.floating,
+        duration: duration ?? defaultDuration,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Sizes.kBorderRadius)
         ),

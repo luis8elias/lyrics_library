@@ -236,7 +236,10 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                                 if(response.success){
                                   prov.toggleFavoriteSong(songModel: response.model!);
                                 }else{
-                                  SnackbarHelper.show(context, response.message!);
+                                  SnackbarHelper.show(
+                                    context: context,
+                                    message: response.message!
+                                  );
                                 }
                               },
                             )

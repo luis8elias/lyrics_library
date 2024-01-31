@@ -37,7 +37,10 @@ class RegisterScreen extends ConsumerWidget{
       ),
       body: SendProviderListener(
         provider: registerProvider,
-        onError: (error) => SnackbarHelper.show(context,error),
+        onError: (error) => SnackbarHelper.show(
+          context: context,
+          message: error
+        ),
         onSuccess: (model, message) {
           sessionProv.checkIfUserIsAuthenticated();
         },

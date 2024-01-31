@@ -5,17 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_guid/flutter_guid.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:lyrics_library/presentation/features/setlist_songs/add/widgets/add_to_setlist_btn.dart';
-import 'package:lyrics_library/presentation/features/setlist_songs/list/provider/providers.dart';
-import 'package:lyrics_library/presentation/features/setlists/list/providers/providers.dart';
-import 'package:lyrics_library/utils/utils.dart';
+import '/presentation/features/setlist_songs/add/widgets/add_to_setlist_btn.dart';
+import '/presentation/features/setlist_songs/list/provider/providers.dart';
+import '/presentation/features/setlists/list/providers/providers.dart';
+import '/utils/utils.dart';
 import '/presentation/features/setlist_songs/list/widgets/setlist_song_subtitle.dart';
 import '/presentation/features/songs/list/widgets/new_page_progress_indicator.dart';
 import '/presentation/features/songs/list/widgets/no_items_found.dart';
 import '/presentation/features/songs/list/widgets/song_title.dart';
 import '/presentation/widgets/loaders.dart';
 import '/presentation/widgets/search_input.dart';
-import '/utils/constants/sizes.dart';
 import 'models/song_model_from_add_song_to_setlist_model.dart';
 import 'provider/providers.dart';
 
@@ -171,13 +170,14 @@ class _AddSongToSetlistBottomsheetState extends ConsumerState<AddSongToSetlistBo
                                         onActionEnd: (response) {
                                           if(response.isFailed){
                                             SnackbarHelper.show(
-                                              context,
-                                              response.message!
+                                              context:context,
+                                              message: response.message!
                                             );
+                                            return;
                                           }
                                           SnackbarHelper.show(
-                                            context,
-                                            response.message!
+                                           context:context,
+                                              message: response.message!
                                           );
                                           prov.removeSong(response.model!.songId);
                                           ref.read(setlistSongsListProvider).addSong(response.model!);

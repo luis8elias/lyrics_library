@@ -241,7 +241,11 @@ class _ReadSetlistScreenState extends ConsumerState<SetlistSongsListScreen> {
                       songs: songs!,
                       onActionEnd: (response, oldIndex, newIndex){
                         if(response.isFailed){
-                          SnackbarHelper.show(context, response.message!);
+                          SnackbarHelper.show(
+                            context: 
+                            context, 
+                            message: response.message!
+                          );
                         }
                       },
                     ),

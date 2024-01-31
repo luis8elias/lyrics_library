@@ -45,7 +45,10 @@ class _EditGenreScreenState extends ConsumerState<EditGenreScreen> {
       },
       child: SendProviderListener(
         provider: editGenreProvider,
-        onError: (error) => SnackbarHelper.show(context,error),
+        onError: (error) => SnackbarHelper.show(
+          context: context,
+          message: error
+        ),
         onSuccess: (model, message) async{
           GoRouter.of(context).pop();
           //SnackbarHelper.show(context,message);
