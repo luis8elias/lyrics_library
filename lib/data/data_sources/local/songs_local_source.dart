@@ -143,18 +143,35 @@ class SongsLocalSource extends SongsDataSource {
     try {
 
       final questionSymbols = songsIds.map((e) => '?').join(',');
-      final rowsAffected = await  SQLite.instance.rawUpdate(
-        'UPDATE ${SongsTable.name} SET isRemoved = ? '
-        'WHERE ${SongsTable.colId} IN ($questionSymbols)',
-        [1, ...songsIds.map((e) => e.toString()).toList()]
+      // final rowsAffected = await  SQLite.instance.rawUpdate(
+      //   'UPDATE ${SongsTable.name} SET isRemoved = ? '
+      //   'WHERE ${SongsTable.colId} IN ($questionSymbols)',
+      //   [1, ...songsIds.map((e) => e.toString()).toList()]
+      // );
+
+      final batch = SQLite.instance.batch();
+
+      batch.update(
+        SongsTable.name,
+        {SongsTable.colIsRemoved: 1},
+        where: '${SongsTable.colId} IN ($questionSymbols)', 
+        whereArgs: songsIds.map((e) => e.toString()).toList()
       );
       
-      if(rowsAffected == 0){
-        return ResponseModel(
-          success: false,
-          message: 'Ocurrió un problema al eliminar'
-        );
-      }
+      batch.delete(
+        SetlistSongsTable.name, 
+        where : '${SetlistSongsTable.colSongId} IN ($questionSymbols)',
+        whereArgs: songsIds.map((e) => e.toString()).toList(),
+        
+      );
+
+      final resp = await batch.commit();
+
+      resp;
+      
+
+
+
       await Future.delayed(Config.manualLocalServicesDelay);
       
       return ResponseModel(

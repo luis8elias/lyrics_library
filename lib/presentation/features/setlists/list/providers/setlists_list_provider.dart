@@ -87,7 +87,18 @@ class SetlistsListProvider extends FetchProvider<List<SetlistModel>?> with Selec
     final index = model!.indexWhere((setlist) => setlist.id == setlistId);
     final setlistCoopy = model![index].copyWith(
       totalSongs: model![index].totalSongs - count,
-      
+    );
+    model![index] = setlistCoopy;
+    if(isSelectItemOpened){
+      openCloseSelectItem();
+    }
+    notifyListeners();
+  }
+
+  void incrementSetlistTotalSongsCount(Guid setlistId){
+    final index = model!.indexWhere((setlist) => setlist.id == setlistId);
+    final setlistCoopy = model![index].copyWith(
+      totalSongs: model![index].totalSongs + 1,
     );
     model![index] = setlistCoopy;
     if(isSelectItemOpened){

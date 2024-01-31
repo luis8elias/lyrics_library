@@ -20,6 +20,7 @@ class SetlistSongsListProvider extends FetchProvider<List<SetlistSongModel>?> wi
   );
   String _query = '';
   Guid _setlistId = Guid.defaultValue;
+  Guid get getSetlistId => _setlistId;
 
 
 
@@ -101,6 +102,11 @@ class SetlistSongsListProvider extends FetchProvider<List<SetlistSongModel>?> wi
   void deleteSongs(){
     model!.removeWhere((song) => selectedItems.contains(song.songId));
     openCloseSelectItem();
+    notifyListeners();
+  }
+
+  void addSong(SetlistSongModel song){
+    model!.add(song);
     notifyListeners();
   }
 

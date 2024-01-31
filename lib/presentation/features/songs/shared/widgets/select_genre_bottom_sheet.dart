@@ -142,134 +142,64 @@ class __SelectGenreBottomSheetUIState extends ConsumerState<_SelectGenreBottomSh
     final prov = ref.read(selectGenresListProvider);
     final reactiveProv = ref.watch(selectGenresListProvider);
 
-    return  Container(
-      width: double.infinity,
-      height: height,
-      color: Colors.transparent,
+    return  GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
       child: Container(
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(Sizes.kBorderRadius),
-            topRight: Radius.circular(Sizes.kBorderRadius)
-          ),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(
-                  height: kToolbarHeight,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: Sizes.kPadding * 0.3,
-                  ),
-                  child: SizedBox(
-                    height: 40,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 40,
-                          width: 60,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            top: 5
-                          ),
-                          child: Text(
-                            'Select genre',
-                            style: theme.textTheme.titleSmall,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: ()=> Navigator.of(context).pop(),
-                          icon:  Icon(
-                            CupertinoIcons.xmark_circle_fill,
-                            color: theme.colorScheme.onBackground,
-                          ),
-                        ),
-                      ],
-                    )
-                  ),
-                ),
-                const SizedBox(
-                  height: Sizes.kPadding,
-                ),
-              ],
+        width: double.infinity,
+        height: height,
+        color: Colors.transparent,
+        child: Container(
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(Sizes.kBorderRadius),
+              topRight: Radius.circular(Sizes.kBorderRadius)
             ),
-            Expanded(
-              child: Column(
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: Sizes.kPadding
-                    ),
-                    child: SearchInput(
-                      onChangeSearch: (query) => {
-                        prov.updateQuery(query)
-                      },
-                    ),
-                  ),
                   const SizedBox(
-                    height: Sizes.kPadding,
+                    height: kToolbarHeight,
                   ),
-                  Expanded(
-                    child: FetchProviderBuilder(
-                      provider: selectGenresListProvider,
-                      builder:(genres) {
-                        
-                        return ListView.builder(
-                        itemCount: genres!.length,
-                        itemBuilder: (context, index) {
-                          final genre = genres[index];
-                          return ListTile(
-                            onTap: () {
-                              prov.selectGenre(genre.id);
-                              //widget.onGenreChanged(genre);
-                            },
-                            leading: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                FadeInRight(
-                                  duration: const Duration(milliseconds: 100),
-                                  child: CupertinoCheckbox(
-                                    checkColor: theme.colorScheme.onPrimary,
-                                    activeColor: theme.colorScheme.primary,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
-                                    ),
-                                    value: reactiveProv.isThisGenreSelected(genre.id), 
-                                    onChanged: (value){
-                                      prov.selectGenre(genre.id);
-                                      //widget.onGenreChanged(genre);
-                                    },
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: Sizes.kPadding,
-                                ),
-                                FadeInRight(
-                                  duration: const Duration(milliseconds: 100),
-                                  child: GenreTileLeading(
-                                    genreModel: genres[index],
-                                  ),
-                                )
-                              ],
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: Sizes.kPadding * 0.3,
+                    ),
+                    child: SizedBox(
+                      height: 40,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 40,
+                            width: 60,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 5
                             ),
-                            title: FadeInRight(
-                              duration: const Duration(milliseconds: 100),
-                              child: Text(genres[index].name)
+                            child: Text(
+                              'Select genre',
+                              style: theme.textTheme.titleSmall,
                             ),
-                          );
-                        },
-                      );
-                      }
+                          ),
+                          IconButton(
+                            onPressed: ()=> Navigator.of(context).pop(),
+                            icon:  Icon(
+                              CupertinoIcons.xmark_circle_fill,
+                              color: theme.colorScheme.onBackground,
+                            ),
+                          ),
+                        ],
+                      )
                     ),
                   ),
                   const SizedBox(
@@ -277,24 +207,100 @@ class __SelectGenreBottomSheetUIState extends ConsumerState<_SelectGenreBottomSh
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: Sizes.kPadding
+              Expanded(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: Sizes.kPadding
+                      ),
+                      child: SearchInput(
+                        onChangeSearch: (query) => {
+                          prov.updateQuery(query)
+                        },
+                        autoFocus: false,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: Sizes.kPadding,
+                    ),
+                    Expanded(
+                      child: FetchProviderBuilder(
+                        provider: selectGenresListProvider,
+                        builder:(genres) {
+                          
+                          return ListView.builder(
+                          itemCount: genres!.length,
+                          itemBuilder: (context, index) {
+                            final genre = genres[index];
+                            return ListTile(
+                              onTap: () {
+                                prov.selectGenre(genre.id);
+                                //widget.onGenreChanged(genre);
+                              },
+                              leading: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  FadeInRight(
+                                    duration: const Duration(milliseconds: 100),
+                                    child: CupertinoCheckbox(
+                                      checkColor: theme.colorScheme.onPrimary,
+                                      activeColor: theme.colorScheme.primary,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(Sizes.kRoundedBorderRadius)
+                                      ),
+                                      value: reactiveProv.isThisGenreSelected(genre.id), 
+                                      onChanged: (value){
+                                        prov.selectGenre(genre.id);
+                                        //widget.onGenreChanged(genre);
+                                      },
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: Sizes.kPadding,
+                                  ),
+                                  FadeInRight(
+                                    duration: const Duration(milliseconds: 100),
+                                    child: GenreTileLeading(
+                                      genreModel: genres[index],
+                                    ),
+                                  )
+                                ],
+                              ),
+                              title: FadeInRight(
+                                duration: const Duration(milliseconds: 100),
+                                child: Text(genres[index].name)
+                              ),
+                            );
+                          },
+                        );
+                        }
+                      ),
+                    ),
+                    const SizedBox(
+                      height: Sizes.kPadding,
+                    ),
+                  ],
+                ),
               ),
-              child: BasicButton(
-                onPressed: (){
-                  final genre = reactiveProv.selectedGenre ?? GenreModel.empty();
-                  widget.onGenreChanged(genre);
-                  Navigator.pop(context,genre);
-                }, 
-                text: 'OK'
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: Sizes.kPadding
+                ),
+                child: BasicButton(
+                  onPressed: (){
+                    final genre = reactiveProv.selectedGenre ?? GenreModel.empty();
+                    widget.onGenreChanged(genre);
+                    Navigator.pop(context,genre);
+                  }, 
+                  text: 'OK'
+                ),
               ),
-            ),
-            const SizedBox(
-              height: Sizes.kPadding * 1.5,
-            ),
-          ],
+              const SizedBox(
+                height: Sizes.kPadding * 1.5,
+              ),
+            ],
+          ),
         ),
       ),
     );

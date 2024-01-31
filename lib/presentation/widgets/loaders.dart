@@ -7,7 +7,12 @@ import '/config/config.dart';
 import '/utils/utils.dart';
 
 class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({super.key});
+  const LoadingScreen({
+    super.key,
+    this.backgroundColor
+  });
+
+  final Color? backgroundColor;
 
 
   static const String routeName = '/loading-screen';
@@ -19,6 +24,7 @@ class LoadingScreen extends StatelessWidget {
     final lang = Lang.of(context);
    
     return Scaffold(
+      backgroundColor: backgroundColor,
       body: Center(
         child: Row(
           mainAxisSize: MainAxisSize.min,

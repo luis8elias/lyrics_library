@@ -1,4 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/presentation/features/setlist_songs/add/models/song_model_from_add_song_to_setlist_model.dart';
 import 'package:lyrics_library/presentation/features/setlist_songs/list/model/setlist_song_model.dart';
 import 'package:lyrics_library/presentation/features/setlist_songs/list/model/setlist_song_order_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
@@ -23,6 +24,18 @@ class SetlistSongsService {
     );
   }
 
+  Future<ResponseModel<ListAddSongs?>> fetchSongsToAddToSetlist({
+    required Guid setlistId, 
+    required String query,
+    required page,
+  }) async{
+    return _localSource.fetchSongsToAddToSetlist(
+      setlistId: setlistId, 
+      query: query,
+      page: page,
+    );
+  }
+
   Future<ResponseModel<SongModel?>> toogleIsFavorite({
     required SongModel songModel,
   }) async {
@@ -43,8 +56,18 @@ class SetlistSongsService {
     required List<Guid> songsIds,
     required Guid setlistId
   }) async {
-    return _localSource.deleteSongs(
+    return _localSource.deleteSongsFromSetlist(
       songsIds: songsIds,
+      setlistId: setlistId
+    );
+  }
+
+  Future<ResponseModel<SetlistSongModel?>> addSongToSetlist({
+    required Guid songId,
+    required Guid setlistId,
+  })async {
+    return _localSource.addSongToSetlist(
+      songId: songId,
       setlistId: setlistId
     );
   }

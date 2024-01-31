@@ -11,6 +11,7 @@ class SnackbarHelper{
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         padding: const EdgeInsets.all(Sizes.kPadding),
+    
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Sizes.kBorderRadius)

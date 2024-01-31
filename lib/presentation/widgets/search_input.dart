@@ -9,10 +9,12 @@ import '/utils/utils.dart';
 class SearchInput extends StatefulWidget {
   const SearchInput({
     super.key,
-    required this.onChangeSearch
+    required this.onChangeSearch,
+    this.autoFocus = true
   });
 
   final void Function(String query) onChangeSearch;
+  final bool autoFocus;
 
   @override
   State<SearchInput> createState() => _SearchInputState();
@@ -26,7 +28,9 @@ class _SearchInputState extends State<SearchInput> {
   void initState() {
     focusNode  = FocusNode();
     controller = TextEditingController();
-    focusNode.requestFocus();
+    if(widget.autoFocus){
+      focusNode.requestFocus();
+    }
     super.initState();
   }
 

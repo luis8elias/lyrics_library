@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/presentation/features/setlist_songs/add/add_song_to_setlist_bottomsheet.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/setlist_songs/list/widgets/setlist_songs_reorderable_list.dart';
@@ -102,7 +103,16 @@ class _ReadSetlistScreenState extends ConsumerState<SetlistSongsListScreen> {
                   right: Sizes.kPadding / 2,
                 ),
                 child: CreateButton(
-                  onPressed: (){}
+                  onPressed: (){
+                    showModalBottomSheet(
+                      enableDrag: false,
+                      context: context, 
+                      isScrollControlled: true,
+                      builder: (context) => AddSongToSetlistBottomsheet(
+                        setlistId: prov.getSetlistId,
+                      )
+                    );
+                  }
                 ),
               ),
             ], 
