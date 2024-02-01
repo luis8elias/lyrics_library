@@ -37,7 +37,7 @@ class MenuOptionWidget extends StatelessWidget {
         bottomLeft: menuRoundedOption == MenuRoundedOption.bottom || menuRoundedOption == MenuRoundedOption.all ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
         bottomRight: menuRoundedOption == MenuRoundedOption.bottom || menuRoundedOption == MenuRoundedOption.all ? const Radius.circular(Sizes.kBorderRadius) : const Radius.circular(0),
       ),
-      color: theme.colorScheme.inverseSurface.withOpacity(0.5),
+      color: theme.colorScheme.inverseSurface.withOpacity(0.6),
       child: ListTile(
         shape:  RoundedRectangleBorder(
           borderRadius: BorderRadius.only(

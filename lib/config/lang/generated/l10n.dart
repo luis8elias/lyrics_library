@@ -250,6 +250,26 @@ class Lang {
     );
   }
 
+  /// `Next`
+  String get actions_next {
+    return Intl.message(
+      'Next',
+      name: 'actions_next',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Prev`
+  String get actions_prev {
+    return Intl.message(
+      'Prev',
+      name: 'actions_prev',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Loading...`
   String get loadingScreen_loading {
     return Intl.message(

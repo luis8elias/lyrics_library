@@ -1,24 +1,41 @@
 import 'package:lyrics_library/data/models/response_model.dart';
 import 'package:lyrics_library/presentation/features/setlist_songs/list/model/setlist_song_model.dart';
 import 'package:lyrics_library/presentation/providers/fetch_provider.dart';
+import 'package:lyrics_library/services/config_service.dart';
 import 'package:lyrics_library/services/setlist_songs_service.dart';
 
 class ReadSetlistSongProvider extends FetchProvider<String>{
 
   final SetlistSongsService _setlistSongsService;
+  final ConfigService _configService;
 
-  ReadSetlistSongProvider({
+   ReadSetlistSongProvider({
     super.autoCall = false, 
-    required SetlistSongsService setlistSongsService
-  }) : _setlistSongsService = setlistSongsService;
+    required SetlistSongsService setlistSongsService, 
+    required ConfigService configService
+  }) : _setlistSongsService = setlistSongsService, 
+  _configService = configService;
+
+  
 
   
   List<SetlistSongModel> _setlistSongs= [];
   late int selectedIndex;
+  bool _showBottomBar = true;
+  late double fontSize;
+
+ 
+  bool get showBottomBar => _showBottomBar;
+  void setShowBottomBar(bool value){
+    _showBottomBar = value;
+    notifyListeners();
+  }
 
 
   @override
-  Future<ResponseModel<String>> fetchMethod() {
+  Future<ResponseModel<String>> fetchMethod() async{
+    final fontSizeResp = await _configService.getFontSize();
+    fontSize = fontSizeResp.model!;
     return _setlistSongsService.fetchSongLyricsBySongId(
       songId: _setlistSongs[selectedIndex].songId
     );
@@ -49,6 +66,24 @@ class ReadSetlistSongProvider extends FetchProvider<String>{
       }
     }
     loadData();
+  }
+
+  void changeFontSize(double newFontSize){
+    fontSize = newFontSize;
+    notifyListeners();
+  }
+
+  Future<ResponseModel> saveFontSize() async{
+    final saveFontSizeResp = await _configService.setFontSize(
+      fontSize: fontSize
+    );
+    if(saveFontSizeResp.isFailed){
+      final getFontSizeResp = await _configService.getFontSize();
+      fontSize = getFontSizeResp.model!;
+      notifyListeners();
+      return saveFontSizeResp;
+    }
+    return saveFontSizeResp;
   }
 
 

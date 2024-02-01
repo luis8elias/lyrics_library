@@ -12,13 +12,14 @@ export '/config/routes/routes.dart';
 export '/config/themes/dark_theme.dart';
 
 class Config{
-  static const defaultLocale = Locale('en');
+  static const defaultLocale = Locale('es');
   static const initialLocation = LoginScreen.routeName;
   static final serverClientID = dotenv.env['SERVER_CLIENT_ID'];
   static final androidClientId = dotenv.env['ANDROID_CLIENT_ID'];
   static final iosClientId = dotenv.env['IOS_CLIENT_IOS'];
   static final apiUrl = dotenv.env['API_URL'];
   static const songsPageSize = 100;
+  static const defaultReadSongFontSize = 15.0;
   static const manualLocalServicesDelay = Duration(milliseconds: 250);
   static const preferredOrientations = [
     DeviceOrientation.portraitUp, 

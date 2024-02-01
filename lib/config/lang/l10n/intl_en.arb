@@ -38,6 +38,8 @@
     "actions_back" : "Back",
     "actions_save" : "Save",
     "actions_search" : "Search",
+    "actions_next" : "Next",
+    "actions_prev" : "Prev",
 
 
 

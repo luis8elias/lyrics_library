@@ -54,7 +54,7 @@ class _SearchInputState extends State<SearchInput> {
           focusNode: focusNode,
           onChanged: (value) => Debouncer.run(() {
             widget.onChangeSearch(value);
-          }),
+          },null),
           controller: controller,
           cursorColor: theme.colorScheme.secondary,
           style: TextStyle(

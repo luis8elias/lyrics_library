@@ -4,6 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/presentation/features/songs/read/providers/providers.dart';
+import 'package:lyrics_library/presentation/widgets/change_read_song_font_size_bottomsheet.dart';
+import 'package:lyrics_library/presentation/widgets/providers.dart';
+import 'package:pull_down_button/pull_down_button.dart';
 
 import '/utils/utils.dart';
 
@@ -27,18 +31,57 @@ class ReadSongScreen extends ConsumerWidget {
     
     final theme = Theme.of(context);
     //final lang = Lang.of(context);
-    //final prov = ref.read(editGenreProvider);
+    final prov = ref.read(readSongProvider);
     
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         actions: [
-          IconButton(
-            splashRadius: 10,
-            onPressed: (){},
-            icon: Icon(
-              Platform.isIOS ? CupertinoIcons.share : Icons.share_outlined ,
-              color: theme.colorScheme.primary,
+          PullDownButton(
+            routeTheme: PullDownMenuRouteTheme(
+              backgroundColor: theme.appBarTheme.backgroundColor,
+            ),
+            itemBuilder: (context) => [
+              PullDownMenuItem(
+                title: 'Share',
+                subtitle: 'Share with yours friends',
+                onTap: () {},
+                icon: Platform.isIOS ? CupertinoIcons.share : Icons.share_outlined,
+              ),
+              PullDownMenuItem(
+                title: 'Font size',
+                subtitle: 'Change lyrics font size',
+                onTap: () async{
+                  void showErrorAlert(String message){
+                    SnackbarHelper.show(context: context, message: message);
+                  }
+                  await showModalBottomSheet(
+                    enableDrag: false,
+                    elevation: 0.0,
+                    barrierColor: Colors.transparent,
+                    context: context, 
+                    builder: (context) => ChangeReadSongFontSizeBottomSheet(
+                      defaultFontSize: prov.model,
+                      onFontSizeChanged: (newFontSize){
+                        prov.setNewFontSize(newFontSize);
+                      },
+                    )
+                  );
+                  final resp = await prov.saveFontSize();
+                  if(resp.isFailed){
+                    showErrorAlert(resp.message!);
+                  }
+                },
+                icon: CupertinoIcons.textformat_size,
+              ),
+            ],
+            buttonBuilder: (context, showMenu) => IconButton(
+              splashRadius: 10,
+              onPressed: showMenu,
+              icon: Icon(
+                Platform.isIOS ? CupertinoIcons.ellipsis_circle : Icons.more_vert,
+                color: theme.colorScheme.primary,
+              ),
             ),
           ),
         ], 
@@ -96,34 +139,38 @@ class ReadSongScreen extends ConsumerWidget {
       body: Stack(
         children: [
           Positioned.fill(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: Sizes.kPadding ,
-                  right: Sizes.kPadding ,
-                  bottom: Sizes.kPadding ,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SizedBox(
-                      height: Sizes.kPadding,
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: Text(
-                        songModel.lyric,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          color: theme.colorScheme.onSurface
+            child: FetchProviderBuilder(
+              provider: readSongProvider,
+              builder:(fontSize) =>  SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: Sizes.kPadding ,
+                    right: Sizes.kPadding ,
+                    bottom: Sizes.kPadding ,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(
+                        height: Sizes.kPadding,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: Text(
+                          songModel.lyric,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            color: theme.colorScheme.onSurface,
+                            fontSize: fontSize
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: Sizes.kPadding,
-                    ),
-                  ],
+                      const SizedBox(
+                        height: Sizes.kPadding,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ), 

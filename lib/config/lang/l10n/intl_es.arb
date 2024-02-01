@@ -37,6 +37,8 @@
     "actions_back" : "Volver",
     "actions_save" : "Guardar",
     "actions_search" : "Buscar",
+    "actions_next" : "Sig.",
+    "actions_prev" : "Ant.",
 
 
 

@@ -6,5 +6,6 @@ import 'package:lyrics_library/presentation/features/setlist_songs/read/provider
 final readSetlistSongProvider = ChangeNotifierProvider.autoDispose<ReadSetlistSongProvider>((ref) {
   return ReadSetlistSongProvider(
     setlistSongsService: Injector.appInstance.get(),
+    configService: Injector.appInstance.get()
   );
 });

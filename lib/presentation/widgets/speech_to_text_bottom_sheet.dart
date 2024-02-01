@@ -31,8 +31,6 @@ class _SpeechToTextBottomSheetState extends State<SpeechToTextBottomSheet> {
   Widget build(BuildContext context) {
 
     final theme = Theme.of(context);
-    // final prov = ref.read(genresListProvider);
-    // final deleteGenresProv = ref.read(deleteGenreProvider);
     final lang = Lang.of(context);
 
     return Container(

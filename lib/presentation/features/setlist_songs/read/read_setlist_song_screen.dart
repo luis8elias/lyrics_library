@@ -4,16 +4,20 @@ import 'dart:ui';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lyrics_library/presentation/features/setlist_songs/read/providers/read_setlist_song_provider.dart';
+import 'package:lyrics_library/presentation/widgets/change_read_song_font_size_bottomsheet.dart';
+import 'package:lyrics_library/utils/utils.dart';
+import 'package:pull_down_button/pull_down_button.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/setlist_songs/list/model/setlist_song_model.dart';
 import '/presentation/features/setlists/shared/models/setlists_route_params_model.dart';
 import '/presentation/widgets/buttons.dart';
 import '/presentation/widgets/providers.dart';
-import '/utils/constants/sizes.dart';
+
 
 import 'providers/providers.dart';
 
@@ -36,9 +40,35 @@ class ReadSetlistSongScreen extends ConsumerStatefulWidget {
 
 class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
 
+  late ScrollController _scrollBottomBarController;
+  bool isScrollingDown = false;
+
+  void addScrollListener(ReadSetlistSongProvider prov){
+
+    _scrollBottomBarController.addListener(() {
+
+      if (_scrollBottomBarController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        if (!isScrollingDown) {
+          isScrollingDown = true;
+          prov.setShowBottomBar(false);
+        }
+      }
+      if (_scrollBottomBarController.position.userScrollDirection ==
+          ScrollDirection.forward) {
+        if (isScrollingDown) {
+          isScrollingDown = false;
+          prov.setShowBottomBar(true);
+        }
+      }
+    });
+  }
+
   @override
   void initState() {
+    _scrollBottomBarController = ScrollController();
     final prov = ref.read(readSetlistSongProvider);
+    _scrollBottomBarController.addListener(()=> addScrollListener(prov));
     prov.initializeProvider(
       initialIndex: widget.selectedIndex,
       setlistSongs: widget.setlistSongs
@@ -48,7 +78,14 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
       prov.loadData();
     });
   }
-@override
+
+  @override
+  void dispose() {
+    _scrollBottomBarController.removeListener((){});
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
 
     final theme = Theme.of(context);
@@ -65,12 +102,51 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
       appBar: AppBar(
         centerTitle: true,
         actions: [
-          IconButton(
-            splashRadius: 10,
-            onPressed: (){},
-            icon: Icon(
-              Platform.isIOS ? CupertinoIcons.share : Icons.share_outlined ,
-              color: theme.colorScheme.primary,
+          PullDownButton(
+            routeTheme: PullDownMenuRouteTheme(
+              backgroundColor: theme.appBarTheme.backgroundColor,
+            ),
+            itemBuilder: (context) => [
+              PullDownMenuItem(
+                title: 'Share',
+                subtitle: 'Share with yours friends',
+                onTap: () {},
+                icon: Platform.isIOS ? CupertinoIcons.share : Icons.share_outlined,
+              ),
+              PullDownMenuItem(
+                title: 'Font size',
+                subtitle: 'Change lyrics font size',
+                onTap: () async{
+                  void showErrorAlert(String message){
+                    SnackbarHelper.show(context: context, message: message);
+                  }
+                  await showModalBottomSheet(
+                    enableDrag: false,
+                    elevation: 0.0,
+                    barrierColor: Colors.transparent,
+                    context: context, 
+                    builder: (context) => ChangeReadSongFontSizeBottomSheet(
+                      defaultFontSize: prov.fontSize,
+                      onFontSizeChanged: (newFontSize){
+                        prov.changeFontSize(newFontSize);
+                      },
+                    )
+                  );
+                  final resp = await prov.saveFontSize();
+                  if(resp.isFailed){
+                    showErrorAlert(resp.message!);
+                  }
+                },
+                icon: CupertinoIcons.textformat_size,
+              ),
+            ],
+            buttonBuilder: (context, showMenu) => IconButton(
+              splashRadius: 10,
+              onPressed: showMenu,
+              icon: Icon(
+                Platform.isIOS ? CupertinoIcons.ellipsis_circle : Icons.more_vert,
+                color: theme.colorScheme.primary,
+              ),
             ),
           ),
         ], 
@@ -135,7 +211,8 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
         children: [
           Positioned.fill(
             child: SingleChildScrollView(
-              child: Padding(
+              controller: _scrollBottomBarController,            
+                child: Padding(
                 padding: const EdgeInsets.only(
                   left: Sizes.kPadding ,
                   right: Sizes.kPadding ,
@@ -158,13 +235,16 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
                             lyric,
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                              color: theme.colorScheme.onSurface
+                              color: theme.colorScheme.onSurface,
+                              fontSize: reactiveProv.fontSize
                             ),
                           ),
                         ),
                       ),
                       SizedBox(
-                        height: Sizes.kPadding + Sizes.kBottomNavHeight,
+                        height: reactiveProv.showBottomBar
+                        ? Sizes.kPadding + Sizes.kBottomNavHeight
+                        : Sizes.kPadding,
                       ),
                     ],
                   ),
@@ -172,66 +252,97 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
               ),
             ),
           ),
+          if(reactiveProv.showBottomBar)
           Positioned(
             bottom: 0,left: 0,right: 0,
-            child: ClipRRect(
-              clipBehavior: Clip.antiAlias,
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                child: Container(
-                  height: Sizes.kBottomNavHeight,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.inverseSurface.withOpacity(0.5),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      IconButton(
-                        onPressed: (){
-                          prov.changeSong(ChangeSongOptions.decrease);
-                        },
-                        icon: const Icon(CupertinoIcons.arrow_left)
-                      ),
-                      SizedBox(
-                        width: 170,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              '${reactiveProv.selectedIndex + 1}/${widget.setlistSongs.length}',
-                               style: theme.textTheme.labelSmall!.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: theme.colorScheme.primary,
-                                fontSize: 14
-                               )
-                            ),
-                            Text(
-                              setlist,
-                              style: theme.textTheme.labelSmall,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            )
-                          ],
+            child: FadeInUp(
+              duration: const Duration(milliseconds: 250),
+              child: ClipRRect(
+                clipBehavior: Clip.antiAlias,
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                  child: Container(
+                    height: Sizes.kBottomNavHeight,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.inverseSurface.withOpacity(0.6),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        _BottomBtn(
+                          onPressed: (){
+                            prov.changeSong(ChangeSongOptions.decrease);
+                          },
+                          iconData: CupertinoIcons.arrow_left,
+                          text: lang.actions_prev,
                         ),
-                      ),
-                      IconButton(
-                        onPressed: (){
-                          prov.changeSong(ChangeSongOptions.increase);
-                        },
-                        icon: const Icon(CupertinoIcons.arrow_right)
-                      ),
-                    ],
+                        SizedBox(
+                          width: 170,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                '${reactiveProv.selectedIndex + 1}/${widget.setlistSongs.length}',
+                                 style: theme.textTheme.labelSmall!.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: theme.colorScheme.primary,
+                                  fontSize: 14
+                                 )
+                              ),
+                              Text(
+                                setlist,
+                                style: theme.textTheme.labelSmall,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              )
+                            ],
+                          ),
+                        ),
+                        _BottomBtn(
+                          onPressed: (){
+                            prov.changeSong(ChangeSongOptions.increase);
+                          },
+                          iconData: CupertinoIcons.arrow_right,
+                          text: lang.actions_next,
+                        ),
+                      ],
+                    )
                   )
-                )
+                ),
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+}
+class _BottomBtn extends StatelessWidget {
+  const _BottomBtn({
+    required this.iconData,
+    required this.onPressed,
+    required this.text
+  });
+
+  final IconData iconData;
+  final VoidCallback onPressed;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: onPressed,
+      icon: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(iconData),
+          Text(text)
+        ],
+      )
     );
   }
 }

@@ -54,6 +54,7 @@ dependencies:
   speech_to_text: ^6.5.1
   sqflite: ^2.3.0
   path: ^1.8.3
+  pull_down_button: ^0.9.3
   
 
 dev_dependencies:

@@ -22,7 +22,7 @@ class ProfileMenuTile extends ConsumerWidget {
         bottomLeft: Radius.circular(Sizes.kBorderRadius),
         bottomRight: Radius.circular(Sizes.kBorderRadius),
       ),
-      color: theme.colorScheme.inverseSurface.withOpacity(0.5),
+      color: theme.colorScheme.inverseSurface.withOpacity(0.6),
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 10,
