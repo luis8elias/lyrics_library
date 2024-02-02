@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '/config/config.dart';
 import '/presentation/features/more/change_fontsize/providers/providers.dart';
@@ -26,6 +27,14 @@ class ChangeFontSizeScreen extends ConsumerWidget {
         title: Text(
           lang.changefontSizeScreen_title,
           style: theme.textTheme.titleSmall,
+        ),
+        leading:Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: BackButtonWidget(
+            onPressed: () {
+              GoRouter.of(context).pop();
+            },
+          ),
         ),
       ),
       body: Padding(
