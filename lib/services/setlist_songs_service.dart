@@ -1,11 +1,11 @@
 import 'package:flutter_guid/flutter_guid.dart';
-import 'package:lyrics_library/presentation/features/setlist_songs/add/models/song_model_from_add_song_to_setlist_model.dart';
-import 'package:lyrics_library/presentation/features/setlist_songs/list/model/setlist_song_model.dart';
-import 'package:lyrics_library/presentation/features/setlist_songs/list/model/setlist_song_order_model.dart';
-import '/presentation/features/songs/shared/model/song_model.dart';
 
-import '/data/models/response_model.dart';
 import '/data/data_sources/local/setlist_songs_local_source.dart';
+import '/data/models/response_model.dart';
+import '/presentation/features/setlist_songs/add/models/song_model_from_add_song_to_setlist_model.dart';
+import '/presentation/features/setlist_songs/list/model/setlist_song_model.dart';
+import '/presentation/features/setlist_songs/list/model/setlist_song_order_model.dart';
+import '/presentation/features/songs/shared/model/song_model.dart';
 
 class SetlistSongsService {
   final SetlistSongsLocalSource _localSource;

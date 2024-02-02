@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/presentation/widgets/buttons.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/genres/delete/delete_genre_button.dart';
@@ -13,6 +12,7 @@ import '/presentation/features/genres/list/providers/providers.dart';
 import '/presentation/features/genres/list/widgets/genres_leading.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/presentation.dart';
+import '/presentation/widgets/buttons.dart';
 import '/presentation/widgets/custom_bottom_nav_bar.dart';
 import '/presentation/widgets/providers.dart';
 import '/presentation/widgets/search_input.dart';

@@ -6,15 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_guid/flutter_guid.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:injector/injector.dart';
-import 'package:lyrics_library/data/models/response_model.dart';
-import 'package:lyrics_library/presentation/features/genres/list/genres_list_screen.dart';
-import 'package:lyrics_library/presentation/providers/fetch_provider.dart';
-import 'package:lyrics_library/presentation/widgets/buttons.dart';
-import 'package:lyrics_library/presentation/widgets/providers.dart';
-import 'package:lyrics_library/presentation/widgets/search_input.dart';
-import 'package:lyrics_library/services/genres_service.dart';
-import 'package:lyrics_library/utils/constants/sizes.dart';
+
+import '/data/models/response_model.dart';
+import '/presentation/features/genres/list/genres_list_screen.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
+import '/presentation/providers/fetch_provider.dart';
+import '/presentation/widgets/buttons.dart';
+import '/presentation/widgets/providers.dart';
+import '/presentation/widgets/search_input.dart';
+import '/services/genres_service.dart';
+import '/utils/constants/sizes.dart';
 
 final selectGenresListProvider = ChangeNotifierProvider.autoDispose<_FetchGenresDialogProvider>((ref) {
   return _FetchGenresDialogProvider(

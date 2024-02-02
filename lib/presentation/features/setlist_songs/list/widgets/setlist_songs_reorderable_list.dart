@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:injector/injector.dart';
-import 'package:lyrics_library/presentation/features/setlists/shared/models/setlists_route_params_model.dart';
-import 'package:lyrics_library/presentation/presentation.dart';
 
 import '/data/models/response_model.dart';
 import '/presentation/features/setlist_songs/list/model/setlist_song_model.dart';
@@ -13,6 +11,8 @@ import '/presentation/features/setlist_songs/list/model/setlist_song_order_model
 import '/presentation/features/setlist_songs/list/provider/providers.dart';
 import '/presentation/features/setlist_songs/list/widgets/setlist_song_subtitle.dart';
 import '/presentation/features/setlist_songs/list/widgets/setlist_song_title.dart';
+import '/presentation/features/setlists/shared/models/setlists_route_params_model.dart';
+import '/presentation/presentation.dart';
 import '/services/setlist_songs_service.dart';
 import '/utils/constants/sizes.dart';
 

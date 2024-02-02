@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lyrics_library/config/lang/generated/l10n.dart';
 
+import '/config/lang/generated/l10n.dart';
 import '/utils/constants/sizes.dart';
 
 class ChangeReadSongFontSizeBottomSheet extends StatefulWidget {

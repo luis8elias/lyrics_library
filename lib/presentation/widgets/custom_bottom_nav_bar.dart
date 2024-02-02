@@ -4,8 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/config/lang/generated/l10n.dart';
 
+import '/config/lang/generated/l10n.dart';
 import '/presentation/presentation.dart';
 import '/utils/constants/sizes.dart';
 

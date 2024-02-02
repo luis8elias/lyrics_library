@@ -1,8 +1,8 @@
-import 'package:lyrics_library/data/models/response_model.dart';
-import 'package:lyrics_library/presentation/features/setlist_songs/list/model/setlist_song_model.dart';
-import 'package:lyrics_library/presentation/providers/fetch_provider.dart';
-import 'package:lyrics_library/services/config_service.dart';
-import 'package:lyrics_library/services/setlist_songs_service.dart';
+import '/data/models/response_model.dart';
+import '/presentation/features/setlist_songs/list/model/setlist_song_model.dart';
+import '/presentation/providers/fetch_provider.dart';
+import '/services/config_service.dart';
+import '/services/setlist_songs_service.dart';
 
 class ReadSetlistSongProvider extends FetchProvider<String>{
 

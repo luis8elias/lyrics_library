@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_guid/flutter_guid.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lyrics_library/presentation/features/setlists/list/providers/providers.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/setlist_songs/list/provider/providers.dart';
 import '/presentation/features/setlist_songs/remove/providers/providers.dart';
+import '/presentation/features/setlists/list/providers/providers.dart';
 import '/presentation/features/songs/delete/providers/providers.dart';
 import '/presentation/widgets/buttons.dart';
 import '/presentation/widgets/providers.dart';

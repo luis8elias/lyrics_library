@@ -1,15 +1,15 @@
 import 'package:injector/injector.dart';
-import 'package:lyrics_library/data/data_sources/local/config_local_source.dart';
-import 'package:lyrics_library/data/data_sources/local/setlist_songs_local_source.dart';
-import 'package:lyrics_library/services/config_service.dart';
-import 'package:lyrics_library/services/setlist_songs_service.dart';
 
 import '/data/data_sources/api/songs_api_source.dart';
+import '/data/data_sources/local/config_local_source.dart';
 import '/data/data_sources/local/genres_local_source.dart';
+import '/data/data_sources/local/setlist_songs_local_source.dart';
 import '/data/data_sources/local/setlists_local_source.dart';
 import '/data/data_sources/local/songs_local_source.dart';
+import '/services/config_service.dart';
+import '/services/setlist_songs_service.dart';
 import '/services/setlists_service.dart';
-//import 'package:lyrics_app/data/data_sources/interfaces/songs_data_source_interface.dart';
+
 import '/services/auth_service.dart';
 import '/services/session_service.dart';
 import '/services/songs_service.dart';

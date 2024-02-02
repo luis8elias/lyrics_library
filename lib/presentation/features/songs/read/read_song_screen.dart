@@ -4,11 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/presentation/features/songs/read/providers/providers.dart';
-import 'package:lyrics_library/presentation/widgets/change_read_song_font_size_bottomsheet.dart';
-import 'package:lyrics_library/presentation/widgets/providers.dart';
 import 'package:pull_down_button/pull_down_button.dart';
 
+import '/presentation/features/songs/read/providers/providers.dart';
+import '/presentation/widgets/change_read_song_font_size_bottomsheet.dart';
+import '/presentation/widgets/providers.dart';
 import '/utils/utils.dart';
 
 //import '/config/lang/generated/l10n.dart';

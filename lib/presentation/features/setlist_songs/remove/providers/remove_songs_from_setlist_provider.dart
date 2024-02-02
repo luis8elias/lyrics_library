@@ -1,6 +1,7 @@
 import 'package:flutter_guid/flutter_guid.dart';
-import 'package:lyrics_library/presentation/providers/send_provider.dart';
-import 'package:lyrics_library/services/setlist_songs_service.dart';
+
+import '/presentation/providers/send_provider.dart';
+import '/services/setlist_songs_service.dart';
 
 class RemoveSongsFromSetlistProvider extends SendProvider<String?>{
   final SetlistSongsService _setlistSongsService;

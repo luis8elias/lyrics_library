@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/presentation/features/setlists/edit/widgets/edit_setlist_button.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/setlists/edit/providers/providers.dart';
+import '/presentation/features/setlists/edit/widgets/edit_setlist_button.dart';
 import '/presentation/features/setlists/list/providers/providers.dart';
 import '/presentation/features/setlists/shared/models/setlist_model.dart';
 import '/presentation/features/setlists/shared/widgets/genre_from.dart';
