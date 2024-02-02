@@ -201,7 +201,14 @@
           "type": "int"
         }
       }
-    }
+    },
+
+
+
+    "@_CHANGE_FONT_SIZE_SCREEN": {},
+    "changefontSizeScreen_title" : "Change font size",
+    "changefontSizeScreen_subtitle" : "Here you can change the font size that is displayed when reading a song.",
+    "changefontSizeScreen_currentValue" : "Current value"
 
 
 

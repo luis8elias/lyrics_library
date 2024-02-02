@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '/app/providers/providers.dart';
 import '/config/lang/generated/l10n.dart';
@@ -72,7 +73,13 @@ class MoreOptionsScreen extends ConsumerWidget {
                   height: Sizes.kPadding,
                 ),
                 MenuOptionWidget(
-                  onPressed: (){},
+                  onPressed: (){
+                    GoRouter.of(context).go(
+                      context.namedLocation(
+                        ChangeFontSizeScreen.routePath,
+                      ),
+                    );
+                  },
                   title: lang.moreOptionsScreen_fontSize,
                   icon: CupertinoIcons.textformat_size,
                   menuRoundedOption: MenuRoundedOption.top,

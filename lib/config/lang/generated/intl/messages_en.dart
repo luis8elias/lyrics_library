@@ -51,6 +51,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_setlist": MessageLookupByLibrary.simpleMessage("Setlist"),
         "app_setlists": MessageLookupByLibrary.simpleMessage("Setlists"),
         "app_songs": MessageLookupByLibrary.simpleMessage("Songs"),
+        "changefontSizeScreen_currentValue":
+            MessageLookupByLibrary.simpleMessage("Current value"),
+        "changefontSizeScreen_subtitle": MessageLookupByLibrary.simpleMessage(
+            "Here you can change the font size that is displayed when reading a song."),
+        "changefontSizeScreen_title":
+            MessageLookupByLibrary.simpleMessage("Change font size"),
         "genresCreateScreen_createButtonText":
             MessageLookupByLibrary.simpleMessage("Create"),
         "genresCreateScreen_nameInput":

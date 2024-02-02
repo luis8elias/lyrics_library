@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lyrics_library/config/lang/generated/l10n.dart';
 
 import '/utils/constants/sizes.dart';
 
@@ -33,6 +34,7 @@ class _ChangeReadSongFontSizeBottomSheetState extends State<ChangeReadSongFontSi
   Widget build(BuildContext context) {
 
     final theme = Theme.of(context);
+    final lang = Lang.of(context);
 
     return Container(
       width: double.infinity,
@@ -69,7 +71,7 @@ class _ChangeReadSongFontSizeBottomSheetState extends State<ChangeReadSongFontSi
             ),
 
             Text(
-              'Cambia el tamaño de letra',
+              lang.changefontSizeScreen_title,
               textAlign: TextAlign.center,
               style: theme.textTheme.displaySmall!.copyWith(
                 fontWeight: FontWeight.bold,
@@ -81,6 +83,7 @@ class _ChangeReadSongFontSizeBottomSheetState extends State<ChangeReadSongFontSi
             Slider(
               min: 15,
               max: 30,
+              divisions: 15,
               value: fontSize,
               onChanged: (newFontSize){
                 setState(() {

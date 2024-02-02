@@ -127,7 +127,7 @@ final routes =  [
         builder: (context, state) => EditGenreScreen(
           genreModel: state.extra as GenreModel,
         ),
-      )
+      ),
     ]
   ),
 
@@ -139,6 +139,12 @@ final routes =  [
       context: context,
       child: const MoreOptionsScreen()
     ),
+    routes: [
+      GoRoute(
+        path: ChangeFontSizeScreen.routePath,
+        name: ChangeFontSizeScreen.routePath,
+        builder: (context, state) => const ChangeFontSizeScreen(),
+      ),
+    ]
   ),
-
 ];

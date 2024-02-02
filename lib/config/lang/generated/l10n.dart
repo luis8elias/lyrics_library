@@ -899,6 +899,36 @@ class Lang {
       args: [songsCount],
     );
   }
+
+  /// `Change font size`
+  String get changefontSizeScreen_title {
+    return Intl.message(
+      'Change font size',
+      name: 'changefontSizeScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Here you can change the font size that is displayed when reading a song.`
+  String get changefontSizeScreen_subtitle {
+    return Intl.message(
+      'Here you can change the font size that is displayed when reading a song.',
+      name: 'changefontSizeScreen_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current value`
+  String get changefontSizeScreen_currentValue {
+    return Intl.message(
+      'Current value',
+      name: 'changefontSizeScreen_currentValue',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

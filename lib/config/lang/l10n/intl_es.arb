@@ -196,7 +196,14 @@
           "type": "int"
         }
       }
-    }
+    },
+
+
+
+    "@_CHANGE_FONT_SIZE_SCREEN": {},
+    "changefontSizeScreen_title" : "Cambia el tamaño de letra",
+    "changefontSizeScreen_subtitle" : "Aqui puedes cambiar el tamaño de letra que se muestra al momento de leer una canción.",
+    "changefontSizeScreen_currentValue" : "Valor actual"
 
     
 
