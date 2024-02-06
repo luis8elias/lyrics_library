@@ -75,10 +75,20 @@ class _ChangeReadSongFontSizeBottomSheetState extends State<ChangeReadSongFontSi
               textAlign: TextAlign.center,
               style: theme.textTheme.displaySmall!.copyWith(
                 fontWeight: FontWeight.bold,
+                fontSize: 20
               ),
             ),
             const SizedBox(
-              height: Sizes.kPadding * 2,
+              height: Sizes.kPadding,
+            ),
+            Text(
+              '${lang.changefontSizeScreen_currentValue}: $fontSize',
+              style: theme.textTheme.bodySmall!.copyWith(
+                fontSize: 15
+              ),
+            ),
+            const SizedBox(
+              height: Sizes.kPadding,
             ),
             Slider(
               min: 15,

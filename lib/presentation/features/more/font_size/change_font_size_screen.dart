@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '/config/config.dart';
-import '/presentation/features/more/change_fontsize/providers/providers.dart';
+import '/presentation/features/more/font_size/providers/providers.dart';
 import '/presentation/widgets/buttons.dart';
 import '/presentation/widgets/providers.dart';
 import '/utils/utils.dart';

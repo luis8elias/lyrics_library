@@ -17,7 +17,7 @@ export 'features/genres/edit/edit_genre_screen.dart';
 export 'features/genres/list/genres_list_screen.dart';
 
 export 'features/more/menu/menu_options_screen.dart';
-export 'features/more/change_fontsize/change_font_size_screen.dart';
+export 'features/more/font_size/change_font_size_screen.dart';
 
 
 

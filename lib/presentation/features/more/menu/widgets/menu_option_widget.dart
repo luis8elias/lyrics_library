@@ -23,7 +23,7 @@ class MenuOptionWidget extends StatelessWidget {
   final String title;
   final IconData icon;
   final Color? color;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

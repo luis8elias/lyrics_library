@@ -48,7 +48,6 @@ class MoreOptionsScreen extends ConsumerWidget {
                 const SizedBox(
                   height: Sizes.kPadding,
                 ),
-                
                 // MenuOptionWidget(
                 //   onPressed: (){},
                 //   title: lang.moreOptionsScreen_groups,
@@ -94,13 +93,6 @@ class MoreOptionsScreen extends ConsumerWidget {
                 const SizedBox(
                   height: Sizes.kPadding ,
                 ),
-                // MenuOptionWidget(
-                //   onPressed: ()=> sessionProv.logoutUser(),
-                //   title: 'Logout',
-                //   icon: Icons.logout_outlined,
-                //   menuRoundedOption: MenuRoundedOption.all,
-                //   color: theme.colorScheme.error,
-                // ),
                 Material(
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(Sizes.kBorderRadius),
@@ -135,7 +127,7 @@ class MoreOptionsScreen extends ConsumerWidget {
                       color: theme.colorScheme.error,
                     ),
                     title: Text(
-                      'Logout',
+                      lang.moreOptionsScreen_logout,
                       style: theme.textTheme.bodyMedium!.copyWith(
                         color: theme.colorScheme.error,
                       ),
