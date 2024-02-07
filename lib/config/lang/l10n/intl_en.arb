@@ -216,7 +216,19 @@
     "changeLangScreen_title" : "Change language",
     "changeLangScreen_subtitle" : "Here you can change the language of the app.",
     "changeLangScreen_es" : "Spanish",
-    "changeLangScreen_en" : "English"
+    "changeLangScreen_en" : "English",
+
+
+
+    "@_SHARE_SONGS": {},
+    "shareSongs_title" : "Share {songName} by:",
+    "@shareSongs_title": {
+      "placeholders": {
+        "songName": {}
+      }
+    },
+    "shareSongs_text" : "Text",
+    "shareSongs_qr" : "Qr"
     
 
 

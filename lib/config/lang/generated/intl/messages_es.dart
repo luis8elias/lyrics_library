@@ -26,9 +26,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(setlistsCount) => "Eliminar ${setlistsCount} listas";
 
-  static String m3(songsCount) => "Eliminar ${songsCount} géneros";
+  static String m3(songName) => "Compartir ${songName} por:";
 
-  static String m4(length) =>
+  static String m4(songsCount) => "Eliminar ${songsCount} géneros";
+
+  static String m5(length) =>
       "La contraseña debe ser como mínimo de ${length} caracteres";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -159,6 +161,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Editar lista"),
         "setlistsListScreen_title":
             MessageLookupByLibrary.simpleMessage("Listas"),
+        "shareSongs_qr": MessageLookupByLibrary.simpleMessage("Qr"),
+        "shareSongs_text": MessageLookupByLibrary.simpleMessage("Texto"),
+        "shareSongs_title": m3,
         "songsCreateScreen_lyricInput": MessageLookupByLibrary.simpleMessage(
             "Escribe la letra de la canción"),
         "songsCreateScreen_title":
@@ -167,7 +172,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Título"),
         "songsDelete_deleteButton":
             MessageLookupByLibrary.simpleMessage("Eliminar canción"),
-        "songsDelete_deleteButtonPlural": m3,
+        "songsDelete_deleteButtonPlural": m4,
         "songsDelete_title":
             MessageLookupByLibrary.simpleMessage("¿Eliminar canción?"),
         "songsDelete_titlePlural":
@@ -188,7 +193,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ahora estoy escuchando... suelte el botón para detener"),
         "validator_confirmPassword": MessageLookupByLibrary.simpleMessage(
             "Las contraseñas no coinciden"),
-        "validator_confirmPasswordLength": m4,
+        "validator_confirmPasswordLength": m5,
         "validator_email":
             MessageLookupByLibrary.simpleMessage("Correo incorrecto"),
         "validator_required":

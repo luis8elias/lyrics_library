@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/presentation/features/songs/read/widgets/share_options_bottom_sheet.dart';
 import 'package:pull_down_button/pull_down_button.dart';
 
 import '/presentation/features/songs/read/providers/providers.dart';
@@ -45,7 +46,16 @@ class ReadSongScreen extends ConsumerWidget {
               PullDownMenuItem(
                 title: 'Share',
                 subtitle: 'Share with yours friends',
-                onTap: () {},
+                onTap: () {
+                  showModalBottomSheet(
+                    enableDrag: false,
+                    elevation: 0.5,
+                    context: context, 
+                    builder: (context) => ShareOptionsBottomSheet(
+                      songModel: songModel,
+                    )
+                  );
+                },
                 icon: Platform.isIOS ? CupertinoIcons.share : Icons.share_outlined,
               ),
               PullDownMenuItem(
@@ -57,8 +67,8 @@ class ReadSongScreen extends ConsumerWidget {
                   }
                   await showModalBottomSheet(
                     enableDrag: false,
-                    elevation: 0.0,
-                    barrierColor: Colors.transparent,
+                    elevation: 0.5,
+                    //barrierColor: Colors.transparent,
                     context: context, 
                     builder: (context) => ChangeReadSongFontSizeBottomSheet(
                       defaultFontSize: prov.model,

@@ -26,9 +26,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(setlistsCount) => "Delete ${setlistsCount} setlists";
 
-  static String m3(songsCount) => "Delete ${songsCount} songs";
+  static String m3(songName) => "Share ${songName} by:";
 
-  static String m4(length) => "Password must be at least ${length} characters";
+  static String m4(songsCount) => "Delete ${songsCount} songs";
+
+  static String m5(length) => "Password must be at least ${length} characters";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -156,6 +158,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Edit Setlist"),
         "setlistsListScreen_title":
             MessageLookupByLibrary.simpleMessage("Setlists"),
+        "shareSongs_qr": MessageLookupByLibrary.simpleMessage("Qr"),
+        "shareSongs_text": MessageLookupByLibrary.simpleMessage("Text"),
+        "shareSongs_title": m3,
         "songsCreateScreen_lyricInput": MessageLookupByLibrary.simpleMessage(
             "Write the lyrics of the song"),
         "songsCreateScreen_title":
@@ -164,7 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Title"),
         "songsDelete_deleteButton":
             MessageLookupByLibrary.simpleMessage("Delete song"),
-        "songsDelete_deleteButtonPlural": m3,
+        "songsDelete_deleteButtonPlural": m4,
         "songsDelete_title":
             MessageLookupByLibrary.simpleMessage("Delete song?"),
         "songsDelete_titlePlural":
@@ -185,7 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Now I\'m listening... release the stop button"),
         "validator_confirmPassword":
             MessageLookupByLibrary.simpleMessage("Passwords do not match"),
-        "validator_confirmPasswordLength": m4,
+        "validator_confirmPasswordLength": m5,
         "validator_email": MessageLookupByLibrary.simpleMessage("Wrong email"),
         "validator_required":
             MessageLookupByLibrary.simpleMessage("This field is required")

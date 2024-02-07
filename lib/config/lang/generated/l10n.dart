@@ -969,6 +969,36 @@ class Lang {
       args: [],
     );
   }
+
+  /// `Share {songName} by:`
+  String shareSongs_title(Object songName) {
+    return Intl.message(
+      'Share $songName by:',
+      name: 'shareSongs_title',
+      desc: '',
+      args: [songName],
+    );
+  }
+
+  /// `Text`
+  String get shareSongs_text {
+    return Intl.message(
+      'Text',
+      name: 'shareSongs_text',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Qr`
+  String get shareSongs_qr {
+    return Intl.message(
+      'Qr',
+      name: 'shareSongs_qr',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

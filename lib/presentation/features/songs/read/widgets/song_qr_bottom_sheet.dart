@@ -1,43 +1,26 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lyrics_library/presentation/features/songs/shared/model/song_model.dart';
+import 'package:lyrics_library/utils/constants/sizes.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
-import '/config/lang/generated/l10n.dart';
-import '/utils/constants/sizes.dart';
-
-class ChangeReadSongFontSizeBottomSheet extends StatefulWidget {
-  const ChangeReadSongFontSizeBottomSheet({
+class SongQrBottomSheet extends StatelessWidget {
+  const SongQrBottomSheet({
     super.key,
-    required this.defaultFontSize,
-    required  this.onFontSizeChanged
+    required this.songModel
   });
 
-  final double defaultFontSize;
-  final void Function(double newFontSize) onFontSizeChanged;
-
-
-  @override
-  State<ChangeReadSongFontSizeBottomSheet> createState() => _ChangeReadSongFontSizeBottomSheetState();
-}
-
-class _ChangeReadSongFontSizeBottomSheetState extends State<ChangeReadSongFontSizeBottomSheet> {
-
-  late double fontSize;
-
-  @override
-  void initState() {
-    fontSize = widget.defaultFontSize;
-    super.initState();
-  }
-
+  final SongModel songModel;
 
   @override
   Widget build(BuildContext context) {
 
     final theme = Theme.of(context);
-    final lang = Lang.of(context);
 
-    return Container(
-      width: double.infinity,
+     return Container(
+     width: double.infinity,
       color: Colors.transparent,
       child: Container(
         decoration: BoxDecoration(
@@ -69,9 +52,11 @@ class _ChangeReadSongFontSizeBottomSheetState extends State<ChangeReadSongFontSi
                 ],
               )
             ),
-
+            const SizedBox(
+              height: Sizes.kPadding,
+            ),
             Text(
-              lang.changefontSizeScreen_title,
+              'Share ${songModel.title}',
               textAlign: TextAlign.center,
               style: theme.textTheme.displaySmall!.copyWith(
                 fontWeight: FontWeight.bold,
@@ -79,30 +64,20 @@ class _ChangeReadSongFontSizeBottomSheetState extends State<ChangeReadSongFontSi
               ),
             ),
             const SizedBox(
-              height: Sizes.kPadding,
+              height: Sizes.kPadding * 2,
             ),
-            Text(
-              '${lang.changefontSizeScreen_currentValue}: $fontSize',
-              style: theme.textTheme.bodySmall!.copyWith(
-                fontSize: 15
+            Center(
+              child: QrImageView(
+                backgroundColor: theme.colorScheme.onBackground,
+                dataModuleStyle: QrDataModuleStyle(
+                  color: theme.colorScheme.background,
+                  dataModuleShape: QrDataModuleShape.square
+                ),
+                data: jsonEncode(songModel.toJson())  ,
+                version: QrVersions.auto,
+                size: 250.0,
               ),
-            ),
-            const SizedBox(
-              height: Sizes.kPadding,
-            ),
-            Slider(
-              min: 15,
-              max: 30,
-              divisions: 15,
-              inactiveColor: theme.colorScheme.surface,
-              value: fontSize,
-              onChanged: (newFontSize){
-                setState(() {
-                  fontSize = newFontSize;
-                });
-                widget.onFontSizeChanged(newFontSize);
-              }
-            ),
+            ), 
             const SizedBox(
               height: Sizes.kPadding * 3,
             ),

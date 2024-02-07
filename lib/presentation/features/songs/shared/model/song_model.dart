@@ -44,6 +44,20 @@ class SongModel extends SyncableModel {
     };
   }
 
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'title': title,
+      'lyric': lyric,
+      'genre': {
+        'name' : genreModel?.name ?? ''
+      },
+    };
+  }
+
+  String toShareStr() {
+    return  '$title - ${genreModel?.name ?? ''} \n $lyric';
+  }
+
   Map<String, dynamic> toInsertMap() {
     return <String, dynamic>{
       'id': id.toString(),
