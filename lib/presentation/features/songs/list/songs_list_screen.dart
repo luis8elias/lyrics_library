@@ -105,7 +105,9 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                   right: Sizes.kPadding / 2,
                 ),
                 child: CreateButton(
-                  onPressed: () => GoRouter.of(context).pushNamed(CreateSongScreen.routeName)
+                  onPressed: () => GoRouter.of(context).pushNamed(
+                    CreateSongScreen.routeName
+                  )
                 )
               ),
             ],
@@ -166,9 +168,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                 child: Text(
                   reactiveProv.isSelectItemOpened 
                   ? '${reactiveProv.selectedItems.length} ${lang.app_selectedItems}'
-                  : 
-                   '${reactiveProv.totalSongs} ${lang.app_items}'
-                   ,
+                  : '${reactiveProv.totalSongs} ${lang.app_items}',
                   style: theme.textTheme.bodySmall,
                 ),
               ),
