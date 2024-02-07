@@ -929,6 +929,46 @@ class Lang {
       args: [],
     );
   }
+
+  /// `Change language`
+  String get changeLangScreen_title {
+    return Intl.message(
+      'Change language',
+      name: 'changeLangScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Here you can change the language of the app.`
+  String get changeLangScreen_subtitle {
+    return Intl.message(
+      'Here you can change the language of the app.',
+      name: 'changeLangScreen_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spanish`
+  String get changeLangScreen_es {
+    return Intl.message(
+      'Spanish',
+      name: 'changeLangScreen_es',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get changeLangScreen_en {
+    return Intl.message(
+      'English',
+      name: 'changeLangScreen_en',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

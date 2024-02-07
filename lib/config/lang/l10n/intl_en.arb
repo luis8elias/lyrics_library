@@ -208,7 +208,16 @@
     "@_CHANGE_FONT_SIZE_SCREEN": {},
     "changefontSizeScreen_title" : "Change font size",
     "changefontSizeScreen_subtitle" : "Here you can change the font size that is displayed when reading a song.",
-    "changefontSizeScreen_currentValue" : "Current value"
+    "changefontSizeScreen_currentValue" : "Current value",
+
+
+
+    "@_CHANGE_LANG_SCREEN": {},
+    "changeLangScreen_title" : "Change language",
+    "changeLangScreen_subtitle" : "Here you can change the language of the app.",
+    "changeLangScreen_es" : "Spanish",
+    "changeLangScreen_en" : "English"
+    
 
 
 

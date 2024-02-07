@@ -20,10 +20,11 @@ class MoreOptionsScreen extends ConsumerWidget {
 
     final theme = Theme.of(context);
     final lang = Lang.of(context);
-    final sessionProv = ref.watch(sessionProvider);
+    final sessionProv = ref.watch(appProvider);
     
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text(
           lang.moreOptionsScreen_title,
@@ -39,7 +40,7 @@ class MoreOptionsScreen extends ConsumerWidget {
             ),
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
                   height: Sizes.kPadding
@@ -55,6 +56,21 @@ class MoreOptionsScreen extends ConsumerWidget {
                 //   menuRoundedOption: MenuRoundedOption.top,
                 // ),
                 // const MenuOptionDivider(),
+
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: Sizes.kPadding * 0.5
+                  ),
+                  child: Text(
+                    'features',
+                    style: theme.textTheme.bodySmall!.copyWith(
+                      fontSize: 10
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: Sizes.kPadding * 0.5,
+                ),
                 MenuOptionWidget(
                   onPressed: (){},
                   title: lang.moreOptionsScreen_metrics,
@@ -71,6 +87,20 @@ class MoreOptionsScreen extends ConsumerWidget {
                 const SizedBox(
                   height: Sizes.kPadding,
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: Sizes.kPadding * 0.5
+                  ),
+                  child: Text(
+                    'Configuración',
+                    style: theme.textTheme.bodySmall!.copyWith(
+                      fontSize: 10
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: Sizes.kPadding * 0.5,
+                ),
                 MenuOptionWidget(
                   onPressed: (){
                     GoRouter.of(context).go(
@@ -85,7 +115,13 @@ class MoreOptionsScreen extends ConsumerWidget {
                 ),
                 const MenuOptionDivider(),
                 MenuOptionWidget(
-                  onPressed: (){},
+                  onPressed: (){
+                    GoRouter.of(context).go(
+                      context.namedLocation(
+                        ChangeLanguageScreen.routePath,
+                      ),
+                    );
+                  },
                   title: lang.moreOptionsScreen_lang,
                   icon: Icons.language_outlined,
                   menuRoundedOption: MenuRoundedOption.bottom,

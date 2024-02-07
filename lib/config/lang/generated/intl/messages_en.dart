@@ -51,6 +51,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_setlist": MessageLookupByLibrary.simpleMessage("Setlist"),
         "app_setlists": MessageLookupByLibrary.simpleMessage("Setlists"),
         "app_songs": MessageLookupByLibrary.simpleMessage("Songs"),
+        "changeLangScreen_en": MessageLookupByLibrary.simpleMessage("English"),
+        "changeLangScreen_es": MessageLookupByLibrary.simpleMessage("Spanish"),
+        "changeLangScreen_subtitle": MessageLookupByLibrary.simpleMessage(
+            "Here you can change the language of the app."),
+        "changeLangScreen_title":
+            MessageLookupByLibrary.simpleMessage("Change language"),
         "changefontSizeScreen_currentValue":
             MessageLookupByLibrary.simpleMessage("Current value"),
         "changefontSizeScreen_subtitle": MessageLookupByLibrary.simpleMessage(

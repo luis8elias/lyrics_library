@@ -3,11 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:injector/injector.dart';
 
 import '/config/routes/redirect.dart';
-import '/app/providers/session_provider.dart';
+import '../../app/providers/app_provider.dart';
 import '/config/config.dart';
 
 void registerRoutes({
-  required SessionProvider sessionProv,
+  required AppProvider sessionProv,
   required WidgetRef ref
 }){
 

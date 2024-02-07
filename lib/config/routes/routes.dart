@@ -145,6 +145,11 @@ final routes =  [
         name: ChangeFontSizeScreen.routePath,
         builder: (context, state) => const ChangeFontSizeScreen(),
       ),
+      GoRoute(
+        path: ChangeLanguageScreen.routePath,
+        name: ChangeLanguageScreen.routePath,
+        builder: (context, state) => const ChangeLanguageScreen(),
+      ),
     ]
   ),
 ];

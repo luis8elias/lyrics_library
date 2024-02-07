@@ -10,11 +10,12 @@ import '/config/config.dart';
 class App extends ConsumerWidget {
   const App({super.key});
 
-  @override
+  
+@override
   Widget build(BuildContext context, WidgetRef ref) {
     
-    final sessionProv = ref.read(sessionProvider);
-    registerRoutes(sessionProv: sessionProv, ref: ref);
+    final appProv = ref.read(appProvider);
+    registerRoutes(sessionProv: appProv, ref: ref);
 
     return MaterialApp.router(
       title:'Lyrics Library',
@@ -37,7 +38,7 @@ class App extends ConsumerWidget {
           return Config.defaultLocale;
         }
       },
-      locale: Config.defaultLocale
+      locale: ref.watch(appProvider).selectedLocale
     );
   }
 }

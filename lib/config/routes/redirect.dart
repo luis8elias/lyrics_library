@@ -13,7 +13,7 @@ FutureOr<String?> redirect(
   WidgetRef ref
 ){
 
-  final providerRoute = ref.watch(sessionProvider).state.route;
+  final providerRoute = ref.watch(appProvider).state.route;
 
   if (goRouterState.fullPath == providerRoute) {
     return null;

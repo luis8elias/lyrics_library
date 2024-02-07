@@ -19,7 +19,7 @@ class RegisterScreen extends ConsumerWidget{
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final sessionProv = ref.read(sessionProvider);
+    final sessionProv = ref.read(appProvider);
     final theme = Theme.of(context);
     final lang = Lang.of(context);
 

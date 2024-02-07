@@ -140,7 +140,7 @@
     "moreOptionsScreen_groups" : "Grupos",
     "moreOptionsScreen_scanLyrics" : "Escanear letras",
     "moreOptionsScreen_fontSize" : "Tamaño de letra",
-    "moreOptionsScreen_lang" : "Lenguaje",
+    "moreOptionsScreen_lang" : "Idioma",
     "moreOptionsScreen_logout" : "Cerrar sesión",
 
 
@@ -203,7 +203,15 @@
     "@_CHANGE_FONT_SIZE_SCREEN": {},
     "changefontSizeScreen_title" : "Cambia el tamaño de letra",
     "changefontSizeScreen_subtitle" : "Aqui puedes cambiar el tamaño de letra que se muestra al momento de leer una canción.",
-    "changefontSizeScreen_currentValue" : "Valor actual"
+    "changefontSizeScreen_currentValue" : "Valor actual",
+
+
+
+    "@_CHANGE_LANG_SCREEN": {},
+    "changeLangScreen_title" : "Cambia el idioma",
+    "changeLangScreen_subtitle" : "Aqui puedes cambiar el idioma la aplicación.",
+    "changeLangScreen_es" : "Español",
+    "changeLangScreen_en" : "Inglés"
 
     
 

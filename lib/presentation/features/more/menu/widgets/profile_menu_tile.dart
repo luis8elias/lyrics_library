@@ -12,7 +12,7 @@ class ProfileMenuTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     final theme = Theme.of(context);
-    final sessionProv = ref.read(sessionProvider);
+    final sessionProv = ref.read(appProvider);
     final lang = Lang.of(context);
 
     return Material(

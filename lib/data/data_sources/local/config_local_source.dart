@@ -1,4 +1,5 @@
 
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '/config/config.dart';
@@ -9,6 +10,7 @@ class ConfigLocalSource{
 
   final _storage = const FlutterSecureStorage();
   final _fontSizeKey = 'FONT_SIZE_KEY';
+  final _langKey = 'LANG_KEY';
 
   Future<ResponseModel<double>> getFontSize() async{
 
@@ -30,9 +32,9 @@ class ConfigLocalSource{
     }
   }
 
-   Future<ResponseModel> setFontSize({
+  Future<ResponseModel> setFontSize({
     required double fontSize
-   }) async{
+  }) async{
 
     try {
       await _storage.write(
@@ -51,6 +53,52 @@ class ConfigLocalSource{
       return ResponseModel(
         success: false,
         message: 'No se pudo guardar el tamaño de fuente'
+      );
+    }
+  }
+
+  Future<ResponseModel<Locale>> getCurrentLanguage() async{
+
+    try {
+      final lang = await _storage.read(key: _langKey);
+      return ResponseModel(
+        success: true,
+        model:  Locale(lang!)
+      );
+    } catch (e) {
+
+      Log.y('🤡  ${e.toString()}');
+      Log.y('😭 Error en ConfigLocalSource método [getCurrentLang]');
+
+      return ResponseModel(
+        success: true,
+        model: Config.defaultLocale
+      );
+    }
+  }
+
+
+  Future<ResponseModel> setLanguage({
+    required String languageCode
+   }) async{
+
+    try {
+      await _storage.write(
+        key: _langKey,
+        value: languageCode
+      );
+      return ResponseModel(
+        success: true,
+        message: 'Lenguaje guardado',
+      );
+    } catch (e) {
+
+      Log.y('🤡  ${e.toString()}');
+      Log.y('😭 Error en ConfigLocalSource método [setLanguage]');
+
+      return ResponseModel(
+        success: false,
+        message: 'No se pudo guardar el lenguaje'
       );
     }
   }

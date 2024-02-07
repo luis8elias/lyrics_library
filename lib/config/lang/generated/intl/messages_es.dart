@@ -52,6 +52,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "app_setlist": MessageLookupByLibrary.simpleMessage("Lista"),
         "app_setlists": MessageLookupByLibrary.simpleMessage("Listas"),
         "app_songs": MessageLookupByLibrary.simpleMessage("Canciones"),
+        "changeLangScreen_en": MessageLookupByLibrary.simpleMessage("Inglés"),
+        "changeLangScreen_es": MessageLookupByLibrary.simpleMessage("Español"),
+        "changeLangScreen_subtitle": MessageLookupByLibrary.simpleMessage(
+            "Aqui puedes cambiar el idioma la aplicación."),
+        "changeLangScreen_title":
+            MessageLookupByLibrary.simpleMessage("Cambia el idioma"),
         "changefontSizeScreen_currentValue":
             MessageLookupByLibrary.simpleMessage("Valor actual"),
         "changefontSizeScreen_subtitle": MessageLookupByLibrary.simpleMessage(
@@ -102,7 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "moreOptionsScreen_groups":
             MessageLookupByLibrary.simpleMessage("Grupos"),
         "moreOptionsScreen_lang":
-            MessageLookupByLibrary.simpleMessage("Lenguaje"),
+            MessageLookupByLibrary.simpleMessage("Idioma"),
         "moreOptionsScreen_logout":
             MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
         "moreOptionsScreen_metrics":

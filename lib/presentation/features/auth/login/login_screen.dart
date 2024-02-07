@@ -18,7 +18,7 @@ class LoginScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final sessionProv = ref.read(sessionProvider);
+    final sessionProv = ref.read(appProvider);
 
     return SendProviderListener(
       provider: loginProvider,
@@ -41,7 +41,7 @@ class LoginGoogleListener extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final sessionProv = ref.read(sessionProvider);
+    final sessionProv = ref.read(appProvider);
 
     return SendProviderListener(
       provider: loginGoogleProvider,

@@ -10,7 +10,7 @@ void main() async{
   await Config.initializeApp();
   runApp(
     const ProviderScope(
-      child: App(),
+      child: App()
     ),
   );
 }
