@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '/config/config.dart';
@@ -55,7 +56,9 @@ class ShareOptionsBottomSheet extends StatelessWidget {
                 ],
               )
             ),
-
+            const SizedBox(
+              height: Sizes.kPadding,
+            ),
             Text(
               lang.shareSongs_title(songModel.title),
               textAlign: TextAlign.center,
@@ -65,7 +68,7 @@ class ShareOptionsBottomSheet extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: Sizes.kPadding,
+              height: Sizes.kPadding * 2,
             ),
             const SizedBox(
               height: Sizes.kPadding * 0.5,
@@ -76,6 +79,7 @@ class ShareOptionsBottomSheet extends StatelessWidget {
               ),
               child: MenuOptionWidget(
                 onPressed: (){
+                  GoRouter.of(context).pop();
                   Share.share(songModel.toShareStr().toString());
                 },
                 title: lang.shareSongs_text,
@@ -95,6 +99,7 @@ class ShareOptionsBottomSheet extends StatelessWidget {
               ),
               child: MenuOptionWidget(
                 onPressed: (){
+                  GoRouter.of(context).pop();
                   showModalBottomSheet(
                     enableDrag: false,
                     elevation: 0.5,
