@@ -259,9 +259,9 @@ class SongsLocalSource extends SongsDataSource {
       final genreResult = await SQLite.instance.query(
         GenresTable.name,
         columns: [GenresTable.colId],
-        where: '${GenresTable.colName} = ${scannedSongModel.genreName ?? ''} AND '
+        where: '${GenresTable.colName} = ? AND '
         '${GenresTable.colIsRemoved} = ?',
-        whereArgs: [0]
+        whereArgs: [scannedSongModel.genreName ?? '',0]
       );
 
       final batch = SQLite.instance.batch();
