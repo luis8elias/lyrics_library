@@ -14,7 +14,7 @@ class ChangeFontSizeScreen extends ConsumerWidget {
   static const String routePath = 'change-font-size';
 
   
-@override
+  @override
   Widget build(BuildContext context, WidgetRef ref) {
 
     final lang = Lang.of(context);

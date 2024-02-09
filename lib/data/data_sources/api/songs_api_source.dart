@@ -3,6 +3,7 @@ import 'package:flutter_guid/flutter_guid.dart';
 import '/data/data_sources/interfaces/songs_data_source_interface.dart';
 import '/data/models/response_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
+import '/presentation/features/more/scan_song/models/scanned_song_model.dart';
 import '/presentation/features/songs/create/models/create_song_model.dart';
 import '/presentation/features/songs/edit/models/edit_song_model.dart';
 import '/presentation/features/songs/list/models/songs_filter_model.dart';
@@ -91,6 +92,13 @@ class SongsApiSource extends SongsDataSource{
   @override
   Future<ResponseModel<SongModel?>> editSong({
     required EditSongModel editSongModel
+  }) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<ResponseModel<String>> saveSongFromScan({
+    required ScannedSongModel scannedSongModel
   }) {
     throw UnimplementedError();
   }

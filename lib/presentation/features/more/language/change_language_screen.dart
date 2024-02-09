@@ -89,79 +89,85 @@ class _LangListTilesState extends ConsumerState<LangListTiles> {
       mainAxisSize: MainAxisSize.max,
       children: <Widget>[
         const SizedBox(
-          height: Sizes.kPadding * 1.5,
+          height: Sizes.kPadding * 4,
         ),
-        Text(
-          lang.changeLangScreen_subtitle,
-          textAlign: TextAlign.center,
-          style: theme.textTheme.displaySmall!.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 15
-          ),
-        ),
-        const SizedBox(
-          height: Sizes.kPadding * 1.5,
-        ),
-        Material(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(Sizes.kBorderRadius),
-            topRight: Radius.circular(Sizes.kBorderRadius),
-            bottomLeft: Radius.circular(0),
-            bottomRight: Radius.circular(0),
-          ),
-          color: theme.colorScheme.inverseSurface.withOpacity(0.6),
-          child: RadioListTile<Locale>(
-            title: const Text('Español'),
-            subtitle: Text(lang.changeLangScreen_es),
-            value: const Locale('es'),
-            groupValue: selectedLocale,
-            onChanged: (Locale? value) {
-              setState(() {
-                selectedLocale = value!;
-              });
-              langProv.changeLanguage(locale: const Locale('es'));
-            },
-            shape:  const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Sizes.kBorderRadius),
-                topRight: Radius.circular(Sizes.kBorderRadius),
-                bottomLeft: Radius.circular(0),
-                bottomRight: Radius.circular(0),
-              ),
+        Expanded(
+          child: Text(
+            lang.changeLangScreen_subtitle,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.displaySmall!.copyWith(
+              fontWeight: FontWeight.bold,
+              fontSize: 20
             ),
           ),
         ),
-        Container(
-          height: 0.5,
-          color : theme.colorScheme.outline
-        ),
-        Material(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(0),
-            topRight: Radius.circular(0),
-            bottomLeft: Radius.circular(Sizes.kBorderRadius),
-            bottomRight: Radius.circular(Sizes.kBorderRadius),
-          ),
-          color: theme.colorScheme.inverseSurface.withOpacity(0.6),
-          child: RadioListTile<Locale>(
-            title: const Text('English'),
-            subtitle: Text(lang.changeLangScreen_en),
-            value: const Locale('en'),
-            groupValue: selectedLocale,
-            onChanged: (Locale? value) {
-              setState(() {
-                selectedLocale = value!;
-              });
-              langProv.changeLanguage(locale: const Locale('en'));
-            },
-            shape:  const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(0),
-                topRight: Radius.circular(0),
-                bottomLeft: Radius.circular(Sizes.kBorderRadius),
-                bottomRight: Radius.circular(Sizes.kBorderRadius),
+        Expanded(
+          flex: 3,
+          child: Column(
+            children: [
+              Material(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(Sizes.kBorderRadius),
+                  topRight: Radius.circular(Sizes.kBorderRadius),
+                  bottomLeft: Radius.circular(0),
+                  bottomRight: Radius.circular(0),
+                ),
+                color: theme.colorScheme.inverseSurface.withOpacity(0.6),
+                child: RadioListTile<Locale>(
+                  title: const Text('Español'),
+                  subtitle: Text(lang.changeLangScreen_es),
+                  value: const Locale('es'),
+                  groupValue: selectedLocale,
+                  onChanged: (Locale? value) {
+                    setState(() {
+                      selectedLocale = value!;
+                    });
+                    langProv.changeLanguage(locale: const Locale('es'));
+                  },
+                  shape:  const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(Sizes.kBorderRadius),
+                      topRight: Radius.circular(Sizes.kBorderRadius),
+                      bottomLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                    ),
+                  ),
+                ),
               ),
-            ),
+              Container(
+                height: 0.5,
+                color : theme.colorScheme.outline
+              ),
+              Material(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(0),
+                  topRight: Radius.circular(0),
+                  bottomLeft: Radius.circular(Sizes.kBorderRadius),
+                  bottomRight: Radius.circular(Sizes.kBorderRadius),
+                ),
+                color: theme.colorScheme.inverseSurface.withOpacity(0.6),
+                child: RadioListTile<Locale>(
+                  title: const Text('English'),
+                  subtitle: Text(lang.changeLangScreen_en),
+                  value: const Locale('en'),
+                  groupValue: selectedLocale,
+                  onChanged: (Locale? value) {
+                    setState(() {
+                      selectedLocale = value!;
+                    });
+                    langProv.changeLanguage(locale: const Locale('en'));
+                  },
+                  shape:  const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(0),
+                      topRight: Radius.circular(0),
+                      bottomLeft: Radius.circular(Sizes.kBorderRadius),
+                      bottomRight: Radius.circular(Sizes.kBorderRadius),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ],

@@ -13,12 +13,18 @@ class BasicButton extends StatelessWidget {
     Key? key,
     required this.onPressed,
     required this.text,
-    this.buildChild
+    this.buildChild,
+    this.color,
+    this.textColor,
+    this.splashColor
   }) : super(key: key);
 
   final String text;
   final VoidCallback? onPressed;
   final Widget Function(Widget loadingChild)? buildChild;
+  final Color? color;
+  final Color? textColor;
+  final Color? splashColor;
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +43,10 @@ class BasicButton extends StatelessWidget {
 
     return TextButton(
       style: TextButton.styleFrom(
-        foregroundColor: theme.colorScheme.onPrimary,
+        foregroundColor: splashColor ?? color ?? theme.colorScheme.onPrimary,
         minimumSize: const Size(4,4),
         backgroundColor: onPressed != null 
-        ? theme.primaryColor : theme.primaryColor.withOpacity(0.3),
+        ? color ?? theme.primaryColor :  color?.withOpacity(0.3) ?? theme.primaryColor.withOpacity(0.3),
         padding: const EdgeInsets.symmetric(vertical: 20),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(Sizes.kBorderRadius)
@@ -55,7 +61,7 @@ class BasicButton extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: theme.colorScheme.onPrimary,
+            color:  textColor ?? theme.colorScheme.onPrimary,
             fontWeight: FontWeight.bold
           ),
         ),

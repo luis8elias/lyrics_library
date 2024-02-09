@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lyrics_library/presentation/features/songs/read/widgets/song_qr_bottom_sheet.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '/config/config.dart';
 import '/presentation/features/more/menu/widgets/menu_option_widget.dart';
+import '/presentation/features/songs/read/widgets/song_qr_bottom_sheet.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/utils/constants/sizes.dart';
 
@@ -98,6 +98,7 @@ class ShareOptionsBottomSheet extends StatelessWidget {
                   showModalBottomSheet(
                     enableDrag: false,
                     elevation: 0.5,
+                    isScrollControlled: true,
                     backgroundColor: Colors.transparent,
                     context: context, 
                     builder: (context) => SongQrBottomSheet(

@@ -223,7 +223,16 @@
       }
     },
     "shareSongs_text" : "Texto",
-    "shareSongs_qr" : "Qr"
+    "shareSongs_qr" : "Qr",
+
+
+    "@_SCAN_SONG": {},
+    "scanSong_title" : "Escanear canción",
+    "scanSong_laoding" : "Utiliza la camara para escanear un código QR de una canción",
+    "scanSong_invalidQr" : "Código qr no válido",
+    "scanSong_foundSong" : "Canción encontrada:",
+    "scanSong_scanAgain" : "Escanear de nuevo"
+
     
 
     

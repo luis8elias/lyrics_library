@@ -17,6 +17,8 @@ export 'features/genres/list/genres_list_screen.dart';
 export 'features/more/menu/menu_options_screen.dart';
 export 'features/more/font_size/change_font_size_screen.dart';
 export 'features/more/language/change_language_screen.dart';
+export 'features/more/scan_song/scan_song_screen.dart';
+
 
 export 'features/auth/login/login_screen.dart';
 export 'features/auth/register/register_screen.dart';

@@ -4,12 +4,15 @@ import 'package:flutter_guid/flutter_guid.dart';
 import '/config/config.dart';
 import '/data/data_sources/interfaces/songs_data_source_interface.dart';
 import '/data/models/response_model.dart';
+import '/presentation/features/genres/shared/models/genre_model.dart';
+import '/presentation/features/more/scan_song/models/scanned_song_model.dart';
 import '/presentation/features/songs/create/models/create_song_model.dart';
 import '/presentation/features/songs/edit/models/edit_song_model.dart';
 import '/presentation/features/songs/list/models/songs_filter_model.dart';
 import '/presentation/features/songs/list/models/songs_list_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/utils/db/sqlite.dart';
+import '/utils/extensions/string_extensions.dart';
 import '/utils/utils.dart';
 
 class SongsLocalSource extends SongsDataSource {
@@ -165,12 +168,7 @@ class SongsLocalSource extends SongsDataSource {
         
       );
 
-      final resp = await batch.commit();
-
-      resp;
-      
-
-
+      await batch.commit();
 
       await Future.delayed(Config.manualLocalServicesDelay);
       
@@ -244,6 +242,81 @@ class SongsLocalSource extends SongsDataSource {
       return ResponseModel(
         success: false,
         message: 'Ocurrió un problema al editar la canción'
+      );
+
+    }
+  }
+
+  @override
+  Future<ResponseModel<String>> saveSongFromScan({
+    required ScannedSongModel scannedSongModel
+  }) async{
+    try {
+
+      final authModel = await sessionService.getAuthModel();
+      final fullStr = '${scannedSongModel.title} ${scannedSongModel.lyric}';
+
+      final genreResult = await SQLite.instance.query(
+        GenresTable.name,
+        columns: [GenresTable.colId],
+        where: '${GenresTable.colName} = ${scannedSongModel.genreName ?? ''} AND '
+        '${GenresTable.colIsRemoved} = ?',
+        whereArgs: [0]
+      );
+
+      final batch = SQLite.instance.batch();
+
+      final Guid genreId;
+      if(
+        genreResult.isEmpty 
+        && scannedSongModel.genreName != null 
+        && scannedSongModel.genreName != ''
+      ){
+        genreId = Guid.newGuid;
+        final genre = GenreModel(
+          id: genreId,
+          name: scannedSongModel.genreName!.capitalize(), 
+          ownerId: Guid(authModel?.userId)
+        );
+        batch.insert(GenresTable.name, genre.toMap());
+      }else{
+        genreId = Guid(genreResult[0][GenresTable.colId] as String);
+      }
+     
+
+      final songMap = {
+        'id': Guid.newGuid.toString(),
+        'title': scannedSongModel.title,
+        'lyric': scannedSongModel.lyric,
+        'searchKeywords' : SearchKeywords.get(fullStr),
+        'ownerId': authModel?.userId,
+        'genreId': genreId.toString(),
+        'sync' : 0,
+        'isRemoved': 0,
+        'isFavorite' : 0 
+      };
+
+      batch.insert(
+        SongsTable.name, songMap
+      );
+
+      await batch.commit(noResult: true);
+      await Future.delayed(Config.manualLocalServicesDelay);
+    
+      return ResponseModel(
+        success: true, 
+        message: 'Canción guardada',
+        model: 'Canción guardada'
+      );
+
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en SongsLocalSource método [saveSongFromScan]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al guardar la canción'
       );
 
     }

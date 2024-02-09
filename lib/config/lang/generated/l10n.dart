@@ -999,6 +999,56 @@ class Lang {
       args: [],
     );
   }
+
+  /// `Scan song`
+  String get scanSong_title {
+    return Intl.message(
+      'Scan song',
+      name: 'scanSong_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use the camera to scan a QR code for a song`
+  String get scanSong_laoding {
+    return Intl.message(
+      'Use the camera to scan a QR code for a song',
+      name: 'scanSong_laoding',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid QR code`
+  String get scanSong_invalidQr {
+    return Intl.message(
+      'Invalid QR code',
+      name: 'scanSong_invalidQr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Found song:`
+  String get scanSong_foundSong {
+    return Intl.message(
+      'Found song:',
+      name: 'scanSong_foundSong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan again`
+  String get scanSong_scanAgain {
+    return Intl.message(
+      'Scan again',
+      name: 'scanSong_scanAgain',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Lang> {

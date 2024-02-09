@@ -107,8 +107,10 @@ class _SpeechToTextBottomSheetState extends State<SpeechToTextBottomSheet> {
                         searchKeyword = '';
                       });
                       await speechToText.listen(
-                        listenMode: ListenMode.search,
-                        partialResults: false,
+                        listenOptions: SpeechListenOptions(
+                          partialResults: false,
+                          listenMode: ListenMode.search
+                        ),
                         localeId: 'es_MX',
                         onResult: (result){
                           if(result.finalResult && result.toFinal().recognizedWords.isNotEmpty){

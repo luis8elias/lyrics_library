@@ -150,6 +150,11 @@ final routes =  [
         name: ChangeLanguageScreen.routePath,
         builder: (context, state) => const ChangeLanguageScreen(),
       ),
+      GoRoute(
+        path: ScanSongScreen.routePath,
+        name: ScanSongScreen.routePath,
+        builder: (context, state) => const ScanSongScreen(),
+      ),
     ]
   ),
 ];

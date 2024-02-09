@@ -3,6 +3,7 @@ import 'package:flutter_guid/flutter_guid.dart';
 import '/data/data_sources/api/songs_api_source.dart';
 import '/data/data_sources/local/songs_local_source.dart';
 import '/data/models/response_model.dart';
+import '/presentation/features/more/scan_song/models/scanned_song_model.dart';
 import '/presentation/features/songs/create/models/create_song_model.dart';
 import '/presentation/features/songs/edit/models/edit_song_model.dart';
 import '/presentation/features/songs/list/models/songs_filter_model.dart';
@@ -52,6 +53,14 @@ class SongsService{
   }) async {
     return _localSource.editSong(
       editSongModel: editSongModel
+    );
+  }
+
+  Future<ResponseModel<String>> saveSongFromScan({
+    required ScannedSongModel scannedSongModel
+  })async {
+    return _localSource.saveSongFromScan(
+      scannedSongModel: scannedSongModel
     );
   }
 

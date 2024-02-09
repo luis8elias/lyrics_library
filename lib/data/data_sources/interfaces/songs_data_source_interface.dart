@@ -1,9 +1,10 @@
 import 'package:flutter_guid/flutter_guid.dart';
 
-import '/presentation/features/songs/list/models/songs_filter_model.dart';
 import '/data/models/response_model.dart';
+import '/presentation/features/more/scan_song/models/scanned_song_model.dart';
 import '/presentation/features/songs/create/models/create_song_model.dart';
 import '/presentation/features/songs/edit/models/edit_song_model.dart';
+import '/presentation/features/songs/list/models/songs_filter_model.dart';
 import '/presentation/features/songs/list/models/songs_list_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/services/session_service.dart';
@@ -29,6 +30,10 @@ abstract class SongsDataSource{
 
   Future<ResponseModel<SongModel?>> editSong({
     required EditSongModel editSongModel
+  });
+
+  Future<ResponseModel<String>> saveSongFromScan({
+    required ScannedSongModel scannedSongModel
   });
 
 }

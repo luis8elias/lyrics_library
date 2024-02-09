@@ -135,6 +135,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Regístrarse"),
         "registerScreen_title": MessageLookupByLibrary.simpleMessage(
             "¡Hola! Regístrese para comenzar"),
+        "scanSong_foundSong":
+            MessageLookupByLibrary.simpleMessage("Canción encontrada:"),
+        "scanSong_invalidQr":
+            MessageLookupByLibrary.simpleMessage("Código qr no válido"),
+        "scanSong_laoding": MessageLookupByLibrary.simpleMessage(
+            "Utiliza la camara para escanear un código QR de una canción"),
+        "scanSong_scanAgain":
+            MessageLookupByLibrary.simpleMessage("Escanear de nuevo"),
+        "scanSong_title":
+            MessageLookupByLibrary.simpleMessage("Escanear canción"),
         "setlistSongsRemove_removeButton":
             MessageLookupByLibrary.simpleMessage("¿Quitar canción de lista"),
         "setlistSongsRemove_removeButtonPlural": m1,

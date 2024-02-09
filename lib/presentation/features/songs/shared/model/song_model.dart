@@ -1,5 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:json_compress/json_compress.dart';
 
 import '/data/models/syncable_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
@@ -48,10 +51,16 @@ class SongModel extends SyncableModel {
     return <String, dynamic>{
       'title': title,
       'lyric': lyric,
-      'genre': {
+      'genre': genreModel != null?
+      {
         'name' : genreModel?.name ?? ''
-      },
+      }
+      : null,
     };
+  }
+
+  String toShareEncoded (){
+    return jsonEncode(compressJson(toJson()));
   }
 
   String toShareStr() {

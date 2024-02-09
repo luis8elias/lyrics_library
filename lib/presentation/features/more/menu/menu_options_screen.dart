@@ -62,7 +62,7 @@ class MoreOptionsScreen extends ConsumerWidget {
                     left: Sizes.kPadding * 0.5
                   ),
                   child: Text(
-                    'features',
+                    'Features',
                     style: theme.textTheme.bodySmall!.copyWith(
                       fontSize: 10
                     ),
@@ -79,7 +79,13 @@ class MoreOptionsScreen extends ConsumerWidget {
                 ),
                 const MenuOptionDivider(),
                 MenuOptionWidget(
-                  onPressed: (){},
+                  onPressed: (){
+                    GoRouter.of(context).go(
+                      context.namedLocation(
+                        ScanSongScreen.routePath,
+                      ),
+                    );
+                  },
                   title: lang.moreOptionsScreen_scanLyrics,
                   icon: CupertinoIcons.qrcode,
                   menuRoundedOption: MenuRoundedOption.bottom,
