@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '/config/lang/generated/l10n.dart';
-import '/presentation/features/songs/shared/model/song_model.dart';
+import '/presentation/features/songs/read/models/share_song_model.dart';
 import '/utils/constants/sizes.dart';
 
 class SongQrBottomSheet extends StatelessWidget {
@@ -12,7 +12,7 @@ class SongQrBottomSheet extends StatelessWidget {
     required this.songModel
   });
 
-  final SongModel songModel;
+  final ShareSongModel songModel;
 
   @override
   Widget build(BuildContext context) {

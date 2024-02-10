@@ -5,8 +5,8 @@ import 'package:share_plus/share_plus.dart';
 
 import '/config/config.dart';
 import '/presentation/features/more/menu/widgets/menu_option_widget.dart';
+import '/presentation/features/songs/read/models/share_song_model.dart';
 import '/presentation/features/songs/read/widgets/song_qr_bottom_sheet.dart';
-import '/presentation/features/songs/shared/model/song_model.dart';
 import '/utils/constants/sizes.dart';
 
 class ShareOptionsBottomSheet extends StatelessWidget {
@@ -15,7 +15,7 @@ class ShareOptionsBottomSheet extends StatelessWidget {
     required this.songModel
   });
 
-  final SongModel songModel;
+  final ShareSongModel songModel;
 
   @override
   Widget build(BuildContext context) {

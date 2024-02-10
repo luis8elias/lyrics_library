@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/presentation/features/songs/read/models/share_song_model.dart';
 import 'package:pull_down_button/pull_down_button.dart';
 
 import '/presentation/features/songs/read/providers/providers.dart';
@@ -52,7 +53,7 @@ class ReadSongScreen extends ConsumerWidget {
                     elevation: 0.5,
                     context: context, 
                     builder: (context) => ShareOptionsBottomSheet(
-                      songModel: songModel,
+                      songModel: ShareSongModel.fromSongModel(songModel),
                     )
                   );
                 },
@@ -68,7 +69,6 @@ class ReadSongScreen extends ConsumerWidget {
                   await showModalBottomSheet(
                     enableDrag: false,
                     elevation: 0.5,
-                    //barrierColor: Colors.transparent,
                     context: context, 
                     builder: (context) => ChangeReadSongFontSizeBottomSheet(
                       defaultFontSize: prov.model,
