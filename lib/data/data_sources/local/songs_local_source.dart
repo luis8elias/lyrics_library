@@ -261,7 +261,7 @@ class SongsLocalSource extends SongsDataSource {
         columns: [GenresTable.colId],
         where: '${GenresTable.colName} = ? AND '
         '${GenresTable.colIsRemoved} = ?',
-        whereArgs: [scannedSongModel.genreName ?? '',0]
+        whereArgs: [scannedSongModel.genreName ?? '', 0]
       );
 
       final batch = SQLite.instance.batch();
