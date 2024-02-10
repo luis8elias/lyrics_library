@@ -250,17 +250,16 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
               ),
             ),
           ),
-          if(reactiveProv.showBottomBar)
           Positioned(
             bottom: 0,left: 0,right: 0,
-            child: FadeInUp(
+            child: FadeIn(
               duration: const Duration(milliseconds: 250),
               child: ClipRRect(
                 clipBehavior: Clip.antiAlias,
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                   child: Container(
-                    height: Sizes.kBottomNavHeight,
+                    height: reactiveProv.showBottomBar ? Sizes.kBottomNavHeight : 0,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: theme.colorScheme.inverseSurface.withOpacity(0.6),
@@ -337,8 +336,16 @@ class _BottomBtn extends StatelessWidget {
       icon: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(iconData),
-          Text(text)
+          Icon(
+            iconData,
+            size: 15,
+          ),
+          Text(
+            text,
+            style: const TextStyle(
+              fontSize: 10
+            ),
+          ),
         ],
       )
     );
