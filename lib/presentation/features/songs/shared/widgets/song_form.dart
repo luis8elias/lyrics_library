@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lyrics_library/app/providers/providers.dart';
 import '/presentation/features/songs/shared/widgets/select_genre_bottom_sheet.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/utils/constants/sizes.dart';
 
-class SongForm extends StatefulWidget {
+class SongForm extends ConsumerStatefulWidget {
   const SongForm({
     super.key,
     this.songModel,
@@ -23,10 +25,10 @@ class SongForm extends StatefulWidget {
   final void Function(GenreModel genre) onGenreChanged;
 
   @override
-  State<SongForm> createState() => _SongFormState();
+  ConsumerState<SongForm> createState() => _SongFormState();
 }
 
-class _SongFormState extends State<SongForm> {
+class _SongFormState extends ConsumerState<SongForm> {
 
   final titleNode = FocusNode();
   final lyricNode = FocusNode();
@@ -46,6 +48,7 @@ class _SongFormState extends State<SongForm> {
   Widget build(BuildContext context) {
 
     final theme = Theme.of(context);
+    final prov = ref.read(appProvider);
     
     return  Padding(
       padding: const EdgeInsets.symmetric(
@@ -86,7 +89,8 @@ class _SongFormState extends State<SongForm> {
                     initialValue: widget.songModel?.lyric,
                     focusNode: lyricNode,
                     style: theme.textTheme.labelLarge?.copyWith(
-                      color: theme.colorScheme.onSurface
+                      color: theme.colorScheme.onSurface,
+                      fontSize: prov.lyricFontSize
                     ),
                     onChanged: (value) => widget.onLyricChanged(value),
                     maxLines: null,
@@ -98,6 +102,7 @@ class _SongFormState extends State<SongForm> {
                       hintStyle:  theme.textTheme.labelLarge?.copyWith(
                         color: theme.colorScheme.outline
                       ),
+                      
                     ),
                   ),
                 ],

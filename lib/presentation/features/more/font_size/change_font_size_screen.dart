@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/app/providers/providers.dart';
 
 import '/config/config.dart';
 import '/presentation/features/more/font_size/providers/providers.dart';
@@ -112,6 +113,10 @@ class __SaveFontSizeBtnState extends ConsumerState<_SaveFontSizeBtn> {
 
   
     final lang = Lang.of(context);
+    final appProv = ref.read(appProvider);
+    final reactiveProv = ref.watch(changeFontSizeProvider);
+    final prov = ref.read(changeFontSizeProvider);
+    
 
     ref.listen(changeFontSizeProvider, (previous, next) {     
       if (next.responseModel != null 
@@ -128,12 +133,12 @@ class __SaveFontSizeBtnState extends ConsumerState<_SaveFontSizeBtn> {
         && next.showSnackbar
       ) {
         SnackbarHelper.show(context: context, message: next.responseModel!.message!);
+        appProv.changeFontSize(prov.model);
         next.resetShowSanckbar();
       }
     });
 
-    final reactiveProv = ref.watch(changeFontSizeProvider);
-    final prov = ref.read(changeFontSizeProvider);
+    
 
     if(reactiveProv.isSaveLoading){
       return BasicButton(

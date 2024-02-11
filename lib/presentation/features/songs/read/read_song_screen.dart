@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/app/providers/providers.dart';
 import 'package:lyrics_library/presentation/features/songs/read/models/share_song_model.dart';
 import 'package:pull_down_button/pull_down_button.dart';
 
@@ -34,6 +35,7 @@ class ReadSongScreen extends ConsumerWidget {
     final theme = Theme.of(context);
     //final lang = Lang.of(context);
     final prov = ref.read(readSongProvider);
+    final appProv = ref.read(appProvider); 
     
     return Scaffold(
       appBar: AppBar(
@@ -80,6 +82,8 @@ class ReadSongScreen extends ConsumerWidget {
                   final resp = await prov.saveFontSize();
                   if(resp.isFailed){
                     showErrorAlert(resp.message!);
+                  }else{
+                    appProv.changeFontSize(prov.model);
                   }
                 },
                 icon: CupertinoIcons.textformat_size,

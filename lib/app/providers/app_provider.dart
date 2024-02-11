@@ -34,6 +34,7 @@ class AppProvider extends  ChangeNotifier{
   bool isLoadingLogout = false;
   AuthModel? userSession;
   Locale? selectedLocale;
+  double? lyricFontSize;
 
   Future<void> _initializeLanguage() async{
     final resp = await _configService.getCurrentLanguage();
@@ -52,6 +53,19 @@ class AppProvider extends  ChangeNotifier{
     );
     selectedLocale = locale;
     notifyListeners();
+  }
+
+  Future<void> _initializelyricFontSize() async{
+    final resp = await _configService.getFontSize();
+    if(resp.isFailed){
+      lyricFontSize = Config.defaultReadSongFontSize;
+      return;
+    }
+    lyricFontSize = resp.model!;
+  }
+
+  Future<void> changeFontSize(double newFontSize) async{
+    lyricFontSize = newFontSize;
   }
 
 
@@ -80,6 +94,10 @@ class AppProvider extends  ChangeNotifier{
     isTheFirstTime = isTheFirstTimeResp;
     if(selectedLocale == null){
       await _initializeLanguage();
+    }
+
+    if(lyricFontSize == null){
+      await _initializelyricFontSize();
     }
     
     if(isTheFirstTime){

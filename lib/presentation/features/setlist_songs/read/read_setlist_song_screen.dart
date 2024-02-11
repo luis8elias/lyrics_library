@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lyrics_library/app/providers/providers.dart';
 import 'package:lyrics_library/presentation/features/songs/read/models/share_song_model.dart';
 import 'package:lyrics_library/presentation/features/songs/read/widgets/share_options_bottom_sheet.dart';
 import 'package:pull_down_button/pull_down_button.dart';
@@ -92,6 +93,7 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
     final lang = Lang.of(context);
     final reactiveProv = ref.watch(readSetlistSongProvider);
     final prov = ref.read(readSetlistSongProvider);
+    final appProv = ref.read(appProvider);
     final extra = GoRouter.of(context).routerDelegate.currentConfiguration.extra as SetlistRouteParamsModel;
 
     final setlist = extra.setlistModel.allowToRemoveBool 
@@ -146,6 +148,8 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
                   final resp = await prov.saveFontSize();
                   if(resp.isFailed){
                     showErrorAlert(resp.message!);
+                  }else{
+                    appProv.changeFontSize(prov.fontSize);
                   }
                 },
                 icon: CupertinoIcons.textformat_size,
