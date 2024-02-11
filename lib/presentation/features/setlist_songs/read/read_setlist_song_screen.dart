@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lyrics_library/app/providers/providers.dart';
 import 'package:lyrics_library/presentation/features/songs/read/models/share_song_model.dart';
 import 'package:lyrics_library/presentation/features/songs/read/widgets/share_options_bottom_sheet.dart';
+import 'package:lyrics_library/presentation/widgets/scroll_to_hide.dart';
 import 'package:pull_down_button/pull_down_button.dart';
 
 import '/config/lang/generated/l10n.dart';
@@ -42,34 +43,12 @@ class ReadSetlistSongScreen extends ConsumerStatefulWidget {
 class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
 
   late ScrollController _scrollBottomBarController;
-  bool isScrollingDown = false;
-
-  void addScrollListener(ReadSetlistSongProvider prov){
-
-    _scrollBottomBarController.addListener(() {
-
-      if (_scrollBottomBarController.position.userScrollDirection ==
-          ScrollDirection.reverse) {
-        if (!isScrollingDown) {
-          isScrollingDown = true;
-          prov.setShowBottomBar(false);
-        }
-      }
-      if (_scrollBottomBarController.position.userScrollDirection ==
-          ScrollDirection.forward) {
-        if (isScrollingDown) {
-          isScrollingDown = false;
-          prov.setShowBottomBar(true);
-        }
-      }
-    });
-  }
+  
 
   @override
   void initState() {
     _scrollBottomBarController = ScrollController();
     final prov = ref.read(readSetlistSongProvider);
-    _scrollBottomBarController.addListener(()=> addScrollListener(prov));
     prov.initializeProvider(
       initialIndex: widget.selectedIndex,
       setlistSongs: widget.setlistSongs
@@ -82,7 +61,7 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
 
   @override
   void dispose() {
-    _scrollBottomBarController.removeListener((){});
+    _scrollBottomBarController.dispose();
     super.dispose();
   }
 
@@ -256,10 +235,8 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: reactiveProv.showBottomBar
-                        ? Sizes.kPadding + Sizes.kBottomNavHeight
-                        : Sizes.kPadding,
+                      const SizedBox(
+                        height:Sizes.kPadding,
                       ),
                     ],
                   ),
@@ -269,63 +246,66 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
           ),
           Positioned(
             bottom: 0,left: 0,right: 0,
-            child: FadeIn(
-              duration: const Duration(milliseconds: 250),
-              child: ClipRRect(
-                clipBehavior: Clip.antiAlias,
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                  child: Container(
-                    height: reactiveProv.showBottomBar ? Sizes.kBottomNavHeight : 0,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.inverseSurface.withOpacity(0.6),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        _BottomBtn(
-                          onPressed: (){
-                            prov.changeSong(ChangeSongOptions.decrease);
-                          },
-                          iconData: CupertinoIcons.arrow_left,
-                          text: lang.actions_prev,
-                        ),
-                        SizedBox(
-                          width: 170,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                '${reactiveProv.selectedIndex + 1}/${widget.setlistSongs.length}',
-                                 style: theme.textTheme.labelSmall!.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: theme.colorScheme.primary,
-                                  fontSize: 14
-                                 )
-                              ),
-                              Text(
-                                setlist,
-                                style: theme.textTheme.labelSmall,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              )
-                            ],
+            child: ScrollToHide(
+              scrollController: _scrollBottomBarController,
+              child: FadeIn(
+                duration: const Duration(milliseconds: 250),
+                child: ClipRRect(
+                  clipBehavior: Clip.antiAlias,
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                    child: Container(
+                      height: Sizes.kBottomNavHeight,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.inverseSurface.withOpacity(0.6),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _BottomBtn(
+                            onPressed: (){
+                              prov.changeSong(ChangeSongOptions.decrease);
+                            },
+                            iconData: CupertinoIcons.arrow_left,
+                            text: lang.actions_prev,
                           ),
-                        ),
-                        _BottomBtn(
-                          onPressed: (){
-                            prov.changeSong(ChangeSongOptions.increase);
-                          },
-                          iconData: CupertinoIcons.arrow_right,
-                          text: lang.actions_next,
-                        ),
-                      ],
+                          SizedBox(
+                            width: 170,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '${reactiveProv.selectedIndex + 1}/${widget.setlistSongs.length}',
+                                   style: theme.textTheme.labelSmall!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: theme.colorScheme.primary,
+                                    fontSize: 14
+                                   )
+                                ),
+                                Text(
+                                  setlist,
+                                  style: theme.textTheme.labelSmall,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                )
+                              ],
+                            ),
+                          ),
+                          _BottomBtn(
+                            onPressed: (){
+                              prov.changeSong(ChangeSongOptions.increase);
+                            },
+                            iconData: CupertinoIcons.arrow_right,
+                            text: lang.actions_next,
+                          ),
+                        ],
+                      )
                     )
-                  )
+                  ),
                 ),
               ),
             ),

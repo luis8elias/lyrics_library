@@ -21,15 +21,8 @@ class ReadSetlistSongProvider extends FetchProvider<String>{
   
   List<SetlistSongModel> _setlistSongs= [];
   late int selectedIndex;
-  bool _showBottomBar = true;
-  late double fontSize;
-
  
-  bool get showBottomBar => _showBottomBar;
-  void setShowBottomBar(bool value){
-    _showBottomBar = value;
-    notifyListeners();
-  }
+  late double fontSize;
 
 
   @override
