@@ -4,22 +4,21 @@ import 'dart:ui';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/app/providers/providers.dart';
-import 'package:lyrics_library/presentation/features/songs/read/models/share_song_model.dart';
-import 'package:lyrics_library/presentation/features/songs/read/widgets/share_options_bottom_sheet.dart';
-import 'package:lyrics_library/presentation/widgets/scroll_to_hide.dart';
 import 'package:pull_down_button/pull_down_button.dart';
 
+import '/app/providers/providers.dart';
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/setlist_songs/list/model/setlist_song_model.dart';
 import '/presentation/features/setlist_songs/read/providers/read_setlist_song_provider.dart';
 import '/presentation/features/setlists/shared/models/setlists_route_params_model.dart';
+import '/presentation/features/songs/read/models/share_song_model.dart';
+import '/presentation/features/songs/read/widgets/share_options_bottom_sheet.dart';
 import '/presentation/widgets/buttons.dart';
 import '/presentation/widgets/change_read_song_font_size_bottomsheet.dart';
 import '/presentation/widgets/providers.dart';
+import '/presentation/widgets/scroll_to_hide.dart';
 import '/utils/utils.dart';
 import 'providers/providers.dart';
 

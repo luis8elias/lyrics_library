@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:lyrics_library/utils/constants/sizes.dart';
+
+import '/utils/constants/sizes.dart';
 
 class ScrollToHide extends StatefulWidget {
   const ScrollToHide({

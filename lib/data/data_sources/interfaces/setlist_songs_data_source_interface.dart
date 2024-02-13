@@ -47,6 +47,16 @@ abstract class SetlistSongsDataSource{
   Future<ResponseModel<String>> fetchSongLyricsBySongId({
     required Guid songId,
   });
+
+  Future<ResponseModel<List<Guid>>?> getSetlistsIdsBySongId({
+    required Guid songId
+  });
+
+  Future<ResponseModel> addSongToSetlistFromList({
+    required List<Guid> setlistIds,
+    required List<Guid> prevSelectedIds,
+    required Guid songId
+  });
  
 
 }

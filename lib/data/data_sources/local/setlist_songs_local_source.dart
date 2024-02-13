@@ -1,4 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '/config/config.dart';
 import '/data/data_sources/interfaces/setlist_songs_data_source_interface.dart';
@@ -158,53 +159,17 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
   }) async{
 
     try {
-      
-      final authModel = await sessionService.getAuthModel();
 
-      final setlistsResult = await SQLite.instance.query(
-        SetlistsTable.name,
-        columns: [SetlistsTable.colIsAllowToRemove],
-        where: '${SetlistsTable.colId} = ?',
-        whereArgs: [setlistId.toString()]
-      );
-      final isFavoriteSetlist = setlistsResult[0][SetlistsTable.colIsAllowToRemove] == 0;
       final batch = SQLite.instance.batch();
 
-      if(isFavoriteSetlist){
-
-        batch.update(
-          SongsTable.name,
-          {SongsTable.colIsFavorite: 1},
-          where: '${SongsTable.colId} = ?', 
-          whereArgs: [songId.toString()]
-        );
-
-      }
-
-      final maxOrder = await SQLite.instance.rawQuery(
-        'SELECT MAX(${SetlistSongsTable.colIndexOrder}) as max '
-        'FROM ${SetlistSongsTable.name} '
-        'WHERE ${SetlistSongsTable.colSetlistId} = ? ',
-        [setlistId.toString()]
-      );
-
-      final newIndex = maxOrder[0]['max'] as int? ?? 0;
-      final newId = Guid.newGuid;
-      final addSongToSetlist = AddSongToSetListModel(
-        id: newId, 
-        setlistId: setlistId, 
+      final newId = await _addSongToSetlist(
         songId: songId, 
-        ownerId: authModel?.userId ?? '',
-        indexOrder: newIndex + 1
-      );
-      batch.insert(
-        SetlistSongsTable.name,
-        addSongToSetlist.toMap(),
+        setlistId: setlistId,
+        batch: batch
       );
 
+      await batch.commit(noResult: true);
       
-      await batch.commit();
-
       final setlistSong = await SQLite.instance.rawQuery(
         'SELECT SS.id as id, '
         'S.id as songId, '
@@ -377,44 +342,21 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
   }) async{
      try {
 
-      final setlistsResult = await SQLite.instance.query(
-        SetlistsTable.name,
-        columns: [SetlistsTable.colIsAllowToRemove],
-        where: '${SetlistsTable.colId} = ?',
-        whereArgs: [setlistId.toString()]
-      );
-      final isFavoriteSetlist = setlistsResult[0][SetlistsTable.colIsAllowToRemove] == 0;
-
       final batch = SQLite.instance.batch();
 
       for (var songId in songsIds) {
-        batch.delete(
-          SetlistSongsTable.name, 
-          where: '${SetlistSongsTable.colSongId} = ? AND '
-          '${SetlistSongsTable.colSetlistId} = ?',
-          whereArgs: [
-            songId.toString(),
-            setlistId.toString()
-          ]
+        await _deleteSongToSetlist(
+          songId: songId, 
+          setlistId: setlistId, 
+          batch: batch
         );
-
-        if(isFavoriteSetlist){
-          batch.update(
-            SongsTable.name,
-            {SongsTable.colIsFavorite: 0},
-            where: '${SongsTable.colId} = ?', 
-            whereArgs: [songId.toString()]
-          );
-        }
       }
       await batch.commit();
-    
 
       return ResponseModel(
         success: true,
         message: 'Canciones removidas'
       );
-      //final batch = SQLite.instance.batch();
        
      } catch (e) {
 
@@ -462,5 +404,185 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
       );
       
     }
+  }
+
+  @override
+  Future<ResponseModel<List<Guid>>?> getSetlistsIdsBySongId({
+    required Guid songId
+  }) async{
+
+    try {
+
+      final setlistIdsResp = await SQLite.instance.query(
+        SetlistSongsTable.name,
+        columns: [SetlistSongsTable.colSetlistId],
+        where: '${SetlistSongsTable.colSongId} = ?',
+        whereArgs: [
+          songId.toString()
+        ]
+      );
+
+      final  setlistIds = setlistIdsResp.map((e) {
+        return Guid(e[SetlistSongsTable.colSetlistId] as String);
+      }).toList();
+      
+
+      return ResponseModel(
+        success: true, 
+        message: 'Setlist Ids' ,
+        model: setlistIds
+      );
+      
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en SetlistSongsLocalSource método [getSetlistsIdsBySongId]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al obtener los setlists a los que pertenece la cancion'
+      );
+
+    }
+  }
+
+
+  @override
+  Future<ResponseModel> addSongToSetlistFromList({
+    required List<Guid> setlistIds,
+    required List<Guid> prevSelectedIds,
+    required Guid songId
+  }) async{
+
+    try {
+
+      final batch = SQLite.instance.batch();
+
+      for (var prevSetllistId in prevSelectedIds) {
+        if(!setlistIds.contains(prevSetllistId)){
+          await _deleteSongToSetlist(
+            songId: songId, 
+            setlistId: prevSetllistId, 
+            batch: batch
+          );
+        }
+      }
+
+      for (var setlistId in setlistIds) {
+        if(!prevSelectedIds.contains(setlistId)){
+          await _addSongToSetlist(
+            songId: songId, 
+            setlistId: setlistId, 
+            batch: batch
+          );
+        }
+      }
+
+      await batch.commit(noResult: true);
+
+      return ResponseModel(
+        success: true, 
+        message: 'Setlists actualizados' ,
+        model: setlistIds
+      );
+      
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en SetlistSongsLocalSource método [getSetlistsIdsBySongId]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al actualizar setlists'
+      );
+
+    }
+  }
+
+
+  Future<Guid> _addSongToSetlist({
+    required Guid songId,
+    required Guid setlistId,
+    required Batch batch
+  })async {
+
+    final authModel = await sessionService.getAuthModel();
+
+    final setlistsResult = await SQLite.instance.query(
+      SetlistsTable.name,
+      columns: [SetlistsTable.colIsAllowToRemove],
+      where: '${SetlistsTable.colId} = ?',
+      whereArgs: [setlistId.toString()]
+    );
+    final isFavoriteSetlist = setlistsResult[0][SetlistsTable.colIsAllowToRemove] == 0;
+
+    if(isFavoriteSetlist){
+      batch.update(
+        SongsTable.name,
+        {SongsTable.colIsFavorite: 1},
+        where: '${SongsTable.colId} = ?', 
+        whereArgs: [songId.toString()]
+      );
+    }
+
+    final maxOrder = await SQLite.instance.rawQuery(
+      'SELECT MAX(${SetlistSongsTable.colIndexOrder}) as max '
+      'FROM ${SetlistSongsTable.name} '
+      'WHERE ${SetlistSongsTable.colSetlistId} = ? ',
+      [setlistId.toString()]
+    );
+
+    final newIndex = maxOrder[0]['max'] as int? ?? 0;
+    final newId = Guid.newGuid;
+    final addSongToSetlist = AddSongToSetListModel(
+      id: newId, 
+      setlistId: setlistId, 
+      songId: songId, 
+      ownerId: authModel?.userId ?? '',
+      indexOrder: newIndex + 1
+    );
+    batch.insert(
+      SetlistSongsTable.name,
+      addSongToSetlist.toMap(),
+    );
+    
+    return newId;
+  }
+
+
+  Future<void> _deleteSongToSetlist({
+    required Guid songId,
+    required Guid setlistId,
+    required Batch batch
+  })async {
+
+    final setlistsResult = await SQLite.instance.query(
+      SetlistsTable.name,
+      columns: [SetlistsTable.colIsAllowToRemove],
+      where: '${SetlistsTable.colId} = ?',
+      whereArgs: [setlistId.toString()]
+    );
+    final isFavoriteSetlist = setlistsResult[0][SetlistsTable.colIsAllowToRemove] == 0;
+
+     
+    batch.delete(
+      SetlistSongsTable.name, 
+      where: '${SetlistSongsTable.colSongId} = ? AND '
+      '${SetlistSongsTable.colSetlistId} = ?',
+      whereArgs: [
+        songId.toString(),
+        setlistId.toString()
+      ]
+    );
+
+    if(isFavoriteSetlist){
+      batch.update(
+        SongsTable.name,
+        {SongsTable.colIsFavorite: 0},
+        where: '${SongsTable.colId} = ?', 
+        whereArgs: [songId.toString()]
+      );
+    }
+    
   }
 }

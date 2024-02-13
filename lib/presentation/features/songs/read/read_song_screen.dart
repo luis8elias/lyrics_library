@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lyrics_library/app/providers/providers.dart';
-import 'package:lyrics_library/presentation/features/songs/read/models/share_song_model.dart';
 import 'package:pull_down_button/pull_down_button.dart';
 
+import '/app/providers/providers.dart';
+import '/presentation/features/songs/read/models/share_song_model.dart';
 import '/presentation/features/songs/read/providers/providers.dart';
 import '/presentation/features/songs/read/widgets/share_options_bottom_sheet.dart';
 import '/presentation/widgets/change_read_song_font_size_bottomsheet.dart';

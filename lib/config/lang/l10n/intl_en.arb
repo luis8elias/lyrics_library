@@ -40,6 +40,7 @@
     "actions_search" : "Search",
     "actions_next" : "Next",
     "actions_prev" : "Prev",
+    "actions_addToSetlist": "Add to setlist",
 
 
 
@@ -107,6 +108,7 @@
 
     "@_SONGS_LIST_SCREEN": {},
     "songsListScreen_title" : "Songs",
+    "songsListScreen_addToSetlistTitle" : "Select setlists",
 
 
 

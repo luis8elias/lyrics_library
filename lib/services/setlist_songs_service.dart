@@ -78,5 +78,23 @@ class SetlistSongsService {
     return _localSource.fetchSongLyricsBySongId(songId: songId);
   }
 
+  Future<ResponseModel<List<Guid>>?> getSetlistsIdsBySongId({
+    required Guid songId
+  }){
+    return _localSource.getSetlistsIdsBySongId(songId: songId);
+  }
+
+  Future<ResponseModel> addSongToSetlistFromList({
+    required List<Guid> setlistIds,
+    required List<Guid> prevSelectedIds,
+    required Guid songId
+  }){
+    return _localSource.addSongToSetlistFromList(
+      setlistIds: setlistIds, 
+      prevSelectedIds: prevSelectedIds,
+      songId: songId
+    );
+  }
+
   
 }

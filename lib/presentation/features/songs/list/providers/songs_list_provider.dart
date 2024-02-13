@@ -125,6 +125,22 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
     }
     notifyListeners();
   }
+
+  void setsIsFavoriteSong({
+    required Guid songId,
+    required bool isFavorite
+  }){
+    final index = _pagingController.itemList!.indexWhere(
+      (song) => song.id == songId
+    );
+    _pagingController.itemList![index] = _pagingController.itemList![index].copyWith(
+      isFavorite: isFavorite ? 1 : 0
+    );
+    if(isSelectItemOpened){
+      openCloseSelectItem();
+    }
+    notifyListeners();
+  }
   
 
   

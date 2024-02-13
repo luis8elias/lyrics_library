@@ -39,6 +39,7 @@
     "actions_search" : "Buscar",
     "actions_next" : "Sig.",
     "actions_prev" : "Ant.",
+    "actions_addToSetlist": "Agregar a lista",
 
 
 
@@ -100,6 +101,7 @@
 
     "@_SONGS_LIST_SCREEN": {},
     "songsListScreen_title" : "Canciones",
+    "songsListScreen_addToSetlistTitle" : "Seleccionar listas",
     
 
 

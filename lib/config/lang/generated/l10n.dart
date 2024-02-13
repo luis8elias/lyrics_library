@@ -270,6 +270,16 @@ class Lang {
     );
   }
 
+  /// `Add to setlist`
+  String get actions_addToSetlist {
+    return Intl.message(
+      'Add to setlist',
+      name: 'actions_addToSetlist',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Loading...`
   String get loadingScreen_loading {
     return Intl.message(
@@ -535,6 +545,16 @@ class Lang {
     return Intl.message(
       'Songs',
       name: 'songsListScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select setlists`
+  String get songsListScreen_addToSetlistTitle {
+    return Intl.message(
+      'Select setlists',
+      name: 'songsListScreen_addToSetlistTitle',
       desc: '',
       args: [],
     );

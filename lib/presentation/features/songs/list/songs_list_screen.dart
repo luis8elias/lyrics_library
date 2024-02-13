@@ -10,6 +10,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/songs/delete/delete_song_button.dart';
 import '/presentation/features/songs/list/providers/providers.dart';
+import '/presentation/features/songs/list/widgets/add_to_setlist_bottom_sheet.dart';
 import '/presentation/features/songs/list/widgets/like_song_button.dart';
 import '/presentation/features/songs/list/widgets/new_page_progress_indicator.dart';
 import '/presentation/features/songs/list/widgets/no_items_found.dart';
@@ -147,6 +148,23 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                     )
                     : null, 
                     child: Text(lang.actions_edit)
+                  ),
+                  TextButton(
+                    onPressed: reactiveProv.isOneItemSelected 
+                    ? () async {
+                      await showModalBottomSheet(
+                        enableDrag: false,
+                        context: context, 
+                        isScrollControlled: true,
+                        builder: (context) => AddToSetlistBottomSheet(
+                          songModel: prov.getFirstSongSelected,
+                        )
+                      );
+                    }
+                    : null, 
+                    child: Text(
+                      lang.actions_addToSetlist
+                    )
                   ),
                   DeleteSongButton(
                     enabled: reactiveProv.selectedItems.isNotEmpty

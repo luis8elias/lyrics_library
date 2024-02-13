@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "actions_addToSetlist":
+            MessageLookupByLibrary.simpleMessage("Add to setlist"),
         "actions_back": MessageLookupByLibrary.simpleMessage("Back"),
         "actions_cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "actions_delete": MessageLookupByLibrary.simpleMessage("Delete"),
@@ -189,6 +191,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Edit Song"),
         "songsEditScreen_titleInput":
             MessageLookupByLibrary.simpleMessage("Title"),
+        "songsListScreen_addToSetlistTitle":
+            MessageLookupByLibrary.simpleMessage("Select setlists"),
         "songsListScreen_title": MessageLookupByLibrary.simpleMessage("Songs"),
         "spechToTextBotomShet_holdBtn": MessageLookupByLibrary.simpleMessage(
             "Hold the button and start speaking"),
