@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pull_down_button/pull_down_button.dart';
+import 'package:ticker_text/ticker_text.dart';
 
 import '/app/providers/providers.dart';
 import '/config/lang/generated/l10n.dart';
@@ -153,12 +154,21 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
         ),
         title: Column(
           children: [
-            FadeIn(
-              key: Key(widget.setlistSongs[reactiveProv.selectedIndex].title),
-              child: Text(
-                widget.setlistSongs[reactiveProv.selectedIndex].title,
-                style: theme.textTheme.titleSmall,
-                overflow: TextOverflow.ellipsis,
+            TickerText(
+              scrollDirection: Axis.horizontal,
+              speed: 20,
+              startPauseDuration: const Duration(seconds: 5),
+              endPauseDuration: const Duration(seconds: 5),
+              returnDuration: const Duration(seconds: 5),
+              primaryCurve: Curves.linear,
+              returnCurve: Curves.easeOut,
+              child: FadeIn(
+                key: Key(widget.setlistSongs[reactiveProv.selectedIndex].title),
+                child: Text(
+                  widget.setlistSongs[reactiveProv.selectedIndex].title,
+                  style: theme.textTheme.titleSmall,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
             if(widget.setlistSongs[reactiveProv.selectedIndex].genreName != null)

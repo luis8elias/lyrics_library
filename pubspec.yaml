@@ -59,6 +59,7 @@ dependencies:
   share_plus: 7.0.1
   speech_to_text: ^6.5.1
   sqflite: ^2.3.0
+  ticker_text: ^2.0.0
   
   
 

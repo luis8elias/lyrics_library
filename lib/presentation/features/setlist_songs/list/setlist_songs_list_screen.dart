@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ticker_text/ticker_text.dart';
 
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/setlist_songs/add/add_song_to_setlist_bottomsheet.dart';
@@ -133,12 +134,21 @@ class _ReadSetlistScreenState extends ConsumerState<SetlistSongsListScreen> {
               SearchInput(
                 onChangeSearch: (query) => prov.updateQuery(query),
               )
-              : Text(
-              widget.setlistModel.allowToRemoveBool 
-              ? widget.setlistModel.name 
-              : lang.app_favorites,
-              style: theme.textTheme.titleSmall,
-              overflow: TextOverflow.ellipsis,
+              : 
+            TickerText(
+              scrollDirection: Axis.horizontal,
+              speed: 20,
+              startPauseDuration: const Duration(seconds: 5),
+              endPauseDuration: const Duration(seconds: 5),
+              returnDuration: const Duration(seconds: 5),
+              primaryCurve: Curves.linear,
+              returnCurve: Curves.easeOut,
+              child: Text(
+                widget.setlistModel.allowToRemoveBool 
+                ? widget.setlistModel.name 
+                : lang.app_favorites,
+                style: theme.textTheme.titleSmall,
+              ),
             ),
           ),
           buttonBottomRow: prov.isSelectItemOpened 

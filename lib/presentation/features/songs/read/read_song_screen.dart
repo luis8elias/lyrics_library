@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pull_down_button/pull_down_button.dart';
+import 'package:ticker_text/ticker_text.dart';
 
 import '/app/providers/providers.dart';
 import '/presentation/features/songs/read/models/share_song_model.dart';
@@ -108,12 +109,28 @@ class ReadSongScreen extends ConsumerWidget {
           ),
         ),
         title: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              songModel.title,
-              style: theme.textTheme.titleSmall,
-              overflow: TextOverflow.ellipsis,
+            Center(
+              child: TickerText(
+                scrollDirection: Axis.horizontal,
+                speed: 20,
+                startPauseDuration: const Duration(seconds: 5),
+                endPauseDuration: const Duration(seconds: 5),
+                returnDuration: const Duration(seconds: 5),
+                primaryCurve: Curves.linear,
+                returnCurve: Curves.easeOut,
+                child: Text(
+                  songModel.title,
+                  style: theme.textTheme.titleSmall,
+                ),
+              ),
             ),
+            // Text(
+            //   songModel.title,
+            //   style: theme.textTheme.titleSmall,
+            //   overflow: TextOverflow.ellipsis,
+            // ),
             if(songModel.genreModel != null)
             const SizedBox(
               height: 4,
