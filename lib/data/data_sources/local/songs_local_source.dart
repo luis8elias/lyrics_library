@@ -2,7 +2,6 @@
 import 'package:flutter_guid/flutter_guid.dart';
 
 import '/config/config.dart';
-import '/data/data_sources/interfaces/songs_data_source_interface.dart';
 import '/data/models/response_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/features/more/scan_song/models/scanned_song_model.dart';
@@ -11,16 +10,19 @@ import '/presentation/features/songs/edit/models/edit_song_model.dart';
 import '/presentation/features/songs/list/models/songs_filter_model.dart';
 import '/presentation/features/songs/list/models/songs_list_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
+import '/services/session_service.dart';
 import '/utils/db/sqlite.dart';
 import '/utils/extensions/string_extensions.dart';
 import '/utils/utils.dart';
 
-class SongsLocalSource extends SongsDataSource {
-  SongsLocalSource({required super.sessionService});
+class SongsLocalSource {
+
+  final SessionService sessionService;
+  SongsLocalSource({required this.sessionService});
 
   final int limit = Config.songsPageSize;
 
-  @override
+
   Future<ResponseModel<SongsListModel>> fetchSongs({
     required int page,
     SongFilterModel? filters
@@ -93,7 +95,7 @@ class SongsLocalSource extends SongsDataSource {
     }
   }
 
-  @override
+
   Future<ResponseModel<SongModel>> createSong({
     required CreateSongModel createSongModel
   }) async{
@@ -139,19 +141,12 @@ class SongsLocalSource extends SongsDataSource {
     }
   }
 
-  @override
   Future<ResponseModel<String>> deleteSongs({
     required List<Guid> songsIds
   }) async{
     try {
 
       final questionSymbols = songsIds.map((e) => '?').join(',');
-      // final rowsAffected = await  SQLite.instance.rawUpdate(
-      //   'UPDATE ${SongsTable.name} SET isRemoved = ? '
-      //   'WHERE ${SongsTable.colId} IN ($questionSymbols)',
-      //   [1, ...songsIds.map((e) => e.toString()).toList()]
-      // );
-
       final batch = SQLite.instance.batch();
 
       batch.update(
@@ -191,7 +186,6 @@ class SongsLocalSource extends SongsDataSource {
     }
   }
 
-  @override
   Future<ResponseModel<SongModel?>> editSong({
     required EditSongModel editSongModel
   }) async{
@@ -247,7 +241,6 @@ class SongsLocalSource extends SongsDataSource {
     }
   }
 
-  @override
   Future<ResponseModel<String>> saveSongFromScan({
     required ScannedSongModel scannedSongModel
   }) async{

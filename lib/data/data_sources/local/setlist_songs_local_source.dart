@@ -2,7 +2,6 @@ import 'package:flutter_guid/flutter_guid.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '/config/config.dart';
-import '/data/data_sources/interfaces/setlist_songs_data_source_interface.dart';
 import '/data/models/response_model.dart';
 import '/presentation/features/setlist_songs/add/models/add_song_to_setlist_model.dart';
 import '/presentation/features/setlist_songs/add/models/song_model_from_add_song_to_setlist_model.dart';
@@ -10,17 +9,20 @@ import '/presentation/features/setlist_songs/list/model/setlist_song_model.dart'
 import '/presentation/features/setlist_songs/list/model/setlist_song_order_model.dart';
 import '/presentation/features/setlists/shared/models/setlist_model.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
+import '/services/session_service.dart';
 import '/utils/db/sqlite.dart';
 import '/utils/logger/logger_helper.dart';
 import '/utils/search_keywords/get_search_keywords.dart';
 
-class SetlistSongsLocalSource extends SetlistSongsDataSource {
-  SetlistSongsLocalSource({required super.sessionService});
+class SetlistSongsLocalSource {
+
+  final SessionService sessionService;
+  SetlistSongsLocalSource({required this.sessionService});
+
 
   final int limit = Config.songsPageSize;
 
 
-  @override
   Future<ResponseModel<List<SetlistSongModel>?>> fetchsSongsBySetlistId({
     required Guid setlistId, 
     required String query
@@ -64,7 +66,6 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
   }
 
 
-  @override
   Future<ResponseModel<ListAddSongs?>> fetchSongsToAddToSetlist({
     required Guid setlistId, 
     required String query,
@@ -152,7 +153,6 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
    
   }
 
-  @override
   Future<ResponseModel<SetlistSongModel?>> addSongToSetlist({
     required Guid songId,
     required Guid setlistId
@@ -210,7 +210,6 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
 
 
 
-   @override
   Future<ResponseModel<SongModel?>> toogleIsFavorite({
     required SongModel songModel
   }) async{
@@ -298,7 +297,6 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
     }
   }
 
-  @override
   Future<ResponseModel> orderSongs({
     required List<SetlistSongOrderModel> songsOrdered
   }) async{
@@ -335,7 +333,6 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
     }
   }
   
-  @override
   Future<ResponseModel<String>> deleteSongsFromSetlist({
     required List<Guid> songsIds, 
     required Guid setlistId
@@ -371,7 +368,6 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
      }
   }
   
-  @override
   Future<ResponseModel<String>> fetchSongLyricsBySongId({
     required Guid songId
   }) async {
@@ -406,7 +402,7 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
     }
   }
 
-  @override
+
   Future<ResponseModel<List<Guid>>?> getSetlistsIdsBySongId({
     required Guid songId
   }) async{
@@ -447,7 +443,6 @@ class SetlistSongsLocalSource extends SetlistSongsDataSource {
   }
 
 
-  @override
   Future<ResponseModel> addSongToSetlistFromList({
     required List<Guid> setlistIds,
     required List<Guid> prevSelectedIds,

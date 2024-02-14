@@ -1,25 +1,26 @@
 import 'package:flutter_guid/flutter_guid.dart';
 
 import '/config/config.dart';
-import '/data/data_sources/interfaces/genres_data_source_inteface.dart';
 import '/data/models/response_model.dart';
 import '/presentation/features/genres/create/models/create_genre_model.dart';
 import '/presentation/features/genres/edit/models/edit_genre_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
+import '/services/session_service.dart';
 import '/utils/db/sqlite.dart';
 import '/utils/extensions/string_extensions.dart';
 import '/utils/logger/logger_helper.dart';
 
-class GenresLocalSource extends GenresDataSource {
-  GenresLocalSource({required super.sessionService});
+class GenresLocalSource{
 
-  @override
+  final SessionService sessionService;
+  GenresLocalSource({required this.sessionService});
+
   Future<ResponseModel<List<GenreModel>?>> fetchGenres({
     required String query
   }) async {
 
     try {
-      
+
       final genresMapList = await SQLite.instance.query(
         GenresTable.name,
         where: '${GenresTable.colIsRemoved} = ? AND '
@@ -45,7 +46,6 @@ class GenresLocalSource extends GenresDataSource {
     }
   }
 
-  @override
   Future<ResponseModel<GenreModel?>> createGenre({
     required CreateGenreModel createGenreModel
   }) async{
@@ -93,7 +93,6 @@ class GenresLocalSource extends GenresDataSource {
     
   }
   
-  @override
   Future<ResponseModel<String>> deleteGenres({
     required List<Guid> genresIds
   }) async {
@@ -135,7 +134,6 @@ class GenresLocalSource extends GenresDataSource {
     
   }
 
-  @override
   Future<ResponseModel<String>> editGenre({
     required EditGenreModel editGenreModel
   }) async{

@@ -1,6 +1,5 @@
 import 'package:flutter_guid/flutter_guid.dart';
 
-import '/data/data_sources/api/songs_api_source.dart';
 import '/data/data_sources/local/songs_local_source.dart';
 import '/data/models/response_model.dart';
 import '/presentation/features/more/scan_song/models/scanned_song_model.dart';
@@ -15,7 +14,6 @@ class SongsService{
   final SongsLocalSource _localSource;
 
   SongsService({
-    required SongsApiSource apiSource,
     required SongsLocalSource localSource
   })
   :

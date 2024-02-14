@@ -1,19 +1,20 @@
 import 'package:flutter_guid/flutter_guid.dart';
 
 import '/config/config.dart';
-import '/data/data_sources/interfaces/setlists_data_source_interface.dart';
 import '/data/models/response_model.dart';
 import '/presentation/features/setlists/create/models/create_setlist_model.dart';
 import '/presentation/features/setlists/edit/models/edit_setlist_model.dart';
 import '/presentation/features/setlists/shared/models/setlist_model.dart';
+import '/services/session_service.dart';
 import '/utils/db/sqlite.dart';
 import '/utils/extensions/string_extensions.dart';
 import '/utils/logger/logger_helper.dart';
 
-class SetlistsLocalSource extends SetlistsDataSource {
-  SetlistsLocalSource({required super.sessionService});
+class SetlistsLocalSource {
 
-  @override
+  final SessionService sessionService;
+  SetlistsLocalSource({required this.sessionService});
+
   Future<ResponseModel<List<SetlistModel>?>> fetchSetlists({
     required String query
   }) async{
@@ -51,7 +52,6 @@ class SetlistsLocalSource extends SetlistsDataSource {
     }
   }
 
-  @override
   Future<ResponseModel<SetlistModel?>> createSetlist({
     required CreateSetlistModel createSetlistModel
   }) async{
@@ -98,7 +98,6 @@ class SetlistsLocalSource extends SetlistsDataSource {
     }
   }
 
-  @override
   Future<ResponseModel<String>> deleteSetlists({
     required List<Guid> setlistsIds
   }) async {
@@ -139,7 +138,6 @@ class SetlistsLocalSource extends SetlistsDataSource {
     }
   }
 
-  @override
   Future<ResponseModel<String>> editSetlist({
     required EditSetlistModel editSetlistModel
   }) async {
