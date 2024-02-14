@@ -70,7 +70,7 @@ class SongModel extends SyncableModel {
   Map<String, dynamic> toInsertMap() {
     return <String, dynamic>{
       'id': id.toString(),
-      'title': title,
+      'title': title.trim(),
       'lyric': lyric,
       'searchKeywords' : _getSearchKeywords(title, lyric),
       'ownerId': ownerId.toString(),

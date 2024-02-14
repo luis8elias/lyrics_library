@@ -57,7 +57,7 @@ class GenresLocalSource extends GenresDataSource {
 
       final genre = GenreModel(
         id: Guid.newGuid,
-        name: createGenreModel.name!.capitalize(), 
+        name: createGenreModel.name!.capitalize().trim(), 
         ownerId: Guid(authModel?.userId)
       );
       

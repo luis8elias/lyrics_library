@@ -44,7 +44,7 @@ class EditSongModel extends SyncableModel implements FormModel {
 
   Map<String, dynamic> toMapWithoutId() {
     return <String, dynamic>{
-      'title': title?.capitalize(),
+      'title': title?.capitalize().trim(),
       'lyric': lyric?.capitalize(),
       'searchKeywords' : _getSearchKeywords(title ?? '', lyric ?? ''),
       'ownerId' : ownerId.toString(),

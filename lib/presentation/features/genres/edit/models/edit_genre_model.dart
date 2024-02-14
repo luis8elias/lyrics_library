@@ -35,7 +35,7 @@ class EditGenreModel extends SyncableModel implements FormModel {
 
   Map<String, dynamic> toMapWithoutId() {
     return <String, dynamic>{
-      'name': name?.capitalize(),
+      'name': name?.capitalize().trim(),
       'ownerId' : ownerId.toString(),
       'sync' : isSync,
       'isRemoved': isRemoved

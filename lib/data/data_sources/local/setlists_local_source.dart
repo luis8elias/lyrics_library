@@ -62,7 +62,7 @@ class SetlistsLocalSource extends SetlistsDataSource {
 
       final setlist = SetlistModel(
         id: Guid.newGuid,
-        name: createSetlistModel.name!.capitalize(), 
+        name: createSetlistModel.name!.capitalize().trim(), 
         ownerId: Guid(authModel?.userId),
         totalSongs: 0
       );
