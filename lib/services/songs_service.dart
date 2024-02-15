@@ -62,4 +62,12 @@ class SongsService{
     );
   }
 
+  Future<ResponseModel<bool>> incrementSongViewsCount({
+    required Guid songId
+  }) async {
+    return _localSource.incrementSongViewsCount(
+      songId: songId
+    );
+  }
+
 }

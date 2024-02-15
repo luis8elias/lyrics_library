@@ -14,6 +14,7 @@ class EditSongModel extends SyncableModel implements FormModel {
   final Guid?  ownerId;
   final GenreModel? genre;
   final int? isFavorite;
+  final int? viewsCount;
 
 
   EditSongModel({
@@ -24,7 +25,8 @@ class EditSongModel extends SyncableModel implements FormModel {
     super.isRemoved = 0,
     super.isSync = 0,
     this.genre,
-    this.isFavorite
+    this.isFavorite,
+    this.viewsCount
   });
   
   
@@ -38,7 +40,8 @@ class EditSongModel extends SyncableModel implements FormModel {
       'sync' : isSync,
       'isRemoved': isRemoved,
       'genreId' : genre?.id.toString(),
-      'isFavorite' : isFavorite 
+      'isFavorite' : isFavorite ,
+      'viewsCount' : viewsCount
     };
   }
 
@@ -51,7 +54,8 @@ class EditSongModel extends SyncableModel implements FormModel {
       'sync' : isSync,
       'isRemoved': isRemoved,
       'genreId' : genre?.id.toString(),
-      'isFavorite' : isFavorite 
+      'isFavorite' : isFavorite,
+      'viewsCount' : viewsCount
     };
   }
 
@@ -72,6 +76,7 @@ class EditSongModel extends SyncableModel implements FormModel {
     String? lyric,
     Guid?  ownerId,
     int? isFavorite,
+    int? viewsCount,
     GenreModel? genre,
   }) {
     return EditSongModel(
@@ -80,7 +85,8 @@ class EditSongModel extends SyncableModel implements FormModel {
       lyric: lyric ?? this.lyric,
       ownerId: ownerId ?? this.ownerId,
       genre: genre != null && genre.isEmpty ? null :  genre ?? this.genre,
-      isFavorite: isFavorite ?? this.isFavorite
+      isFavorite: isFavorite ?? this.isFavorite,
+      viewsCount: viewsCount ?? this.viewsCount
     );
   }
 

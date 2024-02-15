@@ -1,3 +1,6 @@
+import 'package:flutter_guid/flutter_guid.dart';
+import 'package:lyrics_library/services/songs_service.dart';
+
 import '/data/models/response_model.dart';
 import '/presentation/providers/fetch_provider.dart';
 import '/services/config_service.dart';
@@ -5,11 +8,14 @@ import '/services/config_service.dart';
 class ReadSongProvider extends FetchProvider<double>{
 
   final ConfigService _configService;
+  final SongsService _songsService;
 
   ReadSongProvider({
     super.autoCall, 
-    required ConfigService configService
-  }) : _configService = configService;
+    required ConfigService configService,
+    required SongsService songsService
+  }) : _configService = configService,
+  _songsService = songsService;
 
 
   @override
@@ -33,6 +39,12 @@ class ReadSongProvider extends FetchProvider<double>{
       return saveFontSizeResp;
     }
     return saveFontSizeResp;
+  }
+
+  void incrementSongViewCont({
+    required Guid songId
+  }){
+    _songsService.incrementSongViewsCount(songId: songId);
   }
 
 }

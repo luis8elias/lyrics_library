@@ -314,5 +314,55 @@ class SongsLocalSource {
 
     }
   }
+
+
+  Future<ResponseModel<bool>> incrementSongViewsCount({
+    required Guid songId
+  }) async{
+
+    try {
+
+      final songViewsCountResp = await SQLite.instance.query(
+        SongsTable.name,
+        columns: [SongsTable.colViewsCount],
+        where: '${SongsTable.colId} = ?',
+        whereArgs: [songId.toString()]
+      );
+
+      final int songViewsCount = songViewsCountResp[0][SongsTable.colViewsCount] as int;
+
+      final rowsAffected = await SQLite.instance.rawUpdate(
+        'UPDATE ${SongsTable.name} SET ${SongsTable.colViewsCount}  = ?'
+        'WHERE ${SongsTable.colId} = ?',
+        [songViewsCount + 1 , songId.toString()]
+      );
+
+      if(rowsAffected <= 0){
+        return ResponseModel(
+          success: false,
+          message: 'Ocurrió un problema al guardar la vista de canción',
+          model: false
+        );
+      }
+    
+      return ResponseModel(
+        success: true, 
+        message: 'Vista guardada',
+        model: true
+      );
+
+    } catch (e) {
+
+      Log.y('🤡 ${e.toString()}');
+      Log.y('😭 Error en SongsLocalSource método [incrementSongViewsCount]');
+
+      return ResponseModel(
+        success: false,
+        message: 'Ocurrió un problema al guardar la vista de canción',
+        model: false
+      );
+
+    }
+  }
 }
   

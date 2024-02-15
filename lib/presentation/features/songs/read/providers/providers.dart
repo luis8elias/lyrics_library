@@ -6,5 +6,6 @@ import '/presentation/features/songs/read/providers/read_song_provider.dart';
 final readSongProvider = ChangeNotifierProvider.autoDispose<ReadSongProvider>((ref) {
   return ReadSongProvider(
     configService: Injector.appInstance.get(),
+    songsService: Injector.appInstance.get()
   );
 });

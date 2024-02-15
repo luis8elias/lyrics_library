@@ -16,6 +16,7 @@ class SongsTable{
   static const colSync = 'sync';
   static const colIsRemoved = 'isRemoved';
   static const colIsFavorite = 'isFavorite';
+  static const colViewsCount = 'viewsCount';
 
 
 
@@ -30,7 +31,8 @@ class SongsTable{
         '${SongsTable.colGenreId} TEXT, '
         '${SongsTable.colSync} INTEGER, '
         '${SongsTable.colIsRemoved} INTEGER, '
-        '${SongsTable.colIsFavorite} INTEGER'
+        '${SongsTable.colIsFavorite} INTEGER, '
+        '${SongsTable.colViewsCount} INTEGER DEFAULT 0'
       ')'
     );
   }

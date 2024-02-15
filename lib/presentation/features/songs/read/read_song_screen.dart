@@ -19,7 +19,7 @@ import '/utils/utils.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/presentation/widgets/buttons.dart';
 
-class ReadSongScreen extends ConsumerWidget {
+class ReadSongScreen extends ConsumerStatefulWidget {
   const ReadSongScreen({
     super.key,
     required this.songModel
@@ -31,7 +31,27 @@ class ReadSongScreen extends ConsumerWidget {
   static const String routePath = ':sid';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ReadSongScreen> createState() => _ReadSongScreenState();
+}
+
+class _ReadSongScreenState extends ConsumerState<ReadSongScreen> {
+
+  final debouncer = DebouncerObj(const Duration(seconds: 50));
+  
+
+  @override
+  void initState(){
+    super.initState();
+    debouncer.run(() { 
+      ref.read(readSongProvider).incrementSongViewCont(
+        songId: widget.songModel.id
+      );
+    });
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
     
     final theme = Theme.of(context);
     //final lang = Lang.of(context);
@@ -56,7 +76,7 @@ class ReadSongScreen extends ConsumerWidget {
                     elevation: 0.5,
                     context: context, 
                     builder: (context) => ShareOptionsBottomSheet(
-                      songModel: ShareSongModel.fromSongModel(songModel),
+                      songModel: ShareSongModel.fromSongModel(widget.songModel),
                     )
                   );
                 },
@@ -104,6 +124,7 @@ class ReadSongScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(8.0),
           child: BackButtonWidget(
             onPressed: () {
+              debouncer.timer?.cancel();
               GoRouter.of(context).pop();
             },
           ),
@@ -121,7 +142,7 @@ class ReadSongScreen extends ConsumerWidget {
                 primaryCurve: Curves.linear,
                 returnCurve: Curves.easeOut,
                 child: Text(
-                  songModel.title,
+                  widget.songModel.title,
                   style: theme.textTheme.titleSmall,
                 ),
               ),
@@ -131,11 +152,11 @@ class ReadSongScreen extends ConsumerWidget {
             //   style: theme.textTheme.titleSmall,
             //   overflow: TextOverflow.ellipsis,
             // ),
-            if(songModel.genreModel != null)
+            if(widget.songModel.genreModel != null)
             const SizedBox(
               height: 4,
             ),
-            if(songModel.genreModel != null)
+            if(widget.songModel.genreModel != null)
             Container(
               height: 15,
               decoration: BoxDecoration(
@@ -151,7 +172,7 @@ class ReadSongScreen extends ConsumerWidget {
                     bottom: Platform.isIOS ? 0: 2
                   ),
                   child: Text(
-                    songModel.genreModel?.name ?? '',
+                    widget.songModel.genreModel?.name ?? '',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onBackground,
                       fontWeight: FontWeight.bold,
@@ -189,7 +210,7 @@ class ReadSongScreen extends ConsumerWidget {
                       SizedBox(
                         width: double.infinity,
                         child: Text(
-                          songModel.lyric,
+                          widget.songModel.lyric,
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             color: theme.colorScheme.onSurface,

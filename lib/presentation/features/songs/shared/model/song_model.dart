@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter_guid/flutter_guid.dart';
 import 'package:json_compress/json_compress.dart';
+import 'package:lyrics_library/utils/db/songs_table.dart';
 
 import '/data/models/syncable_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
@@ -18,6 +19,7 @@ class SongModel extends SyncableModel {
   final GenreModel? genreModel;
   final bool isNew;
   final int isFavorite;
+  final int viewsCount;
 
   String? get genreIdAsStr => genreModel?.idAsStr;
   bool get isFavoriteAsBool => isFavorite == 1;
@@ -32,6 +34,7 @@ class SongModel extends SyncableModel {
     required this.genreModel,
     required this.isFavorite,
     this.isNew = false,
+    this.viewsCount = 0
   });
 
   Map<String, dynamic> toMap() {
@@ -43,7 +46,8 @@ class SongModel extends SyncableModel {
       'sync' : isSync,
       'genre': genreModel?.toMap(),
       'isRemoved': isRemoved,
-      'isFavorite' : isFavorite
+      'isFavorite' : isFavorite,
+      'viewsCount' : viewsCount
     };
   }
 
@@ -69,15 +73,16 @@ class SongModel extends SyncableModel {
 
   Map<String, dynamic> toInsertMap() {
     return <String, dynamic>{
-      'id': id.toString(),
-      'title': title.trim(),
-      'lyric': lyric,
-      'searchKeywords' : _getSearchKeywords(title, lyric),
-      'ownerId': ownerId.toString(),
-      'genreId': genreModel?.id.toString(),
-      'sync' : isSync,
-      'isRemoved': isRemoved,
-      'isFavorite' : isFavorite 
+      SongsTable.colId : id.toString(),
+      SongsTable.colTitle : title.trim(),
+      SongsTable.colLyric : lyric,
+      SongsTable.colSearchKeywords : _getSearchKeywords(title, lyric),
+      SongsTable.colOwnerId : ownerId.toString(),
+      SongsTable.colGenreId : genreModel?.id.toString(),
+      SongsTable.colSync : isSync,
+      SongsTable.colIsRemoved: isRemoved,
+      SongsTable.colIsFavorite : isFavorite,
+      SongsTable.colViewsCount : viewsCount
     };
   }
 
@@ -90,7 +95,8 @@ class SongModel extends SyncableModel {
       genreModel: map['genreName'] != null ? GenreModel.fromSongMap(map) : null,
       isSync: map['sync'],
       isRemoved: map['isRemoved'],
-      isFavorite: map['isFavorite']
+      isFavorite: map['isFavorite'],
+      viewsCount: map['viewsCount']
     );
   }
 
@@ -108,7 +114,8 @@ class SongModel extends SyncableModel {
       isRemoved: 0,
       isSync: 0,
       isNew: true,
-      isFavorite: 0
+      isFavorite: 0,
+      viewsCount: 0
     );
   }
 
