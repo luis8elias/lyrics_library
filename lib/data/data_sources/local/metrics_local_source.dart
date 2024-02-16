@@ -53,6 +53,7 @@ class MetricsLocalSource{
         'FROM ${SongsTable.name} as S LEFT JOIN '
         '${GenresTable.name} as G ON '
         'S.${SongsTable.colGenreId} = G.${GenresTable.colId} '
+        'AND G.${GenresTable.colIsRemoved} = 0 '
         'WHERE S.${SongsTable.colIsRemoved} = 0 '
         'ORDER BY S.${SongsTable.colViewsCount} DESC, '
         'S.${SongsTable.colTitle} ASC '
