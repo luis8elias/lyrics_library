@@ -33,11 +33,15 @@ class GenresSongCountResp{
   
 
   double get maxValue {
-    final count = data[0].count;
+
+    final temp = data.isEmpty ? 10 : data[0].count;
+
+
+    final count = temp;
     if(count <= 10 ){
       return 10;
     }
-    return data[0].count + (data[0].count / 4.round());
+    return temp + (temp / 4.round());
   }
 
   double get inrtervals{
