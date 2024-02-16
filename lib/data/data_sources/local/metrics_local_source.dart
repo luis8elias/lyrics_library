@@ -95,7 +95,8 @@ class MetricsLocalSource{
         '${GenresTable.name} as G ON '
         'S.${SongsTable.colGenreId} = G.${GenresTable.colId} '
         'GROUP BY S.${SongsTable.colGenreId} '
-        'HAVING S.${SongsTable.colIsRemoved} = 0 '
+        'HAVING S.${SongsTable.colIsRemoved} = 0 AND '
+        'G.${GenresTable.colIsRemoved} = 0 '
         'ORDER BY count DESC '
         'LIMIT 3'
       );
@@ -132,7 +133,7 @@ class MetricsLocalSource{
   Future<int> _getTableCount(String tableName) async {
 
     final resp = await SQLite.instance.rawQuery(
-      'SELECT COUNT(*) as count FROM $tableName'
+      'SELECT COUNT(*) as count FROM $tableName where isRemoved = 0'
     );
 
     return resp[0]['count'] as int;

@@ -131,7 +131,7 @@ class _GenresSongsCountChartState extends State<GenresSongsCountChart> {
         LineChartBarData(
           spots: [
             const FlSpot(0, 0),
-            FlSpot(2, data.data[0].count),
+            FlSpot(2, data.data.isEmpty ? 0 : data.data[0].count),
             FlSpot(6, data.data.length <= 1 ? 0 : data.data[1].count),
             FlSpot(10, data.data.length <= 2 ? 0 : data.data[2].count),
             const FlSpot(12, 0),
@@ -180,18 +180,21 @@ class _GenresSongsCountChartState extends State<GenresSongsCountChart> {
     switch (value.toInt()) {
       case 2:
         text = Text(
+          data.data.isEmpty ? '': 
           data.data[0].genre, style: style,
           overflow: TextOverflow.ellipsis,
         );
         break;
       case 6:
         text =  Text(
+          data.data.length <= 1 ? '' :
           data.data[1].genre, style: style,
           overflow: TextOverflow.ellipsis,
         );
         break;
       case 10:
         text = Text(
+          data.data.length <= 2 ? '' :
           data.data[2].genre, style: style,
           overflow: TextOverflow.ellipsis,
         );
