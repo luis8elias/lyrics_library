@@ -151,6 +151,8 @@
     "moreOptionsScreen_fontSize" : "Font size",
     "moreOptionsScreen_lang" : "Language",
     "moreOptionsScreen_logout" : "Logout",
+    "moreOptionsScreen_divider1" : "Features",
+    "moreOptionsScreen_divider2" : "Config",
 
 
 
@@ -238,7 +240,20 @@
     "scanSong_laoding" : "Use the camera to scan a QR code for a song",
     "scanSong_invalidQr" : "Invalid QR code",
     "scanSong_foundSong" : "Found song:",
-    "scanSong_scanAgain" : "Scan again"
+    "scanSong_scanAgain" : "Scan again",
+
+
+
+    "@_METRICS_SCREEN": {},
+    "metricsScreen_title" : "Metrics",
+    "metricsScreen_generalCount" : "General count",
+    "metricsScreen_topReadSongs" : " Top 5 most read songs",
+    "metricsScreen_topReadSongsReads" : "READS",
+    "metricsScreen_topReadSongsSong" : "SONG",
+    "metricsScreen_topReadSongsGenre" : "GENRE",
+    "metricsScreen_topReadSongsNoGenre" : "No genre",
+    "metricsScreen_topGenreWithMostSongs" : "Top 3 genres with the most songs"
+ 
     
     
 

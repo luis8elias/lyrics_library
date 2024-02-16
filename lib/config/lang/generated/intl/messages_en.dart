@@ -104,6 +104,26 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Login with Google"),
         "loginScreen_welcome": MessageLookupByLibrary.simpleMessage(
             "Welcome! glad to see you again!"),
+        "metricsScreen_generalCount":
+            MessageLookupByLibrary.simpleMessage("General count"),
+        "metricsScreen_title": MessageLookupByLibrary.simpleMessage("Metrics"),
+        "metricsScreen_topGenreWithMostSongs":
+            MessageLookupByLibrary.simpleMessage(
+                "Top 3 genres with the most songs"),
+        "metricsScreen_topReadSongs":
+            MessageLookupByLibrary.simpleMessage(" Top 5 most read songs"),
+        "metricsScreen_topReadSongsGenre":
+            MessageLookupByLibrary.simpleMessage("GENRE"),
+        "metricsScreen_topReadSongsNoGenre":
+            MessageLookupByLibrary.simpleMessage("No genre"),
+        "metricsScreen_topReadSongsReads":
+            MessageLookupByLibrary.simpleMessage("READS"),
+        "metricsScreen_topReadSongsSong":
+            MessageLookupByLibrary.simpleMessage("SONG"),
+        "moreOptionsScreen_divider1":
+            MessageLookupByLibrary.simpleMessage("Features"),
+        "moreOptionsScreen_divider2":
+            MessageLookupByLibrary.simpleMessage("Config"),
         "moreOptionsScreen_fontSize":
             MessageLookupByLibrary.simpleMessage("Font size"),
         "moreOptionsScreen_groups":

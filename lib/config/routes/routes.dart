@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+
 import '/presentation/features/setlists/shared/models/setlists_route_params_model.dart';
 import '/config/routes/custom_transiton_page.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
@@ -140,6 +141,11 @@ final routes =  [
       child: const MoreOptionsScreen()
     ),
     routes: [
+      GoRoute(
+        path: MetricsScreen.routePath,
+        name: MetricsScreen.routePath,
+        builder: (context, state) => const MetricsScreen(),
+      ),
       GoRoute(
         path: ChangeFontSizeScreen.routePath,
         name: ChangeFontSizeScreen.routePath,

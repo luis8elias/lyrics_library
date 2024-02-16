@@ -62,7 +62,7 @@ class MoreOptionsScreen extends ConsumerWidget {
                     left: Sizes.kPadding * 0.5
                   ),
                   child: Text(
-                    'Features',
+                    lang.moreOptionsScreen_divider1,
                     style: theme.textTheme.bodySmall!.copyWith(
                       fontSize: 10
                     ),
@@ -72,7 +72,13 @@ class MoreOptionsScreen extends ConsumerWidget {
                   height: Sizes.kPadding * 0.5,
                 ),
                 MenuOptionWidget(
-                  onPressed: (){},
+                  onPressed: (){
+                    GoRouter.of(context).go(
+                      context.namedLocation(
+                        MetricsScreen.routePath,
+                      ),
+                    );
+                  },
                   title: lang.moreOptionsScreen_metrics,
                   icon: CupertinoIcons.chart_bar_square,
                   menuRoundedOption: MenuRoundedOption.top,
@@ -98,7 +104,7 @@ class MoreOptionsScreen extends ConsumerWidget {
                     left: Sizes.kPadding * 0.5
                   ),
                   child: Text(
-                    'Configuración',
+                    lang.moreOptionsScreen_divider2,
                     style: theme.textTheme.bodySmall!.copyWith(
                       fontSize: 10
                     ),

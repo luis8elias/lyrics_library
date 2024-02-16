@@ -750,6 +750,26 @@ class Lang {
     );
   }
 
+  /// `Features`
+  String get moreOptionsScreen_divider1 {
+    return Intl.message(
+      'Features',
+      name: 'moreOptionsScreen_divider1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Config`
+  String get moreOptionsScreen_divider2 {
+    return Intl.message(
+      'Config',
+      name: 'moreOptionsScreen_divider2',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Hold the button and start speaking`
   String get spechToTextBotomShet_holdBtn {
     return Intl.message(
@@ -1065,6 +1085,86 @@ class Lang {
     return Intl.message(
       'Scan again',
       name: 'scanSong_scanAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Metrics`
+  String get metricsScreen_title {
+    return Intl.message(
+      'Metrics',
+      name: 'metricsScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General count`
+  String get metricsScreen_generalCount {
+    return Intl.message(
+      'General count',
+      name: 'metricsScreen_generalCount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Top 5 most read songs`
+  String get metricsScreen_topReadSongs {
+    return Intl.message(
+      ' Top 5 most read songs',
+      name: 'metricsScreen_topReadSongs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `READS`
+  String get metricsScreen_topReadSongsReads {
+    return Intl.message(
+      'READS',
+      name: 'metricsScreen_topReadSongsReads',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SONG`
+  String get metricsScreen_topReadSongsSong {
+    return Intl.message(
+      'SONG',
+      name: 'metricsScreen_topReadSongsSong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GENRE`
+  String get metricsScreen_topReadSongsGenre {
+    return Intl.message(
+      'GENRE',
+      name: 'metricsScreen_topReadSongsGenre',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No genre`
+  String get metricsScreen_topReadSongsNoGenre {
+    return Intl.message(
+      'No genre',
+      name: 'metricsScreen_topReadSongsNoGenre',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Top 3 genres with the most songs`
+  String get metricsScreen_topGenreWithMostSongs {
+    return Intl.message(
+      'Top 3 genres with the most songs',
+      name: 'metricsScreen_topGenreWithMostSongs',
       desc: '',
       args: [],
     );

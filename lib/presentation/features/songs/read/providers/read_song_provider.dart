@@ -1,6 +1,6 @@
 import 'package:flutter_guid/flutter_guid.dart';
-import 'package:lyrics_library/services/songs_service.dart';
 
+import '/services/songs_service.dart';
 import '/data/models/response_model.dart';
 import '/presentation/providers/fetch_provider.dart';
 import '/services/config_service.dart';

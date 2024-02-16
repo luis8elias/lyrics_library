@@ -138,12 +138,14 @@
     "moreOptionsScreen_title" : "Más opciones",
     "moreOptionsScreen_noName" : "Sin nombre",
     "moreOptionsScreen_noEmail" : "Sin correo electrónico",
-    "moreOptionsScreen_metrics" : "Metricas",
+    "moreOptionsScreen_metrics" : "Métricas",
     "moreOptionsScreen_groups" : "Grupos",
     "moreOptionsScreen_scanLyrics" : "Escanear letras",
     "moreOptionsScreen_fontSize" : "Tamaño de letra",
     "moreOptionsScreen_lang" : "Idioma",
     "moreOptionsScreen_logout" : "Cerrar sesión",
+    "moreOptionsScreen_divider1" : "Funcionalidades",
+    "moreOptionsScreen_divider2" : "Configuración",
 
 
 
@@ -233,7 +235,20 @@
     "scanSong_laoding" : "Utiliza la camara para escanear un código QR de una canción",
     "scanSong_invalidQr" : "Código qr no válido",
     "scanSong_foundSong" : "Canción encontrada:",
-    "scanSong_scanAgain" : "Escanear de nuevo"
+    "scanSong_scanAgain" : "Escanear de nuevo",
+
+
+
+    "@_METRICS_SCREEN": {},
+    "metricsScreen_title" : "Métricas",
+    "metricsScreen_generalCount" : "Conteo general",
+    "metricsScreen_topReadSongs" : "Top 5 canciones más leídas",
+    "metricsScreen_topReadSongsReads" : "LEÍDAS",
+    "metricsScreen_topReadSongsSong" : "CANCIÓN",
+    "metricsScreen_topReadSongsGenre" : "GÉNERO",
+    "metricsScreen_topReadSongsNoGenre" : "Sin género",
+    "metricsScreen_topGenreWithMostSongs" : "Top 3 géneros con más canciones"
+    
 
     
 

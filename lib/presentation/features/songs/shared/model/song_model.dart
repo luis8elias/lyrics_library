@@ -3,8 +3,8 @@ import 'dart:convert';
 
 import 'package:flutter_guid/flutter_guid.dart';
 import 'package:json_compress/json_compress.dart';
-import 'package:lyrics_library/utils/db/songs_table.dart';
 
+import '/utils/db/songs_table.dart';
 import '/data/models/syncable_model.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/features/songs/create/models/create_song_model.dart';

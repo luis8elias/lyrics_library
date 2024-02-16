@@ -107,6 +107,26 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Inicia sesión con Google"),
         "loginScreen_welcome": MessageLookupByLibrary.simpleMessage(
             "¡Bienvenido! ¡Me alegra verte de nuevo!"),
+        "metricsScreen_generalCount":
+            MessageLookupByLibrary.simpleMessage("Conteo general"),
+        "metricsScreen_title": MessageLookupByLibrary.simpleMessage("Métricas"),
+        "metricsScreen_topGenreWithMostSongs":
+            MessageLookupByLibrary.simpleMessage(
+                "Top 3 géneros con más canciones"),
+        "metricsScreen_topReadSongs":
+            MessageLookupByLibrary.simpleMessage("Top 5 canciones más leídas"),
+        "metricsScreen_topReadSongsGenre":
+            MessageLookupByLibrary.simpleMessage("GÉNERO"),
+        "metricsScreen_topReadSongsNoGenre":
+            MessageLookupByLibrary.simpleMessage("Sin género"),
+        "metricsScreen_topReadSongsReads":
+            MessageLookupByLibrary.simpleMessage("LEÍDAS"),
+        "metricsScreen_topReadSongsSong":
+            MessageLookupByLibrary.simpleMessage("CANCIÓN"),
+        "moreOptionsScreen_divider1":
+            MessageLookupByLibrary.simpleMessage("Funcionalidades"),
+        "moreOptionsScreen_divider2":
+            MessageLookupByLibrary.simpleMessage("Configuración"),
         "moreOptionsScreen_fontSize":
             MessageLookupByLibrary.simpleMessage("Tamaño de letra"),
         "moreOptionsScreen_groups":
@@ -116,7 +136,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "moreOptionsScreen_logout":
             MessageLookupByLibrary.simpleMessage("Cerrar sesión"),
         "moreOptionsScreen_metrics":
-            MessageLookupByLibrary.simpleMessage("Metricas"),
+            MessageLookupByLibrary.simpleMessage("Métricas"),
         "moreOptionsScreen_noEmail":
             MessageLookupByLibrary.simpleMessage("Sin correo electrónico"),
         "moreOptionsScreen_noName":
