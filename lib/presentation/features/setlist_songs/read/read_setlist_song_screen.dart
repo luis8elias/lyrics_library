@@ -43,6 +43,16 @@ class ReadSetlistSongScreen extends ConsumerStatefulWidget {
 class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
 
   late ScrollController _scrollBottomBarController;
+
+  final debouncer = DebouncerObj(const Duration(seconds: 50));
+
+  void incrementSongViewCont(){
+    debouncer.run(() { 
+      ref.read(readSetlistSongProvider).incrementSongViewCont(
+        songId: widget.setlistSongs[ref.read(readSetlistSongProvider).selectedIndex].songId
+      );
+    });
+  }
   
 
   @override
@@ -57,6 +67,7 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       prov.loadData();
     });
+    incrementSongViewCont();
   }
 
   @override
@@ -148,6 +159,7 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
           padding: const EdgeInsets.all(8.0),
           child: BackButtonWidget(
             onPressed: () {
+              debouncer.timer?.cancel();
               GoRouter.of(context).pop();
             },
           ),
@@ -274,7 +286,9 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
                         children: [
                           _BottomBtn(
                             onPressed: (){
+                              debouncer.timer?.cancel();
                               prov.changeSong(ChangeSongOptions.decrease);
+                              incrementSongViewCont();
                             },
                             iconData: CupertinoIcons.arrow_left,
                             text: lang.actions_prev,
@@ -306,7 +320,9 @@ class _ReadSetlistSongScreenState extends ConsumerState<ReadSetlistSongScreen> {
                           ),
                           _BottomBtn(
                             onPressed: (){
+                              debouncer.timer?.cancel();
                               prov.changeSong(ChangeSongOptions.increase);
+                              incrementSongViewCont();
                             },
                             iconData: CupertinoIcons.arrow_right,
                             text: lang.actions_next,

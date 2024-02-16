@@ -344,6 +344,8 @@ class SongsLocalSource {
           model: false
         );
       }
+
+      Log.y('✅ Vista guardada ${songId.toString()}');
     
       return ResponseModel(
         success: true, 

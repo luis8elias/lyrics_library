@@ -7,6 +7,7 @@ import '/presentation/features/setlist_songs/read/providers/read_setlist_song_pr
 final readSetlistSongProvider = ChangeNotifierProvider.autoDispose<ReadSetlistSongProvider>((ref) {
   return ReadSetlistSongProvider(
     setlistSongsService: Injector.appInstance.get(),
-    configService: Injector.appInstance.get()
+    configService: Injector.appInstance.get(),
+    songsService: Injector.appInstance.get()
   );
 });

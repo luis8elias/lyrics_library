@@ -1,19 +1,25 @@
+import 'package:flutter_guid/flutter_guid.dart';
+
 import '/data/models/response_model.dart';
 import '/presentation/features/setlist_songs/list/model/setlist_song_model.dart';
 import '/presentation/providers/fetch_provider.dart';
 import '/services/config_service.dart';
 import '/services/setlist_songs_service.dart';
+import '/services/songs_service.dart';
 
 class ReadSetlistSongProvider extends FetchProvider<String>{
 
   final SetlistSongsService _setlistSongsService;
+  final SongsService _songsService;
   final ConfigService _configService;
 
    ReadSetlistSongProvider({
     super.autoCall = false, 
-    required SetlistSongsService setlistSongsService, 
+    required SetlistSongsService setlistSongsService,
+    required SongsService songsService, 
     required ConfigService configService
-  }) : _setlistSongsService = setlistSongsService, 
+  }) : _setlistSongsService = setlistSongsService,
+  _songsService = songsService, 
   _configService = configService;
 
   
@@ -77,6 +83,12 @@ class ReadSetlistSongProvider extends FetchProvider<String>{
       return saveFontSizeResp;
     }
     return saveFontSizeResp;
+  }
+
+  void incrementSongViewCont({
+    required Guid songId
+  }){
+    _songsService.incrementSongViewsCount(songId: songId);
   }
 
 
