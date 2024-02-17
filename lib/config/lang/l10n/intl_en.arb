@@ -41,6 +41,7 @@
     "actions_next" : "Next",
     "actions_prev" : "Prev",
     "actions_addToSetlist": "Add to setlist",
+    "actions_apply": "Apply",
 
 
 
@@ -109,6 +110,8 @@
     "@_SONGS_LIST_SCREEN": {},
     "songsListScreen_title" : "Songs",
     "songsListScreen_addToSetlistTitle" : "Select setlists",
+    "songsListScreen_filters" : "Filters",
+    "songsListScreen_filterBy" : "Filter by:",
 
 
 
@@ -252,7 +255,13 @@
     "metricsScreen_topReadSongsSong" : "SONG",
     "metricsScreen_topReadSongsGenre" : "GENRE",
     "metricsScreen_topReadSongsNoGenre" : "No genre",
-    "metricsScreen_topGenreWithMostSongs" : "Top 3 genres with the most songs"
+    "metricsScreen_topGenreWithMostSongs" : "Top 3 genres with the most songs",
+
+
+
+    "@_SONGS_FILTER_BOTTOMSHEET": {},
+    "songsFilterBotomShet_title" : "Filter by:",
+    "songsFilterBotomShet_byGenre" : "Genre"
  
     
     

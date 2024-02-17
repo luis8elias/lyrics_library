@@ -54,6 +54,10 @@ class SongsLocalSource {
       }else{
         partOfRawQury = "S.${SongsTable.colSearchKeywords} LIKE '%$q%' ";
       }
+
+      final filterByGenre = filters?.genreId == null 
+      ? '' 
+      : "AND S.${SongsTable.colGenreId} = '${filters?.genreId.toString()}' ";
       
       final songsMapList = await SQLite.instance.rawQuery(
         'SELECT S.*, '
@@ -67,6 +71,7 @@ class SongsLocalSource {
         'AND G.isRemoved == 0 '
         'WHERE S.${SongsTable.colIsRemoved} = 0 AND '
         '$partOfRawQury'
+        '$filterByGenre'
         'LIMIT $limit OFFSET ${limit * (page - 1)} '
       );
       await Future.delayed(Config.manualLocalServicesDelay);

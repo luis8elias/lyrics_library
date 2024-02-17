@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actions_addToSetlist":
             MessageLookupByLibrary.simpleMessage("Agregar a lista"),
+        "actions_apply": MessageLookupByLibrary.simpleMessage("Aplicar"),
         "actions_back": MessageLookupByLibrary.simpleMessage("Volver"),
         "actions_cancel": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "actions_delete": MessageLookupByLibrary.simpleMessage("Eliminar"),
@@ -215,8 +216,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Edita Canción"),
         "songsEditScreen_titleInput":
             MessageLookupByLibrary.simpleMessage("Título"),
+        "songsFilterBotomShet_byGenre":
+            MessageLookupByLibrary.simpleMessage("Género"),
+        "songsFilterBotomShet_title":
+            MessageLookupByLibrary.simpleMessage("Filtrar por:"),
         "songsListScreen_addToSetlistTitle":
             MessageLookupByLibrary.simpleMessage("Seleccionar listas"),
+        "songsListScreen_filterBy":
+            MessageLookupByLibrary.simpleMessage("Filtrando por:"),
+        "songsListScreen_filters":
+            MessageLookupByLibrary.simpleMessage("Filtros"),
         "songsListScreen_title":
             MessageLookupByLibrary.simpleMessage("Canciones"),
         "spechToTextBotomShet_holdBtn": MessageLookupByLibrary.simpleMessage(

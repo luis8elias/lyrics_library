@@ -3,11 +3,13 @@ import 'dart:io';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_guid/flutter_guid.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '/config/lang/generated/l10n.dart';
+import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/features/songs/delete/delete_song_button.dart';
 import '/presentation/features/songs/list/providers/providers.dart';
 import '/presentation/features/songs/list/widgets/add_to_setlist_bottom_sheet.dart';
@@ -18,6 +20,7 @@ import '/presentation/features/songs/list/widgets/song_leading.dart';
 import '/presentation/features/songs/list/widgets/song_subtitle.dart';
 import '/presentation/features/songs/list/widgets/song_title.dart';
 import '/presentation/features/songs/list/widgets/songs_appbar_leading.dart';
+import '/presentation/features/songs/list/widgets/songs_filter_bottom_sheet.dart';
 import '/presentation/features/songs/shared/model/song_model.dart';
 import '/presentation/presentation.dart';
 import '/presentation/widgets/buttons.dart';
@@ -37,6 +40,7 @@ class SongsListScreen extends ConsumerStatefulWidget {
 class _SongsListScreenState extends ConsumerState<SongsListScreen> {
 
   bool showSearchInput = false;
+  GenreModel? filterByGenre; 
 
 
   @override
@@ -177,17 +181,149 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
           body: Column(
             children: [
               Container(
-                height: 30,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: Sizes.kPadding
-                ),
+                height: 50,
                 width: double.infinity,
                 color: theme.colorScheme.inverseSurface.withOpacity(0.5),
-                child: Text(
-                  reactiveProv.isSelectItemOpened 
-                  ? '${reactiveProv.selectedItems.length} ${lang.app_selectedItems}'
-                  : '${reactiveProv.totalSongs} ${lang.app_items}',
-                  style: theme.textTheme.bodySmall,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const SizedBox(
+                          width: Sizes.kPadding,
+                        ),
+                        SizedBox(
+                          width: 80,
+                          child: Text(
+                            reactiveProv.isSelectItemOpened 
+                            ? '${reactiveProv.selectedItems.length} ${lang.app_selectedItems}'
+                            : '${reactiveProv.totalSongs} ${lang.app_items}',
+                            style: theme.textTheme.bodySmall,
+                          ),
+                        ),
+                      ],
+                    ),
+                    if(filterByGenre != null)
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 10
+                        ),
+                        child: FadeIn(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                lang.songsListScreen_filterBy,
+                                style: theme.textTheme.bodySmall,
+                              ),
+                              const SizedBox(
+                                width: Sizes.kPadding * 0.5,
+                              ),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                  backgroundColor: theme.colorScheme.primary.withOpacity(0.3),
+                                  foregroundColor: theme.colorScheme.onBackground,
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 0,
+                                    horizontal: 10
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(100),
+                                    side: BorderSide(
+                                      color: theme.colorScheme.primary
+                                    )
+                                  )
+                                ),
+                                onPressed: () async {
+                                  final genre = await showModalBottomSheet<GenreModel>(
+                                    enableDrag: false,
+                                    context: context, 
+                                    isScrollControlled: true,
+                                    builder: (context) => SongsFilterBottomSheet(
+                                      genreModel: filterByGenre,
+                                    )
+                                  );
+                                  setState(() {
+                                    filterByGenre = genre;
+                                  });
+
+                                  prov.updateFilters(
+                                    (filters) => filters.copyWith(
+                                      genreId: genre == null 
+                                      ? Guid.defaultValue 
+                                      : genre.id
+                                    ),
+                                  );
+                                }, 
+                                child: Row(
+                                  children: [
+                                    Text(filterByGenre!.name),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    GestureDetector(
+                                      onTap: (){
+                                        setState(() {
+                                          filterByGenre = null;
+                                        });
+                                         prov.updateFilters(
+                                          (filters) => filters.copyWith(
+                                            genreId: Guid.defaultValue
+                                          ),
+                                        );
+                                      },
+                                      child: const Icon(
+                                        CupertinoIcons.xmark_circle_fill,
+                                        size: 18,
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ),
+                              const SizedBox(
+                                width: Sizes.kPadding * 0.5,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    if(filterByGenre == null)
+                    TextButton(
+                      onPressed: () async {
+                        final genre = await showModalBottomSheet<GenreModel>(
+                          enableDrag: false,
+                          context: context, 
+                          isScrollControlled: true,
+                          builder: (context) => const SongsFilterBottomSheet()
+                        );
+                        if(genre != null){
+                          setState(() {
+                            filterByGenre = genre;
+                          });
+                           prov.updateFilters(
+                            (filters) => filters.copyWith(
+                              genreId: genre.id
+                            ),
+                          );
+                        }
+                      }, 
+                      child: FadeIn(
+                        child:  Row(
+                          children: [
+                            Text(lang.songsListScreen_filters),
+                            const Icon(
+                              Icons.filter_alt_outlined,
+                              size: 20,
+                            ),
+                          ],
+                        ),
+                      )
+                    ),
+                  ],
                 ),
               ),
               Expanded(

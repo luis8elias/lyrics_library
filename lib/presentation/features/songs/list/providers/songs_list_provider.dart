@@ -104,10 +104,6 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
   }
 
   void updateFilters(SongFilterModel Function(SongFilterModel filters) update){
-    final temp = update(_filters);
-    if(temp.query.isEmpty && _filters.query.isEmpty){
-      return;
-    }
     _filters = update(_filters);
     songsController.refresh();
     log('[ SongsListProvider ] Model 👉🏼 ${_filters.toMap().toString()}');

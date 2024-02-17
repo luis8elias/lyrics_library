@@ -137,19 +137,23 @@ class _GenresListScreenState extends ConsumerState<GenresListScreen> {
           body: Column(
             children: [
               Container(
-                height: 25,
+                height: 40,
                 padding: const EdgeInsets.symmetric(
                   horizontal: Sizes.kPadding
                 ),
                 width: double.infinity,
                 color: theme.colorScheme.inverseSurface.withOpacity(0.5),
-                child: Text(
-                  reactiveProv.isSelectItemOpened 
-                  ? '${reactiveProv.selectedItems.length} ${lang.app_selectedItems}'
-                  : reactiveProv.isModelInitialized ?
-                   '${reactiveProv.model!.length  } ${lang.app_items}'
-                   : '0 ${lang.app_items}',
-                  style: theme.textTheme.bodySmall,
+                child: Row(
+                  children: [
+                    Text(
+                      reactiveProv.isSelectItemOpened 
+                      ? '${reactiveProv.selectedItems.length} ${lang.app_selectedItems}'
+                      : reactiveProv.isModelInitialized ?
+                       '${reactiveProv.model!.length  } ${lang.app_items}'
+                       : '0 ${lang.app_items}',
+                      style: theme.textTheme.bodySmall,
+                    ),
+                  ],
                 ),
               ),
               Expanded(

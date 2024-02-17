@@ -280,6 +280,16 @@ class Lang {
     );
   }
 
+  /// `Apply`
+  String get actions_apply {
+    return Intl.message(
+      'Apply',
+      name: 'actions_apply',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Loading...`
   String get loadingScreen_loading {
     return Intl.message(
@@ -555,6 +565,26 @@ class Lang {
     return Intl.message(
       'Select setlists',
       name: 'songsListScreen_addToSetlistTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filters`
+  String get songsListScreen_filters {
+    return Intl.message(
+      'Filters',
+      name: 'songsListScreen_filters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter by:`
+  String get songsListScreen_filterBy {
+    return Intl.message(
+      'Filter by:',
+      name: 'songsListScreen_filterBy',
       desc: '',
       args: [],
     );
@@ -1165,6 +1195,26 @@ class Lang {
     return Intl.message(
       'Top 3 genres with the most songs',
       name: 'metricsScreen_topGenreWithMostSongs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter by:`
+  String get songsFilterBotomShet_title {
+    return Intl.message(
+      'Filter by:',
+      name: 'songsFilterBotomShet_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Genre`
+  String get songsFilterBotomShet_byGenre {
+    return Intl.message(
+      'Genre',
+      name: 'songsFilterBotomShet_byGenre',
       desc: '',
       args: [],
     );

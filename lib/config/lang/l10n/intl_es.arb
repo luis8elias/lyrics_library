@@ -40,6 +40,7 @@
     "actions_next" : "Sig.",
     "actions_prev" : "Ant.",
     "actions_addToSetlist": "Agregar a lista",
+    "actions_apply": "Aplicar",
 
 
 
@@ -102,6 +103,8 @@
     "@_SONGS_LIST_SCREEN": {},
     "songsListScreen_title" : "Canciones",
     "songsListScreen_addToSetlistTitle" : "Seleccionar listas",
+    "songsListScreen_filters" : "Filtros",
+    "songsListScreen_filterBy" : "Filtrando por:",
     
 
 
@@ -247,7 +250,14 @@
     "metricsScreen_topReadSongsSong" : "CANCIÓN",
     "metricsScreen_topReadSongsGenre" : "GÉNERO",
     "metricsScreen_topReadSongsNoGenre" : "Sin género",
-    "metricsScreen_topGenreWithMostSongs" : "Top 3 géneros con más canciones"
+    "metricsScreen_topGenreWithMostSongs" : "Top 3 géneros con más canciones",
+
+
+
+    "@_SONGS_FILTER_BOTTOMSHEET": {},
+    "songsFilterBotomShet_title" : "Filtrar por:",
+    "songsFilterBotomShet_byGenre" : "Género"
+   
     
 
     
