@@ -103,7 +103,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                         height: Sizes.kBottomNavHeight,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: theme.colorScheme.inverseSurface.withOpacity(0.6),
+                          color: theme.colorScheme.inverseSurface.withOpacity(0.5),
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
