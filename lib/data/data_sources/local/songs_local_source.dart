@@ -76,14 +76,26 @@ class SongsLocalSource {
       );
       await Future.delayed(Config.manualLocalServicesDelay);
       final songs = SongModel.fromMapList(songsMapList);
-      final count = await SQLite.instance.rawQuery(
-        'SELECT COUNT(*) as total FROM ${SongsTable.name} '
-        'WHERE ${SongsTable.colIsRemoved} = 0'
-      );
+
+      
+
+      int songsCount = 0;
+      if(filters?.isEmpty ?? true){
+        final count = await SQLite.instance.rawQuery(
+          'SELECT COUNT(*) as total FROM ${SongsTable.name} '
+          'WHERE ${SongsTable.colIsRemoved} = 0'
+        );
+        songsCount = count[0]['total'] as int;
+      }else{
+       songsCount = songs.length;
+      }
+
+
+     
       return ResponseModel(
         success: true,
         model: SongsListModel(
-          totalSongs: count[0]['total'] as int,
+          totalSongs: songsCount,
           items: songs
         )
       );

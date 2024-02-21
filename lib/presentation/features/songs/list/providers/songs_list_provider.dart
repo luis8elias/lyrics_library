@@ -109,6 +109,16 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
     log('[ SongsListProvider ] Model 👉🏼 ${_filters.toMap().toString()}');
   }
 
+  void cancelSearch(String newQuery){
+    if(_filters.query.isNotEmpty && newQuery.isEmpty){
+      _filters = _filters.copyWith(
+        query: newQuery
+      );
+      songsController.refresh();
+      log('[ SongsListProvider ] Model 👉🏼 ${_filters.toMap().toString()}');
+    }
+  }
+
   void toggleFavoriteSong({
     required SongModel songModel
   }){
@@ -122,7 +132,7 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
     notifyListeners();
   }
 
-  void setsIsFavoriteSong({
+  void setIsFavoriteSong({
     required Guid songId,
     required bool isFavorite
   }){

@@ -94,11 +94,7 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                     setState(() {
                       showSearchInput = false;
                     });
-                    prov.updateFilters(
-                      (filters) => filters.copyWith(
-                        query: ''
-                      ),
-                    );
+                    prov.cancelSearch('');
                   },
                   child: Text(
                     lang.actions_cancel

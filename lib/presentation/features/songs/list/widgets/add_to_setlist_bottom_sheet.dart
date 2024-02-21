@@ -159,7 +159,7 @@ class _AddToSetlistBottomSheetState extends ConsumerState<AddToSetlistBottomShee
                   onSuccess: (model, message) {
                     GoRouter.of(context).pop();
                     SnackbarHelper.show(context: context, message: message);
-                    ref.read(songsListProvider).setsIsFavoriteSong(
+                    ref.read(songsListProvider).setIsFavoriteSong(
                       songId: prov.songId, 
                       isFavorite: prov.isFavorite ?? prov.initialIsFavorite
                     );
