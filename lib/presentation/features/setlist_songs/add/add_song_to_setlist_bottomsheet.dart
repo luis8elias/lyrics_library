@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_guid/flutter_guid.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+
 import '/presentation/features/setlist_songs/add/widgets/add_to_setlist_btn.dart';
 import '/presentation/features/setlist_songs/list/provider/providers.dart';
 import '/presentation/features/setlists/list/providers/providers.dart';
 import '/utils/utils.dart';
 import '/presentation/features/setlist_songs/list/widgets/setlist_song_subtitle.dart';
 import '/presentation/features/songs/list/widgets/new_page_progress_indicator.dart';
-import '/presentation/features/songs/list/widgets/no_items_found.dart';
 import '/presentation/features/songs/list/widgets/song_title.dart';
 import '/presentation/widgets/loaders.dart';
 import '/presentation/widgets/search_input.dart';
@@ -145,7 +145,9 @@ class _AddSongToSetlistBottomsheetState extends ConsumerState<AddSongToSetlistBo
                               firstPageProgressIndicatorBuilder: (context) => LoadingScreen(
                                 backgroundColor: theme.appBarTheme.surfaceTintColor,
                               ),
-                              noItemsFoundIndicatorBuilder: (conetxt)=> const NoSongsFound(),
+                              noItemsFoundIndicatorBuilder: (conetxt)=> const Center(
+                                child: Text('No items'),
+                              ),
                               newPageProgressIndicatorBuilder: (context) => const NewPageProgressIndicator(),
                               itemBuilder: (context, song, index) {
                                 return Padding(

@@ -161,9 +161,9 @@ class _ReadSongScreenState extends ConsumerState<ReadSongScreen> {
               height: 15,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: theme.colorScheme.primary.withOpacity(0.3),
+                color: theme.colorScheme.tertiary.withOpacity(0.3),
                 border: Border.all(
-                  color: theme.colorScheme.primary
+                  color: theme.colorScheme.tertiary
                 ),
               ),
               child: Center(

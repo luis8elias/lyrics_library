@@ -690,6 +690,16 @@ class Lang {
     );
   }
 
+  /// `Select genre`
+  String get songsSelectGenre_title {
+    return Intl.message(
+      'Select genre',
+      name: 'songsSelectGenre_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `More options`
   String get moreOptionsScreen_title {
     return Intl.message(
@@ -835,6 +845,16 @@ class Lang {
     return Intl.message(
       'Setlists',
       name: 'setlistsListScreen_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `songs`
+  String get setlistsListScreen_songs {
+    return Intl.message(
+      'songs',
+      name: 'setlistsListScreen_songs',
       desc: '',
       args: [],
     );

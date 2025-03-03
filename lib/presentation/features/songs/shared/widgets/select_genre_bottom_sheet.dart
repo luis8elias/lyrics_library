@@ -7,6 +7,7 @@ import 'package:flutter_guid/flutter_guid.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:injector/injector.dart';
 
+import '/config/lang/generated/l10n.dart';
 import '/data/models/response_model.dart';
 import '/presentation/features/genres/list/genres_list_screen.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
@@ -87,11 +88,12 @@ class _SelectGenreBottomSheetState extends State<SelectGenreBottomSheet> {
   Widget build(BuildContext context) {
 
     final theme = Theme.of(context);
+    final lang = Lang.of(context);
 
     if(genreModel == null){
       return TextButton(
         onPressed: ()=> openBottomSheet(context),
-        child: const Text('Select Genre')
+        child: Text( lang.songsSelectGenre_title,)
       );
     }
 
@@ -142,6 +144,7 @@ class __SelectGenreBottomSheetUIState extends ConsumerState<_SelectGenreBottomSh
     final height = MediaQuery.sizeOf(context).height;
     final prov = ref.read(selectGenresListProvider);
     final reactiveProv = ref.watch(selectGenresListProvider);
+    final lang = Lang.of(context);
 
     return  GestureDetector(
       onTap: () {
@@ -188,7 +191,7 @@ class __SelectGenreBottomSheetUIState extends ConsumerState<_SelectGenreBottomSh
                               top: 5
                             ),
                             child: Text(
-                              'Select genre',
+                              lang.songsSelectGenre_title,
                               style: theme.textTheme.titleSmall,
                             ),
                           ),

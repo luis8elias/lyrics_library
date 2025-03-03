@@ -1,37 +1,51 @@
-
 import 'package:flutter_guid/flutter_guid.dart';
 
 class SongFilterModel {
 
   final String query;
-  final Guid? genreId;
+  final GenreFilterModel? genre;
+
   
   SongFilterModel({
     this.query = '',
-    this.genreId,
+    this.genre,
   });
 
   SongFilterModel copyWith({
     String? query,
-    Guid? genreId,
+    GenreFilterModel? genre,
   }) {
     return SongFilterModel(
       query: query ?? this.query,
-      genreId: Guid.defaultValue == genreId ? null : genreId ?? this.genreId 
+      genre: genre == null ? this.genre : genre.id == Guid.defaultValue ? null : genre
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'query': query,
-      'genreId': genreId?.toString(),
+      'genreId': genre?.id.toString().toString(),
     };
   }
 
   bool get isEmpty{
     return (query.isEmpty) &&
-    (genreId == null);
+    (genre == null);
+  }
+
+  bool get isNotEmpty{
+    return !isEmpty;
   }
 
  
+}
+
+class GenreFilterModel {
+  final Guid id;
+  final String genreName;
+
+
+  GenreFilterModel({
+    required this.id, required this.genreName
+  });
 }

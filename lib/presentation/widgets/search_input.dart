@@ -58,9 +58,10 @@ class _SearchInputState extends State<SearchInput> {
           controller: controller,
           cursorColor: theme.colorScheme.secondary,
           style: TextStyle(
-            color: theme.colorScheme.onSurface
+            color: theme.colorScheme.onSurface,
           ),
           decoration: InputDecoration(
+            fillColor: theme.colorScheme.inverseSurface,
             suffixIcon: IconButton(
               visualDensity: VisualDensity.standard,
               iconSize: 20,

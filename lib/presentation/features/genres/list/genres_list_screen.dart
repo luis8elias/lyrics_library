@@ -285,10 +285,10 @@ class GenreTileLeading extends StatelessWidget {
       height: 40,
       width: 40,
       decoration: BoxDecoration(
-        color: theme.colorScheme.primary.withOpacity(0.3),
+        color: theme.colorScheme.tertiary.withOpacity(0.3),
         borderRadius: BorderRadius.circular(5.0),
         border: Border.all(
-          color: theme.colorScheme.primary
+          color: theme.colorScheme.tertiary
         ),
       ),
       child: 

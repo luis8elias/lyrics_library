@@ -192,6 +192,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nombre"),
         "setlistsEditScreen_title":
             MessageLookupByLibrary.simpleMessage("Editar lista"),
+        "setlistsListScreen_songs":
+            MessageLookupByLibrary.simpleMessage("canciones"),
         "setlistsListScreen_title":
             MessageLookupByLibrary.simpleMessage("Listas"),
         "shareSongs_qr": MessageLookupByLibrary.simpleMessage("Qr"),
@@ -228,6 +230,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Filtros"),
         "songsListScreen_title":
             MessageLookupByLibrary.simpleMessage("Canciones"),
+        "songsSelectGenre_title":
+            MessageLookupByLibrary.simpleMessage("Seleccionar género"),
         "spechToTextBotomShet_holdBtn": MessageLookupByLibrary.simpleMessage(
             "Presiona el botón y comienza a hablar"),
         "spechToTextBotomShet_noUnderstand":

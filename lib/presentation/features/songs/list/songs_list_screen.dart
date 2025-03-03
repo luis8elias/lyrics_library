@@ -11,6 +11,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '/config/lang/generated/l10n.dart';
 import '/presentation/features/genres/shared/models/genre_model.dart';
 import '/presentation/features/songs/delete/delete_song_button.dart';
+import '/presentation/features/songs/list/models/songs_filter_model.dart';
 import '/presentation/features/songs/list/providers/providers.dart';
 import '/presentation/features/songs/list/widgets/add_to_setlist_bottom_sheet.dart';
 import '/presentation/features/songs/list/widgets/like_song_button.dart';
@@ -248,9 +249,15 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
 
                                   prov.updateFilters(
                                     (filters) => filters.copyWith(
-                                      genreId: genre == null 
-                                      ? Guid.defaultValue 
-                                      : genre.id
+                                      genre: genre == null 
+                                      ? GenreFilterModel(
+                                        id: genre?.id ?? Guid.defaultValue,
+                                        genreName: genre?.name ?? ''
+                                      )
+                                      : GenreFilterModel(
+                                        id: Guid.defaultValue,
+                                        genreName:  ''
+                                      )
                                     ),
                                   );
                                 }, 
@@ -267,7 +274,10 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                                         });
                                          prov.updateFilters(
                                           (filters) => filters.copyWith(
-                                            genreId: Guid.defaultValue
+                                            genre: GenreFilterModel(
+                                              id: Guid.defaultValue,
+                                              genreName:  ''
+                                            )
                                           ),
                                         );
                                       },
@@ -302,7 +312,10 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                           });
                            prov.updateFilters(
                             (filters) => filters.copyWith(
-                              genreId: genre.id
+                              genre: GenreFilterModel(
+                                id: genre.id,
+                                genreName: genre.name
+                              )
                             ),
                           );
                         }
@@ -335,7 +348,13 @@ class _SongsListScreenState extends ConsumerState<SongsListScreen> {
                     pagingController: reactiveProv.songsController,
                     builderDelegate: PagedChildBuilderDelegate<SongModel>(
                       firstPageProgressIndicatorBuilder: (context) => const LoadingScreen(),
-                      noItemsFoundIndicatorBuilder: (conetxt)=> const NoSongsFound(),
+                      noItemsFoundIndicatorBuilder: (conetxt)=> NoItemsFound(
+                        hideSearchInput: (){
+                          setState(() {
+                            showSearchInput = false;
+                          });
+                        },
+                      ),
                       newPageProgressIndicatorBuilder: (context) => const NewPageProgressIndicator(),
                       itemBuilder: (context, song, index) {
                         return Padding(

@@ -142,6 +142,10 @@
     "songsEditScreen_titleInput" : "Title",
     "songsEditScreen_lyricInput" : "Write the lyrics of the song",
 
+    "@_SONGS_SELECT_GENRE": {},
+    "songsSelectGenre_title" : "Select genre",
+   
+
 
 
     "@_MORE_OPTIONS_SCREEN": {},
@@ -167,6 +171,7 @@
 
     "@_SETLISTS_LIST_SCREEN": {},
     "setlistsListScreen_title" : "Setlists",
+    "setlistsListScreen_songs" : "songs",
 
 
 

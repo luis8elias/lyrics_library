@@ -55,9 +55,9 @@ class SongsLocalSource {
         partOfRawQury = "S.${SongsTable.colSearchKeywords} LIKE '%$q%' ";
       }
 
-      final filterByGenre = filters?.genreId == null 
+      final filterByGenre = filters?.genre == null 
       ? '' 
-      : "AND S.${SongsTable.colGenreId} = '${filters?.genreId.toString()}' ";
+      : "AND S.${SongsTable.colGenreId} = '${filters?.genre?.id.toString()}' ";
       
       final songsMapList = await SQLite.instance.rawQuery(
         'SELECT S.*, '

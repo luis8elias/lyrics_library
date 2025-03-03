@@ -20,6 +20,7 @@ class SongsListProvider extends ChangeNotifier with SelectableListProvider<Guid>
   int totalSongs = 0;
   SongFilterModel _filters = SongFilterModel();
 
+  SongFilterModel get filters => _filters;
   PagingController<int, SongModel> get songsController => _pagingController;
 
   SongModel get getFirstSongSelected => _pagingController.itemList!.firstWhere(

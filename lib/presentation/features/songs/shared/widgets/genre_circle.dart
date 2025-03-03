@@ -23,9 +23,9 @@ class GenreCricle extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: theme.colorScheme.primary.withOpacity(0.3),
+          color: theme.colorScheme.tertiary.withOpacity(0.3),
           border: Border.all(
-            color: theme.colorScheme.primary
+            color: theme.colorScheme.tertiary
           ),
         ),
         child: Center(

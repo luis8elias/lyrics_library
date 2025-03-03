@@ -135,6 +135,9 @@
     "songsEditScreen_titleInput" : "Título",
     "songsEditScreen_lyricInput" : "Escribe la letra de la canción",
 
+    "@_SONGS_SELECT_GENRE": {},
+    "songsSelectGenre_title" : "Seleccionar género",
+
 
 
     "@_MORE_OPTIONS_SCREEN": {},
@@ -161,6 +164,7 @@
 
     "@_SETLISTS_LIST_SCREEN": {},
     "setlistsListScreen_title" : "Listas",
+    "setlistsListScreen_songs" : "canciones",
 
 
 
